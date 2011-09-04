@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_gravity="fill"
+	android:foregroundGravity="fill"
+>
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:gravity="fill"
+		android:layout_gravity="fill"
+	>
+		<TextView
+			android:text="@string/helptext"
+			android:layout_height="wrap_content"
+
+			android:layout_width="fill_parent"
+			android:layout_gravity="center"
+			android:layout_marginTop="15sp"
+			android:gravity="center"
+			android:layout_marginLeft="10sp"
+			android:layout_marginRight="10sp"
+
+		></TextView>
+
+		<TextView
+			android:text="@string/rotation"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
+			android:layout_width="fill_parent"
+			android:layout_gravity="center"
+			android:layout_marginTop="5sp"
+			android:gravity="center"
+		></TextView>
+
+		<RadioGroup
+			android:id="@+id/rotation"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_gravity="center"
+			android:gravity="center"
+		>
+			<RadioButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/pointers"
+				android:text="@string/pointers"
+			></RadioButton>
+			<RadioButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/rings"
+				android:text="@string/rings"
+			></RadioButton>
+		</RadioGroup>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:id="@+id/OkButton"
+			android:text="@string/ok"
+			android:layout_width="fill_parent"
+			android:layout_marginBottom="15sp"
+			android:layout_marginTop="15sp"
+			android:layout_marginLeft="10sp"
+			android:layout_marginRight="10sp"
+			android:layout_gravity="center"
+			android:gravity="center"
+		></Button>
+	</LinearLayout>
+</ScrollView>	

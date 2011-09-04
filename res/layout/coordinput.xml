@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:layout_width="fill_parent">
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+		>
+			<RadioGroup
+				android:id="@+id/northsouth"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="5sp"
+			>
+				<RadioButton
+					android:id="@+id/north"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/north"
+					android:checked="true"
+				></RadioButton>
+				<RadioButton
+					android:id="@+id/south"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/south"
+				></RadioButton>
+			</RadioGroup>
+			<EditText
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:id="@+id/degnorthsouth"
+				android:inputType="number" android:hint="0 ... 90" android:layout_margin="10sp" android:layout_width="fill_parent"></EditText>
+		</LinearLayout>
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+		>
+			<RadioGroup
+				android:id="@+id/eastwest"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="5sp"
+			>
+				<RadioButton
+					android:id="@+id/east"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/east"
+					android:checked="true"
+				></RadioButton>
+				<RadioButton
+					android:id="@+id/west"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/west"
+				></RadioButton>
+			</RadioGroup>
+			<EditText
+				android:layout_height="wrap_content"
+				android:inputType="number"
+				android:id="@+id/degeastwest" android:hint="0 ... 180" android:layout_margin="10sp" android:layout_gravity="center_vertical" android:layout_width="fill_parent"></EditText>
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>
