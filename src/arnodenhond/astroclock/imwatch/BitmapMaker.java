@@ -85,7 +85,6 @@ public class BitmapMaker {
 		Resources r = ctx.getResources();
 
 		BitmapDrawable bd = (BitmapDrawable) r.getDrawable(R.drawable.background);
-		bd = (BitmapDrawable) r.getDrawable(R.drawable.background);
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 
 		bd = (BitmapDrawable) r.getDrawable(R.drawable.daynight);

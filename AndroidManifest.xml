@@ -5,15 +5,7 @@
     android:versionName="1" >
     <uses-sdk
         android:minSdkVersion="4"
-        android:targetSdkVersion="4"
-        android:maxSdkVersion="4"/>
-    <supports-screens
-        android:smallScreens="true"
-        android:normalScreens="false"
-        android:largeScreens="false"
-        android:anyDensity="false"
-        android:resizeable="false"
-        />
+        android:targetSdkVersion="4"/>
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
@@ -22,12 +14,14 @@
             android:name="arnodenhond.astroclock.imwatch.AstroClock" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="arnodenhond.astroclock.imwatch.Menu" />
+        <activity android:name="arnodenhond.astroclock.imwatch.Map" />
         <activity android:name="arnodenhond.astroclock.imwatch.Stats" />
-        <activity android:name="arnodenhond.astroclock.imwatch.Config" />
+        <activity android:name="arnodenhond.astroclock.imwatch.Help" />
+        <activity android:name="arnodenhond.astroclock.imwatch.Theme" />
         <activity android:name=".imwatch.Help" />
     </application>
 </manifest>

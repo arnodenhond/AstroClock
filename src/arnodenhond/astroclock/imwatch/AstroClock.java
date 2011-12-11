@@ -11,11 +11,13 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-public class AstroClock extends Activity {
+public class AstroClock extends Activity implements OnClickListener {
 	
 	//TODO uncomment imwatch shortcut
 	
@@ -24,28 +26,24 @@ public class AstroClock extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity);
+		iv = (ImageView) findViewById(R.id.clock);
+
 		super.onCreate(savedInstanceState);
-		// SharedPreferences.Editor edit = prefs.edit();
-		// edit.putFloat("latitude", (float) latitude);
-		// edit.putFloat("longitude", (float) longitude);
-		// edit.commit();
 	}
 
 	PendingIntent pi;
 
 	@Override
 	protected void onResume() {
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity);
-
-		iv = (ImageView) findViewById(R.id.clock);
-
-		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 		if (!isImWatch()) {
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=arnodenhond.astroclocklite")));
 			finish();
 			return;
 		}
+
+		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 		int height = display.getHeight();
 
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
@@ -54,19 +52,21 @@ public class AstroClock extends Activity {
 		bmmaker = new BitmapMaker(this, height, latitude, longitude);
 		iv.setImageBitmap(bmmaker.makeBitmap());
 		
-		
-		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+		iv.setOnClickListener(this);
+
 		registerReceiver(alarmReceiver, new IntentFilter("astroclockupdate"));
-		Intent intent = new Intent("astroclockupdate");
-		pi = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+		pi = PendingIntent.getBroadcast(this, 0, new Intent("astroclockupdate"), 0);
+
+		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pi);
 		super.onResume();
 	}
 
 	private boolean isImWatch() {
 		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		//return (display.getHeight() < 241 && display.getWidth() < 241)
-		return true;
+		return (display.getHeight() < 241 && display.getWidth() < 241);
+		//return true;
 	}
 
 	BroadcastReceiver alarmReceiver = new BroadcastReceiver() {
@@ -82,6 +82,11 @@ public class AstroClock extends Activity {
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.cancel(pi);
 		super.onPause();
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		startActivity(new Intent(AstroClock.this,Menu.class));
 	}
 
 }
