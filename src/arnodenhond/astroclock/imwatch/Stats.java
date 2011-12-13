@@ -6,28 +6,16 @@ import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 import android.app.Activity;
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.RemoteViews;
 import android.widget.TextView;
-import arnodenhond.astroclock.imwatch.R;
 
 public class Stats extends Activity {
 
@@ -51,35 +39,17 @@ public class Stats extends Activity {
 		utcoffset /= 60;
 		utcoffset /= 60;
 		utcoffset /= 1000;
-		double latitude = 0.0d;
-		double longitude = 0.0d;
 
-		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		if (location != null) {
-			latitude = location.getLatitude();
-			longitude = location.getLongitude();
-		}
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
-		if (latitude == 0.0d && longitude == 0.0d) {
-			latitude = prefs.getFloat("latitude", 0.01f);
-			longitude = prefs.getFloat("longitude", 0.01f);
-		}
+		double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));
+		double longitude = Float.parseFloat(prefs.getString("longitude", "-120"));
 
 		Calendar c = Calendar.getInstance();
-		double upastro = 0;
-		double downastro = 0;
-		double upnautic = 0;
-		double downnautic = 0;
-		double upcivil = 0;
-		double downcivil = 0;
+		double up = 0;
+		double down = 0;
 		try {
-			upastro = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ASTRONOMICAL_ZENITH).getFractionalHours();
-			downastro = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ASTRONOMICAL_ZENITH).getFractionalHours();
-			upnautic = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.NAUTICAL_ZENITH).getFractionalHours();
-			downnautic = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.NAUTICAL_ZENITH).getFractionalHours();
-			upcivil = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.CIVIL_ZENITH).getFractionalHours();
-			downcivil = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.CIVIL_ZENITH).getFractionalHours();
+			up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
+			down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
 		} catch (SunTimesException e) {
 		}
 
@@ -107,31 +77,9 @@ public class Stats extends Activity {
 		TextView lastsummerdays = (TextView) findViewById(R.id.lastsummerdays);
 		TextView lastsummermoons = (TextView) findViewById(R.id.lastsummermoons);
 
-		sunriseastro.setText(new Time(upastro + utcoffset).toString());
-		sunsetastro.setText(new Time(downastro + utcoffset).toString());
-		sunrisenautic.setText(new Time(upnautic + utcoffset).toString());
-		sunsetnautic.setText(new Time(downnautic + utcoffset).toString());
-		sunrisecivil.setText(new Time(upcivil + utcoffset).toString());
-		sunsetcivil.setText(new Time(downcivil + utcoffset).toString());
+		sunriseastro.setText(new Time(up + utcoffset).toString());
+		sunsetastro.setText(new Time(down + utcoffset).toString());
 
-		double up = 0;
-		double down = 0;
-		prefs = getSharedPreferences("settings", Activity.MODE_PRIVATE);
-		int twilightmode = prefs.getInt("twilight", CIVIL);
-		switch (twilightmode) {
-		case ASTRO:
-			up = upastro;
-			down = downastro;
-			break;
-		case NAUTIC:
-			up = upnautic;
-			down = downnautic;
-			break;
-		case CIVIL:
-			up = upcivil;
-			down = downcivil;
-			break;
-		}
 		double midsun = getSun(up, down);
 		midday.setText(getResources().getString(R.string.midday) + ": " + new Time((midsun - 11)).toString());
 		midnight.setText(getResources().getString(R.string.midnight) + ": " + new Time(midsun + 1).toString());
@@ -200,6 +148,8 @@ public class Stats extends Activity {
 
 	private double getYear(boolean north) {
 		Calendar top = Calendar.getInstance();
+		top.set(Calendar.HOUR_OF_DAY, 12);
+		top.set(Calendar.MINUTE,0);
 		if (north)
 			top.set(Calendar.MONTH, 5);
 		else

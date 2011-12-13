@@ -8,42 +8,48 @@ import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 
 public class MapView extends View {
 
-	public MapView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		bd = (BitmapDrawable) getResources().getDrawable(R.drawable.map);
-		paint = new Paint(Paint.FILTER_BITMAP_FLAG);
-		paint.setAntiAlias(true);
-	}
-
-	Button button;
-
-	public void setButton(Button button) {
-		this.button = button;
-	}
-
+	EditText latet;
+	EditText lonet;
 	BitmapDrawable bd;
 	Paint paint;
 	public int x = -1;
 	public int y = -1;
 
+	public MapView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		bd = (BitmapDrawable) getResources().getDrawable(R.drawable.map);
+		paint = new Paint(0);
+	}
+
+	public void setFields(EditText latet, EditText lonet) {
+		this.latet = latet;
+		this.lonet = lonet;
+		try {
+			setLat(Integer.parseInt(latet.getText().toString()));
+		} catch (NumberFormatException nfe) {
+		}
+		try {
+			setLon(Integer.parseInt(lonet.getText().toString()));
+		} catch (NumberFormatException nfe) {
+		}
+		invalidate();
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
-		paint.setColor(Color.TRANSPARENT);
-		canvas.drawRect(0, 0, 240, 240, paint);
-		paint.setARGB(192, 0, 0, 0);
+		//paint.setColor(Color.TRANSPARENT);
+		//canvas.drawRect(0, 0, 240, 120, paint);
+		//paint.setARGB(192, 0, 0, 0);
 		canvas.drawBitmap(bd.getBitmap(), 0, 0, paint);
-		paint.setColor(Color.RED);
+		paint.setColor(Color.YELLOW);
 		paint.setStrokeWidth(3f);
-		
-		if (x!=-1) {
-			canvas.drawLine((float)x, 0, (float)x, 240, paint);
-		}
-		if (y!=-1) {
-			canvas.drawLine(0,(float)y, 240, (float)y, paint);
+		if (x != -1 && y != -1) {
+			canvas.drawLine((float) x, 0f, (float) x, 120f, paint);
+			canvas.drawLine(0f, (float) y, 240f, (float) y, paint);
 		}
 	}
 
@@ -51,36 +57,43 @@ public class MapView extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 		x = (int) event.getX();
 		y = (int) event.getY();
-		if (y<0)
+		if (x<0 || x > 240)
 			return true;
-		button.setText("Set "+makeLatLon());
+		if (y<0 || y > 120)
+			return true;
+		latet.setText(getLat() + "");
+		lonet.setText(getLon() + "");
 		invalidate();
 		return true;
 	}
 
-	private String makeLatLon() {
-		int lat = getLat();
-		int lon = getLon();
-		return Math.abs(lat) + (lat < 0 ? "N" : "S") + ", " + Math.abs(lon) + (lon > 0 ? "E" : "W");
+	public void setLat(int lat) {
+		lat *= -1;
+		lat += 90;
+		float f = 120f / 180f;
+		f *= lat;
+		y = (int) f;
+	}
+
+	public void setLon(int lon) {
+		lon += 180;
+		float f = 240f / 360f;
+		f *= lon;
+		x = (int) f;
 	}
 
 	public int getLat() {
-		//-75 .. 60 = 135
-		int total = getHeight();
-		int range = 180;
-		int mod = -90;
-		
-		float f = ((float)y / (float)total);
-		float flat = f*(float)range;
+		float f = (float) y / 120f;
+		float flat = f * 180f;
 		int lat = (int) flat;
-		lat += mod;
-		return lat;
+		lat -= 90;
+		return lat*=-1;
 	}
 
 	public int getLon() {
 		float f = (float) x / 239f;
-		float flon = f * 360;
-		int lon  = (int) flon;
+		float flon = f * 360f;
+		int lon = (int) flon;
 		lon -= 180;
 		return lon;
 	}

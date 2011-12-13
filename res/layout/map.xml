@@ -4,12 +4,36 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/setmap"
-        android:text="Set"
-        android:onClick="setmap"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <EditText
+            android:id="@+id/latet"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="LAT"
+            android:inputType="numberSigned" />
+
+        <EditText
+            android:id="@+id/lonet"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="LON"
+            android:inputType="numberSigned" />
+
+        <Button
+            android:id="@+id/setmap"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:onClick="setmap"
+            android:text="Set" />
+    </LinearLayout>
 
 </RelativeLayout>

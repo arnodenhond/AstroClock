@@ -29,7 +29,8 @@ public class AstroClock extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity);
 		iv = (ImageView) findViewById(R.id.clock);
-
+		//getSharedPreferences("latlon", MODE_PRIVATE).edit().clear().commit();
+		
 		super.onCreate(savedInstanceState);
 	}
 
@@ -37,6 +38,8 @@ public class AstroClock extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
+		super.onResume();
+
 		if (!isImWatch()) {
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=arnodenhond.astroclocklite")));
 			finish();
@@ -47,8 +50,8 @@ public class AstroClock extends Activity implements OnClickListener {
 		int height = display.getHeight();
 
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
-		double latitude = prefs.getFloat("latitude", 35.01f);
-		double longitude = prefs.getFloat("longitude", -120.01f);
+		double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));
+		double longitude = Float.parseFloat(prefs.getString("longitude", "-120"));
 		bmmaker = new BitmapMaker(this, height, latitude, longitude);
 		iv.setImageBitmap(bmmaker.makeBitmap());
 		
@@ -60,13 +63,12 @@ public class AstroClock extends Activity implements OnClickListener {
 
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pi);
-		super.onResume();
 	}
 
 	private boolean isImWatch() {
 		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		return (display.getHeight() < 241 && display.getWidth() < 241);
-		//return true;
+		//return (display.getHeight() < 241 && display.getWidth() < 241);
+		return true;
 	}
 
 	BroadcastReceiver alarmReceiver = new BroadcastReceiver() {
@@ -78,7 +80,11 @@ public class AstroClock extends Activity implements OnClickListener {
 
 	@Override
 	protected void onPause() {
+		try {
 		unregisterReceiver(alarmReceiver);
+		} catch (IllegalArgumentException aet) {
+			
+		}
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.cancel(pi);
 		super.onPause();

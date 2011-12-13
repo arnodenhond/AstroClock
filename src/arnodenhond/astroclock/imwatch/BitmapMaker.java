@@ -11,7 +11,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
-import arnodenhond.astroclock.imwatch.R;
 
 public class BitmapMaker {
 
@@ -115,6 +114,8 @@ public class BitmapMaker {
 
 	private static double getYear(boolean north) {
 		Calendar top = Calendar.getInstance();
+		top.set(Calendar.HOUR_OF_DAY, 12);
+		top.set(Calendar.MINUTE,0);
 		if (north)
 			top.set(Calendar.MONTH, 5);
 		else

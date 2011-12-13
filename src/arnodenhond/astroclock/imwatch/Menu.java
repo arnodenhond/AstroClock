@@ -25,4 +25,8 @@ public class Menu extends Activity {
 		startActivity(new Intent(Menu.this,Help.class));
 	}
 	
+	public void startAlarms(View v) {
+		startActivity(new Intent(Menu.this,Alarms.class));
+	}
+	
 }
