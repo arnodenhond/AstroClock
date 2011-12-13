@@ -62,23 +62,12 @@ public class Stats extends Activity {
 		TextView midnight = (TextView) findViewById(R.id.midnight);
 		TextView daylength = (TextView) findViewById(R.id.daylength);
 		TextView nightlength = (TextView) findViewById(R.id.nightlength);
-		TextView sunriseastro = (TextView) findViewById(R.id.sunriseastro);
-		TextView sunsetastro = (TextView) findViewById(R.id.sunsetastro);
-		TextView sunrisenautic = (TextView) findViewById(R.id.sunrisenautic);
-		TextView sunsetnautic = (TextView) findViewById(R.id.sunsetnautic);
-		TextView sunrisecivil = (TextView) findViewById(R.id.sunrisecivil);
-		TextView sunsetcivil = (TextView) findViewById(R.id.sunsetcivil);
-		TextView nextmoon = (TextView) findViewById(R.id.nextmoon);
-		TextView lastmoon = (TextView) findViewById(R.id.lastmoon);
 		TextView nextmoondays = (TextView) findViewById(R.id.nextmoondays);
 		TextView lastmoondays = (TextView) findViewById(R.id.lastmoondays);
 		TextView nextsummerdays = (TextView) findViewById(R.id.nextsummerdays);
 		TextView nextsummermoons = (TextView) findViewById(R.id.nextsummermoons);
 		TextView lastsummerdays = (TextView) findViewById(R.id.lastsummerdays);
 		TextView lastsummermoons = (TextView) findViewById(R.id.lastsummermoons);
-
-		sunriseastro.setText(new Time(up + utcoffset).toString());
-		sunsetastro.setText(new Time(down + utcoffset).toString());
 
 		double midsun = getSun(up, down);
 		midday.setText(getResources().getString(R.string.midday) + ": " + new Time((midsun - 11)).toString());
@@ -98,17 +87,7 @@ public class Stats extends Activity {
 		double dnextmoon = 29.53d - dlastmoon;
 		nextmoondays.setText(numshort(dnextmoon) + " " + getResources().getString(R.string.days));
 
-		Calendar nextmoonCal = Calendar.getInstance();
-		Calendar lastmoonCal = Calendar.getInstance();
-		dnextmoon *= 24d;
-		nextmoonCal.add(Calendar.HOUR_OF_DAY, (int) dnextmoon);
-		dlastmoon *= -24d;
-		lastmoonCal.add(Calendar.HOUR_OF_DAY, (int) dlastmoon);
-
 		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy");
-
-		nextmoon.setText(getResources().getString(R.string.next) + ": " + sdf.format(nextmoonCal.getTime()));
-		lastmoon.setText(getResources().getString(R.string.last) + ": " + sdf.format(lastmoonCal.getTime()));
 
 		double dnextyear = year * -365d;
 		double dlastyear = 365d - (year * -365d);
@@ -118,14 +97,6 @@ public class Stats extends Activity {
 
 		nextsummermoons.setText(numshort(dnextyear / 29.53d) + " " + getResources().getString(R.string.moons));
 		lastsummermoons.setText("-" + numshort(dlastyear / 29.53d) + " " + getResources().getString(R.string.moons));
-
-		Button moreButton = (Button) findViewById(R.id.Button);
-		moreButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:\"Arno den Hond\"")));
-			}
-		});
 
 	}
 
@@ -149,7 +120,7 @@ public class Stats extends Activity {
 	private double getYear(boolean north) {
 		Calendar top = Calendar.getInstance();
 		top.set(Calendar.HOUR_OF_DAY, 12);
-		top.set(Calendar.MINUTE,0);
+		top.set(Calendar.MINUTE, 0);
 		if (north)
 			top.set(Calendar.MONTH, 5);
 		else
