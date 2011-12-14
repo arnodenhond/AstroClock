@@ -13,20 +13,23 @@ public class Menu extends Activity {
 	}
 
 	public void startTheme(View v) {
-		startActivity(new Intent(Menu.this,Theme.class));
+		startActivity(new Intent(Menu.this, Theme.class));
 	}
+
 	public void startMap(View v) {
-		startActivity(new Intent(Menu.this,Map.class));
+		startActivity(new Intent(Menu.this, Map.class));
 	}
+
 	public void startStats(View v) {
-		startActivity(new Intent(Menu.this,Stats.class));
+		startActivity(new Intent(Menu.this, Stats.class));
 	}
+
 	public void startHelp(View v) {
-		startActivity(new Intent(Menu.this,Help.class));
+		startActivity(new Intent(Menu.this, Help.class));
 	}
-	
+
 	public void startAlarms(View v) {
-		startActivity(new Intent(Menu.this,Alarms.class));
+		startActivity(new Intent(Menu.this, Alarms.class));
 	}
-	
+
 }

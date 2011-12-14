@@ -1,6 +1,5 @@
 package arnodenhond.astroclock.imwatch;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
@@ -8,13 +7,9 @@ import java.util.TimeZone;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class Stats extends Activity {
@@ -86,8 +81,6 @@ public class Stats extends Activity {
 		lastmoondays.setText("-" + numshort(dlastmoon) + " " + getResources().getString(R.string.days));
 		double dnextmoon = 29.53d - dlastmoon;
 		nextmoondays.setText(numshort(dnextmoon) + " " + getResources().getString(R.string.days));
-
-		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy");
 
 		double dnextyear = year * -365d;
 		double dlastyear = 365d - (year * -365d);

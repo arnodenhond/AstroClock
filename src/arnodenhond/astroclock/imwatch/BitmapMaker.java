@@ -28,12 +28,14 @@ public class BitmapMaker {
 	float sun;
 	boolean north;
 	int dimension;
+	int theme;
 
-	public BitmapMaker(Context context, int d, double lat, double lon) {
+	public BitmapMaker(Context context, int d, double lat, double lon, int theme) {
 		this.ctx = context;
 		this.dimension = d;
 		this.latitude = lat;
 		this.longitude = lon;
+		this.theme = theme;
 	}
 
 	Bitmap makeBitmap() {
@@ -52,6 +54,15 @@ public class BitmapMaker {
 			down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
 		} catch (SunTimesException e) {
 		}
+
+		Resources r = ctx.getResources();
+		int resBack = r.getIdentifier("arnodenhond.astroclock.imwatch:drawable/t" + (theme + 1) + "background", null, null);
+		int resRise = r.getIdentifier("arnodenhond.astroclock.imwatch:drawable/t" + (theme + 1) + "sunrise", null, null);
+		int resSet = r.getIdentifier("arnodenhond.astroclock.imwatch:drawable/t" + (theme + 1) + "sunset", null, null);
+		int resDay = r.getIdentifier("arnodenhond.astroclock.imwatch:drawable/t" + (theme + 1) + "day", null, null);
+		int resMoon = r.getIdentifier("arnodenhond.astroclock.imwatch:drawable/t" + (theme + 1) + "moon", null, null);
+		int resYear = r.getIdentifier("arnodenhond.astroclock.imwatch:drawable/t" + (theme + 1) + "year", null, null);
+		int resTop = r.getIdentifier("arnodenhond.astroclock.imwatch:drawable/t" + (theme + 1) + "cover", null, null);
 
 		north = (latitude > 0 ? true : false);
 
@@ -79,35 +90,38 @@ public class BitmapMaker {
 		paint.setAntiAlias(true);
 		paint.setColor(Color.TRANSPARENT);
 		canvas.drawRect(0, 0, dimension, dimension, paint);
-		paint.setARGB(192, 0, 0, 0);
+		paint.setARGB(255, 0, 0, 0);
 
-		Resources r = ctx.getResources();
-
-		BitmapDrawable bd = (BitmapDrawable) r.getDrawable(R.drawable.background);
+		BitmapDrawable bd = (BitmapDrawable) r.getDrawable(resBack);
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 
-		bd = (BitmapDrawable) r.getDrawable(R.drawable.daynight);
+		bd = (BitmapDrawable) r.getDrawable(resSet);
 		canvas.rotate(degsunrise, centerx, centery);
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 		canvas.rotate(degsunrise * -1f, centerx, centery);
+
+		bd = (BitmapDrawable) r.getDrawable(resRise);
 		canvas.rotate(degsunset, centerx, centery);
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 		canvas.rotate(degsunset * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) r.getDrawable(R.drawable.yearfinger);
+		bd = (BitmapDrawable) r.getDrawable(resYear);
 		canvas.rotate(degyear, centerx, centery);
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 		canvas.rotate(degyear * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) r.getDrawable(R.drawable.moonfinger);
+		bd = (BitmapDrawable) r.getDrawable(resMoon);
 		canvas.rotate(degmoon, centerx, centery);
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 		canvas.rotate(degmoon * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) r.getDrawable(R.drawable.dayfinger);
+		bd = (BitmapDrawable) r.getDrawable(resDay);
 		canvas.rotate(degday, centerx, centery);
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 		canvas.rotate(degday * -1f, centerx, centery);
+
+		bd = (BitmapDrawable) r.getDrawable(resTop);
+		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 
 		return result;
 	}
@@ -115,7 +129,7 @@ public class BitmapMaker {
 	private static double getYear(boolean north) {
 		Calendar top = Calendar.getInstance();
 		top.set(Calendar.HOUR_OF_DAY, 12);
-		top.set(Calendar.MINUTE,0);
+		top.set(Calendar.MINUTE, 0);
 		if (north)
 			top.set(Calendar.MONTH, 5);
 		else

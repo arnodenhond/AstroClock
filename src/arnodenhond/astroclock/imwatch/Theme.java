@@ -1,7 +1,6 @@
 package arnodenhond.astroclock.imwatch;
 
 import android.app.Activity;
-import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -57,7 +56,7 @@ public class Theme extends Activity {
 		int mGalleryItemBackground;
 		private Context mContext;
 
-		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview, R.drawable.t4preview };
+		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview };
 
 		public ImageAdapter(Context c) {
 			mContext = c;
@@ -89,4 +88,3 @@ public class Theme extends Activity {
 	}
 
 }
-

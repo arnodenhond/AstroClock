@@ -41,9 +41,9 @@ public class MapView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		//paint.setColor(Color.TRANSPARENT);
-		//canvas.drawRect(0, 0, 240, 120, paint);
-		//paint.setARGB(192, 0, 0, 0);
+		// paint.setColor(Color.TRANSPARENT);
+		// canvas.drawRect(0, 0, 240, 120, paint);
+		// paint.setARGB(192, 0, 0, 0);
 		canvas.drawBitmap(bd.getBitmap(), 0, 0, paint);
 		paint.setColor(Color.YELLOW);
 		paint.setStrokeWidth(3f);
@@ -57,9 +57,9 @@ public class MapView extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 		x = (int) event.getX();
 		y = (int) event.getY();
-		if (x<0 || x > 240)
+		if (x < 0 || x > 240)
 			return true;
-		if (y<0 || y > 120)
+		if (y < 0 || y > 120)
 			return true;
 		latet.setText(getLat() + "");
 		lonet.setText(getLon() + "");
@@ -87,7 +87,7 @@ public class MapView extends View {
 		float flat = f * 180f;
 		int lat = (int) flat;
 		lat -= 90;
-		return lat*=-1;
+		return lat *= -1;
 	}
 
 	public int getLon() {

@@ -44,11 +44,6 @@ public class Alarms extends PreferenceActivity {
 		} catch (SunTimesException e) {
 		}
 
-		boolean north = (latitude > 0 ? true : false);
-
-		double moon = getMoon();
-		double year = getYear(north);
-
 		double midsun = getSun(up, down);
 
 		addPreferencesFromResource(R.xml.alarms);

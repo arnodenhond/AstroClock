@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="artists">
-		<item>Barry Rijkse.com</item>
 		<item>Monica Baltodano</item>
+	    <item>Barry G. Rijkse x-panded.daportfolio.com</item>
 		<item>Wazza.nl</item>
-		<item>Gregor S.</item>
 	</string-array>
 </resources>

@@ -23,7 +23,7 @@
     <string name="moons">Moons</string>
     <string name="midsummer">Mid summer</string>
     <string name="ok">Ok</string>
-    <string name="helptext">AstroClock measures time by astronomical standards.\n\nThe shortest hand shows the position of the sun during a day. Unlike an normal hour hand, this hand turns only once in 24 hours.\nSmaller hands show the moments of sunrise and sunset.\n\nThe middle hand shows the phase of the moon. It turns every 29.5 days\n\nThe longest hand shows the position of the earth in its orbit around the sun. It turns every 365.25 days\n\nLike a normal clock, the hands rotate in clockwise direction.\n\nandroid.arnodenhond.com (c) 2011 </string>
+    <string name="helptext">AstroClock measures time by astronomical standards.\n\nThe shortest hand shows the position of the sun during a day. Unlike an normal hour hand, this hand turns only once in 24 hours.\nSmaller hands show the moments of sunrise and sunset.\n\nThe middle hand shows the phase of the moon. It turns every 29.5 days\n\nThe longest hand shows the position of the earth in its orbit around the sun. It turns every 365.25 days\n\nLike a normal clock, the hands rotate in clockwise direction.\n\nSelect checkboxe in the alarms section for recurring audible notifications.\n\nandroid.arnodenhond.com (c) 2011 </string>
     <string name="moreapps">More Apps</string>
     <string name="rotation">Rotation</string>
     <string name="pointers">Pointers</string>
