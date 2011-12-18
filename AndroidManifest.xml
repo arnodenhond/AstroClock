@@ -3,9 +3,11 @@
     package="arnodenhond.astroclock.imwatch"
     android:versionCode="1"
     android:versionName="1" >
+
     <uses-sdk
         android:minSdkVersion="4"
         android:targetSdkVersion="4" />
+
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
@@ -24,6 +26,30 @@
         <activity android:name="arnodenhond.astroclock.imwatch.Help" />
         <activity android:name="arnodenhond.astroclock.imwatch.Theme" />
         <activity android:name="arnodenhond.astroclock.imwatch.Alarms" />
+
+        <receiver android:name="arnodenhond.astroclock.imwatch.AlarmReceiver" >
+            <intent-filter >
+                <action android:name="midday" />
+                <action android:name="midnight" />
+                <action android:name="sunrise" />
+                <action android:name="sunset" />
+                <action android:name="fullmoon" />
+                <action android:name="newmoon" />
+                <action android:name="firstquarter" />
+                <action android:name="lastquarter" />
+                <action android:name="northernsolstice" />
+                <action android:name="southernsolstice" />
+                <action android:name="northwardequinox" />
+                <action android:name="northwardequinox" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="arnodenhond.astroclock.imwatch.BootReceiver" >
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 </manifest>

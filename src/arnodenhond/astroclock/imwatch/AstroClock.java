@@ -45,22 +45,21 @@ public class AstroClock extends Activity implements OnClickListener {
 			finish();
 			return;
 		}
-
-		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		int height = display.getHeight();
+		
+		//Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		//int height = display.getHeight();
 
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
 		double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));
 		double longitude = Float.parseFloat(prefs.getString("longitude", "-120"));
 		prefs = getSharedPreferences("theme", Activity.MODE_PRIVATE);
-		bmmaker = new BitmapMaker(this, height, latitude, longitude, prefs.getInt("theme", 0));
+		bmmaker = new BitmapMaker(this, 240, latitude, longitude, prefs.getInt("theme", 0));
 		iv.setImageBitmap(bmmaker.makeBitmap());
 
 		iv.setOnClickListener(this);
-
-		registerReceiver(alarmReceiver, new IntentFilter("astroclockupdate"));
-
-		pi = PendingIntent.getBroadcast(this, 0, new Intent("astroclockupdate"), 0);
+		Intent pintent = new Intent(this, AstroClock.class);
+		pintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		pi = PendingIntent.getActivity(this, 0, pintent, 0);
 
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pi);
@@ -72,20 +71,8 @@ public class AstroClock extends Activity implements OnClickListener {
 		return true;
 	}
 
-	BroadcastReceiver alarmReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			iv.setImageBitmap(bmmaker.makeBitmap());
-		}
-	};
-
 	@Override
 	protected void onPause() {
-		try {
-			unregisterReceiver(alarmReceiver);
-		} catch (IllegalArgumentException aet) {
-
-		}
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.cancel(pi);
 		super.onPause();
