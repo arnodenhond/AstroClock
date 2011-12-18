@@ -24,6 +24,24 @@ public class Alarms extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		setTitle("AstroClock Alarms");
 		addPreferencesFromResource(R.xml.alarms);
+		
+		Preference backday = findPreference("backday");
+		Preference backmoon = findPreference("backmoon");
+		Preference backyear = findPreference("backyear");
+		backday.setOnPreferenceClickListener(backlistener);
+		backmoon.setOnPreferenceClickListener(backlistener);
+		backyear.setOnPreferenceClickListener(backlistener);
+
+		Preference done = findPreference("done");
+		done.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Alarms.this, AstroClock.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				return false;
+			}
+		});
 
 		alarms = getSharedPreferences("alarms", Activity.MODE_PRIVATE);
 
@@ -53,6 +71,16 @@ public class Alarms extends PreferenceActivity {
 		doPref("southwardequinox", nc.getNextSEq(), sdf);
 	}
 
+	OnPreferenceClickListener backlistener = new OnPreferenceClickListener() {
+		@Override
+		public boolean onPreferenceClick(Preference preference) {
+			Intent intent = new Intent(Alarms.this, Alarms.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			return false;
+		}
+	};
+	
 	private void doPref(String key, long time, SimpleDateFormat formatter) {
 		CheckBoxPreference cbp = (CheckBoxPreference) findPreference(key);
 		cbp.setChecked(alarms.getBoolean(cbp.getKey(), false));

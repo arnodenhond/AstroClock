@@ -9,6 +9,7 @@
 			android:defaultValue="false" android:summary="" android:key="sunrise" />
 		<CheckBoxPreference android:title="Sun Set"
 			android:defaultValue="false" android:summary="" android:key="sunset" />
+		<Preference android:title="Back" android:key="backday" />
 	</PreferenceScreen>
 	<PreferenceScreen android:key="moon" android:title="Moon">
 		<CheckBoxPreference android:title="Full Moon"
@@ -19,6 +20,7 @@
 			android:defaultValue="false" android:summary="" android:key="firstquarter" />
 		<CheckBoxPreference android:title="Last Quarter"
 			android:defaultValue="false" android:summary="" android:key="lastquarter" />
+		<Preference android:title="Back" android:key="backmoon" />
 	</PreferenceScreen>
 	<PreferenceScreen android:key="year" android:title="Year">
 		<CheckBoxPreference android:title="Northern Solstice"
@@ -29,5 +31,7 @@
 			android:defaultValue="false" android:summary="" android:key="northwardequinox" />
 		<CheckBoxPreference android:title="Southward Equinox"
 			android:defaultValue="false" android:summary="" android:key="southwardequinox" />
+		<Preference android:title="Back" android:key="backyear" />
 	</PreferenceScreen>
+	<Preference android:title="Done" android:key="done" />
 </PreferenceScreen>

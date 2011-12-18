@@ -6,6 +6,7 @@
     android:foregroundGravity="fill" >
 
     <LinearLayout
+        android:id="@+id/outerstats"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="fill"
@@ -14,61 +15,18 @@
         android:orientation="vertical" >
 
         <TextView
-            android:layout_width="fill_parent"
+            android:id="@+id/daylength"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
-            android:gravity="center"
-            android:text="@string/day"
-            android:textStyle="bold" >
+            android:text="@string/daylength" >
         </TextView>
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/nightlength"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginTop="5sp" >
-
-            <TextView
-                android:id="@+id/midday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/midday" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/midnight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="@string/midnight" >
-            </TextView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginTop="5sp" >
-
-            <TextView
-                android:id="@+id/daylength"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/daylength" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/nightlength"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@id/daylength"
-                android:gravity="right"
-                android:text="@string/nightlength" >
-            </TextView>
-        </RelativeLayout>
+            android:text="@string/nightlength" >
+        </TextView>
 
         <!-- day -->
 

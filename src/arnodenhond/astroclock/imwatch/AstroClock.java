@@ -3,10 +3,8 @@ package arnodenhond.astroclock.imwatch;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,9 +44,6 @@ public class AstroClock extends Activity implements OnClickListener {
 			return;
 		}
 		
-		//Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		//int height = display.getHeight();
-
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
 		double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));
 		double longitude = Float.parseFloat(prefs.getString("longitude", "-120"));
@@ -67,8 +62,8 @@ public class AstroClock extends Activity implements OnClickListener {
 
 	private boolean isImWatch() {
 		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		// return (display.getHeight() < 241 && display.getWidth() < 241);
-		return true;
+		return (display.getHeight() < 241 && display.getWidth() < 241);
+		//return true;
 	}
 
 	@Override

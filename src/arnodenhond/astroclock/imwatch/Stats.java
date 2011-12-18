@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 public class Stats extends Activity {
@@ -24,6 +26,15 @@ public class Stats extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stats);
+		findViewById(R.id.outerstats).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(Stats.this, AstroClock.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
@@ -53,10 +64,10 @@ public class Stats extends Activity {
 		double moon = getMoon();
 		double year = getYear(north);
 
-		TextView midday = (TextView) findViewById(R.id.midday);
-		TextView midnight = (TextView) findViewById(R.id.midnight);
 		TextView daylength = (TextView) findViewById(R.id.daylength);
 		TextView nightlength = (TextView) findViewById(R.id.nightlength);
+		TextView nextdayhours = (TextView) findViewById(R.id.nextdayhours);
+		TextView lastdayhours = (TextView) findViewById(R.id.lastdayhours);
 		TextView nextmoondays = (TextView) findViewById(R.id.nextmoondays);
 		TextView lastmoondays = (TextView) findViewById(R.id.lastmoondays);
 		TextView nextsummerdays = (TextView) findViewById(R.id.nextsummerdays);
@@ -64,14 +75,25 @@ public class Stats extends Activity {
 		TextView lastsummerdays = (TextView) findViewById(R.id.lastsummerdays);
 		TextView lastsummermoons = (TextView) findViewById(R.id.lastsummermoons);
 
-		double midsun = getSun(up, down);
-		midday.setText(getResources().getString(R.string.midday) + ": " + new Time((midsun - 11)).toString());
-		midnight.setText(getResources().getString(R.string.midnight) + ": " + new Time(midsun + 1).toString());
-
 		Time uptime = new Time(down - up);
 		Time downtime = new Time((24 - down) + up);
 		daylength.setText(getResources().getString(R.string.daylength) + ": " + uptime.toString());
 		nightlength.setText(getResources().getString(R.string.nightlength) + ": " + downtime.toString());
+
+		double midsun = getSun(up, down);
+		Time tmidsun = new Time((midsun - 11));
+		Time tnow = new Time(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
+		String nextmiddayhours = new String();
+		String lastmiddayhours = new String();
+		if (tnow.getFractionalHours() < tmidsun.getFractionalHours()) {
+			nextmiddayhours = numshort(new Time(tmidsun.getFractionalHours() - tnow.getFractionalHours()).getFractionalHours());
+			lastmiddayhours = numshort(new Time(24 - (tmidsun.getFractionalHours() - tnow.getFractionalHours())).getFractionalHours());
+		} else {
+			nextmiddayhours = numshort(new Time(24 - (tnow.getFractionalHours() - tmidsun.getFractionalHours())).getFractionalHours());
+			lastmiddayhours = numshort(new Time(tnow.getFractionalHours() - tmidsun.getFractionalHours()).getFractionalHours());
+		}
+		nextdayhours.setText(nextmiddayhours + " " + getResources().getString(R.string.hours));
+		lastdayhours.setText("-" + lastmiddayhours + " " + getResources().getString(R.string.hours));
 
 		double dlastmoon;
 		if (moon > 1d)
