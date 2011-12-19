@@ -51,7 +51,7 @@ public class Alarms extends PreferenceActivity {
 
 		NextCalc nc = new NextCalc(latitude, longitude);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd, HH:mm");
 
 		doPref("midday", nc.getNextMidDay(), sdf);
 		doPref("midnight", nc.getNextMidNight(), sdf);

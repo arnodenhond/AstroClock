@@ -62,8 +62,8 @@ public class AstroClock extends Activity implements OnClickListener {
 
 	private boolean isImWatch() {
 		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		return (display.getHeight() < 241 && display.getWidth() < 241);
-		//return true;
+		//return (display.getHeight() < 241 && display.getWidth() < 241);
+		return true;
 	}
 
 	@Override
