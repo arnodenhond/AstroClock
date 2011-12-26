@@ -21,10 +21,18 @@ public class NextCalc {
 	}
 
 	public long getNextMidDay() {
+		Calendar c = Calendar.getInstance();
+		long result = getMidDay(c);
+		while (result<System.currentTimeMillis()) {
+			c.add(Calendar.DAY_OF_MONTH, 1);
+			result = getMidDay(c);
+		}
+		return result;
+	}
+	
+	private long getMidDay(Calendar c) {
 		long sunrise = 0;
 		long sunset = 0;
-		Calendar c = Calendar.getInstance();
-
 		try {
 			double up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
 			double down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
@@ -32,11 +40,17 @@ public class NextCalc {
 			down+=utcoffset;
 			Time tup = new Time(up);
 			Calendar cup = Calendar.getInstance();
+			cup.set(Calendar.YEAR, c.get(Calendar.YEAR));
+			cup.set(Calendar.MONTH, c.get(Calendar.MONTH));
+			cup.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
 			cup.set(Calendar.HOUR_OF_DAY, tup.getHour());
 			cup.set(Calendar.MINUTE, tup.getMinute());
 			sunrise = cup.getTimeInMillis();
 			Time tdown = new Time(down);
 			Calendar cdown = Calendar.getInstance();
+			cdown.set(Calendar.YEAR, c.get(Calendar.YEAR));
+			cdown.set(Calendar.MONTH, c.get(Calendar.MONTH));
+			cdown.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
 			cdown.set(Calendar.HOUR_OF_DAY, tdown.getHour());
 			cdown.set(Calendar.MINUTE, tdown.getMinute());
 			if (cup.getTimeInMillis()>cdown.getTimeInMillis())
@@ -46,7 +60,7 @@ public class NextCalc {
 		}
 		long diff = sunset-sunrise;
 		return sunrise+(diff/2);
-
+		
 	}
 
 	public long getNextMidNight() {
