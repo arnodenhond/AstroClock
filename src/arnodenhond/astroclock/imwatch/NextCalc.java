@@ -190,7 +190,7 @@ public class NextCalc {
 		int[] hours = new int[] { 5, 11, 17, 23, 4, 10, 16 };
 		int[] minutes = new int[] { 30, 11, 11, 3, 48, 44, 28 };
 		Calendar c = Calendar.getInstance();
-		int y = 2011 - c.get(Calendar.YEAR);
+		int y = c.get(Calendar.YEAR) - 2011;
 		c.set(Calendar.MONTH, 11);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
@@ -210,7 +210,7 @@ public class NextCalc {
 		int[] hours = new int[] { 17, 23, 5, 10, 16, 22, 4 };
 		int[] minutes = new int[] { 16, 9, 4, 51, 38, 34, 24 };
 		Calendar c = Calendar.getInstance();
-		int y = 2011 - c.get(Calendar.YEAR);
+		int y = c.get(Calendar.YEAR) - 2011;
 		c.set(Calendar.MONTH, 5);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
@@ -230,7 +230,7 @@ public class NextCalc {
 		int[] hours = new int[] { 9, 14, 20, 2, 8, 14, 20 };
 		int[] minutes = new int[] { 4, 49, 44, 29, 20, 21, 2 };
 		Calendar c = Calendar.getInstance();
-		int y = 2011 - c.get(Calendar.YEAR);
+		int y = c.get(Calendar.YEAR) - 2011;
 		c.set(Calendar.MONTH, 8);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
@@ -250,7 +250,7 @@ public class NextCalc {
 		int[] hours = new int[] { 23, 5, 11, 16, 22, 4, 10 };
 		int[] minutes = new int[] { 21, 14, 2, 57, 45, 30, 28 };
 		Calendar c = Calendar.getInstance();
-		int y = 2011 - c.get(Calendar.YEAR);
+		int y =  c.get(Calendar.YEAR) - 2011;
 		c.set(Calendar.MONTH, 2);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
