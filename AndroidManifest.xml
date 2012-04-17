@@ -11,25 +11,26 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
+
         <!-- Launchable Clock Activity -->
         <activity
-            android:label="@string/app_name"
-            android:name="arnodenhond.astroclock.AstroClock" >
-            <intent-filter >
+            android:name="arnodenhond.astroclock.AstroClock"
+            android:label="@string/app_name" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="arnodenhond.astroclock.Menu" />
+        <activity android:name="arnodenhond.astroclock.Menu" android:exported="true"/>
         <activity android:name="arnodenhond.astroclock.Map" />
         <activity android:name="arnodenhond.astroclock.Stats" />
         <activity android:name="arnodenhond.astroclock.Help" />
-        <activity android:name="arnodenhond.astroclock.Theme" />
-        <activity android:name="arnodenhond.astroclock.Alarms" />
+        <activity android:name="arnodenhond.astroclock.themes.Theme" />
+        <activity android:name="arnodenhond.astroclock.alerts.Alarms" />
 
-        <receiver android:name="arnodenhond.astroclock.AlarmReceiver" >
-            <intent-filter >
+        <receiver android:name="arnodenhond.astroclock.alerts.AlarmReceiver" >
+            <intent-filter>
                 <action android:name="midday" />
                 <action android:name="midnight" />
                 <action android:name="sunrise" />
@@ -44,13 +45,30 @@
                 <action android:name="northwardequinox" />
             </intent-filter>
         </receiver>
-        <receiver android:name="arnodenhond.astroclock.BootReceiver" >
-            <intent-filter >
+        <receiver android:name="arnodenhond.astroclock.alerts.BootReceiver" >
+            <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-    </application>
+        <receiver
+            android:name="arnodenhond.astroclock.WidgetProvider"
+            android:icon="@drawable/icon"
+            android:label="@string/app_name" >
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/astroclock_widget_provider" />
 
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+    </application>
+    <!-- required for acquiring location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- required for downloading themes and ads -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- required to be able to set the alerts when the widget or livewallpaper is not installed -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 </manifest>
