@@ -23,7 +23,7 @@ public class Theme extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.configure);
+		setContentView(R.layout.themeselector);
 		final TextView textview = (TextView) findViewById(R.id.TextView);
 		textview.setText(getResources().getStringArray(R.array.artists)[0]);
 		Gallery gallery = (Gallery) findViewById(R.id.Gallery);
@@ -43,15 +43,13 @@ public class Theme extends Activity {
 		gallery.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				SharedPreferences.Editor edit = theme.edit();
-				edit.putInt("theme", arg2);
-				edit.commit();
+				new DownloadTask(findViewById(R.id.downloadprogresslayout), arg2, Theme.this).execute();
 				Intent intent = new Intent(Theme.this, AstroClock.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 
 			}
-		}); 
+		});
 	}
 
 	public class ImageAdapter extends BaseAdapter {
