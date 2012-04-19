@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
-
 public class NextCalc {
 	double latitude;
 	double longitude;
@@ -18,27 +17,26 @@ public class NextCalc {
 		utcoffset /= 60;
 		utcoffset /= 60;
 		utcoffset /= 1000;
-
 	}
 
 	public long getNextMidDay() {
 		Calendar c = Calendar.getInstance();
 		long result = getMidDay(c);
-		while (result<System.currentTimeMillis()) {
+		while (result < System.currentTimeMillis()) {
 			c.add(Calendar.DAY_OF_MONTH, 1);
 			result = getMidDay(c);
 		}
 		return result;
 	}
-	
+
 	private long getMidDay(Calendar c) {
 		long sunrise = 0;
 		long sunset = 0;
 		try {
 			double up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
 			double down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
-			up+=utcoffset;
-			down+=utcoffset;
+			up += utcoffset;
+			down += utcoffset;
 			Time tup = new Time(up);
 			Calendar cup = Calendar.getInstance();
 			cup.set(Calendar.YEAR, c.get(Calendar.YEAR));
@@ -46,6 +44,7 @@ public class NextCalc {
 			cup.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
 			cup.set(Calendar.HOUR_OF_DAY, tup.getHour());
 			cup.set(Calendar.MINUTE, tup.getMinute());
+			cup.set(Calendar.SECOND, tup.getSecond());
 			sunrise = cup.getTimeInMillis();
 			Time tdown = new Time(down);
 			Calendar cdown = Calendar.getInstance();
@@ -54,53 +53,62 @@ public class NextCalc {
 			cdown.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
 			cdown.set(Calendar.HOUR_OF_DAY, tdown.getHour());
 			cdown.set(Calendar.MINUTE, tdown.getMinute());
-			if (cup.getTimeInMillis()>cdown.getTimeInMillis())
+			cdown.set(Calendar.SECOND, tdown.getSecond());
+			if (cup.getTimeInMillis() > cdown.getTimeInMillis())
 				cdown.add(Calendar.DAY_OF_MONTH, 1);
 			sunset = cdown.getTimeInMillis();
 		} catch (SunTimesException e) {
 		}
-		long diff = sunset-sunrise;
-		return sunrise+(diff/2);
-		
+		long diff = sunset - sunrise;
+		return sunrise + (diff / 2);
+
 	}
 
 	public long getNextMidNight() {
 		long midday = getNextMidDay();
 		final long HALFDAY = 43200000l;
-		if (midday + HALFDAY > System.currentTimeMillis()+(HALFDAY*2))
+		if (midday + HALFDAY > System.currentTimeMillis() + (HALFDAY * 2))
 			return midday - HALFDAY;
 		else
 			return midday + HALFDAY;
-//		Calendar c = Calendar.getInstance();
-//		double up = 0;
-//		double down = 0;
-//		try {
-//			up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
-//			down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
-//		} catch (SunTimesException e) {
-//		}
-//		double midsun = getSun(up, down);
-//		midsun+=utcoffset;
-//
-//		Time time = new Time(midsun + 1);
-//		c.set(Calendar.HOUR_OF_DAY, time.getHour());
-//		c.set(Calendar.MINUTE, time.getMinute());
-//		c.set(Calendar.SECOND, time.getSecond());
-//		if (c.getTimeInMillis() < System.currentTimeMillis()) {
-//			c.add(Calendar.DAY_OF_MONTH, 1);
-//			try {
-//				up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
-//				down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
-//			} catch (SunTimesException e) {
-//			}
-//			midsun = getSun(up, down);
-//			midsun+=utcoffset;
-//			 time = new Time(midsun + 1);
-//			c.set(Calendar.HOUR_OF_DAY, time.getHour());
-//			c.set(Calendar.MINUTE, time.getMinute());
-//			c.set(Calendar.SECOND, time.getSecond());
-//		}
-//		return c.getTimeInMillis();
+		// Calendar c = Calendar.getInstance();
+		// double up = 0;
+		// double down = 0;
+		// try {
+		// up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR),
+		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
+		// latitude, SunTimes.ZENITH).getFractionalHours();
+		// down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR),
+		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
+		// latitude, SunTimes.ZENITH).getFractionalHours();
+		// } catch (SunTimesException e) {
+		// }
+		// double midsun = getSun(up, down);
+		// midsun+=utcoffset;
+		//
+		// Time time = new Time(midsun + 1);
+		// c.set(Calendar.HOUR_OF_DAY, time.getHour());
+		// c.set(Calendar.MINUTE, time.getMinute());
+		// c.set(Calendar.SECOND, time.getSecond());
+		// if (c.getTimeInMillis() < System.currentTimeMillis()) {
+		// c.add(Calendar.DAY_OF_MONTH, 1);
+		// try {
+		// up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR),
+		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
+		// latitude, SunTimes.ZENITH).getFractionalHours();
+		// down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR),
+		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
+		// latitude, SunTimes.ZENITH).getFractionalHours();
+		// } catch (SunTimesException e) {
+		// }
+		// midsun = getSun(up, down);
+		// midsun+=utcoffset;
+		// time = new Time(midsun + 1);
+		// c.set(Calendar.HOUR_OF_DAY, time.getHour());
+		// c.set(Calendar.MINUTE, time.getMinute());
+		// c.set(Calendar.SECOND, time.getSecond());
+		// }
+		// return c.getTimeInMillis();
 	}
 
 	public long getNextSunRise() {
@@ -196,12 +204,14 @@ public class NextCalc {
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
 		c.set(Calendar.MINUTE, minutes[y]);
+		c.set(Calendar.SECOND, 0);
 		if (c.getTimeInMillis() < System.currentTimeMillis()) {
 			y++;
 			c.set(Calendar.YEAR, 2011 + y);
 			c.set(Calendar.DATE, days[y]);
 			c.set(Calendar.HOUR_OF_DAY, hours[y]);
 			c.set(Calendar.MINUTE, minutes[y]);
+			c.set(Calendar.SECOND, 0);
 		}
 		return c.getTimeInMillis();
 	}
@@ -216,12 +226,14 @@ public class NextCalc {
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
 		c.set(Calendar.MINUTE, minutes[y]);
+		c.set(Calendar.SECOND, 0);
 		if (c.getTimeInMillis() < System.currentTimeMillis()) {
 			y++;
 			c.set(Calendar.YEAR, 2011 + y);
 			c.set(Calendar.DATE, days[y]);
 			c.set(Calendar.HOUR_OF_DAY, hours[y]);
 			c.set(Calendar.MINUTE, minutes[y]);
+			c.set(Calendar.SECOND, 0);
 		}
 		return c.getTimeInMillis();
 	}
@@ -236,12 +248,14 @@ public class NextCalc {
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
 		c.set(Calendar.MINUTE, minutes[y]);
+		c.set(Calendar.SECOND, 0);
 		if (c.getTimeInMillis() < System.currentTimeMillis()) {
 			y++;
 			c.set(Calendar.YEAR, 2011 + y);
 			c.set(Calendar.DATE, days[y]);
 			c.set(Calendar.HOUR_OF_DAY, hours[y]);
 			c.set(Calendar.MINUTE, minutes[y]);
+			c.set(Calendar.SECOND, 0);
 		}
 		return c.getTimeInMillis();
 	}
@@ -251,17 +265,19 @@ public class NextCalc {
 		int[] hours = new int[] { 23, 5, 11, 16, 22, 4, 10 };
 		int[] minutes = new int[] { 21, 14, 2, 57, 45, 30, 28 };
 		Calendar c = Calendar.getInstance();
-		int y =  c.get(Calendar.YEAR) - 2011;
+		int y = c.get(Calendar.YEAR) - 2011;
 		c.set(Calendar.MONTH, 2);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
 		c.set(Calendar.MINUTE, minutes[y]);
+		c.set(Calendar.SECOND, 0);
 		if (c.getTimeInMillis() < System.currentTimeMillis()) {
 			y++;
 			c.set(Calendar.YEAR, 2011 + y);
 			c.set(Calendar.DATE, days[y]);
 			c.set(Calendar.HOUR_OF_DAY, hours[y]);
 			c.set(Calendar.MINUTE, minutes[y]);
+			c.set(Calendar.SECOND, 0);
 		}
 		return c.getTimeInMillis();
 	}

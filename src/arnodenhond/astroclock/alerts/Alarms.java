@@ -27,7 +27,7 @@ public class Alarms extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		setTitle("AstroClock Alarms");
 		addPreferencesFromResource(R.xml.alarms);
-		
+
 		Preference backday = findPreference("backday");
 		Preference backmoon = findPreference("backmoon");
 		Preference backyear = findPreference("backyear");
@@ -83,7 +83,7 @@ public class Alarms extends PreferenceActivity {
 			return false;
 		}
 	};
-	
+
 	private void doPref(String key, long time, SimpleDateFormat formatter) {
 		CheckBoxPreference cbp = (CheckBoxPreference) findPreference(key);
 		cbp.setChecked(alarms.getBoolean(cbp.getKey(), false));

@@ -3,16 +3,12 @@ package arnodenhond.astroclock;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import arnodenhond.astroclocklite.R;
 
@@ -39,15 +35,27 @@ public class AstroClock extends Activity implements OnClickListener {
 	protected void onResume() {
 		super.onResume();
 
-		//	startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=arnodenhond.astroclocklite")));
+		// startActivity(new Intent(Intent.ACTION_VIEW,
+		// Uri.parse("market://details?id=arnodenhond.astroclocklite")));
+
 		
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
-		double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));
-		double longitude = Float.parseFloat(prefs.getString("longitude", "-120"));
+		final double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));
+		final double longitude = Float.parseFloat(prefs.getString("longitude", "-120"));
 		prefs = getSharedPreferences("theme", Activity.MODE_PRIVATE);
-		bmmaker = new BitmapMaker(this, 240, latitude, longitude, prefs.getInt("theme", 0));
-		iv.setImageBitmap(bmmaker.makeBitmap());
+		final int theme = prefs.getInt("theme", 0);
+	
+		
+		iv.post(new Runnable() {
+			@Override
+			public void run() {
+				bmmaker = new BitmapMaker(AstroClock.this, iv.getHeight(), latitude, longitude, theme);
+				iv.setImageBitmap(bmmaker.makeBitmap());
+			}
+		});
 
+		
+		
 		iv.setOnClickListener(this);
 		Intent pintent = new Intent(this, AstroClock.class);
 		pintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

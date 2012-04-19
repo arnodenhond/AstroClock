@@ -32,7 +32,7 @@ public class Stats extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stats);
 		findViewById(R.id.outerstats).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(Stats.this, AstroClock.class);

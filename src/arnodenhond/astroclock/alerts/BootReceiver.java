@@ -47,59 +47,57 @@ public class BootReceiver extends BroadcastReceiver {
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSunSet(), operation);
 		}
-		
+
 		if (alarms.getBoolean("fullmoon", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("fullmoon");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextFullMoon(), operation);
-		}		
+		}
 		if (alarms.getBoolean("newmoon", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("newmoon");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNewMoon(), operation);
-		}		
+		}
 		if (alarms.getBoolean("firstquarter", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("firstquarter");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextFirstQuarter(), operation);
-		}		
+		}
 		if (alarms.getBoolean("lastquarter", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("lastquarter");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextLastQuarter(), operation);
-		}		
+		}
 
-		
 		if (alarms.getBoolean("northernsolstice", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("northernsolstice");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNSol(), operation);
-		}		
+		}
 		if (alarms.getBoolean("southernsolstice", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("southernsolstice");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSSol(), operation);
-		}		
+		}
 		if (alarms.getBoolean("northwardequinox", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("northwardequinox");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNEq(), operation);
-		}		
+		}
 		if (alarms.getBoolean("southwardequinox", false)) {
 			Intent pintent = new Intent(context, AlarmReceiver.class);
 			pintent.setAction("southwardequinox");
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSEq(), operation);
-		}		
+		}
 
-		
 	}
 
 }

@@ -51,14 +51,14 @@ public class Theme extends Activity {
 				startActivity(intent);
 
 			}
-		});
+		}); 
 	}
 
 	public class ImageAdapter extends BaseAdapter {
 		int mGalleryItemBackground;
 		private Context mContext;
 
-		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview };
+		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview, R.drawable.t4preview };
 
 		public ImageAdapter(Context c) {
 			mContext = c;
