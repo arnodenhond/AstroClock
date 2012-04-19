@@ -10,6 +10,8 @@ public class PrefsReader {
 	private double longitude;
 	private int theme;
 	private final Context context;
+	
+	private boolean audible;
 
 	public PrefsReader(Context context) {
 		this.context = context;
@@ -19,9 +21,12 @@ public class PrefsReader {
 	public void refresh() {
 		SharedPreferences latlonpref = context.getSharedPreferences("latlon", Activity.MODE_PRIVATE);
 		SharedPreferences themepref = context.getSharedPreferences("theme", Activity.MODE_PRIVATE);
+		SharedPreferences alarmspref = context.getSharedPreferences("alarms", Activity.MODE_PRIVATE);
+
 		this.latitude = Float.parseFloat(latlonpref.getString("latitude", "-35"));
 		this.longitude = Float.parseFloat(latlonpref.getString("longitude", "-120"));
 		this.theme = themepref.getInt("theme", 0);
+		this.audible = alarmspref.getBoolean("audible", true);
 	}
 
 	public double getLatitude() {
@@ -36,11 +41,16 @@ public class PrefsReader {
 		return theme;
 	}
 
-	public static void getBackground() {
+	public void getBackground() {
 
 	}
 
-	public static void getNotifications() {
+	public void getNotifications() {
 	}
 
+	public boolean getNotificationAudible() {
+		return audible;
+
+	}
+	
 }
