@@ -1,4 +1,4 @@
-package arnodenhond.astroclock;
+package arnodenhond.astroclock.settings.location;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclocklite.R;
 
 public class Map extends Activity {

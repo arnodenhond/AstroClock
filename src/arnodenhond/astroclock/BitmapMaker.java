@@ -1,8 +1,6 @@
 package arnodenhond.astroclock;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -74,7 +72,7 @@ public class BitmapMaker {
 		}
 	}
 
-	Bitmap makeBitmap() {
+	public Bitmap makeBitmap() {
 
 		TimeZone tz = SimpleTimeZone.getDefault();
 		utcoffset = tz.getOffset(System.currentTimeMillis());
@@ -92,13 +90,6 @@ public class BitmapMaker {
 		}
 
 		Resources r = ctx.getResources();
-		int resBack = r.getIdentifier("arnodenhond.astroclocklite:drawable/t" + (theme + 1) + "background", null, null);
-		int resRise = r.getIdentifier("arnodenhond.astroclocklite:drawable/t" + (theme + 1) + "sunrise", null, null);
-		int resSet = r.getIdentifier("arnodenhond.astroclocklite:drawable/t" + (theme + 1) + "sunset", null, null);
-		int resDay = r.getIdentifier("arnodenhond.astroclocklite:drawable/t" + (theme + 1) + "day", null, null);
-		int resMoon = r.getIdentifier("arnodenhond.astroclocklite:drawable/t" + (theme + 1) + "moon", null, null);
-		int resYear = r.getIdentifier("arnodenhond.astroclocklite:drawable/t" + (theme + 1) + "year", null, null);
-		int resTop = r.getIdentifier("arnodenhond.astroclocklite:drawable/t" + (theme + 1) + "cover", null, null);
 
 		north = (latitude > 0 ? true : false);
 
@@ -128,6 +119,7 @@ public class BitmapMaker {
 		canvas.drawRect(0, 0, dimension, dimension, paint);
 		paint.setARGB(255, 0, 0, 0);
 
+		
 		BitmapDrawable bd = readBitmapDrawable("background.png");
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 

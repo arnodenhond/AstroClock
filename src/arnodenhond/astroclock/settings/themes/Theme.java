@@ -1,4 +1,4 @@
-package arnodenhond.astroclock.themes;
+package arnodenhond.astroclock.settings.themes;
 
 import android.app.Activity;
 import android.content.Context;
@@ -44,9 +44,10 @@ public class Theme extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				new DownloadTask(findViewById(R.id.downloadprogresslayout), arg2, Theme.this).execute();
-				Intent intent = new Intent(Theme.this, AstroClock.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
+				
+//				Intent intent = new Intent(Theme.this, AstroClock.class);
+//				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//				startActivity(intent);
 
 			}
 		});

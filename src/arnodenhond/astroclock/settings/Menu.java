@@ -1,12 +1,15 @@
-package arnodenhond.astroclock;
+package arnodenhond.astroclock.settings;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import arnodenhond.astroclock.Help;
+import arnodenhond.astroclock.Stats;
 import arnodenhond.astroclock.alerts.Alarms;
-import arnodenhond.astroclock.themes.Theme;
+import arnodenhond.astroclock.settings.location.Map;
+import arnodenhond.astroclock.settings.themes.Theme;
 import arnodenhond.astroclocklite.R;
 
 public class Menu extends Activity {
@@ -15,13 +18,15 @@ public class Menu extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
 		// hack for widget
-		if (getIntent() != null && getIntent().getExtras() != null) {
+		if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) != AppWidgetManager.INVALID_APPWIDGET_ID) {
 			Intent resultValue = new Intent();
 			final int id = getIntent().getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 			resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id);
 			setResult(RESULT_OK, resultValue);
 		}
 	}
+	
+	
 
 	public void startTheme(View v) {
 		startActivity(new Intent(Menu.this, Theme.class));

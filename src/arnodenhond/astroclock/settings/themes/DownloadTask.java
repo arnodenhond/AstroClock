@@ -1,4 +1,4 @@
-package arnodenhond.astroclock.themes;
+package arnodenhond.astroclock.settings.themes;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -11,6 +11,8 @@ import org.apache.http.util.ByteArrayBuffer;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +39,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... params) {
 		try {
 			HttpURLConnection huc;
-			ByteArrayBuffer baf;
+			byte[] bytes;
 
 			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "background.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "background.png");
@@ -61,7 +63,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 			saveToFile(readResponse(huc.getInputStream()), "sunset.png");
 
 		} catch (IOException e) {
-			Log.d("AstroClock",e.toString());
+			Log.d("AstroClock", e.toString());
 		}
 
 		return null;
@@ -79,20 +81,21 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 		super.onPostExecute(result);
 	}
 
-	private void saveToFile(ByteArrayBuffer baf, String name) throws IOException {
-		FileOutputStream fos = context.openFileOutput(name, Context.MODE_WORLD_READABLE);
-		fos.write(baf.toByteArray());
+	private void saveToFile(byte[] baf, String name) throws IOException {
+		FileOutputStream fos = context.openFileOutput(name, Context.MODE_PRIVATE);
+		fos.write(baf);
+		fos.flush();
 		fos.close();
 	}
 
-	private ByteArrayBuffer readResponse(InputStream inputStream) throws IOException {
+	private byte[]  readResponse(InputStream inputStream) throws IOException {
 		BufferedInputStream bis = new BufferedInputStream(inputStream);
 		ByteArrayBuffer baf = new ByteArrayBuffer(1024);
 		int current = 0;
 		while ((current = bis.read()) != -1) {
 			baf.append((byte) current);
 		}
-		return baf;
+		return baf.toByteArray();
 	}
 
 }

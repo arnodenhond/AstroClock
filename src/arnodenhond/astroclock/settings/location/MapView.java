@@ -1,4 +1,4 @@
-package arnodenhond.astroclock;
+package arnodenhond.astroclock.settings.location;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -10,7 +10,7 @@ public class PrefsReader {
 	private double longitude;
 	private int theme;
 	private final Context context;
-	
+
 	private boolean audible;
 
 	public PrefsReader(Context context) {
@@ -52,5 +52,5 @@ public class PrefsReader {
 		return audible;
 
 	}
-	
+
 }
