@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.settings.PrefsReader;
@@ -77,8 +78,12 @@ public class ACWallpaperService extends WallpaperService {
 					}
 				}
 			} finally {
+				try {
 				if (canvas != null)
 					holder.unlockCanvasAndPost(canvas);
+				} catch (IllegalArgumentException iae) {
+					Log.d("AstroClock livewallpaper", iae.toString());
+				}
 			}
 			handler.removeCallbacks(drawRunner);
 			if (visible) {
