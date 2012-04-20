@@ -66,7 +66,8 @@ public class ACWallpaperService extends WallpaperService {
 				if (canvas != null) {
 					PrefsReader settings = new PrefsReader(ACWallpaperService.this);
 					BitmapMaker bmmaker = new BitmapMaker(ACWallpaperService.this, (width < height ? width : height), settings.getLatitude(), settings.getLongitude(), settings.getTheme());
-
+					paint.setARGB(255, 0, 0, 0);
+					canvas.drawRect(0, 0, width, height, paint);
 					if (width < height) {
 						// portrait
 						int diff = height - width;
@@ -79,8 +80,8 @@ public class ACWallpaperService extends WallpaperService {
 				}
 			} finally {
 				try {
-				if (canvas != null)
-					holder.unlockCanvasAndPost(canvas);
+					if (canvas != null)
+						holder.unlockCanvasAndPost(canvas);
 				} catch (IllegalArgumentException iae) {
 					Log.d("AstroClock livewallpaper", iae.toString());
 				}

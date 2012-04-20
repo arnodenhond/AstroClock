@@ -67,7 +67,7 @@ public class BitmapMaker {
 		} catch (IOException ioe) {
 			Log.d("AstroClock", ioe.toString());
 			Resources r = ctx.getResources();
-			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t1"+name.substring(0,name.indexOf('.')), null, null);
+			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t1" + name.substring(0, name.indexOf('.')), null, null);
 			return (BitmapDrawable) r.getDrawable(res);
 		}
 	}
@@ -119,7 +119,6 @@ public class BitmapMaker {
 		canvas.drawRect(0, 0, dimension, dimension, paint);
 		paint.setARGB(255, 0, 0, 0);
 
-		
 		BitmapDrawable bd = readBitmapDrawable("background.png");
 		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
 

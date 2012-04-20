@@ -11,8 +11,6 @@ import org.apache.http.util.ByteArrayBuffer;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -41,25 +39,25 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 			HttpURLConnection huc;
 			byte[] bytes;
 
-			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "background.png").openConnection();
+			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "background.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "background.png");
 
-			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "cover.png").openConnection();
+			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "cover.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "cover.png");
 
-			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "day.png").openConnection();
+			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "day.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "day.png");
 
-			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "moon.png").openConnection();
+			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "moon.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "moon.png");
 
-			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "year.png").openConnection();
+			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "year.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "year.png");
 
-			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "sunrise.png").openConnection();
+			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "sunrise.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "sunrise.png");
 
-			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme+1) + "sunset.png").openConnection();
+			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "sunset.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "sunset.png");
 
 		} catch (IOException e) {
@@ -88,7 +86,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 		fos.close();
 	}
 
-	private byte[]  readResponse(InputStream inputStream) throws IOException {
+	private byte[] readResponse(InputStream inputStream) throws IOException {
 		BufferedInputStream bis = new BufferedInputStream(inputStream);
 		ByteArrayBuffer baf = new ByteArrayBuffer(1024);
 		int current = 0;

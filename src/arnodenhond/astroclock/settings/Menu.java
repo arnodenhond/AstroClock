@@ -25,8 +25,6 @@ public class Menu extends Activity {
 			setResult(RESULT_OK, resultValue);
 		}
 	}
-	
-	
 
 	public void startTheme(View v) {
 		startActivity(new Intent(Menu.this, Theme.class));

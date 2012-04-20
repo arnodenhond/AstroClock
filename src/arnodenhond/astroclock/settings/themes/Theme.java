@@ -2,7 +2,6 @@ package arnodenhond.astroclock.settings.themes;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
-import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclocklite.R;
 
 public class Theme extends Activity {
@@ -44,10 +42,10 @@ public class Theme extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				new DownloadTask(findViewById(R.id.downloadprogresslayout), arg2, Theme.this).execute();
-				
-//				Intent intent = new Intent(Theme.this, AstroClock.class);
-//				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//				startActivity(intent);
+
+				// Intent intent = new Intent(Theme.this, AstroClock.class);
+				// intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				// startActivity(intent);
 
 			}
 		});
