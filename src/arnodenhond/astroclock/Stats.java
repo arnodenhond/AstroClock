@@ -169,16 +169,4 @@ public class Stats extends Activity {
 		return (uptime / 12d) / 2d;
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Clock").setIcon(android.R.drawable.ic_menu_sort_by_size);
-		return true;
-	}
-
-	@Override
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		startActivity(new Intent("AstroClockWidgetClock"));
-		return true;
-	}
-
 }

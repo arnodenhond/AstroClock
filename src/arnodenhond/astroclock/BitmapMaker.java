@@ -67,7 +67,7 @@ public class BitmapMaker {
 		} catch (IOException ioe) {
 			Log.d("AstroClock", ioe.toString());
 			Resources r = ctx.getResources();
-			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t1" + name.substring(0, name.indexOf('.')), null, null);
+			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t3" + name.substring(0, name.indexOf('.')), null, null);
 			return (BitmapDrawable) r.getDrawable(res);
 		}
 	}

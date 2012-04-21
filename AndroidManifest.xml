@@ -16,17 +16,15 @@
         android:name="android.permission.ACCESS_FINE_LOCATION"
         required="false" />
     <!-- required for downloading themes and ads -->
-    <uses-permission
-        android:name="android.permission.INTERNET"
-        required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- required to be able to set the alerts when the widget or livewallpaper is not installed -->
-    <uses-permission
-        android:name="android.permission.RECEIVE_BOOT_COMPLETED"
-        required="false" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application android:logo="@drawable/t1preview"
+    <application
         android:icon="@drawable/icon"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:logo="@drawable/t1preview" >
 
         <!-- Launchable Clock Activity -->
         <activity

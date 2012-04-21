@@ -118,6 +118,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 		if (prefs.getNotificationAudible()) {
 			notification.defaults |= Notification.DEFAULT_SOUND;
 		}
+		if (prefs.getNotificationVibrate()) {
+			notification.defaults |= Notification.DEFAULT_VIBRATE;
+		}
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		// docs contradict name: will alert sound play on each alert (while
 		// older notification is still pending)?

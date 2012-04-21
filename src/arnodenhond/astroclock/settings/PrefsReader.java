@@ -12,6 +12,7 @@ public class PrefsReader {
 	private final Context context;
 
 	private boolean audible;
+	private boolean vibrate;
 
 	public PrefsReader(Context context) {
 		this.context = context;
@@ -25,8 +26,9 @@ public class PrefsReader {
 
 		this.latitude = Float.parseFloat(latlonpref.getString("latitude", "-35"));
 		this.longitude = Float.parseFloat(latlonpref.getString("longitude", "-120"));
-		this.theme = themepref.getInt("theme", 0);
+		this.theme = themepref.getInt("theme", 2);
 		this.audible = alarmspref.getBoolean("audible", true);
+		this.vibrate = alarmspref.getBoolean("vibrate", true);
 	}
 
 	public double getLatitude() {
@@ -52,5 +54,10 @@ public class PrefsReader {
 		return audible;
 
 	}
+	
+	public boolean getNotificationVibrate() {
+		return vibrate;
+	}
+
 
 }

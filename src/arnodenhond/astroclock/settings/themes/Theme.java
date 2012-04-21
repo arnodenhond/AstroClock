@@ -41,8 +41,26 @@ public class Theme extends Activity {
 		gallery.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				new DownloadTask(findViewById(R.id.downloadprogresslayout), arg2, Theme.this).execute();
+				if (arg2!=2) {
+					new DownloadTask(findViewById(R.id.downloadprogresslayout), arg2, Theme.this).execute();
+				} else {
+					
+					View progresslayout = findViewById(R.id.downloadprogresslayout);
+					progresslayout.setVisibility(View.VISIBLE);
+					deleteFile("background.png");
+					deleteFile("cover.png");
+					deleteFile("sunset.png");
+					deleteFile("sunrise.png");
+					deleteFile("year.png");
+					deleteFile("moon.png");
+					deleteFile("day.png");
+					progresslayout.setVisibility(View.GONE);
+					final SharedPreferences themepref = getSharedPreferences("theme", MODE_PRIVATE);
 
+					SharedPreferences.Editor edit = themepref.edit();
+					edit.putInt("theme", arg2);
+					edit.commit();
+				}
 				// Intent intent = new Intent(Theme.this, AstroClock.class);
 				// intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				// startActivity(intent);
@@ -55,7 +73,7 @@ public class Theme extends Activity {
 		int mGalleryItemBackground;
 		private Context mContext;
 
-		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview, R.drawable.t4preview };
+		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview, R.drawable.t4preview,R.drawable.t5preview };
 
 		public ImageAdapter(Context c) {
 			mContext = c;
