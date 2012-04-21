@@ -1,37 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceScreen android:key="day" android:title="Day">
-		<CheckBoxPreference android:title="Mid Day"
-			android:defaultValue="false" android:summary="" android:key="midday" />
-		<CheckBoxPreference android:title="Mid Night"
-			android:defaultValue="false" android:summary="" android:key="midnight" />
-		<CheckBoxPreference android:title="Sun Rise"
-			android:defaultValue="false" android:summary="" android:key="sunrise" />
-		<CheckBoxPreference android:title="Sun Set"
-			android:defaultValue="false" android:summary="" android:key="sunset" />
-		<Preference android:title="Back" android:key="backday" />
-	</PreferenceScreen>
-	<PreferenceScreen android:key="moon" android:title="Moon">
-		<CheckBoxPreference android:title="Full Moon"
-			android:defaultValue="false" android:summary="" android:key="fullmoon" />
-		<CheckBoxPreference android:title="New Moon"
-			android:defaultValue="false" android:summary="" android:key="newmoon" />
-		<CheckBoxPreference android:title="First Quarter"
-			android:defaultValue="false" android:summary="" android:key="firstquarter" />
-		<CheckBoxPreference android:title="Last Quarter"
-			android:defaultValue="false" android:summary="" android:key="lastquarter" />
-		<Preference android:title="Back" android:key="backmoon" />
-	</PreferenceScreen>
-	<PreferenceScreen android:key="year" android:title="Year">
-		<CheckBoxPreference android:title="Northern Solstice"
-			android:defaultValue="false" android:summary="" android:key="northernsolstice" />
-		<CheckBoxPreference android:title="Southern Solstice"
-			android:defaultValue="false" android:summary="" android:key="southernsolstice" />
-		<CheckBoxPreference android:title="Northward Equinox"
-			android:defaultValue="false" android:summary="" android:key="northwardequinox" />
-		<CheckBoxPreference android:title="Southward Equinox"
-			android:defaultValue="false" android:summary="" android:key="southwardequinox" />
-		<Preference android:title="Back" android:key="backyear" />
-	</PreferenceScreen>
-	<Preference android:title="Done" android:key="done" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="audible"
+        android:title="Audible" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="vibrate"
+        android:title="Vibrate" />
+
+    <PreferenceScreen
+        android:key="day"
+        android:title="Day" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="midday"
+            android:summary=""
+            android:title="Mid Day" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="midnight"
+            android:summary=""
+            android:title="Mid Night" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="sunrise"
+            android:summary=""
+            android:title="Sun Rise" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="sunset"
+            android:summary=""
+            android:title="Sun Set" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="moon"
+        android:title="Moon" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="fullmoon"
+            android:summary=""
+            android:title="Full Moon" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="newmoon"
+            android:summary=""
+            android:title="New Moon" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="firstquarter"
+            android:summary=""
+            android:title="First Quarter" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="lastquarter"
+            android:summary=""
+            android:title="Last Quarter" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="year"
+        android:title="Year" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="northernsolstice"
+            android:summary=""
+            android:title="Northern Solstice" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="southernsolstice"
+            android:summary=""
+            android:title="Southern Solstice" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="northwardequinox"
+            android:summary=""
+            android:title="Northward Equinox" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="southwardequinox"
+            android:summary=""
+            android:title="Southward Equinox" />
+    </PreferenceScreen>
+
 </PreferenceScreen>

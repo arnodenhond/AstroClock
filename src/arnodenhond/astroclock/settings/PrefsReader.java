@@ -13,6 +13,8 @@ public class PrefsReader {
 
 	private boolean audible;
 	private boolean vibrate;
+	
+	private String keywords;
 
 	public PrefsReader(Context context) {
 		this.context = context;
@@ -23,12 +25,15 @@ public class PrefsReader {
 		SharedPreferences latlonpref = context.getSharedPreferences("latlon", Activity.MODE_PRIVATE);
 		SharedPreferences themepref = context.getSharedPreferences("theme", Activity.MODE_PRIVATE);
 		SharedPreferences alarmspref = context.getSharedPreferences("alarms", Activity.MODE_PRIVATE);
+		SharedPreferences keywordspref = context.getSharedPreferences("keywords", Activity.MODE_PRIVATE);
 
 		this.latitude = Float.parseFloat(latlonpref.getString("latitude", "-35"));
 		this.longitude = Float.parseFloat(latlonpref.getString("longitude", "-120"));
 		this.theme = themepref.getInt("theme", 2);
 		this.audible = alarmspref.getBoolean("audible", true);
 		this.vibrate = alarmspref.getBoolean("vibrate", true);
+		
+		this.keywords = keywordspref.getString("keywords", "");
 	}
 
 	public double getLatitude() {
@@ -57,6 +62,10 @@ public class PrefsReader {
 	
 	public boolean getNotificationVibrate() {
 		return vibrate;
+	}
+	
+	public String getKeywords() {
+		return keywords;
 	}
 
 

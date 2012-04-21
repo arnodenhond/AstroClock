@@ -1,78 +1,64 @@
 package arnodenhond.astroclock.settings.location;
 
-import android.app.Activity;
+import java.util.List;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnKeyListener;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import arnodenhond.astroclock.AstroClock;
+import android.widget.Toast;
+import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
-public class Map extends Activity {
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapView;
 
-	RelativeLayout cv;
-	MapView mv;
+public class Map extends MapActivity {
+
+
+	@Override
+	protected boolean isRouteDisplayed() {
+		return false;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		LayoutInflater li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-		cv = (RelativeLayout) li.inflate(R.layout.map, null);
-		setContentView(cv);
+		setContentView(R.layout.map);
+		MapView mv = (MapView) findViewById(R.id.mapview);
+		mv.setBuiltInZoomControls(true);
 
-		final EditText latet = (EditText) cv.findViewById(R.id.latet);
-		final EditText lonet = (EditText) cv.findViewById(R.id.lonet);
-
-		mv = new MapView(this, null);
-		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
-		latet.setText(prefs.getString("latitude", "00"));
-		lonet.setText(prefs.getString("longitude", "00"));
-		mv.setFields(latet, lonet);
-
-		latet.setOnKeyListener(new OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				try {
-					int lat = Integer.parseInt(latet.getText().toString());
-					mv.setLat(lat);
-					mv.invalidate();
-				} catch (NumberFormatException nfe) {
-				}
-				return false;
-			}
-		});
-
-		lonet.setOnKeyListener(new OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				try {
-					int lon = Integer.parseInt(lonet.getText().toString());
-					mv.setLon(lon);
-					mv.invalidate();
-				} catch (NumberFormatException nfe) {
-				}
-				return false;
-			}
-		});
-
-		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(240, 120);
-		lp.addRule(RelativeLayout.ABOVE, R.id.setmap);
-		cv.addView(mv, 0, lp);
+	}
+	
+	private void setupAd() {
+		PrefsReader prefs = new PrefsReader(this);
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adrequest = new AdRequest();
+		adrequest.addKeyword(prefs.getKeywords());
+		Location location = new Location("AstroClock");
+		location.setLatitude(prefs.getLatitude());
+		location.setLongitude(prefs.getLongitude());
+		adrequest.setLocation(location);
+		adrequest.addTestDevice("10007c61aeb3");
+		adView.loadAd(adrequest);
 	}
 
-	public void setmap(View v) {
-		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
-		SharedPreferences.Editor edit = prefs.edit();
-		edit.putString("latitude", ((EditText) cv.findViewById(R.id.latet)).getText().toString());
-		edit.putString("longitude", ((EditText) cv.findViewById(R.id.lonet)).getText().toString());
-		edit.commit();
-		Intent intent = new Intent(this, AstroClock.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
+	public void startLocationSettings(View v) {
+		startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 	}
+	
+	public void acquireLocation(View v) {
+		LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		List<String> providers = locationManager.getProviders(new Criteria(),true);
+		if (providers.isEmpty()) {
+			Toast.makeText(this, "Location provider not found or enabled.\nUse Location Settings to enable.", Toast.LENGTH_SHORT).show();
+		} else {
+			locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
+		}
+	}
+	
 }

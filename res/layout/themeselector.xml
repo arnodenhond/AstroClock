@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
+
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="a14f932990b5440"
+        ads:loadAdOnCreate="true"
+        ads:testDevices="10007c61aeb3" />
 
     <Gallery
         android:id="@+id/Gallery"
@@ -25,7 +35,9 @@
     <LinearLayout
         android:id="@+id/downloadprogresslayout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:gravity="center" android:visibility="gone">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone" >
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
@@ -38,7 +50,31 @@
             android:layout_height="wrap_content"
             android:text="Downloading.."
             android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/backgroundlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <CheckBox
+            android:id="@+id/usebackgroundsetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Use a background Image" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon" />
+
+        <Button
+            android:id="@+id/selectbackgroundbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Image" />
     </LinearLayout>
 
 </LinearLayout>

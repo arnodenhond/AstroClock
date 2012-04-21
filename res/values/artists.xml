@@ -2,9 +2,9 @@
 <resources>
 	<string-array name="artists">
 		<item>Monica Baltodano</item>
-	    <item>Barry G. Rijkse\nrijkse.com</item>
-		<item>Yuri Westplat\nwazza.nl</item>
-		<item>Ailantd Sikowsky\nailantd.com</item>
+	    <item>Barry G. Rijkse rijkse.com</item>
+		<item>Yuri Westplat wazza.nl</item>
+		<item>Ailantd Sikowsky ailantd.com</item>
 		<item>Gregor S.</item>
 	</string-array>
 </resources>

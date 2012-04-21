@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="a14f932990b5440"
+        ads:loadAdOnCreate="true"
+        ads:testDevices="10007c61aeb3" />
 
-        <EditText
-            android:id="@+id/latet"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="LAT"
-            android:inputType="numberSigned" />
-
-        <EditText
-            android:id="@+id/lonet"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="LON"
-            android:inputType="numberSigned" />
+    <LinearLayout
+        android:id="@+id/toppanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" >
 
         <Button
-            android:id="@+id/setmap"
-            android:layout_width="fill_parent"
+            android:id="@+id/acquirelocation"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:onClick="setmap"
-            android:text="Set" />
+            android:onClick="acquireLocation"
+            android:text="Acquire Location" />
+
+        <Button
+            android:id="@+id/locationsettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startLocationSettings"
+            android:text="Location Settings" />
     </LinearLayout>
+
+    <com.google.android.maps.MapView
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/toppanel"
+        android:layout_below="@id/adView"
+        android:apiKey="0ajyeMpdys7GZEkdSU9mrBMfhGjkIlrYg85aXfA"
+        android:clickable="true" />
+
+    <!-- debug 0ajyeMpdys7GZEkdSU9mrBMfhGjkIlrYg85aXfA -->
+    <!-- release 0ajyeMpdys7FjdqnDTMflFLzIDyf9EI4zOs1KQA -->
 
 </RelativeLayout>

@@ -8,8 +8,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -19,6 +17,7 @@ import arnodenhond.astroclock.calcuator.SunTimesException;
 import arnodenhond.astroclock.calcuator.Time;
 import arnodenhond.astroclocklite.R;
 
+//TODO get rid of all of this except the length of day/night which should go into the about box
 public class Stats extends Activity {
 
 	static final int CIVIL = 0;

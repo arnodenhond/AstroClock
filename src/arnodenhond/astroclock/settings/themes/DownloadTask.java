@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class DownloadTask extends AsyncTask<Void, Void, Void> {
 
@@ -76,6 +77,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 		edit.putInt("theme", this.theme);
 		edit.commit();
 
+		Toast.makeText(context, "Theme Stored", Toast.LENGTH_SHORT).show();
 		super.onPostExecute(result);
 	}
 

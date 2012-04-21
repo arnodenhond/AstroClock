@@ -1,9 +1,13 @@
 package arnodenhond.astroclock.settings.themes;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
+import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
 public class Theme extends Activity {
@@ -104,4 +109,17 @@ public class Theme extends Activity {
 		}
 	}
 
+	private void setupAd() {
+		PrefsReader prefs = new PrefsReader(this);
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adrequest = new AdRequest();
+		adrequest.addKeyword(prefs.getKeywords());
+		Location location = new Location("AstroClock");
+		location.setLatitude(prefs.getLatitude());
+		location.setLongitude(prefs.getLongitude());
+		adrequest.setLocation(location);
+		adrequest.addTestDevice("10007c61aeb3");
+		adView.loadAd(adrequest);
+	}
+	
 }
