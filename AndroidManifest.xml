@@ -73,11 +73,10 @@
                 <action android:name="northwardequinox" />
             </intent-filter>
         </receiver>
-        <!-- sets the upcoming events in the alarm manager. called when the app is installed or the device boots up -->
+        <!-- sets the upcoming events in the alarm manager. called when device boots up -->
         <receiver android:name="arnodenhond.astroclock.alerts.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
         <!-- appwidget -->
