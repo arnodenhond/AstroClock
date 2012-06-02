@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import arnodenhond.astroclock.settings.Menu;
+import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
 public class AstroClock extends Activity implements OnClickListener {
@@ -39,11 +40,12 @@ public class AstroClock extends Activity implements OnClickListener {
 		// startActivity(new Intent(Intent.ACTION_VIEW,
 		// Uri.parse("market://details?id=arnodenhond.astroclocklite")));
 
-		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
-		final double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));
-		final double longitude = Float.parseFloat(prefs.getString("longitude", "-120"));
-		prefs = getSharedPreferences("theme", Activity.MODE_PRIVATE);
-		final int theme = prefs.getInt("theme", 0);
+		
+		PrefsReader pr = new PrefsReader(this);
+		
+		final double latitude = pr.getLatitude();
+		final double longitude = pr.getLongitude();
+		final int theme = pr.getTheme();
 
 		iv.post(new Runnable() {
 			@Override
