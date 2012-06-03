@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import arnodenhond.astroclock.Help;
 import arnodenhond.astroclock.alerts.Alarms;
 import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;

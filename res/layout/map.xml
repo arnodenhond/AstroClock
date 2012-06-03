@@ -42,7 +42,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/toppanel"
-        android:layout_below="@id/adView"
         android:apiKey="0ajyeMpdys7GZEkdSU9mrBMfhGjkIlrYg85aXfA"
         android:clickable="true" />
 

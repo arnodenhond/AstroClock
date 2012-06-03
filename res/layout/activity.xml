@@ -7,6 +7,7 @@
         android:id="@+id/clock"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:clickable="true" />
+        android:clickable="true" 
+        android:onClick="clicked"/>
 
 </LinearLayout>
