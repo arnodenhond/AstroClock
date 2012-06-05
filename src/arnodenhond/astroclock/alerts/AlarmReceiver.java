@@ -21,23 +21,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 	public static int NOTID_MOON = 12389;
 	public static int NOTID_YEAR = 12390;
 
-	final String middayType = "midday";
-	final String midnightType = "midnight";
-	final String sunriseType = "sunrise";
-	final String sunsetType = "sunset";
-	final String fullmoonType = "fullmoon";
-	final String newmoonType = "newmoon";
-	final String firstquarterType = "firstquarter";
-	final String lastquarterType = "lastquarter";
-	final String northernsolsticeType = "northernsolstice";
-	final String southersolsticeType = "southernsolstice";
-	final String northwardequinoxType = "northwardequinox";
-	final String southwardequinoxType = "southwardequinox";
-
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String type = intent.getAction();
-		String message = new String();
+		String message = null;
 		PrefsReader prefs = new PrefsReader(context);
 
 		double latitude = prefs.getLatitude();
@@ -48,87 +35,113 @@ public class AlarmReceiver extends BroadcastReceiver {
 		pintent.setAction(type);
 		PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 
-		int notidtype = 0;
+		int notidtype = -1;
 		NextCalc nc = new NextCalc(latitude, longitude);
-		if (type.equals(middayType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_MIDDAY)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextMidDay(), operation);
 			// TODO extract strings to resource xmls
-			message = "Mid Day";
-			notidtype = NOTID_DAY;
+			if (prefs.isAlert_midday()) {
+				message = "Mid Day";
+				notidtype = NOTID_DAY;
+			}
 		}
-		if (type.equals(midnightType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_MIDNIGHT)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextMidNight(), operation);
-			message = "Mid Night";
-			notidtype = NOTID_DAY;
+			if (prefs.isAlert_midnight()) {
+				message = "Mid Night";
+				notidtype = NOTID_DAY;
+			}
 		}
-		if (type.equals(sunriseType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_SUNRISE)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSunRise(), operation);
-			message = "Sun Rise";
-			notidtype = NOTID_DAY;
+			if (prefs.isAlert_sunrise()) {
+				message = "Sun Rise";
+				notidtype = NOTID_DAY;
+			}
 		}
-		if (type.equals(sunsetType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_SUNSET)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSunSet(), operation);
-			message = "Sun Set";
-			notidtype = NOTID_DAY;
+			if (prefs.isAlert_sunset()) {
+				message = "Sun Set";
+				notidtype = NOTID_DAY;
+			}
 		}
-		if (type.equals(fullmoonType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_FULLMOON)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextFullMoon(), operation);
-			message = "Full Moon";
-			notidtype = NOTID_MOON;
+			if (prefs.isAlert_fullmoon()) {
+				message = "Full Moon";
+				notidtype = NOTID_MOON;
+			}
 		}
-		if (type.equals(newmoonType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_NEWMOON)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNewMoon(), operation);
-			message = "New Moon";
-			notidtype = NOTID_MOON;
+			if (prefs.isAlert_newmoon()) {
+				message = "New Moon";
+				notidtype = NOTID_MOON;
+			}
 		}
-		if (type.equals(firstquarterType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_FIRSTQUARTER)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextFirstQuarter(), operation);
-			message = "First Quarter";
-			notidtype = NOTID_MOON;
+			if (prefs.isAlert_firstquarter()) {
+				message = "First Quarter";
+				notidtype = NOTID_MOON;
+			}
 		}
-		if (type.equals(lastquarterType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_LASTQUARTER)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextLastQuarter(), operation);
-			message = "Last Quarter";
-			notidtype = NOTID_MOON;
+			if (prefs.isAlert_lastquarter()) {
+				message = "Last Quarter";
+				notidtype = NOTID_MOON;
+			}
 		}
 
-		if (type.equals(northernsolsticeType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNSol(), operation);
-			message = "Northern Solstice";
-			notidtype = NOTID_YEAR;
+			if (prefs.isAlert_northernsolstice()) {
+				message = "Northern Solstice";
+				notidtype = NOTID_YEAR;
+			}
 		}
-		if (type.equals(southersolsticeType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSSol(), operation);
-			message = "Southern Solstice";
-			notidtype = NOTID_YEAR;
+			if (prefs.isAlert_southernsolstice()) {
+				message = "Southern Solstice";
+				notidtype = NOTID_YEAR;
+			}
 		}
-		if (type.equals(northwardequinoxType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNEq(), operation);
-			message = "Northward Equinox";
-			notidtype = NOTID_YEAR;
+			if (prefs.isAlert_northwardequinox()) {
+				message = "Northward Equinox";
+				notidtype = NOTID_YEAR;
+			}
 		}
-		if (type.equals(southwardequinoxType)) {
+		if (type.equals(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSEq(), operation);
-			message = "Southward Equinox";
-			notidtype = NOTID_YEAR;
+			if (prefs.isAlert_southwardequinox()) {
+				message = "Southward Equinox";
+				notidtype = NOTID_YEAR;
+			}
 		}
 
-		// TODO notification icon for each type of event
-		Notification notification = new Notification(R.drawable.icon, message, System.currentTimeMillis());
-		if (prefs.getNotificationAudible()) {
-			notification.defaults |= Notification.DEFAULT_SOUND;
+		if (message != null) {
+			// TODO notification icon for each type of event
+			Notification notification = new Notification(R.drawable.icon, message, System.currentTimeMillis());
+			if (prefs.getNotificationAudible()) {
+				notification.defaults |= Notification.DEFAULT_SOUND;
+			}
+			if (prefs.getNotificationVibrate()) {
+				notification.defaults |= Notification.DEFAULT_VIBRATE;
+			}
+			notification.flags |= Notification.FLAG_AUTO_CANCEL;
+			// docs contradict name: will alert sound play on each alert (while
+			// older notification is still pending)?
+			// not.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
+			String datestring = new SimpleDateFormat("MMM dd, HH:mm").format(new Date());
+			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(), 0));
+			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+			nm.notify(notidtype, notification);
 		}
-		if (prefs.getNotificationVibrate()) {
-			notification.defaults |= Notification.DEFAULT_VIBRATE;
-		}
-		notification.flags |= Notification.FLAG_AUTO_CANCEL;
-		// docs contradict name: will alert sound play on each alert (while
-		// older notification is still pending)?
-		// not.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
-		String datestring = new SimpleDateFormat("MMM dd, HH:mm").format(new Date());
-		notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(), 0));
-		NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		nm.notify(notidtype, notification);
 	}
 
 }

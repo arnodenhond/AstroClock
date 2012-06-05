@@ -54,22 +54,22 @@ public class Alarms extends PreferenceActivity {
 			}
 		});
 		
-		doPref("midday", nc.getNextMidDay(), sdf);
-		doPref("midnight", nc.getNextMidNight(), sdf);
-		doPref("sunrise", nc.getNextSunRise(), sdf);
-		doPref("sunset", nc.getNextSunSet(), sdf);
+		doPref(PrefsReader.KEY_ALERT_MIDDAY, nc.getNextMidDay(), sdf);
+		doPref(PrefsReader.KEY_ALERT_MIDNIGHT, nc.getNextMidNight(), sdf);
+		doPref(PrefsReader.KEY_ALERT_SUNRISE, nc.getNextSunRise(), sdf);
+		doPref(PrefsReader.KEY_ALERT_SUNSET, nc.getNextSunSet(), sdf);
 
 		sdf = new SimpleDateFormat("MMM dd, HH:mm");
-		doPref("fullmoon", nc.getNextFullMoon(), sdf);
-		doPref("newmoon", nc.getNextNewMoon(), sdf);
-		doPref("firstquarter", nc.getNextFirstQuarter(), sdf);
-		doPref("lastquarter", nc.getNextLastQuarter(), sdf);
+		doPref(PrefsReader.KEY_ALERT_FULLMOON, nc.getNextFullMoon(), sdf);
+		doPref(PrefsReader.KEY_ALERT_NEWMOON, nc.getNextNewMoon(), sdf);
+		doPref(PrefsReader.KEY_ALERT_FIRSTQUARTER, nc.getNextFirstQuarter(), sdf);
+		doPref(PrefsReader.KEY_ALERT_LASTQUARTER, nc.getNextLastQuarter(), sdf);
 
 		sdf = new SimpleDateFormat("MMM dd yyyy, HH:mm");
-		doPref("northernsolstice", nc.getNextNSol(), sdf);
-		doPref("southernsolstice", nc.getNextSSol(), sdf);
-		doPref("northwardequinox", nc.getNextNEq(), sdf);
-		doPref("southwardequinox", nc.getNextSEq(), sdf);
+		doPref(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, nc.getNextNSol(), sdf);
+		doPref(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, nc.getNextSSol(), sdf);
+		doPref(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, nc.getNextNEq(), sdf);
+		doPref(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, nc.getNextSEq(), sdf);
 	}
 
 	private void doPref(String key, long time, SimpleDateFormat formatter) {
@@ -92,15 +92,15 @@ public class Alarms extends PreferenceActivity {
 			boolean checked = ((CheckBoxPreference) preference).isChecked();
 			getSharedPreferences("alarms", Activity.MODE_PRIVATE).edit().putBoolean(preference.getKey(), checked).commit();
 
-			AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-			Intent intent = new Intent(Alarms.this, AlarmReceiver.class);
-			intent.setAction(preference.getKey());
-			PendingIntent operation = PendingIntent.getBroadcast(Alarms.this, 0, intent, 0);
-			if (checked) {
-				am.set(AlarmManager.RTC_WAKEUP, time, operation);
-			} else {
-				am.cancel(operation);
-			}
+//			AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+//			Intent intent = new Intent(Alarms.this, AlarmReceiver.class);
+//			intent.setAction(preference.getKey());
+//			PendingIntent operation = PendingIntent.getBroadcast(Alarms.this, 0, intent, 0);
+//			if (checked) {
+//				am.set(AlarmManager.RTC_WAKEUP, time, operation);
+//			} else {
+//				am.cancel(operation);
+//			}
 
 			Toast.makeText(Alarms.this, checked ? "Alarm Set" : "Alarm Removed", Toast.LENGTH_SHORT).show();
 			return true;
