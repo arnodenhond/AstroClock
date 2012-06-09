@@ -1,12 +1,8 @@
 package arnodenhond.astroclock;
 
 import java.util.Calendar;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
-import android.app.Activity;
 import android.app.TabActivity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TabHost;

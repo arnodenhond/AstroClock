@@ -10,6 +10,8 @@ public class PrefsReader {
 
 	private double latitude;
 	private double longitude;
+	
+	public static final String KEY_THEME = "theme";
 	private int theme;
 	private final Context context;
 
@@ -70,7 +72,7 @@ public class PrefsReader {
 
 		this.latitude = Float.parseFloat(latlonpref.getString("latitude", "35"));
 		this.longitude = Float.parseFloat(latlonpref.getString("longitude", "-120"));
-		this.theme = themepref.getInt("theme", 2);
+		this.theme = themepref.getInt(KEY_THEME, 2);
 		this.audible = alarmspref.getBoolean("audible", true);
 		this.vibrate = alarmspref.getBoolean("vibrate", true);
 		
@@ -81,15 +83,15 @@ public class PrefsReader {
 		this.alert_sunrise = alarmspref.getBoolean(KEY_ALERT_SUNRISE, false);
 		this.alert_sunset = alarmspref.getBoolean(KEY_ALERT_SUNSET, false);
 
-		this.alert_fullmoon = alarmspref.getBoolean(KEY_ALERT_FULLMOON, false);
+		this.alert_fullmoon = alarmspref.getBoolean(KEY_ALERT_FULLMOON, true);
 		this.alert_newmoon = alarmspref.getBoolean(KEY_ALERT_NEWMOON, false);
 		this.alert_firstquarter = alarmspref.getBoolean(KEY_ALERT_FIRSTQUARTER, false);
 		this.alert_lastquarter = alarmspref.getBoolean(KEY_ALERT_LASTQUARTER, false);
 
-		this.alert_northernsolstice = alarmspref.getBoolean(KEY_ALERT_NORTHERNSOLSTICE, false);
-		this.alert_southernsolstice = alarmspref.getBoolean(KEY_ALERT_SOUTHERNSOLSTICE, false);
-		this.alert_northwardequinox = alarmspref.getBoolean(KEY_ALERT_NORTHWARDEQUINOX, false);
-		this.alert_southwardequinox = alarmspref.getBoolean(KEY_ALERT_SOUTHWARDEQUINOX, false);
+		this.alert_northernsolstice = alarmspref.getBoolean(KEY_ALERT_NORTHERNSOLSTICE, true);
+		this.alert_southernsolstice = alarmspref.getBoolean(KEY_ALERT_SOUTHERNSOLSTICE, true);
+		this.alert_northwardequinox = alarmspref.getBoolean(KEY_ALERT_NORTHWARDEQUINOX, true);
+		this.alert_southwardequinox = alarmspref.getBoolean(KEY_ALERT_SOUTHWARDEQUINOX, true);
 
 		this.firstrun = firstrunpref.getBoolean(KEY_FIRSTRUN, true);
 	}
@@ -121,7 +123,16 @@ public class PrefsReader {
 	public int getTheme() {
 		return theme;
 	}
+	
+	public void setTheme(int theme) {
+		this.theme = theme;
+		storeTheme();
+	}
 
+	private void storeTheme() {
+		context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE).edit().putInt(KEY_THEME, theme).commit();
+	}
+	
 	public void getBackground() {
 
 	}

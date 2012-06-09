@@ -1,11 +1,7 @@
 package arnodenhond.astroclock.settings.themes;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.location.Location;
 import android.os.Bundle;
@@ -20,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class Theme extends Activity {
 
@@ -41,8 +40,8 @@ public class Theme extends Activity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
-		final SharedPreferences theme = getSharedPreferences("theme", MODE_PRIVATE);
-		gallery.setSelection(theme.getInt("theme", 0));
+		final PrefsReader pr = new PrefsReader(this); 
+		gallery.setSelection(pr.getTheme());
 		gallery.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -61,11 +60,7 @@ public class Theme extends Activity {
 					deleteFile("moon.png");
 					deleteFile("day.png");
 					progresslayout.setVisibility(View.GONE);
-					final SharedPreferences themepref = getSharedPreferences("theme", MODE_PRIVATE);
-
-					SharedPreferences.Editor edit = themepref.edit();
-					edit.putInt("theme", arg2);
-					edit.commit();
+					pr.setTheme(arg2);
 				}
 				// Intent intent = new Intent(Theme.this, AstroClock.class);
 				// intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

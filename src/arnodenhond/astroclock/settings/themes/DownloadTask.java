@@ -10,23 +10,22 @@ import java.net.URL;
 import org.apache.http.util.ByteArrayBuffer;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import android.widget.Gallery;
 import android.widget.Toast;
+import arnodenhond.astroclock.settings.PrefsReader;
 
 public class DownloadTask extends AsyncTask<Void, Void, Void> {
 
-	private static View progresslayout;
-	private static View selector;
+	private View progresslayout;
+	private View selector;
 	private int theme;
 	private Context context;
 
 	public DownloadTask(View progresslayout, View selector, int theme, Context context) {
 		this.progresslayout = progresslayout;
-		this.selector=selector;
+		this.selector = selector;
 		this.theme = theme;
 		this.context = context;
 	}
@@ -76,11 +75,8 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		progresslayout.setVisibility(View.GONE);
 		selector.setVisibility(View.VISIBLE);
-		final SharedPreferences themepref = context.getSharedPreferences("theme", context.MODE_PRIVATE);
-
-		SharedPreferences.Editor edit = themepref.edit();
-		edit.putInt("theme", this.theme);
-		edit.commit();
+		
+		new PrefsReader(context).setTheme(this.theme);
 
 		Toast.makeText(context, "Theme Stored", Toast.LENGTH_SHORT).show();
 		super.onPostExecute(result);

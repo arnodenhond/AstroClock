@@ -20,6 +20,7 @@ import arnodenhond.astroclocklite.R;
 
 public class Alarms extends PreferenceActivity {
 
+	//TODO use prefsreader
 	SharedPreferences alarms;
 
 	@Override

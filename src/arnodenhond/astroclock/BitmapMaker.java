@@ -3,6 +3,7 @@ package arnodenhond.astroclock;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream.GetField;
 import java.util.Calendar;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
@@ -48,24 +49,11 @@ public class BitmapMaker {
 		this.theme = theme;
 	}
 
-	private ByteArrayBuffer readResponse(InputStream inputStream) throws IOException {
-		BufferedInputStream bis = new BufferedInputStream(inputStream);
-		ByteArrayBuffer baf = new ByteArrayBuffer(1024);
-		int current = 0;
-		while ((current = bis.read()) != -1) {
-			baf.append((byte) current);
-		}
-		return baf;
-	}
-
 	private BitmapDrawable readBitmapDrawable(String name) {
-		try {
-			InputStream is = ctx.openFileInput(name);
-			byte[] bytes = readResponse(is).toByteArray();
-			Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+		Bitmap bmp = BitmapFactory.decodeFile(ctx.getFilesDir().getPath() + "/" + name);
+		if (bmp != null) {
 			return new BitmapDrawable(bmp);
-		} catch (IOException ioe) {
-			Log.d("AstroClock", ioe.toString());
+		} else {
 			Resources r = ctx.getResources();
 			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t3" + name.substring(0, name.indexOf('.')), null, null);
 			return (BitmapDrawable) r.getDrawable(res);
