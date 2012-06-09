@@ -2,7 +2,11 @@ package arnodenhond.astroclock;
 
 import java.util.Calendar;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
 import android.app.TabActivity;
+import android.location.Location;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
@@ -15,39 +19,23 @@ import arnodenhond.astroclocklite.R;
 @SuppressWarnings("deprecation")
 public class Help extends TabActivity {
 
-    TabHost mTabHost;
-    
+	TabHost mTabHost;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about);
-		mTabHost = (TabHost)findViewById(android.R.id.tabhost);
-        mTabHost.setup();
-        mTabHost.addTab(mTabHost.newTabSpec("AboutApp").setContent(R.id.aboutapp).setIndicator("Help"));
-        mTabHost.addTab(mTabHost.newTabSpec("AboutDev").setContent(R.id.aboutdev).setIndicator("Made-by"));
-        
-        calcDayNightLength();
-        
+		setupAd();
+		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+		mTabHost.setup();
+		mTabHost.addTab(mTabHost.newTabSpec("AboutApp").setContent(R.id.aboutapp).setIndicator("Help"));
+		mTabHost.addTab(mTabHost.newTabSpec("AboutDev").setContent(R.id.aboutdev).setIndicator("Made-by"));
 
-//		ScrollView sv = new ScrollView(this);
-//		TextView tv = new TextView(this);
-//		tv.setText(R.string.helptext);
-//		tv.setPadding(10, 15, 15, 15);
-//		sv.addView(tv);
-//		setContentView(sv);
-//		tv.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				Intent intent = new Intent(Help.this, AstroClock.class);
-//				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//				startActivity(intent);
-//			}
-//		});
+		calcDayNightLength();
 	}
-	
+
 	private void calcDayNightLength() {
-	
+
 		PrefsReader pr = new PrefsReader(this);
 		double latitude = pr.getLatitude();
 		double longitude = pr.getLongitude();
@@ -62,12 +50,25 @@ public class Help extends TabActivity {
 		}
 		Time uptime = new Time(down - up);
 		Time downtime = new Time((24 - down) + up);
-		
+
 		ProgressBar pb = (ProgressBar) findViewById(R.id.daynightlength);
-		int max = ((uptime.getHour()*60)+uptime.getMinute())+((downtime.getHour()*60)+downtime.getMinute());
-		int progress = ((uptime.getHour()*60)+uptime.getMinute());
+		int max = ((uptime.getHour() * 60) + uptime.getMinute()) + ((downtime.getHour() * 60) + downtime.getMinute());
+		int progress = ((uptime.getHour() * 60) + uptime.getMinute());
 		pb.setMax(max);
 		pb.setProgress(progress);
-		
+
 	}
+
+	private void setupAd() {
+		PrefsReader prefs = new PrefsReader(this);
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adrequest = new AdRequest();
+		adrequest.addKeyword(prefs.getKeywords());
+		Location location = new Location("AstroClock");
+		location.setLatitude(prefs.getLatitude());
+		location.setLongitude(prefs.getLongitude());
+		adrequest.setLocation(location);
+		adView.loadAd(adrequest);
+	}
+
 }

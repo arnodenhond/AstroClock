@@ -2,14 +2,21 @@ package arnodenhond.astroclock.settings.location;
 
 import java.util.List;
 
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RemoteViews;
 import android.widget.Toast;
+import arnodenhond.astroclock.BitmapMaker;
+import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
+import arnodenhond.astroclock.widget.WidgetProvider;
 import arnodenhond.astroclocklite.R;
 
 import com.google.ads.AdRequest;
@@ -33,6 +40,7 @@ public class Map extends MapActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map);
+		setupAd();
 		 mv = (MapView) findViewById(R.id.mapview);
 		mv.setBuiltInZoomControls(true);
 		GeoPoint gp = new PrefsReader(this).getGeoPoint();
@@ -90,5 +98,25 @@ public class Map extends MapActivity {
 			mv.getController().setCenter(gp);
 		}
 	}
+	
+	@Override
+	public void onBackPressed() {
+		AppWidgetManager awm = AppWidgetManager.getInstance(this);
+
+		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
+		PrefsReader settings = new PrefsReader(this);
+		int height = getResources().getDisplayMetrics().heightPixels;
+		int width = getResources().getDisplayMetrics().widthPixels;
+		BitmapMaker bmmaker = new BitmapMaker(this, 500, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
+		views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
+		Intent menuintent = new Intent(this, Menu.class);
+		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
+		awm.updateAppWidget(new ComponentName(this, WidgetProvider.class), views);
+
+		super.onBackPressed();
+	}
+
 	
 }

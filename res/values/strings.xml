@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">AstroClock</string>
-    <string name="stats">Statistics</string>
+    <string name="stats">Length of Day vs Length of Night</string>
     <string name="help">Help</string>
     <string name="day">Day</string>
     <string name="midday">Mid day</string>
@@ -20,5 +20,14 @@
     <string name="moons">Moons</string>
     <string name="midsummer">Mid summer</string>
     <string name="helptext">AstroClock measures time by astronomical standards.\n\nThe shortest hand shows the position of the sun during a day. Unlike an normal hour hand, this hand turns only once in 24 hours.\nSmaller hands show the moments of sunrise and sunset.\n\nThe middle hand shows the phase of the moon. It turns every 29.5 days\n\nThe longest hand shows the position of the earth in its orbit around the sun. It turns every 365.25 days\n\nLike a normal clock, the hands rotate in clockwise direction.\n\nThe alarms section shows the moments of upcoming day / moon / year events. Select the checkboxes for recurring audible notifications.\nEnter your location manually for accurate day-cycle alerts.\n\nThe statistics section shows the amount of time since or remaining to major events.\n\nFor instructions on creating your own theme visit android.arnodenhond.com (c) 2011 </string>
-
+	<string name="aboutdev">This app is developed by Arno den Hond on evenings and weekends since April 2009 </string>
+	<string name="credits"><b>Credits</b>\n This app would not have been possible without help of these people
+	    \nMonica Baltodano for providing the only graphics set for the first 2 years
+	    \nYuri Westplat who made a graphics set that went unused for nearly 2 years
+	    \nGregor S staunch supporter and thorough beta tester
+	    \nBarry Rijkse for providing the graphics that helped win the I\'m Watch developer competition
+	    \nAilantd Sikowsky deisgner of new icon, promo graphics and beautiful theme
+	    \nKostas Papageorgiou of kanguro.fi who inspired me in writing the new app description
+	</string>
+	<string name="disclaimer">This app does not misbehave in any way. Some screens are known to show after-images when displaying the same graphics over a long period.</string>
 </resources>

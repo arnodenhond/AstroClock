@@ -50,7 +50,6 @@ public class Menu extends ListActivity {
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
-		// adrequest.addTestDevice("10007c61aeb3");
 		adView.loadAd(adrequest);
 	}
 
@@ -70,29 +69,6 @@ public class Menu extends ListActivity {
 			startActivity(new Intent(Menu.this, Help.class));
 			break;
 		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		updateWidget();
-
-		super.onBackPressed();
-	}
-
-	private void updateWidget() {
-			AppWidgetManager awm = AppWidgetManager.getInstance(this);
-
-			RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
-			PrefsReader settings = new PrefsReader(this);
-			int height = getResources().getDisplayMetrics().heightPixels;
-			int width = getResources().getDisplayMetrics().widthPixels;
-			BitmapMaker bmmaker = new BitmapMaker(this, 500, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
-			views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
-			Intent menuintent = new Intent(this, Menu.class);
-			menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-			menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
-			awm.updateAppWidget(new ComponentName(this, WidgetProvider.class), views);
 	}
 
 }

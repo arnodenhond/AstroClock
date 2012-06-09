@@ -59,10 +59,12 @@ public class AstroClock extends Activity {
 		List<String> providers = locationManager.getProviders(new Criteria(), true);
 		if (!providers.isEmpty()) {
 			Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
-			int lat = (int) (location.getLatitude() * 1E6);
-			int lon = (int) (location.getLongitude() * 1E6);
-			GeoPoint gp = new GeoPoint(lat, lon);
-			new PrefsReader(this).setGeoPoint(gp);
+			if (location!=null) {
+				int lat = (int) (location.getLatitude() * 1E6);
+				int lon = (int) (location.getLongitude() * 1E6);
+				GeoPoint gp = new GeoPoint(lat, lon);
+				new PrefsReader(this).setGeoPoint(gp);
+			}
 		}
 	}
 

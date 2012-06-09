@@ -1,7 +1,11 @@
 package arnodenhond.astroclock.settings.themes;
 
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.location.Location;
 import android.os.Bundle;
@@ -13,8 +17,12 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
+import arnodenhond.astroclock.BitmapMaker;
+import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
+import arnodenhond.astroclock.widget.WidgetProvider;
 import arnodenhond.astroclocklite.R;
 
 import com.google.ads.AdRequest;
@@ -26,6 +34,7 @@ public class Theme extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.themeselector);
+		setupAd();
 		final TextView textview = (TextView) findViewById(R.id.TextView);
 		textview.setText(getResources().getStringArray(R.array.artists)[0]);
 		Gallery gallery = (Gallery) findViewById(R.id.Gallery);
@@ -40,17 +49,17 @@ public class Theme extends Activity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
-		final PrefsReader pr = new PrefsReader(this); 
+		final PrefsReader pr = new PrefsReader(this);
 		gallery.setSelection(pr.getTheme());
 		gallery.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				View progresslayout = findViewById(R.id.downloadprogresslayout);
 				View gallery = findViewById(R.id.Gallery);
-				if (arg2!=2) {
-					new DownloadTask(progresslayout,gallery, arg2, Theme.this).execute();
+				if (arg2 != 2) {
+					new DownloadTask(progresslayout, gallery, arg2, Theme.this).execute();
 				} else {
-					
+
 					progresslayout.setVisibility(View.VISIBLE);
 					deleteFile("background.png");
 					deleteFile("cover.png");
@@ -74,7 +83,7 @@ public class Theme extends Activity {
 		int mGalleryItemBackground;
 		private Context mContext;
 
-		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview, R.drawable.t4preview,R.drawable.t5preview };
+		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview, R.drawable.t4preview, R.drawable.t5preview };
 
 		public ImageAdapter(Context c) {
 			mContext = c;
@@ -114,8 +123,26 @@ public class Theme extends Activity {
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
-		adrequest.addTestDevice("10007c61aeb3");
 		adView.loadAd(adrequest);
 	}
-	
+
+	@Override
+	public void onBackPressed() {
+		AppWidgetManager awm = AppWidgetManager.getInstance(this);
+
+		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
+		PrefsReader settings = new PrefsReader(this);
+		int height = getResources().getDisplayMetrics().heightPixels;
+		int width = getResources().getDisplayMetrics().widthPixels;
+		BitmapMaker bmmaker = new BitmapMaker(this, 500, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
+		views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
+		Intent menuintent = new Intent(this, Menu.class);
+		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
+		awm.updateAppWidget(new ComponentName(this, WidgetProvider.class), views);
+
+		super.onBackPressed();
+	}
+
 }

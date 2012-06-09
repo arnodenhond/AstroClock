@@ -26,7 +26,6 @@ public class Alarms extends PreferenceActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setTitle("AstroClock Alarms");
 		addPreferencesFromResource(R.xml.alarms);
 		alarms = getSharedPreferences("alarms", Activity.MODE_PRIVATE);
 		PrefsReader prefs = new PrefsReader(this);
