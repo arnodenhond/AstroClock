@@ -14,16 +14,19 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Gallery;
 import android.widget.Toast;
 
 public class DownloadTask extends AsyncTask<Void, Void, Void> {
 
 	private static View progresslayout;
+	private static View selector;
 	private int theme;
 	private Context context;
 
-	public DownloadTask(View progresslayout, int theme, Context context) {
+	public DownloadTask(View progresslayout, View selector, int theme, Context context) {
 		this.progresslayout = progresslayout;
+		this.selector=selector;
 		this.theme = theme;
 		this.context = context;
 	}
@@ -31,6 +34,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected void onPreExecute() {
 		progresslayout.setVisibility(View.VISIBLE);
+		selector.setVisibility(View.INVISIBLE);
 		super.onPreExecute();
 	}
 
@@ -71,6 +75,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected void onPostExecute(Void result) {
 		progresslayout.setVisibility(View.GONE);
+		selector.setVisibility(View.VISIBLE);
 		final SharedPreferences themepref = context.getSharedPreferences("theme", context.MODE_PRIVATE);
 
 		SharedPreferences.Editor edit = themepref.edit();

@@ -1,80 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" 
+    android:layout_gravity="center">
 
-    <com.google.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="a14f932990b5440"
-        ads:loadAdOnCreate="true"
-        ads:testDevices="10007c61aeb3" />
-
-    <Gallery
-        android:id="@+id/Gallery"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10sp"
-        android:minWidth="300dp" >
-    </Gallery>
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/TextView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="all"
-        android:gravity="center" >
-    </TextView>
-
-    <LinearLayout
-        android:id="@+id/downloadprogresslayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:visibility="gone" >
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
+        <com.google.ads.AdView
+            android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminate="true" />
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="a14f932990b5440"
+            ads:loadAdOnCreate="true"
+            ads:testDevices="3B4A000600000001,1234567890ABCDEF,037c70834460e217,33327C61AEB300EC,43423531314B4D504453,040368130401A017" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/selector"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Downloading.."
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
+            android:layout_below="@id/adView"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/backgroundlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            <Gallery
+                android:id="@+id/Gallery"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10sp"
+                android:minWidth="300dp" >
+            </Gallery>
 
-        <CheckBox
-            android:id="@+id/usebackgroundsetting"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/TextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:gravity="center" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/downloadprogresslayout"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Use a background Image" />
+            android:layout_alignBottom="@id/selector"
+            android:layout_alignTop="@id/selector"
+            android:gravity="center"
+            android:visibility="gone" >
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Downloading.."
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/backgroundlayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon" />
+            android:layout_below="@id/selector"
+            android:visibility="gone" >
 
-        <Button
-            android:id="@+id/selectbackgroundbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Image" />
-    </LinearLayout>
+            <CheckBox
+                android:id="@+id/usebackgroundsetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Use a background Image" />
 
-</LinearLayout>
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon" />
+
+            <Button
+                android:id="@+id/selectbackgroundbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Image" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

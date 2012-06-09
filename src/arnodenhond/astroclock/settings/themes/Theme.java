@@ -46,11 +46,12 @@ public class Theme extends Activity {
 		gallery.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				View progresslayout = findViewById(R.id.downloadprogresslayout);
+				View gallery = findViewById(R.id.Gallery);
 				if (arg2!=2) {
-					new DownloadTask(findViewById(R.id.downloadprogresslayout), arg2, Theme.this).execute();
+					new DownloadTask(progresslayout,gallery, arg2, Theme.this).execute();
 				} else {
 					
-					View progresslayout = findViewById(R.id.downloadprogresslayout);
 					progresslayout.setVisibility(View.VISIBLE);
 					deleteFile("background.png");
 					deleteFile("cover.png");

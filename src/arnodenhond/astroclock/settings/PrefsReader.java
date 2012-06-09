@@ -46,6 +46,14 @@ public class PrefsReader {
 	private boolean alert_northwardequinox;
 	private boolean alert_southwardequinox;
 	
+	private static final String PREF_FIRSTRUN = "firstrun";
+	private static final String PREF_LATLON = "latlon";
+	private static final String PREF_THEME = "theme";
+	private static final String PREF_ALERTS = "alarms";
+	private static final String PREF_KEYWORDS = "keywords";
+	
+	private static final String KEY_FIRSTRUN = "firstrun";
+	private boolean firstrun;
 	
 	
 	public PrefsReader(Context context) {
@@ -54,10 +62,11 @@ public class PrefsReader {
 	}
 
 	public void refresh() {
-		SharedPreferences latlonpref = context.getSharedPreferences("latlon", Activity.MODE_PRIVATE);
-		SharedPreferences themepref = context.getSharedPreferences("theme", Activity.MODE_PRIVATE);
-		SharedPreferences alarmspref = context.getSharedPreferences("alarms", Activity.MODE_PRIVATE);
-		SharedPreferences keywordspref = context.getSharedPreferences("keywords", Activity.MODE_PRIVATE);
+		SharedPreferences latlonpref = context.getSharedPreferences(PREF_LATLON, Activity.MODE_PRIVATE);
+		SharedPreferences themepref = context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE);
+		SharedPreferences alarmspref = context.getSharedPreferences(PREF_ALERTS, Activity.MODE_PRIVATE);
+		SharedPreferences keywordspref = context.getSharedPreferences(PREF_KEYWORDS, Activity.MODE_PRIVATE);
+		SharedPreferences firstrunpref = context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE);
 
 		this.latitude = Float.parseFloat(latlonpref.getString("latitude", "35"));
 		this.longitude = Float.parseFloat(latlonpref.getString("longitude", "-120"));
@@ -82,6 +91,7 @@ public class PrefsReader {
 		this.alert_northwardequinox = alarmspref.getBoolean(KEY_ALERT_NORTHWARDEQUINOX, false);
 		this.alert_southwardequinox = alarmspref.getBoolean(KEY_ALERT_SOUTHWARDEQUINOX, false);
 
+		this.firstrun = firstrunpref.getBoolean(KEY_FIRSTRUN, true);
 	}
 
 	public GeoPoint getGeoPoint() {
@@ -226,6 +236,19 @@ public class PrefsReader {
 
 	public void setAlert_southwardequinox(boolean alert_southwardequinox) {
 		this.alert_southwardequinox = alert_southwardequinox;
+	}
+
+	public boolean isFirstrun() {
+		return firstrun;
+	}
+
+	public void setFirstrun(boolean firstrun) {
+		this.firstrun = firstrun;
+		storeFirstrun();
+	}
+
+	private void storeFirstrun() {
+		context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE).edit().putBoolean(KEY_FIRSTRUN, firstrun).commit();
 	}
 
 
