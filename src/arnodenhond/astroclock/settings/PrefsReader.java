@@ -15,6 +15,8 @@ public class PrefsReader {
 	private int theme;
 	private final Context context;
 
+	private static final String KEY_ALERT_AUDIBLE = "audible";
+	private static final String KEY_ALERT_VIBRATE = "vibrate";
 	private boolean audible;
 	private boolean vibrate;
 	
@@ -73,8 +75,8 @@ public class PrefsReader {
 		this.latitude = Float.parseFloat(latlonpref.getString("latitude", "35"));
 		this.longitude = Float.parseFloat(latlonpref.getString("longitude", "-120"));
 		this.theme = themepref.getInt(KEY_THEME, 2);
-		this.audible = alarmspref.getBoolean("audible", true);
-		this.vibrate = alarmspref.getBoolean("vibrate", true);
+		this.audible = alarmspref.getBoolean(KEY_ALERT_AUDIBLE, true);
+		this.vibrate = alarmspref.getBoolean(KEY_ALERT_VIBRATE, true);
 		
 		this.keywords = keywordspref.getString("keywords", "");
 		

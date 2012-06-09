@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.calcuator.NextCalc;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
@@ -138,7 +139,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			// older notification is still pending)?
 			// not.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
 			String datestring = new SimpleDateFormat("MMM dd, HH:mm").format(new Date());
-			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(), 0));
+			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(context,AstroClock.class), 0));
 			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			nm.notify(notidtype, notification);
 		}

@@ -1,14 +1,8 @@
 package arnodenhond.astroclock;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream.GetField;
 import java.util.Calendar;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
-
-import org.apache.http.util.ByteArrayBuffer;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -18,7 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import arnodenhond.astroclock.calcuator.PhaseOfMoon;
 import arnodenhond.astroclock.calcuator.SunTimes;
 import arnodenhond.astroclock.calcuator.SunTimesException;

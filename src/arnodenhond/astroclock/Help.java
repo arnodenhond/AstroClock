@@ -2,9 +2,6 @@ package arnodenhond.astroclock;
 
 import java.util.Calendar;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
-
 import android.app.TabActivity;
 import android.location.Location;
 import android.os.Bundle;
@@ -15,6 +12,9 @@ import arnodenhond.astroclock.calcuator.SunTimesException;
 import arnodenhond.astroclock.calcuator.Time;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 @SuppressWarnings("deprecation")
 public class Help extends TabActivity {

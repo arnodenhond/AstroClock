@@ -2,15 +2,22 @@ package arnodenhond.astroclock.settings.location;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 import arnodenhond.astroclock.BitmapMaker;
@@ -24,13 +31,13 @@ import com.google.ads.AdView;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.android.maps.OverlayItem;
 
 public class Map extends MapActivity {
 
+	private static final int DIALOG_LOCATION = 1;
 	Overlay overlay;
 	MapView mv;
-	
+
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
@@ -41,15 +48,17 @@ public class Map extends MapActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map);
 		setupAd();
-		 mv = (MapView) findViewById(R.id.mapview);
+		mv = (MapView) findViewById(R.id.mapview);
 		mv.setBuiltInZoomControls(true);
+		FrameLayout.LayoutParams zoomParams = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		zoomParams.gravity=Gravity.BOTTOM|Gravity.RIGHT;
+		mv.getZoomButtonsController().getZoomControls().setLayoutParams(zoomParams);
 		GeoPoint gp = new PrefsReader(this).getGeoPoint();
-		 overlay = new Overlay(getResources().getDrawable(R.drawable.icon),gp);
+		overlay = new Overlay(getResources().getDrawable(R.drawable.icon), gp);
 		mv.getController().setCenter(gp);
 		mv.getOverlays().add(overlay);
-
 	}
-	
+
 	private void setupAd() {
 		PrefsReader prefs = new PrefsReader(this);
 		AdView adView = (AdView) this.findViewById(R.id.adView);
@@ -63,40 +72,56 @@ public class Map extends MapActivity {
 		adView.loadAd(adrequest);
 	}
 
-	public void startLocationSettings(View v) {
-		startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-	}
-	
 	@Override
 	protected void onPause() {
 		new PrefsReader(this).setGeoPoint(overlay.getItem(0).getPoint());
 		super.onPause();
 	}
-	
+
 	public void acquireLocation(View v) {
 		LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-		List<String> providers = locationManager.getProviders(new Criteria(),true);
+		List<String> providers = locationManager.getProviders(new Criteria(), true);
 		if (providers.isEmpty()) {
-			Toast.makeText(this, "Location provider not found or enabled.\nUse Location Settings to enable.", Toast.LENGTH_SHORT).show();
+			showDialog(DIALOG_LOCATION);
 		} else {
 			Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
-			if (location==null) {
-				Toast.makeText(this, "could not get location", Toast.LENGTH_SHORT).show();
+			if (location == null) {
+				showDialog(DIALOG_LOCATION);
 				return;
 			}
-			int lat = (int) (location.getLatitude()*1E6);
-			int lon = (int) (location.getLongitude()*1E6);
-			GeoPoint gp = new GeoPoint(lat,lon);
-			
+			int lat = (int) (location.getLatitude() * 1E6);
+			int lon = (int) (location.getLongitude() * 1E6);
+			GeoPoint gp = new GeoPoint(lat, lon);
+
 			mv.getOverlays().remove(overlay);
-			overlay = new Overlay(getResources().getDrawable(R.drawable.icon),gp);
+			overlay = new Overlay(getResources().getDrawable(R.drawable.icon), gp);
 			mv.getOverlays().add(overlay);
 			mv.refreshDrawableState();
 			mv.invalidate();
-			
+
 			new PrefsReader(this).setGeoPoint(gp);
 			mv.getController().setCenter(gp);
 		}
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case DIALOG_LOCATION: {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.nolocationtitle);
+			builder.setMessage(R.string.nolocationbody);
+			builder.setNeutralButton(R.string.nolocationbutton, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+					dismissDialog(DIALOG_LOCATION);
+				}
+			});
+			return builder.create();
+		}
+		}
+		return super.onCreateDialog(id);
 	}
 	
 	@Override
@@ -118,5 +143,4 @@ public class Map extends MapActivity {
 		super.onBackPressed();
 	}
 
-	
 }

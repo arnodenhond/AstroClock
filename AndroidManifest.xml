@@ -20,8 +20,9 @@
     <!-- required to be able to set the alerts when the widget or livewallpaper is not installed -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<!-- required for alerts -->
-	<uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- required for alerts -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -32,7 +33,7 @@
         <activity
             android:name="arnodenhond.astroclock.AstroClock"
             android:label="@string/app_name"
-            android:theme="@style/AstroClockTheme">
+            android:theme="@style/AstroClockTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,14 +53,16 @@
         <activity android:name="arnodenhond.astroclock.settings.location.Map" />
         <activity android:name="arnodenhond.astroclock.Help" />
         <activity android:name="arnodenhond.astroclock.settings.themes.Theme" />
-        <activity android:name="arnodenhond.astroclock.alerts.Alarms" />
+        <activity android:name="arnodenhond.astroclock.settings.alerts.Alarms" />
 
         <!-- advertising -->
         <activity
             android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <!-- launches a broadcast and a notification if enabled. called when event expires in alarm manager -->
-        <receiver android:name="arnodenhond.astroclock.alerts.AlarmReceiver" android:exported="false">
+        <receiver
+            android:name="arnodenhond.astroclock.alerts.AlarmReceiver"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="midday" />
                 <action android:name="midnight" />

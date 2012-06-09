@@ -2,11 +2,12 @@ package arnodenhond.astroclock;
 
 import java.util.List;
 
-import com.google.android.maps.GeoPoint;
-
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
@@ -19,15 +20,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-import arnodenhond.astroclock.alerts.Alarms;
+import arnodenhond.astroclock.alerts.BootReceiver;
 import arnodenhond.astroclock.settings.PrefsReader;
+import arnodenhond.astroclock.settings.alerts.Alarms;
 import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
 import arnodenhond.astroclocklite.R;
 
+import com.google.android.maps.GeoPoint;
+
 public class AstroClock extends Activity {
 
+	private static final int DIALOG_WELCOME = 1;
 	PendingIntent pi;
 
 	private boolean supportsAPILevel11() {
@@ -40,18 +44,42 @@ public class AstroClock extends Activity {
 		if (supportsAPILevel11()) {
 			requestWindowFeature(Window.FEATURE_ACTION_BAR);
 			requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-			getActionBar().setDisplayShowTitleEnabled(false);
+			getWindow().getDecorView().setSystemUiVisibility(1);
 		} else {
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
 		}
 		PrefsReader pr = new PrefsReader(this);
 		if (pr.isFirstrun()) {
-			// TODO show welcome dialog;
+			showDialog(DIALOG_WELCOME);
 			getLocation();
+			setAlarms();
 			pr.setFirstrun(false);
 		}
 		setContentView(R.layout.activity);
 		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case DIALOG_WELCOME: {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.welcometitle);
+			builder.setMessage(R.string.welcomebody);
+			builder.setNeutralButton(R.string.welcomebutton, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dismissDialog(DIALOG_WELCOME);
+				}
+			});
+			return builder.create();
+		}
+		}
+		return super.onCreateDialog(id);
+	}
+
+	private void setAlarms() {
+		sendBroadcast(new Intent(this, BootReceiver.class));
 	}
 
 	private void getLocation() {
@@ -59,7 +87,7 @@ public class AstroClock extends Activity {
 		List<String> providers = locationManager.getProviders(new Criteria(), true);
 		if (!providers.isEmpty()) {
 			Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
-			if (location!=null) {
+			if (location != null) {
 				int lat = (int) (location.getLatitude() * 1E6);
 				int lon = (int) (location.getLongitude() * 1E6);
 				GeoPoint gp = new GeoPoint(lat, lon);
@@ -85,7 +113,7 @@ public class AstroClock extends Activity {
 				iv.setImageBitmap(new BitmapMaker(AstroClock.this, iv.getHeight(), latitude, longitude, theme).makeBitmap());
 				pb.setVisibility(View.GONE);
 			}
-		},100);
+		}, 100);
 
 		Intent pintent = new Intent(this, AstroClock.class);
 		pintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

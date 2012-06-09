@@ -1,22 +1,17 @@
 package arnodenhond.astroclock.settings;
 
 import android.app.ListActivity;
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RemoteViews;
-import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.Help;
-import arnodenhond.astroclock.alerts.Alarms;
+import arnodenhond.astroclock.settings.alerts.Alarms;
 import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
-import arnodenhond.astroclock.widget.WidgetProvider;
 import arnodenhond.astroclocklite.R;
 
 import com.google.ads.AdRequest;
