@@ -44,9 +44,11 @@ public class AstroClock extends Activity {
 		} else {
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
 		}
-		if (new PrefsReader(this).isFirstrun()) {
+		PrefsReader pr = new PrefsReader(this);
+		if (pr.isFirstrun()) {
 			// TODO show welcome dialog;
 			getLocation();
+			pr.setFirstrun(false);
 		}
 		setContentView(R.layout.activity);
 		super.onCreate(savedInstanceState);
