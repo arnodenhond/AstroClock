@@ -101,36 +101,50 @@ public class BitmapMaker {
 		paint.setARGB(255, 0, 0, 0);
 
 		BitmapDrawable bd = readBitmapDrawable("background.png");
-		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
+		Bitmap bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		canvas.drawBitmap(bmp, 0, 0, paint);
+		bmp.recycle();
 
 		bd = (BitmapDrawable) readBitmapDrawable("sunset.png");
 		canvas.rotate(degsunrise, centerx, centery);
-		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
+		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		canvas.drawBitmap(bmp, 0, 0, paint);
+		bmp.recycle();
 		canvas.rotate(degsunrise * -1f, centerx, centery);
 
 		bd = (BitmapDrawable) readBitmapDrawable("sunrise.png");
 		canvas.rotate(degsunset, centerx, centery);
-		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
+		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		canvas.drawBitmap(bmp, 0, 0, paint);
+		bmp.recycle();
 		canvas.rotate(degsunset * -1f, centerx, centery);
 
 		bd = (BitmapDrawable) readBitmapDrawable("year.png");
 		canvas.rotate(degyear, centerx, centery);
-		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
+		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		canvas.drawBitmap(bmp, 0, 0, paint);
+		bmp.recycle();
 		canvas.rotate(degyear * -1f, centerx, centery);
 
 		bd = (BitmapDrawable) readBitmapDrawable("moon.png");
 		canvas.rotate(degmoon, centerx, centery);
-		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
+		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		canvas.drawBitmap(bmp, 0, 0, paint);
+		bmp.recycle();
 		canvas.rotate(degmoon * -1f, centerx, centery);
 
 		bd = (BitmapDrawable) readBitmapDrawable("day.png");
 		canvas.rotate(degday, centerx, centery);
-		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
+		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		canvas.drawBitmap(bmp, 0, 0, paint);
+		bmp.recycle();
 		canvas.rotate(degday * -1f, centerx, centery);
 
 		bd = (BitmapDrawable) readBitmapDrawable("cover.png");
-		canvas.drawBitmap(Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true), 0, 0, paint);
-
+		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		canvas.drawBitmap(bmp, 0, 0, paint);
+		bmp.recycle();
+		bmp = null;
 		return result;
 	}
 
