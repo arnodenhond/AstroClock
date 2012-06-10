@@ -64,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Downloading.."
+                android:text="@string/downloading"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/selector"
-            android:text="Set Theme" />
+            android:text="@string/settheme" />
         <!--
         <LinearLayout
             android:id="@+id/backgroundlayout"

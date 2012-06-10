@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="acquirelocation">Acquire Location</string>
+    <string name="nolocationtitle">No Location</string>
+    <string name="nolocationbody">Location could not be acquired.\nEnable a location provider in the system settings to be able to acquire location.</string>
+    <string name="nolocationbutton">Location Settings</string>
+
+</resources>

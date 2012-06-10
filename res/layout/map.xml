@@ -22,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="acquireLocation"
-        android:text="Acquire Location" />
+        android:text="@string/acquirelocation" />
 
     <com.google.ads.AdView
         android:id="@+id/adView"

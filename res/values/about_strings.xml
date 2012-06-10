@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- about app -->
+    <string name="aboutapptitle">Help</string>
+    <string name="helptext">AstroClock measures time by astronomical standards.\n\nThe shortest hand shows the position of the sun during a day. Unlike an normal hour hand, this hand turns only once in 24 hours.\nSmaller hands show the moments of sunrise and sunset.\n\nThe middle hand shows the phase of the moon. It turns every 29.5 days\n\nThe longest hand shows the position of the earth in its orbit around the sun. It turns every 365.25 days\n\nLike a normal clock, the hands rotate in clockwise direction.\n\nThe alarms section shows the moments of upcoming day / moon / year events. Select the checkboxes for recurring audible notifications. </string>
+    <string name="maketheme">For instructions on creating your own theme please visit android.arnodenhond.com/apps/astroclock/skins</string>
+    <string name="disclaimer"><b>Disclaimer</b>\nThis app does not spy or otherwise misbehave in any way. Some screens are known to show after-images when displaying the same graphics over a long period.</string>
+    <string name="copyright">Arno den Hond © 2012</string>
+    
+    <!-- about dev -->
+    <string name="aboutdevtitle">Made-by</string>
+    <string name="aboutdev">This app has been under semi-continuous development on evenings and weekends since April 2009</string>
+    <string name="credits"><b>Credits</b>\n This app would not have been possible without help of these people
+	    \nMonica Baltodano for providing the only graphics set for the first 2 years
+	    \nYuri Westplat who made a graphics set that went unused for nearly 2 years
+	    \nGregor S staunch supporter and thorough beta tester
+	    \nBarry Rijkse for providing the graphics that helped win the I\'m Watch developer competition
+	    \nAilantd Sikowsky deisgner of new icon, promo graphics and beautiful theme
+	    \nKostas Papageorgiou of kanguro.fi who inspired me in writing the new app description</string>
+    <string name="stats">Length of Day vs Length of Night</string>
+    <string name="shareurl">Share this app to a social network</string>
+    <string name="postcomment">Post a rating / comment</string>
+    <string name="sendfeedback">Send your questions or suggestions.</string>
+    <string name="circleplus">Cirlce AstroClock on Google+</string>
+    <string name="getalarm">Get the Sunrise Alarm app</string>
+    <string name="keywordsheader">To develop this app I had to spend money on a new laptop and some android phones. To recover this money I have added some advertising. To reduce the irritation of this advertising you can enter some of your interests below:</string>
+    <string name="keywordshint">Sex, Drugs, Rock, Roll</string>
+    
+</resources>

@@ -121,7 +121,7 @@ public class PrefsReader {
 	}
 
 	private void storeLatLon() {
-		context.getSharedPreferences("latlon", Activity.MODE_PRIVATE).edit().putString("latitude", Double.toString(latitude)).putString("longitude", Double.toString(longitude)).commit();
+		context.getSharedPreferences(PREF_LATLON, Activity.MODE_PRIVATE).edit().putString(KEY_LATITUDE, Double.toString(latitude)).putString(KEY_LONGITUDE, Double.toString(longitude)).commit();
 	}
 
 	public double getLatitude() {

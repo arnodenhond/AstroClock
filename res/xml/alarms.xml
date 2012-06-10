@@ -4,11 +4,11 @@
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="audible"
-        android:title="Audible" />
+        android:title="@string/audible" />
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="vibrate"
-        android:title="Vibrate" />
+        android:title="@string/vibrate" />
 
     <PreferenceScreen
         android:key="day"
@@ -17,22 +17,22 @@
             android:defaultValue="false"
             android:key="ASTROCLOCK_MIDDAY"
             android:summary=""
-            android:title="Mid Day" />
+            android:title="@string/midday" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_MIDNIGHT"
             android:summary=""
-            android:title="Mid Night" />
+            android:title="@string/midnight" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_SUNRISE"
             android:summary=""
-            android:title="Sun Rise" />
+            android:title="@string/sunrise" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_SUNSET"
             android:summary=""
-            android:title="Sun Set" />
+            android:title="@string/sunset" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="moon"
@@ -41,22 +41,22 @@
             android:defaultValue="false"
             android:key="ASTROCLOCK_FULLMOON"
             android:summary=""
-            android:title="Full Moon" />
+            android:title="@string/fullmoon" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_NEWMOON"
             android:summary=""
-            android:title="New Moon" />
+            android:title="@string/newmoon" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_FIRSTQUARTER"
             android:summary=""
-            android:title="First Quarter" />
+            android:title="@string/firstquarter" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_LASTQUARTER"
             android:summary=""
-            android:title="Last Quarter" />
+            android:title="@string/lastquarter" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="year"
@@ -65,22 +65,22 @@
             android:defaultValue="false"
             android:key="ASTROCLOCK_NORTHERNSOLSTICE"
             android:summary=""
-            android:title="Northern Solstice" />
+            android:title="@string/northernsolstice" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_SOUTHERNSOLSTICE"
             android:summary=""
-            android:title="Southern Solstice" />
+            android:title="@string/southernsolstice" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_NORTHWARDEQUINOX"
             android:summary=""
-            android:title="Northward Equinox" />
+            android:title="@string/northwardequinox" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ASTROCLOCK_SOUTHWARDEQUINOX"
             android:summary=""
-            android:title="Southward Equinox" />
+            android:title="@string/southwardequinox" />
     </PreferenceScreen>
 
 </PreferenceScreen>

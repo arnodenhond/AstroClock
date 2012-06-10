@@ -36,8 +36,8 @@ public class About extends TabActivity {
 		setupAd();
 		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup();
-		mTabHost.addTab(mTabHost.newTabSpec("AboutApp").setContent(R.id.aboutapp).setIndicator("Help"));
-		mTabHost.addTab(mTabHost.newTabSpec("AboutDev").setContent(R.id.aboutdev).setIndicator("Made-by"));
+		mTabHost.addTab(mTabHost.newTabSpec("AboutApp").setContent(R.id.aboutapp).setIndicator(getString(R.string.aboutapptitle)));
+		mTabHost.addTab(mTabHost.newTabSpec("AboutDev").setContent(R.id.aboutdev).setIndicator(getString(R.string.aboutdevtitle)));
 		calcDayNightLength();
 		final PrefsReader pr = new PrefsReader(this);
 		EditText keywords = (EditText) findViewById(R.id.keywords);
@@ -107,8 +107,8 @@ public class About extends TabActivity {
 		emailIntent.setType("plain/text");
 		emailIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "arnodenhond+astroclock@gmail.com" });
-		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AstroClock Feedback");
-		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "AstroClock would be even better if....");
+		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Feedback");
+		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "This app would be even better if....");
 		startActivity(emailIntent);
 	}
 
@@ -123,7 +123,7 @@ public class About extends TabActivity {
 		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
 		intent.setType("text/plain");
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-		intent.putExtra(Intent.EXTRA_TEXT, "AstroClock http://play.google.com/store/apps/details?id=arnodenhond.astroclocklite");
+		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.app_name)+" http://play.google.com/store/apps/details?id=arnodenhond.astroclocklite");
 		startActivity(intent);
 	}
 

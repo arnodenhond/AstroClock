@@ -42,56 +42,56 @@ public class AlarmReceiver extends BroadcastReceiver {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextMidDay(), operation);
 			// TODO extract strings to resource xmls
 			if (prefs.isAlert_midday()) {
-				message = "Mid Day";
+				message = context.getString(R.string.midday);
 				notidtype = NOTID_DAY;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_MIDNIGHT)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextMidNight(), operation);
 			if (prefs.isAlert_midnight()) {
-				message = "Mid Night";
+				message = context.getString(R.string.midnight);
 				notidtype = NOTID_DAY;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_SUNRISE)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSunRise(), operation);
 			if (prefs.isAlert_sunrise()) {
-				message = "Sun Rise";
+				message = context.getString(R.string.sunrise);
 				notidtype = NOTID_DAY;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_SUNSET)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSunSet(), operation);
 			if (prefs.isAlert_sunset()) {
-				message = "Sun Set";
+				message = context.getString(R.string.sunset);
 				notidtype = NOTID_DAY;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_FULLMOON)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextFullMoon(), operation);
 			if (prefs.isAlert_fullmoon()) {
-				message = "Full Moon";
+				message = context.getString(R.string.fullmoon);
 				notidtype = NOTID_MOON;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_NEWMOON)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNewMoon(), operation);
 			if (prefs.isAlert_newmoon()) {
-				message = "New Moon";
+				message = context.getString(R.string.newmoon);
 				notidtype = NOTID_MOON;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_FIRSTQUARTER)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextFirstQuarter(), operation);
 			if (prefs.isAlert_firstquarter()) {
-				message = "First Quarter";
+				message = context.getString(R.string.firstquarter);
 				notidtype = NOTID_MOON;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_LASTQUARTER)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextLastQuarter(), operation);
 			if (prefs.isAlert_lastquarter()) {
-				message = "Last Quarter";
+				message = context.getString(R.string.lastquarter);
 				notidtype = NOTID_MOON;
 			}
 		}
@@ -99,28 +99,28 @@ public class AlarmReceiver extends BroadcastReceiver {
 		if (type.equals(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNSol(), operation);
 			if (prefs.isAlert_northernsolstice()) {
-				message = "Northern Solstice";
+				message = context.getString(R.string.northernsolstice);
 				notidtype = NOTID_YEAR;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSSol(), operation);
 			if (prefs.isAlert_southernsolstice()) {
-				message = "Southern Solstice";
+				message = context.getString(R.string.southernsolstice);
 				notidtype = NOTID_YEAR;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextNEq(), operation);
 			if (prefs.isAlert_northwardequinox()) {
-				message = "Northward Equinox";
+				message = context.getString(R.string.northwardequinox);
 				notidtype = NOTID_YEAR;
 			}
 		}
 		if (type.equals(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX)) {
 			am.set(AlarmManager.RTC_WAKEUP, nc.getNextSEq(), operation);
 			if (prefs.isAlert_southwardequinox()) {
-				message = "Southward Equinox";
+				message = context.getString(R.string.southwardequinox);
 				notidtype = NOTID_YEAR;
 			}
 		}

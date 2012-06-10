@@ -77,7 +77,6 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 
 		new PrefsReader(context).setTheme(this.theme);
 
-		Toast.makeText(context, "Theme Stored", Toast.LENGTH_SHORT).show();
 		super.onPostExecute(result);
 	}
 
