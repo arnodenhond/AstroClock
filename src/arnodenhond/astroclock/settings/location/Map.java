@@ -4,11 +4,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Criteria;
@@ -21,6 +23,8 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.RemoteViews;
 import arnodenhond.astroclock.BitmapMaker;
+import arnodenhond.astroclock.alerts.AlarmReceiver;
+import arnodenhond.astroclock.alerts.BootReceiver;
 import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclock.widget.WidgetProvider;
@@ -120,12 +124,16 @@ public class Map extends MapActivity {
 
 	@Override
 	public void onPause() {
-		new PrefsReader(this).setGeoPoint(overlay.getItem(0).getPoint());
+		PrefsReader settings = new PrefsReader(this);
+		settings.setGeoPoint(overlay.getItem(0).getPoint());
 
+		removeAlarms();
+		sendBroadcast(new Intent(this, BootReceiver.class));
+		
 		AppWidgetManager awm = AppWidgetManager.getInstance(this);
 
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
-		PrefsReader settings = new PrefsReader(this);
+		
 		int height = getResources().getDisplayMetrics().heightPixels;
 		int width = getResources().getDisplayMetrics().widthPixels;
 		BitmapMaker bmmaker = new BitmapMaker(this, 500, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
@@ -137,6 +145,72 @@ public class Map extends MapActivity {
 		awm.updateAppWidget(new ComponentName(this, WidgetProvider.class), views);
 
 		super.onPause();
+	}
+
+	private void removeAlarms() {
+		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+		Context context = this;
+		
+		Intent pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_MIDDAY);
+		PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_MIDNIGHT);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_SUNRISE);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_SUNSET);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_FULLMOON);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_NEWMOON);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_FIRSTQUARTER);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_LASTQUARTER);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+
+		pintent = new Intent(context, AlarmReceiver.class);
+		pintent.setAction(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX);
+		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
+		am.cancel(operation);
+		
 	}
 
 }
