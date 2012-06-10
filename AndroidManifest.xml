@@ -61,7 +61,9 @@
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
-        <activity android:name="arnodenhond.astroclock.settings.Menu" />
+        <activity
+            android:name="arnodenhond.astroclock.settings.Menu"
+            android:exported="true" />
         <activity android:name="arnodenhond.astroclock.settings.location.Map" />
         <activity android:name="arnodenhond.astroclock.settings.themes.Theme" />
         <activity android:name="arnodenhond.astroclock.settings.alerts.Alarms" />
