@@ -9,11 +9,11 @@ import java.net.URL;
 
 import org.apache.http.util.ByteArrayBuffer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 import arnodenhond.astroclock.settings.PrefsReader;
 
 public class DownloadTask extends AsyncTask<Void, Void, Void> {
@@ -21,6 +21,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	private View progresslayout;
 	private View selector;
 	private int theme;
+	private boolean fail=false;
 	private Context context;
 
 	public DownloadTask(View progresslayout, View selector, int theme, Context context) {
@@ -65,6 +66,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 
 		} catch (IOException e) {
 			Log.d("AstroClock", e.toString());
+			fail=true;
 		}
 
 		return null;
@@ -74,9 +76,11 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		progresslayout.setVisibility(View.GONE);
 		selector.setVisibility(View.VISIBLE);
-
-		new PrefsReader(context).setTheme(this.theme);
-
+		if (fail) {
+			((Activity)context).showDialog(Theme.DIALOG_NODOWNLOAD);
+		} else { 
+			new PrefsReader(context).setTheme(this.theme);
+		}
 		super.onPostExecute(result);
 	}
 

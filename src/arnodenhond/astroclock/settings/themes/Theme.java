@@ -4,10 +4,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.location.Location;
@@ -34,7 +37,9 @@ import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
 public class Theme extends Activity {
-
+	
+	public static final int DIALOG_NODOWNLOAD = 1;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -166,4 +171,24 @@ public class Theme extends Activity {
 		super.onPause();
 	}
 
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case DIALOG_NODOWNLOAD: {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.nodownloadtitle);
+			builder.setMessage(R.string.nodownloadbody);
+			builder.setNeutralButton(R.string.nodownloadbutton, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+					dismissDialog(DIALOG_NODOWNLOAD);
+				}
+			});
+			return builder.create();
+		}
+		}
+		return super.onCreateDialog(id);
+	}
+	
 }
