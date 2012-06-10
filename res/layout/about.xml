@@ -102,33 +102,48 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/disclaimer" />
+                            
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/keywordsheader" />
+                            
+                            <EditText
+                                android:id="@+id/keywords"
+                                android:hint="@string/keywordshint"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" />
 
                             <Button
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="shareurl"
                                 android:text="@string/shareurl" />
+
                             <Button
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="postcomment"
                                 android:text="@string/postcomment" />
+
                             <Button
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="sendfeedback"
                                 android:text="@string/sendfeedback" />
-                            <Button
+                            <!--
+                                 <Button
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="circleplus"
                                 android:text="@string/circleplus" />
+                            -->
+
                             <Button
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="getalarm"
                                 android:text="@string/getalarm" />
-                            
                         </LinearLayout>
                     </ScrollView>
                 </LinearLayout>

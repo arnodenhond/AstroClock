@@ -1,5 +1,7 @@
 package arnodenhond.astroclock.settings.location;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -17,9 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
-import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
@@ -51,7 +51,7 @@ public class Map extends MapActivity {
 		mv = (MapView) findViewById(R.id.mapview);
 		mv.setBuiltInZoomControls(true);
 		FrameLayout.LayoutParams zoomParams = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		zoomParams.gravity=Gravity.BOTTOM|Gravity.RIGHT;
+		zoomParams.gravity = Gravity.BOTTOM | Gravity.RIGHT;
 		mv.getZoomButtonsController().getZoomControls().setLayoutParams(zoomParams);
 		GeoPoint gp = new PrefsReader(this).getGeoPoint();
 		overlay = new Overlay(getResources().getDrawable(R.drawable.icon), gp);
@@ -68,7 +68,7 @@ public class Map extends MapActivity {
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
-		adrequest.addTestDevice("10007c61aeb3");
+		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		adView.loadAd(adrequest);
 	}
 
@@ -117,7 +117,7 @@ public class Map extends MapActivity {
 		}
 		return super.onCreateDialog(id);
 	}
-	
+
 	@Override
 	public void onPause() {
 		new PrefsReader(this).setGeoPoint(overlay.getItem(0).getPoint());

@@ -88,7 +88,7 @@ public class ACWallpaperService extends WallpaperService {
 			}
 			handler.removeCallbacks(drawRunner);
 			if (visible) {
-				handler.postDelayed(drawRunner, 60000);
+				handler.postDelayed(drawRunner, 5000);
 			}
 		}
 	}

@@ -75,7 +75,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		progresslayout.setVisibility(View.GONE);
 		selector.setVisibility(View.VISIBLE);
-		
+
 		new PrefsReader(context).setTheme(this.theme);
 
 		Toast.makeText(context, "Theme Stored", Toast.LENGTH_SHORT).show();

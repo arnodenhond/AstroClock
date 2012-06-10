@@ -1,5 +1,8 @@
 package arnodenhond.astroclock.settings.themes;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -10,11 +13,13 @@ import android.content.res.TypedArray;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
@@ -37,29 +42,46 @@ public class Theme extends Activity {
 		setupAd();
 		final TextView textview = (TextView) findViewById(R.id.TextView);
 		textview.setText(getResources().getStringArray(R.array.artists)[0]);
-		Gallery gallery = (Gallery) findViewById(R.id.Gallery);
+		final Button settheme = (Button) findViewById(R.id.settheme);
+		final Gallery gallery = (Gallery) findViewById(R.id.Gallery);
 		gallery.setAdapter(new ImageAdapter(this));
-		gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				textview.setText(getResources().getStringArray(R.array.artists)[arg2]);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-			}
-		});
 		final PrefsReader pr = new PrefsReader(this);
 		gallery.setSelection(pr.getTheme());
 		gallery.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				View progresslayout = findViewById(R.id.downloadprogresslayout);
-				View gallery = findViewById(R.id.Gallery);
-				if (arg2 != 2) {
-					new DownloadTask(progresslayout, gallery, arg2, Theme.this).execute();
-				} else {
 
+				// Intent intent = new Intent(Theme.this, AstroClock.class);
+				// intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				// startActivity(intent);
+
+			}
+		});
+		gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
+				textview.setText(getResources().getStringArray(R.array.artists)[pos]);
+				PrefsReader pr = new PrefsReader(Theme.this);
+				if (pos == pr.getTheme()) {
+					settheme.setEnabled(false);
+				} else {
+					settheme.setEnabled(true);
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+
+			}
+		});
+		settheme.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				View progresslayout = findViewById(R.id.downloadprogresslayout);
+				int pos = gallery.getSelectedItemPosition();
+				if (pos != 2) {
+					new DownloadTask(progresslayout, gallery, pos, Theme.this).execute();
+				} else {
 					progresslayout.setVisibility(View.VISIBLE);
 					deleteFile("background.png");
 					deleteFile("cover.png");
@@ -69,14 +91,12 @@ public class Theme extends Activity {
 					deleteFile("moon.png");
 					deleteFile("day.png");
 					progresslayout.setVisibility(View.GONE);
-					pr.setTheme(arg2);
+					pr.setTheme(pos);
 				}
-				// Intent intent = new Intent(Theme.this, AstroClock.class);
-				// intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				// startActivity(intent);
-
+				settheme.setEnabled(false);
 			}
 		});
+
 	}
 
 	public class ImageAdapter extends BaseAdapter {
@@ -123,6 +143,7 @@ public class Theme extends Activity {
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
+		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		adView.loadAd(adrequest);
 	}
 

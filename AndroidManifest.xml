@@ -1,11 +1,11 @@
 <?xml version="1.0"	encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="arnodenhond.astroclocklite"
-    android:versionCode="300"
-    android:versionName="3.0.0" >
+    android:versionCode="228"
+    android:versionName="3.0 BETA 1" >
 
     <uses-sdk
-        android:minSdkVersion="4"
+        android:minSdkVersion="7"
         android:targetSdkVersion="15" />
 
     <!-- required for acquiring location -->
@@ -17,11 +17,27 @@
         required="false" />
     <!-- required for downloading themes and ads -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- required to be able to set the alerts when the widget or livewallpaper is not installed -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- required for setting alerts -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- required for alerts -->
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.live_wallpaper"
+        android:required="false" />
 
     <application
         android:icon="@drawable/icon"
@@ -32,7 +48,6 @@
         <!-- Launchable Clock Activity -->
         <activity
             android:name="arnodenhond.astroclock.AstroClock"
-            android:label="@string/app_name"
             android:theme="@style/AstroClockTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,18 +55,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- configuration activity -->
-        <activity
-            android:name="arnodenhond.astroclock.settings.Menu"
-            android:label="@string/app_name" >
+        <activity android:name="arnodenhond.astroclock.Help" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
+        <activity android:name="arnodenhond.astroclock.settings.Menu" />
         <activity android:name="arnodenhond.astroclock.settings.location.Map" />
-        <activity android:name="arnodenhond.astroclock.Help" />
         <activity android:name="arnodenhond.astroclock.settings.themes.Theme" />
         <activity android:name="arnodenhond.astroclock.settings.alerts.Alarms" />
 

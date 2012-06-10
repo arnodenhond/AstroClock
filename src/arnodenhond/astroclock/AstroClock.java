@@ -44,7 +44,7 @@ public class AstroClock extends Activity {
 		if (supportsAPILevel11()) {
 			requestWindowFeature(Window.FEATURE_ACTION_BAR);
 			requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-			//getWindow().getDecorView().setSystemUiVisibility(1);
+			// getWindow().getDecorView().setSystemUiVisibility(1);
 		} else {
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
 		}

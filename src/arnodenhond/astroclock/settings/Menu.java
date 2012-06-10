@@ -1,5 +1,8 @@
 package arnodenhond.astroclock.settings;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import android.app.ListActivity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -45,6 +48,7 @@ public class Menu extends ListActivity {
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
+		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		adView.loadAd(adrequest);
 	}
 

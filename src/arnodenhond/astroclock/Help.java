@@ -1,13 +1,18 @@
 package arnodenhond.astroclock;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
 
 import android.app.TabActivity;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
 import arnodenhond.astroclock.calcuator.SunTimes;
@@ -33,8 +38,24 @@ public class Help extends TabActivity {
 		mTabHost.setup();
 		mTabHost.addTab(mTabHost.newTabSpec("AboutApp").setContent(R.id.aboutapp).setIndicator("Help"));
 		mTabHost.addTab(mTabHost.newTabSpec("AboutDev").setContent(R.id.aboutdev).setIndicator("Made-by"));
-
 		calcDayNightLength();
+		final PrefsReader pr = new PrefsReader(this);
+		EditText keywords = (EditText) findViewById(R.id.keywords);
+		keywords.setText(pr.getKeywords());
+		keywords.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				pr.setKeywords(s.toString());
+			}
+		});
 	}
 
 	private void calcDayNightLength() {
@@ -71,6 +92,7 @@ public class Help extends TabActivity {
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
+		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		adView.loadAd(adrequest);
 	}
 
@@ -98,7 +120,7 @@ public class Help extends TabActivity {
 	}
 
 	public void shareurl(View v) {
-		Intent intent=new Intent(android.content.Intent.ACTION_SEND);
+		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
 		intent.setType("text/plain");
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		intent.putExtra(Intent.EXTRA_TEXT, "AstroClock http://play.google.com/store/apps/details?id=arnodenhond.astroclocklite");
@@ -112,5 +134,4 @@ public class Help extends TabActivity {
 		startActivity(intent);
 	}
 
-	
 }

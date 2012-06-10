@@ -46,5 +46,7 @@
 	<string name="sendfeedback">Send your questions or suggestions.</string>
 	<string name="circleplus">Cirlce AstroClock on Google+</string>
 	<string name="getalarm">Get the Sunrise Alarm app</string>
+	<string name="keywordshint">Sex, Drugs, Rock, Roll</string>
+	<string name="keywordsheader">To develop this app I had to spend money on a new laptop and some android phones. To recover this money I have added some advertising. To reduce the irritation of this advertising you can enter some of your interests below:</string>
 		
 </resources>

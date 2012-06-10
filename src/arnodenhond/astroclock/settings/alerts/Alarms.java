@@ -17,7 +17,7 @@ import arnodenhond.astroclocklite.R;
 
 public class Alarms extends PreferenceActivity {
 
-	//TODO use prefsreader
+	// TODO use prefsreader
 	SharedPreferences alarms;
 
 	@Override
@@ -32,8 +32,8 @@ public class Alarms extends PreferenceActivity {
 		NextCalc nc = new NextCalc(latitude, longitude);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd, HH:mm");
-		((CheckBoxPreference)findPreference("audible")).setChecked(prefs.getNotificationAudible());
-		((CheckBoxPreference)findPreference("vibrate")).setChecked(prefs.getNotificationVibrate());
+		((CheckBoxPreference) findPreference("audible")).setChecked(prefs.getNotificationAudible());
+		((CheckBoxPreference) findPreference("vibrate")).setChecked(prefs.getNotificationVibrate());
 		findPreference("audible").setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
@@ -50,7 +50,7 @@ public class Alarms extends PreferenceActivity {
 				return true;
 			}
 		});
-		
+
 		doPref(PrefsReader.KEY_ALERT_MIDDAY, nc.getNextMidDay(), sdf);
 		doPref(PrefsReader.KEY_ALERT_MIDNIGHT, nc.getNextMidNight(), sdf);
 		doPref(PrefsReader.KEY_ALERT_SUNRISE, nc.getNextSunRise(), sdf);
@@ -88,18 +88,6 @@ public class Alarms extends PreferenceActivity {
 		public boolean onPreferenceClick(Preference preference) {
 			boolean checked = ((CheckBoxPreference) preference).isChecked();
 			getSharedPreferences("alarms", Activity.MODE_PRIVATE).edit().putBoolean(preference.getKey(), checked).commit();
-
-//			AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-//			Intent intent = new Intent(Alarms.this, AlarmReceiver.class);
-//			intent.setAction(preference.getKey());
-//			PendingIntent operation = PendingIntent.getBroadcast(Alarms.this, 0, intent, 0);
-//			if (checked) {
-//				am.set(AlarmManager.RTC_WAKEUP, time, operation);
-//			} else {
-//				am.cancel(operation);
-//			}
-
-			Toast.makeText(Alarms.this, checked ? "Alarm Set" : "Alarm Removed", Toast.LENGTH_SHORT).show();
 			return true;
 		}
 

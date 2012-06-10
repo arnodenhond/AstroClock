@@ -8,20 +8,31 @@ import com.google.android.maps.GeoPoint;
 
 public class PrefsReader {
 
+	private final Context context;
+
+	private static final String PREF_LATLON = "latlon";
+
+	private static final String KEY_LATITUDE = "latitude";
+	private static final String KEY_LONGITUDE = "longitude";
 	private double latitude;
 	private double longitude;
-	
+
+	private static final String PREF_THEME = "theme";
+
 	public static final String KEY_THEME = "theme";
 	private int theme;
-	private final Context context;
+
+	private static final String PREF_KEYWORDS = "keywords";
+
+	private static final String KEY_KEYWORDS = "keywords";
+
+	private String keywords;
+
+	private static final String PREF_ALERTS = "alarms";
 
 	private static final String KEY_ALERT_AUDIBLE = "audible";
 	private static final String KEY_ALERT_VIBRATE = "vibrate";
-	private boolean audible;
-	private boolean vibrate;
-	
-	private String keywords;
-	
+
 	public static final String KEY_ALERT_MIDDAY = "ASTROCLOCK_MIDDAY";
 	public static final String KEY_ALERT_MIDNIGHT = "ASTROCLOCK_MIDNIGHT";
 	public static final String KEY_ALERT_SUNRISE = "ASTROCLOCK_SUNRISE";
@@ -37,6 +48,9 @@ public class PrefsReader {
 	public static final String KEY_ALERT_NORTHWARDEQUINOX = "ASTROCLOCK_NORTHWARDEQUINOX";
 	public static final String KEY_ALERT_SOUTHWARDEQUINOX = "ASTROCLOCK_SOUTHWARDEQUINOX";
 
+	private boolean audible;
+	private boolean vibrate;
+
 	private boolean alert_midday;
 	private boolean alert_midnight;
 	private boolean alert_sunrise;
@@ -49,17 +63,13 @@ public class PrefsReader {
 	private boolean alert_southernsolstice;
 	private boolean alert_northwardequinox;
 	private boolean alert_southwardequinox;
-	
+
 	private static final String PREF_FIRSTRUN = "firstrun";
-	private static final String PREF_LATLON = "latlon";
-	private static final String PREF_THEME = "theme";
-	private static final String PREF_ALERTS = "alarms";
-	private static final String PREF_KEYWORDS = "keywords";
-	
+
 	private static final String KEY_FIRSTRUN = "firstrun";
+
 	private boolean firstrun;
-	
-	
+
 	public PrefsReader(Context context) {
 		this.context = context;
 		refresh();
@@ -72,14 +82,14 @@ public class PrefsReader {
 		SharedPreferences keywordspref = context.getSharedPreferences(PREF_KEYWORDS, Activity.MODE_PRIVATE);
 		SharedPreferences firstrunpref = context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE);
 
-		this.latitude = Float.parseFloat(latlonpref.getString("latitude", "35"));
-		this.longitude = Float.parseFloat(latlonpref.getString("longitude", "-120"));
+		this.latitude = Float.parseFloat(latlonpref.getString(KEY_LATITUDE, "35"));
+		this.longitude = Float.parseFloat(latlonpref.getString(KEY_LONGITUDE, "-120"));
 		this.theme = themepref.getInt(KEY_THEME, 2);
 		this.audible = alarmspref.getBoolean(KEY_ALERT_AUDIBLE, true);
 		this.vibrate = alarmspref.getBoolean(KEY_ALERT_VIBRATE, true);
-		
-		this.keywords = keywordspref.getString("keywords", "");
-		
+
+		this.keywords = keywordspref.getString(KEY_KEYWORDS, "");
+
 		this.alert_midday = alarmspref.getBoolean(KEY_ALERT_MIDDAY, false);
 		this.alert_midnight = alarmspref.getBoolean(KEY_ALERT_MIDNIGHT, false);
 		this.alert_sunrise = alarmspref.getBoolean(KEY_ALERT_SUNRISE, false);
@@ -99,21 +109,21 @@ public class PrefsReader {
 	}
 
 	public GeoPoint getGeoPoint() {
-		int lat = (int) (latitude*1E6);
-		int lon = (int) ((int) longitude*1E6);
-		return new GeoPoint(lat,lon);
+		int lat = (int) (latitude * 1E6);
+		int lon = (int) ((int) longitude * 1E6);
+		return new GeoPoint(lat, lon);
 	}
-	
+
 	public void setGeoPoint(GeoPoint geopoint) {
-		latitude = geopoint.getLatitudeE6()/1E6;
-		longitude = geopoint.getLongitudeE6()/1E6;
+		latitude = geopoint.getLatitudeE6() / 1E6;
+		longitude = geopoint.getLongitudeE6() / 1E6;
 		storeLatLon();
 	}
-	
+
 	private void storeLatLon() {
-		context.getSharedPreferences("latlon", Activity.MODE_PRIVATE).edit().putString("latitude",Double.toString(latitude)).putString("longitude", Double.toString(longitude)).commit();
+		context.getSharedPreferences("latlon", Activity.MODE_PRIVATE).edit().putString("latitude", Double.toString(latitude)).putString("longitude", Double.toString(longitude)).commit();
 	}
-	
+
 	public double getLatitude() {
 		return latitude;
 	}
@@ -125,7 +135,7 @@ public class PrefsReader {
 	public int getTheme() {
 		return theme;
 	}
-	
+
 	public void setTheme(int theme) {
 		this.theme = theme;
 		storeTheme();
@@ -134,7 +144,7 @@ public class PrefsReader {
 	private void storeTheme() {
 		context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE).edit().putInt(KEY_THEME, theme).commit();
 	}
-	
+
 	public void getBackground() {
 
 	}
@@ -146,13 +156,9 @@ public class PrefsReader {
 		return audible;
 
 	}
-	
+
 	public boolean getNotificationVibrate() {
 		return vibrate;
-	}
-	
-	public String getKeywords() {
-		return keywords;
 	}
 
 	public boolean isAlert_midday() {
@@ -264,5 +270,17 @@ public class PrefsReader {
 		context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE).edit().putBoolean(KEY_FIRSTRUN, firstrun).commit();
 	}
 
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+		storeKeywords();
+	}
+
+	private void storeKeywords() {
+		context.getSharedPreferences(PREF_KEYWORDS, Activity.MODE_PRIVATE).edit().putString(KEY_KEYWORDS, keywords).commit();
+	}
 
 }

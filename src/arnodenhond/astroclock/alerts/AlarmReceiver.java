@@ -139,7 +139,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			// older notification is still pending)?
 			// not.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
 			String datestring = new SimpleDateFormat("MMM dd, HH:mm").format(new Date());
-			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(context,AstroClock.class), 0));
+			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(context, AstroClock.class), 0));
 			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			nm.notify(notidtype, notification);
 		}
