@@ -41,4 +41,10 @@
 	<string name="maketheme">For instructions on creating your own theme please visit android.arnodenhond.com/apps/astroclock/skins</string>
 	<string name="disclaimer"><b>Disclaimer</b>\nThis app does not spy or otherwise misbehave in any way. Some screens are known to show after-images when displaying the same graphics over a long period.</string>
 	<string name="copyright">Arno den Hond © 2012</string>
+	<string name="shareurl">Share this app to a social network</string>
+	<string name="postcomment">Post a rating / comment</string>
+	<string name="sendfeedback">Send your questions or suggestions.</string>
+	<string name="circleplus">Cirlce AstroClock on Google+</string>
+	<string name="getalarm">Get the Sunrise Alarm app</string>
+		
 </resources>

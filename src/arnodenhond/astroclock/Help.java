@@ -3,8 +3,11 @@ package arnodenhond.astroclock;
 import java.util.Calendar;
 
 import android.app.TabActivity;
+import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
 import arnodenhond.astroclock.calcuator.SunTimes;
@@ -71,4 +74,43 @@ public class Help extends TabActivity {
 		adView.loadAd(adrequest);
 	}
 
+	public void circleplus(View v) {
+		final Intent plusintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/u/0/b/114430171409774482800/"));
+		plusintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		startActivity(plusintent);
+	}
+
+	public void sendfeedback(View v) {
+		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+		emailIntent.setType("plain/text");
+		emailIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "arnodenhond+astroclock@gmail.com" });
+		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AstroClock Feedback");
+		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "AstroClock would be even better if....");
+		startActivity(emailIntent);
+	}
+
+	public void postcomment(View v) {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		intent.setData(Uri.parse("market://details?id=arnodenhond.astroclocklite"));
+		startActivity(intent);
+	}
+
+	public void shareurl(View v) {
+		Intent intent=new Intent(android.content.Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		intent.putExtra(Intent.EXTRA_TEXT, "AstroClock http://play.google.com/store/apps/details?id=arnodenhond.astroclocklite");
+		startActivity(intent);
+	}
+
+	public void getalarm(View v) {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		intent.setData(Uri.parse("market://details?id=arnodenhond.astroclock"));
+		startActivity(intent);
+	}
+
+	
 }
