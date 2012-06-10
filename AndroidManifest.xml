@@ -5,8 +5,8 @@
     android:versionName="3.0.0" >
 
     <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="13" />
+        android:minSdkVersion="4"
+        android:targetSdkVersion="15" />
 
     <!-- required for acquiring location -->
     <uses-permission

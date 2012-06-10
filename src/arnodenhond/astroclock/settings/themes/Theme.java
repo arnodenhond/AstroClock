@@ -127,7 +127,7 @@ public class Theme extends Activity {
 	}
 
 	@Override
-	public void onBackPressed() {
+	public void onPause() {
 		AppWidgetManager awm = AppWidgetManager.getInstance(this);
 
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
@@ -142,7 +142,7 @@ public class Theme extends Activity {
 		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
 		awm.updateAppWidget(new ComponentName(this, WidgetProvider.class), views);
 
-		super.onBackPressed();
+		super.onPause();
 	}
 
 }

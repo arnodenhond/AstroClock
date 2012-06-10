@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:id="@+id/aboutlayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
@@ -18,38 +18,38 @@
 
     <TabHost
         android:id="@android:id/tabhost"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="vertical" >
 
             <TabWidget
                 android:id="@android:id/tabs"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
             </TabWidget>
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
 
                 <LinearLayout
                     android:id="@+id/aboutapp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
 
                     <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
                             android:autoLink="all"
                             android:text="@string/helptext" />
                     </ScrollView>
@@ -57,20 +57,20 @@
 
                 <LinearLayout
                     android:id="@+id/aboutdev"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
 
                     <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
                             android:orientation="vertical" >
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
                                 android:text="@string/stats" />
@@ -78,53 +78,53 @@
                             <ProgressBar
                                 android:id="@+id/daynightlength"
                                 style="@android:style/Widget.ProgressBar.Horizontal"
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:indeterminate="false" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/aboutdev" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/credits" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:autoLink="all"
                                 android:text="@string/maketheme" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/disclaimer" />
 
                             <Button
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="shareurl"
                                 android:text="@string/shareurl" />
                             <Button
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="postcomment"
                                 android:text="@string/postcomment" />
                             <Button
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="sendfeedback"
                                 android:text="@string/sendfeedback" />
                             <Button
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="circleplus"
                                 android:text="@string/circleplus" />
                             <Button
-                                android:layout_width="match_parent"
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:onClick="getalarm"
                                 android:text="@string/getalarm" />

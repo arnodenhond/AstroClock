@@ -72,12 +72,6 @@ public class Map extends MapActivity {
 		adView.loadAd(adrequest);
 	}
 
-	@Override
-	protected void onPause() {
-		new PrefsReader(this).setGeoPoint(overlay.getItem(0).getPoint());
-		super.onPause();
-	}
-
 	public void acquireLocation(View v) {
 		LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 		List<String> providers = locationManager.getProviders(new Criteria(), true);
@@ -125,7 +119,9 @@ public class Map extends MapActivity {
 	}
 	
 	@Override
-	public void onBackPressed() {
+	public void onPause() {
+		new PrefsReader(this).setGeoPoint(overlay.getItem(0).getPoint());
+
 		AppWidgetManager awm = AppWidgetManager.getInstance(this);
 
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
@@ -140,7 +136,7 @@ public class Map extends MapActivity {
 		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
 		awm.updateAppWidget(new ComponentName(this, WidgetProvider.class), views);
 
-		super.onBackPressed();
+		super.onPause();
 	}
 
 }
