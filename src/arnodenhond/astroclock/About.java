@@ -25,7 +25,7 @@ import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
 @SuppressWarnings("deprecation")
-public class Help extends TabActivity {
+public class About extends TabActivity {
 
 	TabHost mTabHost;
 

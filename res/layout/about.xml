@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
         ads:adUnitId="a14f932990b5440"
-        ads:loadAdOnCreate="true"
-        ads:testDevices="3B4A000600000001,1234567890ABCDEF,037c70834460e217,33327C61AEB300EC,43423531314B4D504453,040368130401A017" />
+        ads:loadAdOnCreate="true" />
 
     <TabHost
         android:id="@android:id/tabhost"
@@ -102,17 +101,17 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/disclaimer" />
-                            
+
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/keywordsheader" />
-                            
+
                             <EditText
                                 android:id="@+id/keywords"
-                                android:hint="@string/keywordshint"
                                 android:layout_width="fill_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:hint="@string/keywordshint" />
 
                             <Button
                                 android:layout_width="fill_parent"

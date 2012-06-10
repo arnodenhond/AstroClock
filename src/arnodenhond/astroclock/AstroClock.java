@@ -141,7 +141,7 @@ public class AstroClock extends Activity {
 		menu.findItem(R.id.Theme).setIntent(new Intent(AstroClock.this, Theme.class));
 		menu.findItem(R.id.Alerts).setIntent(new Intent(AstroClock.this, Alarms.class));
 		menu.findItem(R.id.Location).setIntent(new Intent(AstroClock.this, Map.class));
-		menu.findItem(R.id.About).setIntent(new Intent(AstroClock.this, Help.class));
+		menu.findItem(R.id.About).setIntent(new Intent(AstroClock.this, About.class));
 		return super.onCreateOptionsMenu(menu);
 	}
 

@@ -27,7 +27,7 @@ import android.widget.TextView;
 import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
-import arnodenhond.astroclock.widget.WidgetProvider;
+import arnodenhond.astroclock.widget.ACAppWidgetProvider;
 import arnodenhond.astroclocklite.R;
 
 import com.google.ads.AdRequest;
@@ -161,7 +161,7 @@ public class Theme extends Activity {
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
-		awm.updateAppWidget(new ComponentName(this, WidgetProvider.class), views);
+		awm.updateAppWidget(new ComponentName(this, ACAppWidgetProvider.class), views);
 
 		super.onPause();
 	}

@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import arnodenhond.astroclock.Help;
+import arnodenhond.astroclock.About;
 import arnodenhond.astroclock.settings.alerts.Alarms;
 import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
@@ -65,7 +65,7 @@ public class Menu extends ListActivity {
 			startActivity(new Intent(Menu.this, Map.class));
 			break;
 		case 3:
-			startActivity(new Intent(Menu.this, Help.class));
+			startActivity(new Intent(Menu.this, About.class));
 			break;
 		}
 	}

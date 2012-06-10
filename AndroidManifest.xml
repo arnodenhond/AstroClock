@@ -41,8 +41,7 @@
 
     <application
         android:icon="@drawable/icon"
-        android:label="@string/app_name"
-        android:logo="@drawable/t1preview" >
+        android:label="@string/app_name" >
         <uses-library android:name="com.google.android.maps" />
 
         <!-- Launchable Clock Activity -->
@@ -55,7 +54,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="arnodenhond.astroclock.Help" >
+        <activity android:name="arnodenhond.astroclock.About" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -98,13 +97,11 @@
         </receiver>
         <!-- appwidget -->
         <receiver
-            android:name="arnodenhond.astroclock.widget.WidgetProvider"
-            android:icon="@drawable/icon"
-            android:label="@string/app_name"
-            android:logo="@drawable/t1preview" >
+            android:name="arnodenhond.astroclock.widget.ACAppWidgetProvider"
+            android:icon="@drawable/icon" >
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/astroclock_widget_provider" />
+                android:resource="@xml/appwidget" />
 
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -113,8 +110,6 @@
         <!-- live wallpaper -->
         <service
             android:name="arnodenhond.astroclock.livewallpaper.ACWallpaperService"
-            android:enabled="true"
-            android:label="@string/app_name"
             android:permission="android.permission.BIND_WALLPAPER" >
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
@@ -122,7 +117,7 @@
 
             <meta-data
                 android:name="android.service.wallpaper"
-                android:resource="@xml/astroclock_wallpaper" >
+                android:resource="@xml/wallpaper" >
             </meta-data>
         </service>
     </application>

@@ -11,7 +11,7 @@ import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
-public class WidgetProvider extends AppWidgetProvider {
+public class ACAppWidgetProvider extends AppWidgetProvider {
 
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);

@@ -70,8 +70,6 @@ public class BitmapMaker {
 		} catch (SunTimesException e) {
 		}
 
-		Resources r = ctx.getResources();
-
 		north = (latitude > 0 ? true : false);
 
 		sun = (float) getSun(up, down);

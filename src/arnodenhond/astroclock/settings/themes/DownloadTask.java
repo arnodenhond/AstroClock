@@ -41,7 +41,6 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... params) {
 		try {
 			HttpURLConnection huc;
-			byte[] bytes;
 
 			huc = (HttpURLConnection) new URL("http://android.arnodenhond.com/apps/astroclock/skins/t" + (theme + 1) + "background.png").openConnection();
 			saveToFile(readResponse(huc.getInputStream()), "background.png");

@@ -11,15 +11,15 @@
         android:icon="@drawable/ic_menu_recent_history"
         android:title="Alerts">
     </item>
-        <item
+    <item
         android:id="@+id/Location"
         android:icon="@drawable/ic_menu_mapmode"
         android:title="Location">
     </item>
-        <item
+    <item
         android:id="@+id/About"
         android:icon="@drawable/ic_menu_help"
         android:title="About">
     </item>
-        
+
 </menu>
