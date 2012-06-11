@@ -82,8 +82,8 @@ public class PrefsReader {
 		SharedPreferences keywordspref = context.getSharedPreferences(PREF_KEYWORDS, Activity.MODE_PRIVATE);
 		SharedPreferences firstrunpref = context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE);
 
-		this.latitude = Float.parseFloat(latlonpref.getString(KEY_LATITUDE, "35"));
-		this.longitude = Float.parseFloat(latlonpref.getString(KEY_LONGITUDE, "-120"));
+		this.latitude = latlonpref.getFloat(KEY_LATITUDE, 35f);
+		this.longitude = latlonpref.getFloat(KEY_LONGITUDE, -120f);
 		this.theme = themepref.getInt(KEY_THEME, 2);
 		this.audible = alarmspref.getBoolean(KEY_ALERT_AUDIBLE, true);
 		this.vibrate = alarmspref.getBoolean(KEY_ALERT_VIBRATE, true);
@@ -110,7 +110,7 @@ public class PrefsReader {
 
 	public GeoPoint getGeoPoint() {
 		int lat = (int) (latitude * 1E6);
-		int lon = (int) ((int) longitude * 1E6);
+		int lon = (int) (longitude * 1E6);
 		return new GeoPoint(lat, lon);
 	}
 
@@ -121,7 +121,7 @@ public class PrefsReader {
 	}
 
 	private void storeLatLon() {
-		context.getSharedPreferences(PREF_LATLON, Activity.MODE_PRIVATE).edit().putString(KEY_LATITUDE, Double.toString(latitude)).putString(KEY_LONGITUDE, Double.toString(longitude)).commit();
+		context.getSharedPreferences(PREF_LATLON, Activity.MODE_PRIVATE).edit().putFloat(KEY_LATITUDE, (float)latitude).putFloat(KEY_LONGITUDE, (float)longitude).commit();
 	}
 
 	public double getLatitude() {
