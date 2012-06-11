@@ -80,6 +80,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 			((Activity)context).showDialog(Theme.DIALOG_NODOWNLOAD);
 		} else { 
 			new PrefsReader(context).setTheme(this.theme);
+			((Activity)context).finish();
 		}
 		super.onPostExecute(result);
 	}

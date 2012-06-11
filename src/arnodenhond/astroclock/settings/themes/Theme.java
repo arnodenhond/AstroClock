@@ -97,8 +97,8 @@ public class Theme extends Activity {
 					deleteFile("day.png");
 					progresslayout.setVisibility(View.GONE);
 					pr.setTheme(pos);
+					finish();
 				}
-				settheme.setEnabled(false);
 			}
 		});
 
