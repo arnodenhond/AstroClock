@@ -23,7 +23,7 @@ public class ACAppWidgetProvider extends AppWidgetProvider {
 		Intent menuintent = new Intent(context, Menu.class);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(context, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
+		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(context, 0, menuintent, PendingIntent.FLAG_CANCEL_CURRENT));
 		for (int i = 0; i < appWidgetIds.length; i++)
 			appWidgetManager.updateAppWidget(appWidgetIds[i], views);
 

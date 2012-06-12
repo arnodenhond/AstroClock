@@ -6,4 +6,12 @@
     <string name="welcomebody">Welcome to AstroClock. Please tap the screen to open the menu. Select location to verify your location is set accurately.\nEnable some alerts be notified of astronomical events.\nSelect your favourite theme.\nAstroClock also comes with a homescreen widget and a live wallpaper.\nThis message will not appear again.</string>
     <string name="welcomebutton">OK</string>
 
+    <string-array name="settingsoptions">
+        <item>Theme</item>
+        <item>Alerts</item>
+        <item>Location</item>
+        <item>About</item>
+        <item>Done</item>
+    </string-array>
+
 </resources>

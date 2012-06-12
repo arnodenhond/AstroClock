@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string-array name="settingsoptions">
-		<item>Theme</item>
-	    <item>Alerts</item>
-		<item>Location</item>
-		<item>About</item>
-	</string-array>
-</resources>

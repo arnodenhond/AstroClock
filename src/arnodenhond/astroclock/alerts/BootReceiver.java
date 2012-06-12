@@ -20,63 +20,51 @@ public class BootReceiver extends BroadcastReceiver {
 		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		NextCalc nc = new NextCalc(latitude, longitude);
 
-		Intent pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_MIDDAY);
+		Intent pintent = new Intent(PrefsReader.KEY_ALERT_MIDDAY);
 		PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextMidDay(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_MIDNIGHT);
+		pintent = new Intent(PrefsReader.KEY_ALERT_MIDNIGHT);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextMidNight(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_SUNRISE);
+		pintent = new Intent(PrefsReader.KEY_ALERT_SUNRISE);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextSunRise(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_SUNSET);
+		pintent = new Intent(PrefsReader.KEY_ALERT_SUNSET);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextSunSet(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_FULLMOON);
+		pintent = new Intent(PrefsReader.KEY_ALERT_FULLMOON);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextFullMoon(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_NEWMOON);
+		pintent = new Intent(PrefsReader.KEY_ALERT_NEWMOON);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextNewMoon(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_FIRSTQUARTER);
+		pintent = new Intent(PrefsReader.KEY_ALERT_FIRSTQUARTER);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextFirstQuarter(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_LASTQUARTER);
+		pintent = new Intent(PrefsReader.KEY_ALERT_LASTQUARTER);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextLastQuarter(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE);
+		pintent = new Intent(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextNSol(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE);
+		pintent = new Intent(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextSSol(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX);
+		pintent = new Intent(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextNEq(), operation);
 
-		pintent = new Intent(context, AlarmReceiver.class);
-		pintent.setAction(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX);
+		pintent = new Intent(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.set(AlarmManager.RTC_WAKEUP, nc.getNextSEq(), operation);
 

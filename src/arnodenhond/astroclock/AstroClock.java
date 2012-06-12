@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -22,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import arnodenhond.astroclock.alerts.BootReceiver;
 import arnodenhond.astroclock.settings.PrefsReader;
-import arnodenhond.astroclock.settings.alerts.Alarms;
+import arnodenhond.astroclock.settings.alerts.Alerts;
 import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
 import arnodenhond.astroclocklite.R;
@@ -79,6 +80,8 @@ public class AstroClock extends Activity {
 	}
 
 	private void setAlarms() {
+		SharedPreferences prefs = getSharedPreferences(PrefsReader.PREF_ALERTS, MODE_PRIVATE);
+		prefs.edit().putBoolean(PrefsReader.KEY_ALERT_VIBRATE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_FULLMOON, true).commit();
 		sendBroadcast(new Intent(this, BootReceiver.class));
 	}
 
@@ -139,7 +142,7 @@ public class AstroClock extends Activity {
 		MenuInflater mi = new MenuInflater(this);
 		mi.inflate(R.menu.menu, menu);
 		menu.findItem(R.id.Theme).setIntent(new Intent(AstroClock.this, Theme.class));
-		menu.findItem(R.id.Alerts).setIntent(new Intent(AstroClock.this, Alarms.class));
+		menu.findItem(R.id.Alerts).setIntent(new Intent(AstroClock.this, Alerts.class));
 		menu.findItem(R.id.Location).setIntent(new Intent(AstroClock.this, Map.class));
 		menu.findItem(R.id.About).setIntent(new Intent(AstroClock.this, About.class));
 		return super.onCreateOptionsMenu(menu);

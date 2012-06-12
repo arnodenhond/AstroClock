@@ -66,8 +66,8 @@
             android:exported="true" />
         <activity android:name="arnodenhond.astroclock.settings.location.Map" />
         <activity android:name="arnodenhond.astroclock.settings.themes.Theme" />
-        <activity android:name="arnodenhond.astroclock.settings.alerts.Alarms" />
-
+        <activity android:name="arnodenhond.astroclock.settings.alerts.Alerts" />
+        
         <!-- advertising -->
         <activity
             android:name="com.google.ads.AdActivity"
@@ -77,18 +77,18 @@
             android:name="arnodenhond.astroclock.alerts.AlarmReceiver"
             android:exported="false" >
             <intent-filter>
-                <action android:name="midday" />
-                <action android:name="midnight" />
-                <action android:name="sunrise" />
-                <action android:name="sunset" />
-                <action android:name="fullmoon" />
-                <action android:name="newmoon" />
-                <action android:name="firstquarter" />
-                <action android:name="lastquarter" />
-                <action android:name="northernsolstice" />
-                <action android:name="southernsolstice" />
-                <action android:name="northwardequinox" />
-                <action android:name="northwardequinox" />
+                <action android:name="ASTROCLOCK_MIDDAY" />
+                <action android:name="ASTROCLOCK_MIDNIGHT" />
+                <action android:name="ASTROCLOCK_SUNRISE" />
+                <action android:name="ASTROCLOCK_SUNSET" />
+                <action android:name="ASTROCLOCK_FULLMOON" />
+                <action android:name="ASTROCLOCK_NEWMOON" />
+                <action android:name="ASTROCLOCK_FIRSTQUARTER" />
+                <action android:name="ASTROCLOCK_LASTQUARTER" />
+                <action android:name="ASTROCLOCK_NORTHERNSOLSTICE" />
+                <action android:name="ASTROCLOCK_SOUTHERNSOLSTICE" />
+                <action android:name="ASTROCLOCK_NORTHWARDEQUINOX" />
+                <action android:name="ASTROCLOCK_SOUTHWARDEQUINOX" />
             </intent-filter>
         </receiver>
         <!-- sets the upcoming events in the alarm manager. called when device boots up -->

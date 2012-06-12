@@ -28,10 +28,10 @@ public class PrefsReader {
 
 	private String keywords;
 
-	private static final String PREF_ALERTS = "alarms";
+	public static final String PREF_ALERTS = "alarms";
 
-	private static final String KEY_ALERT_AUDIBLE = "audible";
-	private static final String KEY_ALERT_VIBRATE = "vibrate";
+	public static final String KEY_ALERT_AUDIBLE = "audible";
+	public static final String KEY_ALERT_VIBRATE = "vibrate";
 
 	public static final String KEY_ALERT_MIDDAY = "ASTROCLOCK_MIDDAY";
 	public static final String KEY_ALERT_MIDNIGHT = "ASTROCLOCK_MIDNIGHT";
@@ -85,8 +85,8 @@ public class PrefsReader {
 		this.latitude = latlonpref.getFloat(KEY_LATITUDE, 35f);
 		this.longitude = latlonpref.getFloat(KEY_LONGITUDE, -120f);
 		this.theme = themepref.getInt(KEY_THEME, 2);
-		this.audible = alarmspref.getBoolean(KEY_ALERT_AUDIBLE, true);
-		this.vibrate = alarmspref.getBoolean(KEY_ALERT_VIBRATE, true);
+		this.audible = alarmspref.getBoolean(KEY_ALERT_AUDIBLE, false);
+		this.vibrate = alarmspref.getBoolean(KEY_ALERT_VIBRATE, false);
 
 		this.keywords = keywordspref.getString(KEY_KEYWORDS, "");
 
@@ -95,15 +95,15 @@ public class PrefsReader {
 		this.alert_sunrise = alarmspref.getBoolean(KEY_ALERT_SUNRISE, false);
 		this.alert_sunset = alarmspref.getBoolean(KEY_ALERT_SUNSET, false);
 
-		this.alert_fullmoon = alarmspref.getBoolean(KEY_ALERT_FULLMOON, true);
+		this.alert_fullmoon = alarmspref.getBoolean(KEY_ALERT_FULLMOON, false);
 		this.alert_newmoon = alarmspref.getBoolean(KEY_ALERT_NEWMOON, false);
 		this.alert_firstquarter = alarmspref.getBoolean(KEY_ALERT_FIRSTQUARTER, false);
 		this.alert_lastquarter = alarmspref.getBoolean(KEY_ALERT_LASTQUARTER, false);
 
-		this.alert_northernsolstice = alarmspref.getBoolean(KEY_ALERT_NORTHERNSOLSTICE, true);
-		this.alert_southernsolstice = alarmspref.getBoolean(KEY_ALERT_SOUTHERNSOLSTICE, true);
-		this.alert_northwardequinox = alarmspref.getBoolean(KEY_ALERT_NORTHWARDEQUINOX, true);
-		this.alert_southwardequinox = alarmspref.getBoolean(KEY_ALERT_SOUTHWARDEQUINOX, true);
+		this.alert_northernsolstice = alarmspref.getBoolean(KEY_ALERT_NORTHERNSOLSTICE, false);
+		this.alert_southernsolstice = alarmspref.getBoolean(KEY_ALERT_SOUTHERNSOLSTICE, false);
+		this.alert_northwardequinox = alarmspref.getBoolean(KEY_ALERT_NORTHWARDEQUINOX, false);
+		this.alert_southwardequinox = alarmspref.getBoolean(KEY_ALERT_SOUTHWARDEQUINOX, false);
 
 		this.firstrun = firstrunpref.getBoolean(KEY_FIRSTRUN, true);
 	}
