@@ -9,21 +9,32 @@ import android.os.Bundle;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.Ad;
+import com.google.ads.AdListener;
 import com.google.ads.AdRequest;
+import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdView;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
-public class Alerts extends ExpandableListActivity {
+public class Alerts extends ExpandableListActivity implements AdListener {
+
+	GoogleAnalyticsTracker tracker;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-5436860-15", 20, this);
+		tracker.trackPageView("/Alerts");
+
 		setContentView(R.layout.alerts);
 		setupAd();
-		
-		AlertsAdapter adapter = new AlertsAdapter(this,null,0,null,null, null, 0, null, null);
+
+		AlertsAdapter adapter = new AlertsAdapter(this, null, 0, null, null, null, 0, null, null);
 		setListAdapter(adapter);
 		getExpandableListView().setGroupIndicator(null);
-		
+
 	}
 
 	private void setupAd() {
@@ -36,60 +47,35 @@ public class Alerts extends ExpandableListActivity {
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
+		adView.setAdListener(this);
 		adView.loadAd(adrequest);
 	}
 
-	
+	@Override
+	public void onDismissScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
+		tracker.trackEvent("noad", "noad", "noad", 2);
+	}
+
+	@Override
+	public void onLeaveApplication(Ad arg0) {
+	}
+
+	@Override
+	public void onPresentScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onReceiveAd(Ad arg0) {
+		tracker.trackEvent("ad", "ad", "ad", 2);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		tracker.stopSession();
+	}
 }
-
-/*
-  		//SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(this, groups, android.R.layout.simple_expandable_list_item_1, new String[] {"name"}, new int[] {android.R.id.text1}, childs, R.layout.alertrow, new String[] {"title","summary"}, new int[]{android.R.id.title,android.R.id.summary});
-
-ArrayList<Map<String,String>> groups = new ArrayList<Map<String,String>>();
-Map<String,String> group;
-group = new HashMap<String,String>();
-group.put("name", "dag");
-groups.add(group);
-group = new HashMap<String,String>();
-group.put("name", "maan");
-groups.add(group);
-group = new HashMap<String,String>();
-group.put("name", "jaar");
-groups.add(group);
-
-ArrayList<ArrayList<Map<String,String>>> childs = new ArrayList<ArrayList<Map<String,String>>>();
-ArrayList<Map<String,String>> child;
-child = new ArrayList<Map<String,String>>();
-Map<String,String> map;
-map = new HashMap<String,String>();
-map.put("title", "titel");
-map.put("summary", "summarie");
-child.add(map);
-map = new HashMap<String,String>();
-map.put("title", "titel");
-map.put("summary", "summarie");
-child.add(map);
-childs.add(child);
-
-child = new ArrayList<Map<String,String>>();
-map = new HashMap<String,String>();
-map.put("title", "titel");
-map.put("summary", "summarie");
-child.add(map);
-map = new HashMap<String,String>();
-map.put("title", "titel");
-map.put("summary", "summarie");
-child.add(map);
-childs.add(child);
-
-child = new ArrayList<Map<String,String>>();
-map = new HashMap<String,String>();
-map.put("title", "titel");
-map.put("summary", "summarie");
-child.add(map);
-map = new HashMap<String,String>();
-map.put("title", "titel");
-map.put("summary", "summarie");
-child.add(map);
-childs.add(child);
-*/

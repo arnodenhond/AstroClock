@@ -7,7 +7,7 @@
     <string name="welcomebutton">OK</string>
 
     <string-array name="settingsoptions">
-        <item>Theme</item>
+        <item>Themes</item>
         <item>Alerts</item>
         <item>Location</item>
         <item>About</item>

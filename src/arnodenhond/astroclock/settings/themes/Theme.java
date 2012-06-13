@@ -33,16 +33,25 @@ import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclock.widget.ACAppWidgetProvider;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.Ad;
+import com.google.ads.AdListener;
 import com.google.ads.AdRequest;
+import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdView;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
-public class Theme extends Activity {
-	
+public class Theme extends Activity implements AdListener {
+
+	GoogleAnalyticsTracker tracker;
 	public static final int DIALOG_NODOWNLOAD = 1;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-5436860-15", 20, this);
+		tracker.trackPageView("/Theme");
+
 		setContentView(R.layout.themeselector);
 		setupAd();
 		final TextView textview = (TextView) findViewById(R.id.TextView);
@@ -149,6 +158,7 @@ public class Theme extends Activity {
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
+		adView.setAdListener(this);
 		adView.loadAd(adrequest);
 	}
 
@@ -190,5 +200,32 @@ public class Theme extends Activity {
 		}
 		return super.onCreateDialog(id);
 	}
-	
+
+	@Override
+	public void onDismissScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
+		tracker.trackEvent("noad", "noad", "noad", 1);
+	}
+
+	@Override
+	public void onLeaveApplication(Ad arg0) {
+	}
+
+	@Override
+	public void onPresentScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onReceiveAd(Ad arg0) {
+		tracker.trackEvent("ad", "ad", "ad", 1);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		tracker.stopSession();
+	}
 }

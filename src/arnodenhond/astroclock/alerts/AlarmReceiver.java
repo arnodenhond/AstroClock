@@ -18,9 +18,9 @@ import arnodenhond.astroclocklite.R;
 public class AlarmReceiver extends BroadcastReceiver {
 	double utcoffset;
 
-	public static int NOTID_DAY = 12388;
-	public static int NOTID_MOON = 12389;
-	public static int NOTID_YEAR = 12390;
+	public static final int NOTID_DAY = 12388;
+	public static final int NOTID_MOON = 12389;
+	public static final int NOTID_YEAR = 12390;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -127,7 +127,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 		if (message != null) {
 			// TODO notification icon for each type of event
-			Notification notification = new Notification(R.drawable.icon, message, System.currentTimeMillis());
+			Notification notification = new Notification(R.drawable.statusbaricon, message, System.currentTimeMillis());
 			if (prefs.getNotificationAudible()) {
 				notification.defaults |= Notification.DEFAULT_SOUND;
 			}
@@ -138,7 +138,19 @@ public class AlarmReceiver extends BroadcastReceiver {
 			// docs contradict name: will alert sound play on each alert (while
 			// older notification is still pending)?
 			// not.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
-			String datestring = new SimpleDateFormat("MMM dd, HH:mm").format(new Date());
+			SimpleDateFormat sdf = null;
+			switch (notidtype) {
+			case NOTID_DAY:
+				sdf = new SimpleDateFormat("dd, HH:mm");
+				break;
+			case NOTID_MOON:
+				sdf = new SimpleDateFormat("MMM dd, HH:mm");
+				break;
+			case NOTID_YEAR:
+				sdf = new SimpleDateFormat("MMM dd yyyy, HH:mm");
+				break;
+			}
+			String datestring = sdf.format(new Date());
 			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(context, AstroClock.class), 0));
 			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			nm.notify(notidtype, notification);

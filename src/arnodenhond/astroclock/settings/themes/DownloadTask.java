@@ -21,7 +21,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 	private View progresslayout;
 	private View selector;
 	private int theme;
-	private boolean fail=false;
+	private boolean fail = false;
 	private Context context;
 
 	public DownloadTask(View progresslayout, View selector, int theme, Context context) {
@@ -66,7 +66,7 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 
 		} catch (IOException e) {
 			Log.d("AstroClock", e.toString());
-			fail=true;
+			fail = true;
 		}
 
 		return null;
@@ -77,10 +77,10 @@ public class DownloadTask extends AsyncTask<Void, Void, Void> {
 		progresslayout.setVisibility(View.GONE);
 		selector.setVisibility(View.VISIBLE);
 		if (fail) {
-			((Activity)context).showDialog(Theme.DIALOG_NODOWNLOAD);
-		} else { 
+			((Activity) context).showDialog(Theme.DIALOG_NODOWNLOAD);
+		} else {
 			new PrefsReader(context).setTheme(this.theme);
-			((Activity)context).finish();
+			((Activity) context).finish();
 		}
 		super.onPostExecute(result);
 	}

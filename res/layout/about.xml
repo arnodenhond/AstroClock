@@ -152,18 +152,21 @@
                         <Button
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:drawableLeft="@android:drawable/ic_menu_share"
                             android:onClick="shareurl"
                             android:text="@string/shareurl" />
 
                         <Button
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:drawableLeft="@android:drawable/ic_menu_edit"
                             android:onClick="postcomment"
                             android:text="@string/postcomment" />
 
                         <Button
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:drawableLeft="@android:drawable/ic_menu_send"
                             android:onClick="sendfeedback"
                             android:text="@string/sendfeedback" />
 
@@ -178,6 +181,27 @@
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/googleplay"
                             android:onClick="getalarm" />
+
+                        <LinearLayout
+                            android:id="@+id/tapjoylayout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="visible" >
+
+                            <TextView
+                                android:id="@+id/donateheader"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/donateheader" />
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:onClick="tapjoyfeaturedapp"
+                                android:src="@drawable/tapjoy" />
+                        </LinearLayout>
 
                         <TextView
                             android:layout_width="fill_parent"

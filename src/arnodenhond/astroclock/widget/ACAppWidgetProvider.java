@@ -11,9 +11,17 @@ import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+
 public class ACAppWidgetProvider extends AppWidgetProvider {
 
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+		GoogleAnalyticsTracker tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-5436860-15", context);
+		tracker.trackEvent("Widget", "Update", "Receiver", 0);
+		tracker.trackPageView("/WidgetUpdateReceiver");
+		tracker.dispatch();
+
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);
 		PrefsReader settings = new PrefsReader(context);
 		int height = context.getResources().getDisplayMetrics().heightPixels;

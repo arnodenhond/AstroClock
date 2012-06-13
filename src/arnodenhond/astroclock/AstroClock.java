@@ -28,12 +28,14 @@ import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
 import arnodenhond.astroclocklite.R;
 
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.GeoPoint;
 
 public class AstroClock extends Activity {
 
 	private static final int DIALOG_WELCOME = 1;
 	PendingIntent pi;
+	GoogleAnalyticsTracker tracker;
 
 	private boolean supportsAPILevel11() {
 		return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB);
@@ -41,14 +43,23 @@ public class AstroClock extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-5436860-15", 20, this);
+
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		if (supportsAPILevel11()) {
 			requestWindowFeature(Window.FEATURE_ACTION_BAR);
 			requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 			// getWindow().getDecorView().setSystemUiVisibility(1);
+			tracker.setCustomVar(2, "11plus", "true", 2);
 		} else {
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
+			tracker.setCustomVar(2, "11plus", "false", 2);
 		}
+		tracker.trackPageView("/AstroClockActivity");
+
 		PrefsReader pr = new PrefsReader(this);
 		if (pr.isFirstrun()) {
 			showDialog(DIALOG_WELCOME);
@@ -57,13 +68,13 @@ public class AstroClock extends Activity {
 			pr.setFirstrun(false);
 		}
 		setContentView(R.layout.activity);
-		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case DIALOG_WELCOME: {
+			tracker.trackPageView("/AstroClockActivityFirstRun");
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.welcometitle);
 			builder.setMessage(R.string.welcomebody);
@@ -102,6 +113,7 @@ public class AstroClock extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		tracker.trackPageView("/AstroClockActivityReload");
 
 		final ImageView iv = (ImageView) findViewById(R.id.clock);
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.loading);
@@ -148,4 +160,9 @@ public class AstroClock extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		tracker.stopSession();
+	}
 }

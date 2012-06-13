@@ -3,33 +3,34 @@
 
     <!-- about app -->
     <string name="aboutapptitle">Help</string>
-    <string name="helptext">AstroClock measures time by astronomical standards.\n<b>Cycles</b>\nTime is measured according to three natural cycles:</string>
-    <string name="daycycle"><li><b>Day </b>\tOne rotation every 24 hours. \tHand at 12 o\'clock position at mid-day.</li></string>
-    <string name="mooncycle"><li><b>Moon</b>\tOne rotation every 29.53 days.\tHand at 12 o\'clock position at full moon.</li></string>
-    <string name="yearcycle"><li><b>Year</b>\tOne rotation every 365.25 days.\tHand at 12 o\'clock postion at the longest day of the year.</li></string>
+    <string name="helptext">AstroClock measures time by consistent astronomical standards in stead of months and years with changing amount of days.\n<b>Cycles</b>\nTime is measured according to three natural cycles:</string>
+    <string name="daycycle"><li><b>Day </b>\t One rotation every 24 hours. Hand at 12 o\'clock position at mid-day.</li></string>
+    <string name="mooncycle"><li><b>Moon</b>\t One rotation every 29.53 days. Hand at 12 o\'clock position at full moon.</li></string>
+    <string name="yearcycle"><li><b>Year</b>\t One rotation every 365.25 days. Hand at 12 o\'clock postion at the longest day of the year.</li></string>
     <string name="themedisclaimer">The hands always turn in clockwise direction but the 12 o\'clock positions could be different in some themes.</string>
     <string name="sunrisesunset"><b>Sun rise &amp; Sun set</b>\nWithin the day cylce are indicators showing the start and end of day and night.</string>
-    <string name="alerthelp"><b>Status Bar Notifications</b>\nBy enabling alerts you will receive recurring notifications on selected events.</string>
-    <string name="otherfeatures"><b>Homescreen</b>\nAstroClock also comes with a homescreen widget and a low power live wallpaper.</string>
+    <string name="alerthelp"><b>Status Bar Notifications</b>\nBy enabling alerts you can receive up to 12 different recurring notifications, even when your screen is off.</string>
+    <string name="otherfeatures"><b>Homescreen</b>\nAstroClock also comes with a homescreen widget and a battery efficient live wallpaper.</string>
     <string name="maketheme"><b>Make your own Theme</b>\nFor instructions on creating your own theme and sharing it with others, please visit android.arnodenhond.com/apps/astroclock/skins</string>
-    <string name="broadcasthelp"><b>Receive Broadcasts</b>\nAstroClock sends out broadcast intents which your apps can receive. See android.arnodenhond.com/apps/astroclock/broadcast-intents for more information</string>
+    <string name="broadcasthelp"><b>Receive Broadcasts</b>\nAstroClock sends out broadcast intents which other apps can receive. See android.arnodenhond.com/apps/astroclock/broadcast-intents for more information.</string>
     <string name="disclaimer"><b>Disclaimer</b>\nThis app does not contain spyware or otherwise misbehave in any way. Some screens are known to burn in afterimages when displaying the same graphics over a long period.</string>
     <string name="copyright">Arno den Hond © 2012</string>
 
     <!-- about dev -->
     <string name="aboutdevtitle">Made-by</string>
-    <string name="aboutdev"><b>About me</b>\nThis app has been under semi-continuous development on evenings and weekends since April 2009 by <b>Arno den Hond</b> from Amsterdam (The Netherlands) on a MacBook Pro and has been tested on a Motorola Droid, a Samsung Galaxy Tab, an Asus Transformer and a LG Optimus 3D</string>
-    <string name="credits"><b>Credits</b>\nMany thanks to the graphics artists whose names are listed in the themes screen. Kostas of kanguro.fi inspired me on writing a user-friendly promo text. This app would not have been possible without the outstanding effort of engineers at google.com who made Android.</string>
+    <string name="aboutdev"><b>About me</b>\nThis app has been under semi-continuous development on evenings and weekends since April 2009 by me, <b>Arno den Hond</b> from Amsterdam, The Netherlands.\nI made it on a MacBook Pro and tested it on a Motorola Droid, a Samsung Galaxy Tab, an Asus Transformer and a LG Optimus 3D.</string>
+    <string name="credits"><b>Credits</b>\nMany thanks to the graphics artists whose names are listed in the themes section.\nKostas of kanguro.fi inspired me to write a more user-friendly app description.\nThis app would not have been possible without the outstanding effort of the Android engineers at google.com</string>
 
-    <string name="keywordsheader"><b>Advertsing Keywords</b>\nTo develop this app I had to spend money on the equipment mentioned above so to recover that money I have added advertising to the top some screens.\nTo reduce the annoyance of this advertising you can enter some of your favorite topics below and the advertising might become more interesting :)</string>
+    <string name="keywordsheader"><b>Advertsing Keywords</b>\nTo develop this app I had to spend money on the equipment mentioned above so to recover that money I have added advertising to the top of some screens.\nTo reduce the annoyance of this advertising you can enter some of your favorite topics below and the advertising might become more interesting :)</string>
     <string name="keywordshint">Sex, Drugs, Rock, Roll</string>
     
-   	<string name="supportheader"><b>Support AstroClock</b>\nI hope you like my app! If so, please let somebody know by pressing any of these buttons. Thanks!</string>
-    <string name="shareurl">Share this app to a social network</string>
-    <string name="postcomment">Post a rating &amp; comment</string>
-    <string name="sendfeedback">Send your questions or suggestions.</string>
+   	<string name="supportheader"><b>Support AstroClock</b>\nI hope you like my app! If so, please let somebody know by pressing some of these buttons. Thanks!</string>
+    <string name="shareurl">Share this app on your social network</string>
+    <string name="postcomment">Post a rating &amp; comment in Play</string>
+    <string name="sendfeedback">Send me your questions or suggestions</string>
 
-	<string name="upgradeheader"><b>Sunrise Alarm</b>\nIf you really like AstroClock or if you want to wake up each day at sunrise but the beep doesn\'t wake you up, then please consider downloading Sunrise alarm. It\'s not free but by paying a small monthly fee you would show your appreciation for AstroClock and support further development of this and other apps. Thank you!</string>
-
-	<string name="stats"><b>Day vs. Night</b>\nTo express my gratitude to you for downloading my app and because I didn\'t know a better place to put this, here is a progress bar showing the length of today\'s day vs. the length of today\'s night:</string>
+	<string name="upgradeheader"><b>Sunrise Alarm</b>\nIf you want to wake up every day at sunrise but AstroClock\'s notification beep doesn\'t awaken you, then please consider downloading Sunrise alarm.\nIt\'s not free but by paying a tiny monthly fee you could show your appreciation for AstroClock and support further development of this and other apps. Thank you!</string>
+	<string name="donateheader"><b>Free Donation</b>\nIf you want to show your appreciation and support further development but don\'t want to spend any money, then you could use Tapjoy to download a free app which will earn me a few cents. I would appreciate it!</string>
+	
+	<string name="stats"><b>Day vs. Night Length</b>\nTo express my gratitude to you for downloading my app and because I didn\'t know a better place to put this, here is a progress bar showing the length of today\'s day vs. night:</string>
 </resources>

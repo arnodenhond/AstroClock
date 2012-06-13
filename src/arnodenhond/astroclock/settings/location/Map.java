@@ -30,13 +30,19 @@ import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclock.widget.ACAppWidgetProvider;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.Ad;
+import com.google.ads.AdListener;
 import com.google.ads.AdRequest;
+import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdView;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 
-public class Map extends MapActivity {
+public class Map extends MapActivity implements AdListener {
+
+	GoogleAnalyticsTracker tracker;
 
 	private static final int DIALOG_LOCATION = 1;
 	Overlay overlay;
@@ -50,6 +56,10 @@ public class Map extends MapActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-5436860-15", 20, this);
+		tracker.trackPageView("/Map");
+
 		setContentView(R.layout.map);
 		setupAd();
 		mv = (MapView) findViewById(R.id.mapview);
@@ -73,6 +83,7 @@ public class Map extends MapActivity {
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
+		adView.setAdListener(this);
 		adView.loadAd(adrequest);
 	}
 
@@ -129,11 +140,11 @@ public class Map extends MapActivity {
 
 		removeAlarms();
 		sendBroadcast(new Intent(this, BootReceiver.class));
-		
+
 		AppWidgetManager awm = AppWidgetManager.getInstance(this);
 
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
-		
+
 		int height = getResources().getDisplayMetrics().heightPixels;
 		int width = getResources().getDisplayMetrics().widthPixels;
 		BitmapMaker bmmaker = new BitmapMaker(this, 500, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
@@ -150,7 +161,7 @@ public class Map extends MapActivity {
 	private void removeAlarms() {
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		Context context = this;
-		
+
 		Intent pintent = new Intent(context, AlarmReceiver.class);
 		pintent.setAction(PrefsReader.KEY_ALERT_MIDDAY);
 		PendingIntent operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
@@ -210,7 +221,34 @@ public class Map extends MapActivity {
 		pintent.setAction(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX);
 		operation = PendingIntent.getBroadcast(context, 0, pintent, 0);
 		am.cancel(operation);
-		
+
 	}
 
+	@Override
+	public void onDismissScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
+		tracker.trackEvent("noad", "noad", "noad", 3);
+	}
+
+	@Override
+	public void onLeaveApplication(Ad arg0) {
+	}
+
+	@Override
+	public void onPresentScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onReceiveAd(Ad arg0) {
+		tracker.trackEvent("ad", "ad", "ad", 3);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		tracker.stopSession();
+	}
 }

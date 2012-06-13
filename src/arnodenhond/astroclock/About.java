@@ -19,17 +19,33 @@ import arnodenhond.astroclock.calcuator.Time;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.Ad;
+import com.google.ads.AdListener;
 import com.google.ads.AdRequest;
+import com.google.ads.AdRequest.ErrorCode;
 import com.google.ads.AdView;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+import com.tapjoy.TapjoyConnect;
+import com.tapjoy.TapjoyFeaturedAppNotifier;
+import com.tapjoy.TapjoyFeaturedAppObject;
 
 @SuppressWarnings("deprecation")
-public class About extends TabActivity {
+public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdListener {
 
 	TabHost mTabHost;
+	GoogleAnalyticsTracker tracker;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-5436860-15", 20, this);
+		tracker.trackPageView("/About");
+
+		TapjoyConnect.requestTapjoyConnect(this, "c8097a42-10d5-4032-a4dd-b2de7d2f8bae", "5XPWT9KbXabrv7pwOo4k");
+		TapjoyConnect.getTapjoyConnectInstance().getFeaturedApp(this);
+
 		setContentView(R.layout.about);
 		setupAd();
 		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
@@ -49,7 +65,7 @@ public class About extends TabActivity {
 		pr.setKeywords(keywords.getText().toString());
 		super.onPause();
 	}
-	
+
 	private void calcDayNightLength() {
 
 		PrefsReader pr = new PrefsReader(this);
@@ -85,16 +101,20 @@ public class About extends TabActivity {
 		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(location);
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
+		adView.setAdListener(this);
 		adView.loadAd(adrequest);
 	}
 
-	public void circleplus(View v) {
-		final Intent plusintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/u/0/b/114430171409774482800/"));
-		plusintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-		startActivity(plusintent);
+	public void tapjoyfeaturedapp(View v) {
+		tracker.trackPageView("/Tapjoy");
+		if (mFeaturedAppAvailable)
+			TapjoyConnect.getTapjoyConnectInstance().showFeaturedAppFullScreenAd();
+		else
+			TapjoyConnect.getTapjoyConnectInstance().showOffers();
 	}
 
 	public void sendfeedback(View v) {
+		tracker.trackPageView("/Feedback");
 		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 		emailIntent.setType("plain/text");
 		emailIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -105,6 +125,7 @@ public class About extends TabActivity {
 	}
 
 	public void postcomment(View v) {
+		tracker.trackPageView("/Comment");
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		intent.setData(Uri.parse("market://details?id=arnodenhond.astroclocklite"));
@@ -112,18 +133,60 @@ public class About extends TabActivity {
 	}
 
 	public void shareurl(View v) {
+		tracker.trackPageView("/Share");
 		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
 		intent.setType("text/plain");
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.app_name)+" http://play.google.com/store/apps/details?id=arnodenhond.astroclocklite");
+		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.app_name) + " http://play.google.com/store/apps/details?id=arnodenhond.astroclocklite");
 		startActivity(intent);
 	}
 
 	public void getalarm(View v) {
+		tracker.trackPageView("/SunriseAlarm");
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		intent.setData(Uri.parse("market://details?id=arnodenhond.astroclock"));
 		startActivity(intent);
 	}
 
+	boolean mFeaturedAppAvailable = false;
+
+	@Override
+	public void getFeaturedAppResponse(TapjoyFeaturedAppObject featuredAppObject) {
+		mFeaturedAppAvailable = true;
+		// findViewById(R.id.tapjoylayout).setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public void getFeaturedAppResponseFailed(String error) {
+		// ((TextView)findViewById(R.id.donateheader)).setText(error);
+	}
+
+	@Override
+	public void onDismissScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
+		tracker.trackEvent("noad", "noad", "noad", 4);
+	}
+
+	@Override
+	public void onLeaveApplication(Ad arg0) {
+	}
+
+	@Override
+	public void onPresentScreen(Ad arg0) {
+	}
+
+	@Override
+	public void onReceiveAd(Ad arg0) {
+		tracker.trackEvent("ad", "ad", "ad", 4);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		tracker.stopSession();
+	}
 }

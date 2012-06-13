@@ -8,12 +8,25 @@ import android.content.Intent;
 import arnodenhond.astroclock.calcuator.NextCalc;
 import arnodenhond.astroclock.settings.PrefsReader;
 
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+
 public class BootReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		GoogleAnalyticsTracker tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-5436860-15", context);
+		tracker.trackEvent("Startup", "Broadcast", "Receiver", 0);
 
 		PrefsReader pr = new PrefsReader(context);
+
+		tracker.setCustomVar(1, "Theme", String.valueOf(pr.getTheme()), 1);
+		tracker.setCustomVar(2, "Vibrate", String.valueOf(pr.getNotificationVibrate()), 1);
+		tracker.setCustomVar(3, "Audible", String.valueOf(pr.getNotificationAudible()), 1);
+		tracker.setCustomVar(4, "Keywords", pr.getKeywords(), 1);
+		tracker.trackPageView("/StartupBroadcastReceiver");
+		tracker.dispatch();
+
 		double latitude = pr.getLatitude();
 		double longitude = pr.getLongitude();
 
