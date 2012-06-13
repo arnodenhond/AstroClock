@@ -94,19 +94,6 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/stats" />
-
-                        <ProgressBar
-                            android:id="@+id/daynightlength"
-                            style="@android:style/Widget.ProgressBar.Horizontal"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:indeterminate="false" />
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
                             android:text="@string/keywordsheader" />
 
                         <EditText
@@ -114,6 +101,11 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/keywordshint" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/supportheader" />
 
                         <Button
                             android:layout_width="fill_parent"
@@ -132,20 +124,35 @@
                             android:layout_height="wrap_content"
                             android:onClick="sendfeedback"
                             android:text="@string/sendfeedback" />
-                        <!--
-                                 <Button
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:onClick="circleplus"
-                                android:text="@string/circleplus" />
-                        -->
 
-                        <Button
-                            android:background="@drawable/googleplay"
+                        <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:onClick="getalarm"
-                            android:text="@string/getalarm" />
+                            android:text="@string/upgradeheader" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/googleplay"
+                            android:onClick="getalarm" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/stats" />
+
+                        <ProgressBar
+                            android:id="@+id/daynightlength"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:indeterminate="false" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/freeapp" />
                     </LinearLayout>
                 </ScrollView>
             </FrameLayout>

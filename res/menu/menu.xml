@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/Theme"
-        android:icon="@drawable/ic_menu_view"
+        android:icon="@android:drawable/ic_menu_view"
         android:title="Theme">
     </item>
     <item
         android:id="@+id/Alerts"
-        android:icon="@drawable/ic_menu_recent_history"
+        android:icon="@android:drawable/ic_menu_recent_history"
         android:title="Alerts">
     </item>
     <item
         android:id="@+id/Location"
-        android:icon="@drawable/ic_menu_mapmode"
+        android:icon="@android:drawable/ic_menu_mapmode"
         android:title="Location">
     </item>
     <item
         android:id="@+id/About"
-        android:icon="@drawable/ic_menu_help"
+        android:icon="@android:drawable/ic_menu_help"
         android:title="About">
     </item>
 

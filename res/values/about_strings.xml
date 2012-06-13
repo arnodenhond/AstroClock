@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- about app -->
     <string name="aboutapptitle">Help</string>
     <string name="helptext">AstroClock measures time by astronomical standards.\n\nThe shortest hand shows the position of the sun during a day. Unlike an normal hour hand, this hand turns only once in 24 hours.\nSmaller hands show the moments of sunrise and sunset.\n\nThe middle hand shows the phase of the moon. It turns every 29.5 days\n\nThe longest hand shows the position of the earth in its orbit around the sun. It turns every 365.25 days\n\nLike a normal clock, the hands rotate in clockwise direction.\n\nThe alarms section shows the moments of upcoming day / moon / year events. Select the checkboxes for recurring audible notifications. </string>
     <string name="maketheme">For instructions on creating your own theme please visit android.arnodenhond.com/apps/astroclock/skins</string>
     <string name="disclaimer"><b>Disclaimer</b>\nThis app does not spy or otherwise misbehave in any way. Some screens are known to show after-images when displaying the same graphics over a long period.</string>
     <string name="copyright">Arno den Hond © 2012</string>
-    
+
     <!-- about dev -->
     <string name="aboutdevtitle">Made-by</string>
-    <string name="aboutdev">This app has been under semi-continuous development on evenings and weekends since April 2009</string>
-    <string name="credits"><b>Credits</b>\n This app would not have been possible without help of these people
-	    \nMonica Baltodano for providing the only graphics set for the first 2 years
-	    \nYuri Westplat who made a graphics set that went unused for nearly 2 years
-	    \nGregor S staunch supporter and thorough beta tester
-	    \nBarry Rijkse for providing the graphics that helped win the I\'m Watch developer competition
-	    \nAilantd Sikowsky deisgner of new icon, promo graphics and beautiful theme
-	    \nKostas Papageorgiou of kanguro.fi who inspired me in writing the new app description</string>
-    <string name="stats">Length of Day vs Length of Night</string>
+    <string name="aboutdev"><b>About me</b>\nThis app has been under semi-continuous development on evenings and weekends since April 2009 by <b>Arno den Hond</b> from Amsterdam (The Netherlands) on a MacBook Pro and has been tested on a Motorola Droid, Samsung Galaxy Tab, Asus Transformer and a LG Optimus</string>
+    <string name="credits"><b>Credits</b>\nMany thanks to the graphics artists whose names are listed in the themes screen and to Kostas of kanguro.fi for inspiring me on the promo text</string>
+    
+
+    <string name="keywordsheader"><b>Advertsing Keywords</b>\nTo develop this app I had to spend money on the equipment mentioned above so to recover that money I have added advertising to the top of this screen.\nTo reduce the annoyance of this advertising you can enter some of your favorite topic below and the advertising might become more interesting.</string>
+    <string name="keywordshint">Sex, Drugs, Rock, Roll</string>
+    
+   	<string name="supportheader"><b>Support AstroClock</b>\nIf you like AstroClock, please let somebody know by pressing any of the buttons below. Thanks!</string>
     <string name="shareurl">Share this app to a social network</string>
     <string name="postcomment">Post a rating / comment</string>
     <string name="sendfeedback">Send your questions or suggestions.</string>
-    <string name="circleplus">Cirlce AstroClock on Google+</string>
-    <string name="getalarm">Get the Sunrise Alarm app</string>
-    <string name="keywordsheader">To develop this app I had to spend money on a new laptop and some android phones. To recover this money I have added some advertising. To reduce the irritation of this advertising you can enter some of your interests below:</string>
-    <string name="keywordshint">Sex, Drugs, Rock, Roll</string>
-    
+
+	<string name="upgradeheader"><b>Sunrise Alarm</b>\nIf you really like AstroClock or if you want to wake up each day at sunrise but the beep doesn\'t wake you up, then please consider downloading Sunrise alarm. It\'s not free but by paying you would show your appreciation for AstroClock and support further development of this and other apps. Thank you!</string>
+
+	<string name="stats"><b>Day vs. Night</b>\nTo express my gratitude to you for downloading this app and because I didnt know a better place to put this, here is a progressbar showing the length of today\'s day vs. the length of today\'s night.</string>
+	<string name="freeapp"><b>If you had to pay to download this app somebody ripped you off!</b></string>
 </resources>
