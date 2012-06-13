@@ -68,7 +68,7 @@ public class Map extends MapActivity implements AdListener {
 		zoomParams.gravity = Gravity.BOTTOM | Gravity.RIGHT;
 		mv.getZoomButtonsController().getZoomControls().setLayoutParams(zoomParams);
 		GeoPoint gp = new PrefsReader(this).getGeoPoint();
-		overlay = new Overlay(getResources().getDrawable(R.drawable.icon), gp);
+		overlay = new Overlay(getResources().getDrawable(R.drawable.mappin), gp);
 		mv.getController().setCenter(gp);
 		mv.getOverlays().add(overlay);
 	}
@@ -103,7 +103,7 @@ public class Map extends MapActivity implements AdListener {
 			GeoPoint gp = new GeoPoint(lat, lon);
 
 			mv.getOverlays().remove(overlay);
-			overlay = new Overlay(getResources().getDrawable(R.drawable.icon), gp);
+			overlay = new Overlay(getResources().getDrawable(R.drawable.mappin), gp);
 			mv.getOverlays().add(overlay);
 			mv.refreshDrawableState();
 			mv.invalidate();
