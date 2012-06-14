@@ -11,7 +11,7 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        ads:adSize="BANNER"
+        ads:adSize="SMART_BANNER"
         ads:adUnitId="a14f932990b5440"
         ads:loadAdOnCreate="true" />
 
@@ -169,7 +169,7 @@
                             android:drawableLeft="@android:drawable/ic_menu_send"
                             android:onClick="sendfeedback"
                             android:text="@string/sendfeedback" />
-
+<!-- 
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/googleplay"
                             android:onClick="getalarm" />
-
+ -->
                         <LinearLayout
                             android:id="@+id/tapjoylayout"
                             android:layout_width="fill_parent"

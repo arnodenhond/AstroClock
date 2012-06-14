@@ -145,7 +145,7 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdL
 		tracker.trackPageView("/SunriseAlarm");
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-		intent.setData(Uri.parse("market://details?id=arnodenhond.astroclock"));
+		intent.setData(Uri.parse("market://details?id=arnodenhond.sunrisealarm"));
 		startActivity(intent);
 	}
 

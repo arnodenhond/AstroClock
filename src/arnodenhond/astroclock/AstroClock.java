@@ -1,5 +1,7 @@
 package arnodenhond.astroclock;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import android.app.Activity;
@@ -21,6 +23,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import arnodenhond.astroclock.alerts.BootReceiver;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclock.settings.alerts.Alerts;
@@ -28,6 +31,8 @@ import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.GeoPoint;
 
@@ -44,7 +49,6 @@ public class AstroClock extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession("UA-5436860-15", 20, this);
 
@@ -68,6 +72,11 @@ public class AstroClock extends Activity {
 			pr.setFirstrun(false);
 		}
 		setContentView(R.layout.activity);
+		if (supportsAPILevel11()) {
+			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) findViewById(R.id.adView).getLayoutParams();
+			lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		}
+		setupAd();
 	}
 
 	@Override
@@ -114,6 +123,7 @@ public class AstroClock extends Activity {
 	protected void onResume() {
 		super.onResume();
 		tracker.trackPageView("/AstroClockActivityReload");
+		findViewById(R.id.adView).setVisibility(View.GONE);
 
 		final ImageView iv = (ImageView) findViewById(R.id.clock);
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.loading);
@@ -146,6 +156,11 @@ public class AstroClock extends Activity {
 	}
 
 	public void clicked(View arg0) {
+		View adView = this.findViewById(R.id.adView);
+		if (adView.getVisibility()==View.GONE)
+			adView.setVisibility(View.VISIBLE);
+		else
+			adView.setVisibility(View.GONE);
 		openOptionsMenu();
 	}
 
@@ -160,6 +175,20 @@ public class AstroClock extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	private void setupAd() {
+		PrefsReader prefs = new PrefsReader(this);
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adrequest = new AdRequest();
+		adrequest.addKeyword(prefs.getKeywords());
+		Location location = new Location("AstroClock");
+		location.setLatitude(prefs.getLatitude());
+		location.setLongitude(prefs.getLongitude());
+		adrequest.setLocation(location);
+		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
+		//adView.setAdListener(this);
+		adView.loadAd(adrequest);
+	}
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
