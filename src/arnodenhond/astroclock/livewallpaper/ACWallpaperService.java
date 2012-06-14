@@ -1,12 +1,16 @@
 package arnodenhond.astroclock.livewallpaper;
 
+import android.app.WallpaperManager;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import arnodenhond.astroclock.BitmapMaker;
+import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
 
 public class ACWallpaperService extends WallpaperService {
@@ -41,6 +45,17 @@ public class ACWallpaperService extends WallpaperService {
 			} else {
 				handler.removeCallbacks(drawRunner);
 			}
+		}
+		
+		@Override
+		public Bundle onCommand(String action, int x, int y, int z, Bundle extras, boolean resultRequested) {
+			if (WallpaperManager.COMMAND_TAP.equals(action)) {
+				Intent menuintent = new Intent(ACWallpaperService.this, Menu.class);
+				menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+				menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(menuintent);
+			}
+			return super.onCommand(action, x, y, z, extras, resultRequested);
 		}
 
 		@Override
