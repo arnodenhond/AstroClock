@@ -145,9 +145,9 @@ public class Map extends MapActivity implements AdListener {
 
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
 
-		int height = getResources().getDisplayMetrics().heightPixels;
-		int width = getResources().getDisplayMetrics().widthPixels;
-		BitmapMaker bmmaker = new BitmapMaker(this, 500, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
+//		int height = getResources().getDisplayMetrics().heightPixels;
+//		int width = getResources().getDisplayMetrics().widthPixels;
+		BitmapMaker bmmaker = new BitmapMaker(this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
 		views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
 		Intent menuintent = new Intent(this, Menu.class);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
