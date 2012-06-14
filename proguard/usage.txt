@@ -1,0 +1,596 @@
+android.annotation.SuppressLint
+android.annotation.TargetApi
+arnodenhond.astroclock.AstroClock:
+    private static final int DIALOG_WELCOME
+arnodenhond.astroclock.BitmapMaker:
+    float radius
+arnodenhond.astroclock.alerts.AlarmReceiver:
+    double utcoffset
+    public static final int NOTID_DAY
+    public static final int NOTID_MOON
+    public static final int NOTID_YEAR
+arnodenhond.astroclock.calcuator.NextCalc:
+    165:166:private double getSun(double,double)
+arnodenhond.astroclock.calcuator.PhaseOfMoon:
+    39:40:private PhaseOfMoon()
+    237:237:public static long LMonth()
+arnodenhond.astroclock.calcuator.SunTimes:
+    public static final double ZENITH
+    public static final double CIVIL_ZENITH
+    public static final double NAUTICAL_ZENITH
+    public static final double ASTRONOMICAL_ZENITH
+    private static final int TYPE_SUNRISE
+    private static final int TYPE_SUNSET
+    private static final double DEG_PER_HOUR
+    26:26:public SunTimes()
+    179:179:private static double getCosLocalHourAngle(double,double)
+arnodenhond.astroclock.calcuator.Time:
+    21:25:public Time(int,int,int)
+arnodenhond.astroclock.settings.PrefsReader:
+    private static final java.lang.String PREF_LATLON
+    private static final java.lang.String KEY_LATITUDE
+    private static final java.lang.String KEY_LONGITUDE
+    private static final java.lang.String PREF_THEME
+    public static final java.lang.String KEY_THEME
+    private static final java.lang.String PREF_KEYWORDS
+    private static final java.lang.String KEY_KEYWORDS
+    public static final java.lang.String PREF_ALERTS
+    public static final java.lang.String KEY_ALERT_AUDIBLE
+    public static final java.lang.String KEY_ALERT_VIBRATE
+    public static final java.lang.String KEY_ALERT_MIDDAY
+    public static final java.lang.String KEY_ALERT_MIDNIGHT
+    public static final java.lang.String KEY_ALERT_SUNRISE
+    public static final java.lang.String KEY_ALERT_SUNSET
+    public static final java.lang.String KEY_ALERT_FULLMOON
+    public static final java.lang.String KEY_ALERT_NEWMOON
+    public static final java.lang.String KEY_ALERT_FIRSTQUARTER
+    public static final java.lang.String KEY_ALERT_LASTQUARTER
+    public static final java.lang.String KEY_ALERT_NORTHERNSOLSTICE
+    public static final java.lang.String KEY_ALERT_SOUTHERNSOLSTICE
+    public static final java.lang.String KEY_ALERT_NORTHWARDEQUINOX
+    public static final java.lang.String KEY_ALERT_SOUTHWARDEQUINOX
+    private static final java.lang.String PREF_FIRSTRUN
+    private static final java.lang.String KEY_FIRSTRUN
+    150:150:public void getBackground()
+    153:153:public void getNotifications()
+    169:170:public void setAlert_midday(boolean)
+    177:178:public void setAlert_midnight(boolean)
+    185:186:public void setAlert_sunrise(boolean)
+    193:194:public void setAlert_sunset(boolean)
+    201:202:public void setAlert_fullmoon(boolean)
+    209:210:public void setAlert_newmoon(boolean)
+    217:218:public void setAlert_firstquarter(boolean)
+    225:226:public void setAlert_lastquarter(boolean)
+    233:234:public void setAlert_northernsolstice(boolean)
+    241:242:public void setAlert_southernsolstice(boolean)
+    249:250:public void setAlert_northwardequinox(boolean)
+    257:258:public void setAlert_southwardequinox(boolean)
+arnodenhond.astroclock.settings.location.Map:
+    private static final int DIALOG_LOCATION
+arnodenhond.astroclock.settings.location.Overlay:
+    13:15:public Overlay(android.graphics.drawable.Drawable)
+arnodenhond.astroclock.settings.themes.Theme:
+    public static final int DIALOG_NODOWNLOAD
+arnodenhond.astroclocklite.BuildConfig
+arnodenhond.astroclocklite.R:
+    10:10:public R()
+arnodenhond.astroclocklite.R$array
+arnodenhond.astroclocklite.R$attr
+arnodenhond.astroclocklite.R$drawable
+arnodenhond.astroclocklite.R$id
+arnodenhond.astroclocklite.R$layout
+arnodenhond.astroclocklite.R$menu
+arnodenhond.astroclocklite.R$string
+arnodenhond.astroclocklite.R$style
+arnodenhond.astroclocklite.R$styleable:
+    public static final int Gallery_android_galleryItemBackground
+    165:165:public R$styleable()
+arnodenhond.astroclocklite.R$xml
+com.google.ads.Ad:
+    public abstract boolean isReady()
+    public abstract void loadAd(com.google.ads.AdRequest)
+    public abstract void setAdListener(com.google.ads.AdListener)
+    public abstract void stopLoading()
+com.google.ads.AdActivity:
+    public static final java.lang.String BASE_URL_PARAM
+    public static final java.lang.String HTML_PARAM
+    public static final java.lang.String URL_PARAM
+    public static final java.lang.String INTENT_ACTION_PARAM
+    public static final java.lang.String TYPE_PARAM
+    public static final java.lang.String ORIENTATION_PARAM
+com.google.ads.AdRequest:
+    public static final java.lang.String VERSION
+    public static final java.lang.String LOGTAG
+    226:227:public com.google.ads.AdRequest setGender(com.google.ads.AdRequest$Gender)
+    235:235:public com.google.ads.AdRequest$Gender getGender()
+    248:260:public com.google.ads.AdRequest setBirthday(java.lang.String)
+    269:275:public com.google.ads.AdRequest setBirthday(java.util.Date)
+    285:291:public com.google.ads.AdRequest setBirthday(java.util.Calendar)
+    299:299:public java.util.Date getBirthday()
+    307:308:public com.google.ads.AdRequest clearBirthday()
+    325:326:public com.google.ads.AdRequest setPlusOneOptOut(boolean)
+    339:339:public boolean getPlusOneOptOut()
+    383:388:public com.google.ads.AdRequest addKeywords(java.util.Set)
+    399:403:public java.util.Set getKeywords()
+    413:417:private synchronized com.google.ads.mediation.admob.AdMobAdapterExtras a()
+    432:433:public com.google.ads.AdRequest setExtras(java.util.Map)
+    450:456:public com.google.ads.AdRequest addExtra(java.lang.String,java.lang.Object)
+    483:484:public com.google.ads.AdRequest removeNetworkExtras(java.lang.Class)
+    507:508:public com.google.ads.AdRequest setMediationExtras(java.util.Map)
+    522:527:public com.google.ads.AdRequest addMediationExtra(java.lang.String,java.lang.Object)
+    547:547:public android.location.Location getLocation()
+    562:563:public com.google.ads.AdRequest setTesting(boolean)
+    673:678:public com.google.ads.AdRequest addTestDevice(java.lang.String)
+com.google.ads.AdSize:
+    public static final int FULL_WIDTH
+    public static final int AUTO_HEIGHT
+    public static final int LANDSCAPE_AD_HEIGHT
+    public static final int PORTRAIT_AD_HEIGHT
+    public static final int LARGE_AD_HEIGHT
+    142:151:public AdSize(int,int)
+    268:268:public int getWidthInPixels(android.content.Context)
+    278:278:public int getHeightInPixels(android.content.Context)
+    294:294:public boolean isSizeAppropriate(int,int)
+    317:336:public varargs com.google.ads.AdSize findBestSize(com.google.ads.AdSize[])
+com.google.ads.AdView:
+    87:100:public AdView(android.app.Activity,com.google.ads.AdSize,java.lang.String)
+    263:264:public void destroy()
+    483:487:public boolean isReady()
+    546:549:public void stopLoading()
+com.google.ads.InterstitialAd:
+    private com.google.ads.internal.d a
+    private com.google.ads.m b
+    86:87:public InterstitialAd(android.app.Activity,java.lang.String)
+    101:105:public InterstitialAd(android.app.Activity,java.lang.String,boolean)
+    114:114:public boolean isReady()
+    126:127:public void loadAd(com.google.ads.AdRequest)
+    136:137:public void show()
+    148:149:public void setAdListener(com.google.ads.AdListener)
+    158:159:public void stopLoading()
+com.google.ads.e:
+    112:122:public void b()
+    199:205:private boolean a(com.google.ads.h,java.lang.String)
+    211:222:public void a(com.google.ads.h,boolean)
+    227:241:public void a(com.google.ads.h,android.view.View)
+    245:254:public void a(com.google.ads.h)
+    258:267:public void b(com.google.ads.h)
+    271:280:public void c(com.google.ads.h)
+    291:300:public boolean c()
+    462:464:private com.google.ads.h e()
+    51:51:static synthetic com.google.ads.h c(com.google.ads.e)
+com.google.ads.e$2
+com.google.ads.e$3
+com.google.ads.e$4
+com.google.ads.e$5
+com.google.ads.e$6
+com.google.ads.f:
+    79:79:public java.util.List e()
+com.google.ads.h:
+    118:118:public com.google.ads.f a()
+    202:228:public synchronized void f()
+    255:255:synchronized com.google.ads.mediation.MediationAdapter h()
+    262:262:com.google.ads.e i()
+    266:267:synchronized void a(android.view.View)
+com.google.ads.h$2
+com.google.ads.internal.c:
+    433:449:protected void a()
+com.google.ads.internal.d:
+    284:292:public synchronized void b()
+    487:487:public synchronized boolean q()
+    668:672:public synchronized void a(com.google.ads.f,boolean)
+    797:808:private void b(com.google.ads.f,java.lang.Boolean)
+    988:1017:public synchronized void y()
+    1026:1035:public synchronized void z()
+    1139:1139:public java.lang.Boolean C()
+com.google.ads.j:
+    private boolean b
+    32:64:public void onReceivedAd(com.google.ads.mediation.MediationBannerAdapter)
+    70:82:public void onFailedToReceiveAd(com.google.ads.mediation.MediationBannerAdapter,com.google.ads.AdRequest$ErrorCode)
+    87:90:public void onPresentScreen(com.google.ads.mediation.MediationBannerAdapter)
+    94:97:public void onDismissScreen(com.google.ads.mediation.MediationBannerAdapter)
+    101:104:public void onLeaveApplication(com.google.ads.mediation.MediationBannerAdapter)
+    108:112:public void onClick(com.google.ads.mediation.MediationBannerAdapter)
+com.google.ads.k:
+    27:38:public void onReceivedAd(com.google.ads.mediation.MediationInterstitialAdapter)
+    43:56:public void onFailedToReceiveAd(com.google.ads.mediation.MediationInterstitialAdapter,com.google.ads.AdRequest$ErrorCode)
+    61:64:public void onPresentScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    69:72:public void onDismissScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    76:79:public void onLeaveApplication(com.google.ads.mediation.MediationInterstitialAdapter)
+com.google.ads.mediation.EmptyNetworkExtras
+com.google.ads.mediation.MediationAdRequest:
+    53:53:public com.google.ads.AdRequest$Gender getGender()
+    60:60:public java.util.Date getBirthday()
+    68:82:public java.lang.Integer getAgeInYears()
+    89:93:public java.util.Set getKeywords()
+    101:105:public android.location.Location getLocation()
+    115:115:public boolean isTesting()
+com.google.ads.mediation.MediationBannerAdapter:
+    public abstract android.view.View getBannerView()
+com.google.ads.mediation.MediationBannerListener:
+    public abstract void onReceivedAd(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onFailedToReceiveAd(com.google.ads.mediation.MediationBannerAdapter,com.google.ads.AdRequest$ErrorCode)
+    public abstract void onPresentScreen(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onDismissScreen(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onLeaveApplication(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onClick(com.google.ads.mediation.MediationBannerAdapter)
+com.google.ads.mediation.MediationInterstitialAdapter:
+    public abstract void showInterstitial()
+com.google.ads.mediation.MediationInterstitialListener:
+    public abstract void onReceivedAd(com.google.ads.mediation.MediationInterstitialAdapter)
+    public abstract void onFailedToReceiveAd(com.google.ads.mediation.MediationInterstitialAdapter,com.google.ads.AdRequest$ErrorCode)
+    public abstract void onPresentScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    public abstract void onDismissScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    public abstract void onLeaveApplication(com.google.ads.mediation.MediationInterstitialAdapter)
+com.google.ads.mediation.admob.AdMobAdapter
+com.google.ads.mediation.admob.AdMobAdapter$1
+com.google.ads.mediation.admob.AdMobAdapter$a
+com.google.ads.mediation.admob.AdMobAdapter$b
+com.google.ads.mediation.admob.AdMobAdapterExtras:
+    29:36:public AdMobAdapterExtras(com.google.ads.mediation.admob.AdMobAdapterExtras)
+    49:50:public com.google.ads.mediation.admob.AdMobAdapterExtras setPlusOneOptOut(boolean)
+    78:79:public com.google.ads.mediation.admob.AdMobAdapterExtras setUseExactAdSize(boolean)
+    89:89:public boolean getUseExactAdSize()
+    115:119:public com.google.ads.mediation.admob.AdMobAdapterExtras setExtras(java.util.Map)
+    145:146:public com.google.ads.mediation.admob.AdMobAdapterExtras addExtra(java.lang.String,java.lang.Object)
+com.google.ads.mediation.admob.AdMobAdapterServerParameters
+com.google.ads.mediation.customevent.CustomEventAdapter
+com.google.ads.mediation.customevent.CustomEventAdapter$a
+com.google.ads.mediation.customevent.CustomEventAdapter$b
+com.google.ads.mediation.customevent.CustomEventBanner
+com.google.ads.mediation.customevent.CustomEventBannerListener
+com.google.ads.mediation.customevent.CustomEventInterstitial
+com.google.ads.mediation.customevent.CustomEventInterstitialListener
+com.google.ads.mediation.customevent.CustomEventListener
+com.google.ads.mediation.customevent.CustomEventServerParameters
+com.google.ads.searchads.SearchAdRequest:
+    90:91:public void setQuery(java.lang.String)
+    100:107:public void setBackgroundColor(int)
+    119:126:public void setBackgroundGradient(int,int)
+    136:137:public void setHeaderTextColor(int)
+    147:148:public void setDescriptionTextColor(int)
+    158:159:public void setAnchorTextColor(int)
+    167:168:public void setFontFace(java.lang.String)
+    177:178:public void setHeaderTextSize(int)
+    188:189:public void setBorderColor(int)
+    196:197:public void setBorderType(com.google.ads.searchads.SearchAdRequest$BorderType)
+    206:207:public void setBorderThickness(int)
+    214:215:public void setCustomChannels(java.lang.String)
+com.google.ads.util.a:
+    37:38:public static void a(boolean)
+    53:55:public static void a(java.lang.Object)
+com.google.android.apps.analytics.AdHitIdGenerator:
+    AdHitIdGenerator(boolean)
+com.google.android.apps.analytics.AdMobInfo:
+    public java.lang.String getJoinId()
+    public void setAdHitId(int)
+    public int getAdHitId()
+com.google.android.apps.analytics.AnalyticsParameterEncoder:
+    private AnalyticsParameterEncoder()
+com.google.android.apps.analytics.AnalyticsReceiver:
+    static final java.lang.String INSTALL_ACTION
+    static final java.lang.String REFERRER_KEY
+com.google.android.apps.analytics.CustomVariable:
+    public static final int MAX_CUSTOM_VARIABLES
+    public static final java.lang.String INDEX_ERROR_MSG
+    public static final int VISITOR_SCOPE
+    public static final int SESSION_SCOPE
+    public static final int PAGE_SCOPE
+    public static final int MAX_CUSTOM_VARIABLE_LENGTH
+    public CustomVariable(int,java.lang.String,java.lang.String)
+com.google.android.apps.analytics.Dispatcher:
+    public abstract boolean isDryRun()
+com.google.android.apps.analytics.Event:
+    static final java.lang.String PAGEVIEW_EVENT_CATEGORY
+    static final java.lang.String INSTALL_EVENT_CATEGORY
+    static final java.lang.String TRANSACTION_CATEGORY
+    static final java.lang.String ITEM_CATEGORY
+com.google.android.apps.analytics.GoogleAnalyticsTracker:
+    public static final java.lang.String PRODUCT
+    public static final java.lang.String VERSION
+    public static final java.lang.String WIRE_VERSION
+    public static final java.lang.String LOG_TAG
+    public void start(java.lang.String,int,android.content.Context)
+    public void start(java.lang.String,android.content.Context)
+    com.google.android.apps.analytics.Dispatcher getDispatcher()
+    public void setProductVersion(java.lang.String,java.lang.String)
+    void setAdHitIdGenerator(com.google.android.apps.analytics.AdHitIdGenerator)
+    void returnToInitialState()
+    java.lang.String getVisitorIdForAds()
+    java.lang.String getSessionIdForAds()
+    com.google.android.apps.analytics.HitStore getHitStore()
+    public boolean setCustomVar(int,java.lang.String,java.lang.String)
+    public java.lang.String getVisitorCustomVar(int)
+    public void addTransaction(com.google.android.apps.analytics.Transaction)
+    public void addItem(com.google.android.apps.analytics.Item)
+    public void trackTransactions()
+    public void clearTransactions()
+    public void setAnonymizeIp(boolean)
+    public boolean getAnonymizeIp()
+    public void setUseServerTime(boolean)
+    public void setSampleRate(int)
+    public int getSampleRate()
+    public boolean setReferrer(java.lang.String)
+    public void setDebug(boolean)
+    public void setDryRun(boolean)
+    public boolean isDryRun()
+    public boolean setDispatcher(com.google.android.apps.analytics.Dispatcher)
+com.google.android.apps.analytics.HitBuilder:
+    private static final java.lang.String GOOGLE_ANALYTICS_GIF_PATH
+    static final java.lang.String FAKE_DOMAIN_HASH
+    private static final int X10_PROJECT_NAMES
+    private static final int X10_PROJECT_VALUES
+    private static final int X10_PROJECT_SCOPES
+    HitBuilder()
+com.google.android.apps.analytics.HitStore:
+    public abstract com.google.android.apps.analytics.Hit[] peekHits(int)
+    public abstract int getStoreId()
+    public abstract java.lang.String getVisitorId()
+    public abstract java.lang.String getSessionId()
+    public abstract com.google.android.apps.analytics.Referrer getReferrer()
+    public abstract void clearReferrer()
+    public abstract void loadExistingSession()
+    public abstract java.lang.String getVisitorCustomVar(int)
+com.google.android.apps.analytics.NetworkDispatcher:
+    private static final java.lang.String GOOGLE_ANALYTICS_HOST_NAME
+    private static final int GOOGLE_ANALYTICS_HOST_PORT
+    private static final int MAX_GET_LENGTH
+    private static final int MAX_POST_LENGTH
+    private static final java.lang.String USER_AGENT_TEMPLATE
+    private static final int MAX_EVENTS_PER_PIPELINE
+    private static final int MAX_SEQUENTIAL_REQUESTS
+    private static final long MIN_RETRY_INTERVAL
+    public void init(com.google.android.apps.analytics.Dispatcher$Callbacks,com.google.android.apps.analytics.PipelinedRequester,com.google.android.apps.analytics.HitStore)
+    void waitForThreadLooper()
+    java.lang.String getUserAgent()
+com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread:
+    synthetic NetworkDispatcher$DispatcherThread(com.google.android.apps.analytics.Dispatcher$Callbacks,com.google.android.apps.analytics.PipelinedRequester,java.lang.String,com.google.android.apps.analytics.NetworkDispatcher,com.google.android.apps.analytics.NetworkDispatcher$1)
+com.google.android.apps.analytics.PersistentHitStore:
+    private static final int MAX_HITS
+    private static final java.lang.String STORE_ID
+    private static final java.lang.String EVENT_ID
+    private static final java.lang.String SCREEN_WIDTH
+    private static final java.lang.String SCREEN_HEIGHT
+    private static final java.lang.String VALUE
+    private static final java.lang.String LABEL
+    private static final java.lang.String ACTION
+    private static final java.lang.String CATEGORY
+    private static final java.lang.String VISITS
+    private static final java.lang.String TIMESTAMP_CURRENT
+    private static final java.lang.String TIMESTAMP_PREVIOUS
+    private static final java.lang.String TIMESTAMP_FIRST
+    private static final java.lang.String RANDOM_VAL
+    private static final java.lang.String ACCOUNT_ID
+    private static final java.lang.String USER_ID
+    static final java.lang.String REFERRER_COLUMN
+    static final java.lang.String REFERRER
+    static final java.lang.String TIMESTAMP_REFERRER
+    static final java.lang.String REFERRER_VISIT
+    static final java.lang.String REFERRER_INDEX
+    private static final java.lang.String CUSTOMVAR_ID
+    private static final java.lang.String CUSTOMVAR_INDEX
+    private static final java.lang.String CUSTOMVAR_NAME
+    private static final java.lang.String CUSTOMVAR_VALUE
+    private static final java.lang.String CUSTOMVAR_SCOPE
+    private static final java.lang.String CUSTOM_VARIABLE_COLUMN_TYPE
+    private static final java.lang.String TRANSACTION_ID
+    private static final java.lang.String ORDER_ID
+    private static final java.lang.String STORE_NAME
+    private static final java.lang.String TOTAL_COST
+    private static final java.lang.String TOTAL_TAX
+    private static final java.lang.String SHIPPING_COST
+    private static final java.lang.String ITEM_ID
+    private static final java.lang.String ITEM_SKU
+    private static final java.lang.String ITEM_NAME
+    private static final java.lang.String ITEM_CATEGORY
+    private static final java.lang.String ITEM_PRICE
+    private static final java.lang.String ITEM_COUNT
+    private static final java.lang.String HIT_ID
+    private static final java.lang.String HIT_STRING
+    private static final java.lang.String HIT_TIMESTAMP
+    private static final java.lang.String DATABASE_NAME
+    private static final int DATABASE_VERSION
+    private static final java.lang.String CREATE_INSTALL_REFERRER_TABLE
+    private static final java.lang.String CREATE_REFERRER_TABLE
+    PersistentHitStore(android.content.Context,java.lang.String)
+    PersistentHitStore(com.google.android.apps.analytics.PersistentHitStore$DataBaseHelper)
+    com.google.android.apps.analytics.PersistentHitStore$DataBaseHelper getDatabaseHelper()
+    long getTimestampFirst()
+    long getTimestampPrevious()
+    long getTimestampCurrent()
+    int getVisits()
+    public java.lang.String getVisitorCustomVar(int)
+    public int getStoreId()
+    public java.lang.String getVisitorId()
+    public java.lang.String getSessionId()
+    public com.google.android.apps.analytics.Referrer getReferrer()
+    public void clearReferrer()
+com.google.android.apps.analytics.PersistentHitStore$DataBaseHelper:
+    public PersistentHitStore$DataBaseHelper(android.content.Context,com.google.android.apps.analytics.PersistentHitStore)
+    public PersistentHitStore$DataBaseHelper(android.content.Context,java.lang.String,com.google.android.apps.analytics.PersistentHitStore)
+com.google.android.apps.analytics.PipelinedRequester:
+    private static final int RECEIVE_BUFFER_SIZE
+com.google.android.apps.analytics.Utils:
+    Utils()
+com.tapjoy.TJCOffers:
+    private static com.tapjoy.TapjoyNotifier tapjoyNotifier
+    private static com.tapjoy.TapjoySpendPointsNotifier tapjoySpendPointsNotifier
+    private static com.tapjoy.TapjoyAwardPointsNotifier tapjoyAwardPointsNotifier
+    private static com.tapjoy.TapjoyEarnedPointsNotifier tapjoyEarnedPointsNotifier
+    public static final java.lang.String TAPJOY_OFFERS
+    public static final java.lang.String TAPJOY_POINTS
+    84:99:public void showOffersWithCurrencyID(java.lang.String,boolean)
+    110:132:public void getTapPoints(com.tapjoy.TapjoyNotifier)
+    143:174:public void spendTapPoints(int,com.tapjoy.TapjoySpendPointsNotifier)
+    185:222:public void awardTapPoints(int,com.tapjoy.TapjoyAwardPointsNotifier)
+    232:233:public void setEarnedPointsNotifier(com.tapjoy.TapjoyEarnedPointsNotifier)
+    245:303:private synchronized boolean handleGetPointsResponse(java.lang.String)
+    315:359:private boolean handleSpendPointsResponse(java.lang.String)
+    371:415:private boolean handleAwardPointsResponse(java.lang.String)
+    243:243:static synthetic boolean access$0(com.tapjoy.TJCOffers,java.lang.String)
+    26:26:static synthetic com.tapjoy.TapjoyNotifier access$1()
+    314:314:static synthetic boolean access$2(com.tapjoy.TJCOffers,java.lang.String)
+    27:27:static synthetic com.tapjoy.TapjoySpendPointsNotifier access$3()
+    370:370:static synthetic boolean access$4(com.tapjoy.TJCOffers,java.lang.String)
+    28:28:static synthetic com.tapjoy.TapjoyAwardPointsNotifier access$5()
+com.tapjoy.TJCOffers$1
+com.tapjoy.TJCOffers$2
+com.tapjoy.TJCOffers$3
+com.tapjoy.TapjoyAwardPointsNotifier
+com.tapjoy.TapjoyConnect:
+    public static final java.lang.String TAPJOY_CONNECT
+    94:95:public void setUserID(java.lang.String)
+    104:104:public java.lang.String getUserID()
+    113:113:public java.lang.String getAppID()
+    131:132:public void enablePaidAppWithActionID(java.lang.String)
+    142:143:public void setCurrencyMultiplier(float)
+    151:151:public float getCurrencyMultiplier()
+    166:167:public void actionComplete(java.lang.String)
+    191:192:public void showOffersWithCurrencyID(java.lang.String,boolean)
+    203:204:public void getTapPoints(com.tapjoy.TapjoyNotifier)
+    215:216:public void spendTapPoints(int,com.tapjoy.TapjoySpendPointsNotifier)
+    227:228:public void awardTapPoints(int,com.tapjoy.TapjoyAwardPointsNotifier)
+    238:239:public void setEarnedPointsNotifier(com.tapjoy.TapjoyEarnedPointsNotifier)
+    270:271:public void getFeaturedAppWithCurrencyID(java.lang.String,com.tapjoy.TapjoyFeaturedAppNotifier)
+    281:282:public void setFeaturedAppDisplayCount(int)
+    308:309:public void setBannerAdSize(java.lang.String)
+    318:319:public void enableBannerAdAutoRefresh(boolean)
+    330:331:public void getDisplayAd(com.tapjoy.TapjoyDisplayAdNotifier)
+    346:347:public void getDisplayAdWithCurrencyID(java.lang.String,com.tapjoy.TapjoyDisplayAdNotifier)
+    358:359:public void initVideoAd(com.tapjoy.TapjoyVideoNotifier)
+    369:370:public void setVideoCacheCount(int)
+    379:380:public void enableVideoCache(boolean)
+com.tapjoy.TapjoyConnectCore:
+    public static final java.lang.String TAPJOY_CONNECT
+    701:705:public void release()
+    726:726:public static java.lang.String getDeviceID()
+    753:753:public static java.lang.String getCarrierName()
+    807:807:public static android.content.Context getContext()
+    841:851:public static java.lang.String getAwardPointsVerifier(long,int,java.lang.String)
+    906:937:public static void setUserID(java.lang.String)
+    946:947:public static void setVideoIDs(java.lang.String)
+    956:957:public static void setVideoEnabled(boolean)
+    966:967:public static void enableVideoCache(boolean)
+    995:1003:public static void setDebugDeviceID(java.lang.String)
+    1012:1018:public static void saveTapPointsTotal(int)
+    1028:1031:public static int getLocalTapPointsTotal()
+    1087:1112:public void enablePaidAppWithActionID(java.lang.String)
+    1182:1184:public void setCurrencyMultiplier(float)
+    1192:1192:public float getCurrencyMultiplier()
+    99:99:static synthetic long access$0(com.tapjoy.TapjoyConnectCore)
+    99:99:static synthetic void access$1(com.tapjoy.TapjoyConnectCore,long)
+    33:33:static synthetic android.content.Context access$2()
+    97:97:static synthetic java.lang.String access$3()
+    71:71:static synthetic java.lang.String access$8()
+com.tapjoy.TapjoyConnectCore$1
+com.tapjoy.TapjoyConnectCore$PaidAppTimerTask
+com.tapjoy.TapjoyConnectFlag
+com.tapjoy.TapjoyConstants
+com.tapjoy.TapjoyDisplayAd:
+    private static com.tapjoy.TapjoyDisplayAdNotifier displayAdNotifier
+    private boolean autoRefresh
+    public static java.lang.String displayAdURLParams
+    private static java.lang.String adClickURL
+    private static android.graphics.Bitmap bitmapImage
+    android.view.View adView
+    java.util.Timer timer
+    java.util.Timer resumeTimer
+    long elapsed_time
+    private static final byte PAD
+    private static final int MASK_8BITS
+    private byte[] buffer
+    private int pos
+    private int modulus
+    private boolean eof
+    private int x
+    70:71:public void setBannerAdSize(java.lang.String)
+    79:79:public java.lang.String getBannerAdSize()
+    89:90:public void enableAutoRefresh(boolean)
+    99:101:public void getDisplayAd(com.tapjoy.TapjoyDisplayAdNotifier)
+    112:143:public void getDisplayAd(java.lang.String,com.tapjoy.TapjoyDisplayAdNotifier)
+    155:251:private boolean buildResponse(java.lang.String)
+    300:300:public static android.graphics.Bitmap getBitmapImage()
+    305:305:public static java.lang.String getLinkURL()
+    405:455:void decodeBase64(byte[],int,int)
+    32:32:static synthetic com.tapjoy.TapjoyDisplayAdNotifier access$0()
+    33:33:static synthetic com.tapjoy.TapjoyURLConnection access$1()
+    154:154:static synthetic boolean access$2(com.tapjoy.TapjoyDisplayAd,java.lang.String)
+    39:39:static synthetic java.lang.String access$3()
+    35:35:static synthetic android.content.Context access$4(com.tapjoy.TapjoyDisplayAd)
+com.tapjoy.TapjoyDisplayAd$1
+com.tapjoy.TapjoyDisplayAd$2
+com.tapjoy.TapjoyDisplayAd$CheckForResumeTimer
+com.tapjoy.TapjoyDisplayAd$RefreshTimer
+com.tapjoy.TapjoyDisplayAdNotifier
+com.tapjoy.TapjoyDisplayAdSize:
+    16:16:public TapjoyDisplayAdSize()
+com.tapjoy.TapjoyEarnedPointsNotifier
+com.tapjoy.TapjoyFeaturedApp:
+    137:138:public void setDisplayCount(int)
+    262:262:public com.tapjoy.TapjoyFeaturedAppObject getFeaturedAppObject()
+com.tapjoy.TapjoyFeaturedAppObject:
+    public int maxTimesToDisplayThisApp
+com.tapjoy.TapjoyLog:
+    private static final int MAX_STRING_SIZE
+    20:20:public TapjoyLog()
+    32:34:public static void enableLogging(boolean)
+    83:85:public static void w(java.lang.String,java.lang.String)
+    96:98:public static void d(java.lang.String,java.lang.String)
+    109:111:public static void v(java.lang.String,java.lang.String)
+com.tapjoy.TapjoyNotifier
+com.tapjoy.TapjoySpendPointsNotifier
+com.tapjoy.TapjoyURLConnection:
+    private static final java.lang.String TAPJOY_URL_CONNECTION
+    174:194:public java.lang.String getContentLength(java.lang.String)
+    210:278:public java.lang.String connectToURLwithPOST(java.lang.String,java.util.Hashtable,java.util.Hashtable)
+com.tapjoy.TapjoyUtil:
+    private static final java.lang.String TAPJOY_UTIL
+    27:27:public TapjoyUtil()
+    170:179:public static void deleteFileOrDirectory(java.io.File)
+com.tapjoy.TapjoyVideo:
+    public static final java.lang.String TAPJOY_VIDEO
+    private java.util.Vector videoQueue
+    private static final java.lang.String BACKGROUND_WATERMARK_NAME
+    private static final java.lang.String imageTapjoyUrl
+    private java.util.Vector imageQueue
+    private java.util.Hashtable uncachedImages
+    public static java.lang.String imageBackgroundLocation
+    public static java.lang.String imagePlaceholderLocation
+    99:100:public void setVideoCacheCount(int)
+    109:111:public void enableVideoCache(boolean)
+    120:340:public void initVideoAd(com.tapjoy.TapjoyVideoNotifier)
+    351:474:private boolean handleGetVideosResponse(java.lang.String)
+    565:579:public void loadNextVideo()
+    597:712:private void cacheVideo(java.lang.String)
+    720:820:private void cacheImage(java.lang.String)
+    827:845:private void setVideoIDs()
+    350:350:static synthetic boolean access$0(com.tapjoy.TapjoyVideo,java.lang.String)
+    48:48:static synthetic boolean access$1(com.tapjoy.TapjoyVideo)
+    42:42:static synthetic com.tapjoy.TapjoyVideoNotifier access$2()
+    45:45:static synthetic java.lang.String access$3(com.tapjoy.TapjoyVideo)
+    54:54:static synthetic java.util.Hashtable access$4(com.tapjoy.TapjoyVideo)
+    56:56:static synthetic java.util.Hashtable access$5(com.tapjoy.TapjoyVideo)
+    53:53:static synthetic java.util.Vector access$6(com.tapjoy.TapjoyVideo)
+    826:826:static synthetic void access$7(com.tapjoy.TapjoyVideo)
+    46:46:static synthetic java.lang.String access$8(com.tapjoy.TapjoyVideo)
+    66:66:static synthetic java.util.Hashtable access$9(com.tapjoy.TapjoyVideo)
+    65:65:static synthetic java.util.Vector access$10(com.tapjoy.TapjoyVideo)
+    719:719:static synthetic void access$11(com.tapjoy.TapjoyVideo,java.lang.String)
+com.tapjoy.TapjoyVideo$1
+com.tapjoy.TapjoyVideo$2
+com.tapjoy.TapjoyVideo$3
+com.tapjoy.TapjoyVideoNotifier:
+    public abstract void videoReady()
+com.tapjoy.TapjoyVideoObject:
+    public java.lang.String videoAdName
+    public java.lang.String iconURL
+    public int buttonCount
+    public static final int BUTTON_MAX
+    35:38:public void addButton(java.lang.String,java.lang.String)
+com.tapjoy.TapjoyVideoStatus
+com.tapjoy.TapjoyVideoView:
+    private static final java.lang.String BUNDLE_DIALOG_SHOWING
+    private static final java.lang.String BUNDLE_SEEK_TIME
+    private static final int DIALOG_WARNING_ID
+    private static final java.lang.String videoWillResumeText
+    private static final java.lang.String videoSecondsText
+    int deviceScreenDensity
