@@ -6,6 +6,7 @@ import java.util.HashSet;
 import android.app.ExpandableListActivity;
 import android.location.Location;
 import android.os.Bundle;
+import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
@@ -42,10 +43,10 @@ public class Alerts extends ExpandableListActivity implements AdListener {
 		AdView adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adrequest = new AdRequest();
 		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("AstroClock");
+		Location location = new Location("Manual");
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(location);
+		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		adView.setAdListener(this);
 		adView.loadAd(adrequest);

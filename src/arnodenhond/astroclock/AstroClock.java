@@ -9,6 +9,7 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -119,6 +120,26 @@ public class AstroClock extends Activity {
 		}
 	}
 
+	public static Location getLatestOrSaved(Context ctx) {
+		Location storedlocation = new Location("Manual");
+		PrefsReader prefs = new PrefsReader(ctx);
+		storedlocation.setLatitude(prefs.getLatitude());
+		storedlocation.setLongitude(prefs.getLongitude());
+
+		LocationManager locationManager = (LocationManager) ctx.getSystemService(LOCATION_SERVICE);
+		List<String> providers = locationManager.getProviders(new Criteria(), true);
+		if (!providers.isEmpty()) {
+			Location lastlocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
+			if (lastlocation != null) {
+				return lastlocation;
+			} else {
+				return storedlocation;
+			}
+		} else {
+			return storedlocation;
+		}
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -157,7 +178,7 @@ public class AstroClock extends Activity {
 
 	public void clicked(View arg0) {
 		View adView = this.findViewById(R.id.adView);
-		if (adView.getVisibility()==View.GONE)
+		if (adView.getVisibility() == View.GONE)
 			adView.setVisibility(View.VISIBLE);
 		else
 			adView.setVisibility(View.GONE);
@@ -180,15 +201,15 @@ public class AstroClock extends Activity {
 		AdView adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adrequest = new AdRequest();
 		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("AstroClock");
+		Location location = new Location("Manual");
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(location);
+		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
-		//adView.setAdListener(this);
+		// adView.setAdListener(this);
 		adView.loadAd(adrequest);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

@@ -96,10 +96,10 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdL
 		AdView adView = (AdView) this.findViewById(R.id.adView);
 		AdRequest adrequest = new AdRequest();
 		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("AstroClock");
+		Location location = new Location("Manual");
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(location);
+		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		adView.setAdListener(this);
 		adView.loadAd(adrequest);
@@ -141,13 +141,13 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdL
 		startActivity(intent);
 	}
 
-	public void getalarm(View v) {
-		tracker.trackPageView("/SunriseAlarm");
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-		intent.setData(Uri.parse("market://details?id=arnodenhond.sunrisealarm"));
-		startActivity(intent);
-	}
+//	public void getalarm(View v) {
+//		tracker.trackPageView("/SunriseAlarm");
+//		Intent intent = new Intent(Intent.ACTION_VIEW);
+//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+//		intent.setData(Uri.parse("market://details?id=arnodenhond.sunrisealarm"));
+//		startActivity(intent);
+//	}
 
 	boolean mFeaturedAppAvailable = false;
 
