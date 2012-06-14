@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">AstroClock</string>
-    <string name="welcometitle">Introduction</string>
-    <string name="welcomebody">Welcome to AstroClock. Please tap the screen to open the menu. Select location to verify your location is set accurately.\nEnable some alerts be notified of astronomical events.\nSelect your favourite theme.\nAstroClock also comes with a homescreen widget and a live wallpaper.\nThis message will not appear again.</string>
+    <string name="welcometitle">Welcome to AstroClock</string>
+    <string name="welcomebody">\nFrom the menu, select <b>location</b> to ensure accuracy.\nSelect a <b>theme</b> to match your mood.\nEnable some <b>alerts</b> be notified of astronomical events.\nAstroClock also has a homescreen <b>widget</b> and <b>live wallpaper</b>.</string>
     <string name="welcomebutton">OK</string>
 
     <string-array name="settingsoptions">
