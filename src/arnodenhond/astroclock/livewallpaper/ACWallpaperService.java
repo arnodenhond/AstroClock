@@ -51,8 +51,6 @@ public class ACWallpaperService extends WallpaperService {
 		public Bundle onCommand(String action, int x, int y, int z, Bundle extras, boolean resultRequested) {
 			if (WallpaperManager.COMMAND_TAP.equals(action)) {
 				Intent menuintent = new Intent(ACWallpaperService.this, Menu.class);
-				menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-				menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(menuintent);
 			}
 			return super.onCommand(action, x, y, z, extras, resultRequested);

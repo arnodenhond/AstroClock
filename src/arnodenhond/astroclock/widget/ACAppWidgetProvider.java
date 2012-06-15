@@ -29,8 +29,6 @@ public class ACAppWidgetProvider extends AppWidgetProvider {
 		BitmapMaker bmmaker = new BitmapMaker(context, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
 		views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
 		Intent menuintent = new Intent(context, Menu.class);
-		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(context, 0, menuintent, PendingIntent.FLAG_CANCEL_CURRENT));
 		for (int i = 0; i < appWidgetIds.length; i++)
 			appWidgetManager.updateAppWidget(appWidgetIds[i], views);

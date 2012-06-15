@@ -1,8 +1,8 @@
 <?xml version="1.0"	encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="arnodenhond.astroclocklite"
-    android:versionCode="228"
-    android:versionName="3.0 BETA 1" >
+    android:versionCode="229"
+    android:versionName="3.0 BETA 2" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -51,6 +51,7 @@
         <!-- Launchable Clock Activity -->
         <activity
             android:name="arnodenhond.astroclock.AstroClock"
+            android:clearTaskOnLaunch="true"
             android:theme="@style/AstroClockTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
