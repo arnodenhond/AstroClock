@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AstroReloj</string>
+    <string name="welcometitle">Bienvenido a AstroReloj</string>
+    <string name="welcomebody">En el menú, seleccione <b>ubicación</b> para garantizar la precisión.\nSeleccione un <b>tema</b> para que coincida con tu estado de ánimo.\nHabilitar un <b>alerta</b> se notificará astronómica eventos.\nAstroReloj también tiene una pantalla de inicio <b>widget</b> y <b>live wallpaper</b>.</string>
+
+    <string name="welcomebutton">Aceptar</string>
+
+    <string-array name="settingsoptions">
+        <item>Temas</item>
+        <item>Alertas</item>
+        <item>Ubicación</item>
+        <item>Sobre</item>
+        <item>Listo</item>
+    </string-array>
+
+</resources>

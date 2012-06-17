@@ -21,15 +21,22 @@ public class NextCalc {
 
 	public long getNextMidDay() {
 		Calendar c = Calendar.getInstance();
-		long result = getMidDay(c);
-		while (result < System.currentTimeMillis()) {
+		long result = getMid(c,false);
+		while (result < (System.currentTimeMillis()+1000)) {
 			c.add(Calendar.DAY_OF_MONTH, 1);
-			result = getMidDay(c);
+			result = getMid(c,false);
 		}
 		return result;
 	}
 
-	private long getMidDay(Calendar c) {
+	private long getMid(Calendar corig, boolean night) {
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR, corig.get(Calendar.YEAR));
+		c.set(Calendar.MONTH, corig.get(Calendar.MONTH));
+		c.set(Calendar.DAY_OF_MONTH, corig.get(Calendar.DAY_OF_MONTH));
+		c.set(Calendar.HOUR_OF_DAY, corig.get(Calendar.HOUR_OF_DAY));
+		c.set(Calendar.MINUTE, corig.get(Calendar.MINUTE));
+		c.set(Calendar.SECOND, corig.get(Calendar.SECOND));
 		long sunrise = 0;
 		long sunset = 0;
 		try {
@@ -54,61 +61,35 @@ public class NextCalc {
 			cdown.set(Calendar.HOUR_OF_DAY, tdown.getHour());
 			cdown.set(Calendar.MINUTE, tdown.getMinute());
 			cdown.set(Calendar.SECOND, tdown.getSecond());
-			if (cup.getTimeInMillis() > cdown.getTimeInMillis())
-				cdown.add(Calendar.DAY_OF_MONTH, 1);
+			if (cup.getTimeInMillis() > cdown.getTimeInMillis()) {
+				c.add(Calendar.DAY_OF_MONTH, 1);
+				down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude, latitude, SunTimes.ZENITH).getFractionalHours();
+				down += utcoffset;
+				tdown = new Time(down);
+				cdown = Calendar.getInstance();
+				cdown.set(Calendar.YEAR, c.get(Calendar.YEAR));
+				cdown.set(Calendar.MONTH, c.get(Calendar.MONTH));
+				cdown.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
+				cdown.set(Calendar.HOUR_OF_DAY, tdown.getHour());
+				cdown.set(Calendar.MINUTE, tdown.getMinute());
+				cdown.set(Calendar.SECOND, tdown.getSecond());
+			}
 			sunset = cdown.getTimeInMillis();
 		} catch (SunTimesException e) {
 		}
 		long diff = sunset - sunrise;
-		return sunrise + (diff / 2);
-
+		return sunrise + (diff / 2) + (night?43200000l:0);
 	}
 
 	public long getNextMidNight() {
-		long midday = getNextMidDay();
-		final long HALFDAY = 43200000l;
-		if (midday + HALFDAY > System.currentTimeMillis() + (HALFDAY * 2))
-			return midday - HALFDAY;
-		else
-			return midday + HALFDAY;
-		// Calendar c = Calendar.getInstance();
-		// double up = 0;
-		// double down = 0;
-		// try {
-		// up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR),
-		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
-		// latitude, SunTimes.ZENITH).getFractionalHours();
-		// down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR),
-		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
-		// latitude, SunTimes.ZENITH).getFractionalHours();
-		// } catch (SunTimesException e) {
-		// }
-		// double midsun = getSun(up, down);
-		// midsun+=utcoffset;
-		//
-		// Time time = new Time(midsun + 1);
-		// c.set(Calendar.HOUR_OF_DAY, time.getHour());
-		// c.set(Calendar.MINUTE, time.getMinute());
-		// c.set(Calendar.SECOND, time.getSecond());
-		// if (c.getTimeInMillis() < System.currentTimeMillis()) {
-		// c.add(Calendar.DAY_OF_MONTH, 1);
-		// try {
-		// up = SunTimes.getSunriseTimeUTC(c.get(Calendar.YEAR),
-		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
-		// latitude, SunTimes.ZENITH).getFractionalHours();
-		// down = SunTimes.getSunsetTimeUTC(c.get(Calendar.YEAR),
-		// c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), longitude,
-		// latitude, SunTimes.ZENITH).getFractionalHours();
-		// } catch (SunTimesException e) {
-		// }
-		// midsun = getSun(up, down);
-		// midsun+=utcoffset;
-		// time = new Time(midsun + 1);
-		// c.set(Calendar.HOUR_OF_DAY, time.getHour());
-		// c.set(Calendar.MINUTE, time.getMinute());
-		// c.set(Calendar.SECOND, time.getSecond());
-		// }
-		// return c.getTimeInMillis();
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DAY_OF_MONTH, -1);
+		long result = getMid(c,true);
+		while (result < (System.currentTimeMillis()+1000)) {
+			c.add(Calendar.DAY_OF_MONTH, 1);
+			result = getMid(c,true);
+		}
+		return result;
 	}
 
 	public long getNextSunRise() {

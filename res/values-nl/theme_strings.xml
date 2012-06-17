@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="downloading">Downloade..</string>
+    <string name="settheme">Stel thema in</string>
+    <string name="themestored">Thema opgeslagen</string>
+    <string name="nodownloadtitle">Kon niet downloaden</string>
+    <string name="nodownloadbody">Het gekozen thema kon niet worden gedownlad.\nActiveer een draadloze verbinding in systeem instellingen om themas te kunnen downloaden.</string>
+    <string name="nodownloadbutton">Draadloze verbindingen</string>
+	<string name="usebackground">Gebruik een achtergrond afbeelding</string>
+	<string name="selectimage">Kies afbeelding</string>
+</resources>

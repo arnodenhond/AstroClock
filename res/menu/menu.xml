@@ -3,23 +3,19 @@
 
     <item
         android:id="@+id/Theme"
-        android:icon="@android:drawable/ic_menu_view"
-        android:title="Theme">
+        android:icon="@android:drawable/ic_menu_view">
     </item>
     <item
         android:id="@+id/Alerts"
-        android:icon="@android:drawable/ic_menu_recent_history"
-        android:title="Alerts">
+        android:icon="@android:drawable/ic_menu_recent_history">
     </item>
     <item
         android:id="@+id/Location"
-        android:icon="@android:drawable/ic_menu_mapmode"
-        android:title="Location">
+        android:icon="@android:drawable/ic_menu_mapmode">
     </item>
     <item
         android:id="@+id/About"
-        android:icon="@android:drawable/ic_menu_help"
-        android:title="About">
+        android:icon="@android:drawable/ic_menu_help">
     </item>
 
 </menu>

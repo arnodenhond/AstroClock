@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="acquirelocation">Zoek Locatie</string>
+    <string name="nolocationtitle">Geen Locatie</string>
+    <string name="nolocationbody">Locatie kon niet gezocht worden.\nActiveer een locatie dienstverlener in de system instellingen om locatie te kunnen zoeken.</string>
+    <string name="nolocationbutton">Locatie Instellingen</string>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AstroKlok</string>
+    <string name="welcometitle">Welkom bij AstroKlok</string>
+    <string name="welcomebody">\nIn het menu kies <b>locatie</b> om nauwkeurigheid te waarborgen.\nSelecteer een <b>thema</b> dat bij je smaakt past.\nActiveer wat <b>meldingen</b> om notificaties van astronomische gebeurtenissen te ontvangen.\nAstroKlok bevat tevens een hoofdmenu <b>widget</b> en een <b>live wallpaper</b>.</string>
+    <string name="welcomebutton">OK</string>
+
+    <string-array name="settingsoptions">
+        <item>Themas</item>
+        <item>Meldingen</item>
+        <item>Locatie</item>
+        <item>Help</item>
+        <item>Terug</item>
+    </string-array>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="downloading">Descargando..</string>
+    <string name="settheme">Establece el tema</string>
+    <string name="themestored">Tema almacenado</string>
+    <string name="nodownloadtitle">Could not download</string>
+    <string name="nodownloadbody">El tema elegido no podía ser descargado.\nHabilitar una conexión inalámbrica en la configuración del sistema para poder descargar temas.</string>
+    <string name="nodownloadbutton">Configuración inalámbrica</string>
+	<string name="usebackground">Utilice una imagen de fondo</string>
+	<string name="selectimage">Seleccionar la imagen</string>
+</resources>

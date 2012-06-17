@@ -202,10 +202,11 @@ public class AstroClock extends Activity {
 	public boolean onCreateOptionsMenu(android.view.Menu menu) {
 		MenuInflater mi = new MenuInflater(this);
 		mi.inflate(R.menu.menu, menu);
-		menu.findItem(R.id.Theme).setIntent(new Intent(AstroClock.this, Theme.class));
-		menu.findItem(R.id.Alerts).setIntent(new Intent(AstroClock.this, Alerts.class));
-		menu.findItem(R.id.Location).setIntent(new Intent(AstroClock.this, Map.class));
-		menu.findItem(R.id.About).setIntent(new Intent(AstroClock.this, About.class));
+		String[] titles = getResources().getStringArray(R.array.settingsoptions);
+		menu.findItem(R.id.Theme).setTitle(titles[0]).setIntent(new Intent(AstroClock.this, Theme.class));
+		menu.findItem(R.id.Alerts).setTitle(titles[1]).setIntent(new Intent(AstroClock.this, Alerts.class));
+		menu.findItem(R.id.Location).setTitle(titles[2]).setIntent(new Intent(AstroClock.this, Map.class));
+		menu.findItem(R.id.About).setTitle(titles[3]).setIntent(new Intent(AstroClock.this, About.class));
 		return super.onCreateOptionsMenu(menu);
 	}
 
