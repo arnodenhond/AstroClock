@@ -31,7 +31,7 @@
 <!-- 
 	<string name="upgradeheader"><b>Sunrise Alarm</b>\nIf you want to wake up every day at sunrise but AstroClock\'s notification beep doesn\'t awaken you, then please consider downloading Sunrise alarm.\nIt\'s not free but by paying a tiny monthly fee you could show your appreciation for AstroClock and support further development of this and other apps. Thank you!</string>
  -->
-	<string name="donateheader"><b>Tip Jar</b>\nIf you want to show your appreciation for AstroClock and support further development of this and other apps, then please use the Tapjoy button to download a sponsored app which will earn me a few cents. I would appreciate it!</string>
+	<string name="donateheader"><b>Tip Jar</b>\nIf you want to show your appreciation for AstroClock and support further development of this and other apps, then please use the Tapjoy button to download a free sponsored app which will earn me a few cents. I would appreciate it!</string>
 	
 	<string name="stats"><b>Day vs. Night Length</b>\nTo express my gratitude to you for downloading my app and because I didn\'t know a better place to put this, here is a progress bar showing the length of today\'s day vs. night:</string>
 </resources>
