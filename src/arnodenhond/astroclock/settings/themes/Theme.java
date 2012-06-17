@@ -13,16 +13,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
@@ -52,7 +57,6 @@ public class Theme extends Activity implements AdListener {
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession("UA-5436860-15", 20, this);
 		tracker.trackPageView("/Theme");
-
 		setContentView(R.layout.themeselector);
 		setupAd();
 		final TextView textview = (TextView) findViewById(R.id.TextView);
@@ -62,16 +66,6 @@ public class Theme extends Activity implements AdListener {
 		gallery.setAdapter(new ImageAdapter(this));
 		final PrefsReader pr = new PrefsReader(this);
 		gallery.setSelection(pr.getTheme());
-		gallery.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
-				// Intent intent = new Intent(Theme.this, AstroClock.class);
-				// intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				// startActivity(intent);
-
-			}
-		});
 		gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
@@ -107,13 +101,52 @@ public class Theme extends Activity implements AdListener {
 					deleteFile("day.png");
 					progresslayout.setVisibility(View.GONE);
 					pr.setTheme(pos);
-					finish();
+					Toast.makeText(Theme.this, R.string.themestored, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
-
+		final Button selectImage = (Button) findViewById(R.id.selectbackgroundbutton);
+		CheckBox useBackground = (CheckBox) findViewById(R.id.usebackgroundsetting);
+		useBackground.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				pr.setUseBackground(isChecked);
+				selectImage.setEnabled(isChecked);
+				if (isChecked) {
+					getWindow().setBackgroundDrawable(new BitmapDrawable(AstroClock.loadFullImage(Theme.this, Uri.parse(pr.getBackgroundImage()))));
+				} else {
+					getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
+				}
+			}
+		});
+		useBackground.setChecked(pr.isUseBackground());
+		selectImage.setEnabled(pr.isUseBackground());
+		if (pr.isUseBackground()) {
+			getWindow().setBackgroundDrawable(new BitmapDrawable(AstroClock.loadFullImage(Theme.this, Uri.parse(pr.getBackgroundImage()))));
+		} else {
+			getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
+		}
+		selectImage.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent pickImage = new Intent(Intent.ACTION_PICK);
+				pickImage.setType("image/*");
+				startActivityForResult(pickImage, 0);
+			}
+		});
+		
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode!=Activity.RESULT_OK)
+			return;
+		Uri uri = data.getData();
+		new PrefsReader(this).setBackgroundImage(uri.toString());
+		getWindow().setBackgroundDrawable(new BitmapDrawable(AstroClock.loadFullImage(this, uri)));
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
 	public class ImageAdapter extends BaseAdapter {
 		int mGalleryItemBackground;
 		private Context mContext;

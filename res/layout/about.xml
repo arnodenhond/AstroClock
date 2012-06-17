@@ -45,7 +45,8 @@
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:padding="10dp" >
 
                         <TextView
                             android:layout_width="fill_parent"
@@ -77,15 +78,42 @@
                             android:layout_height="wrap_content"
                             android:text="@string/sunrisesunset" />
 
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/alerthelp" />
 
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/otherfeatures" />
+
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
 
                         <TextView
                             android:layout_width="fill_parent"
@@ -93,16 +121,43 @@
                             android:autoLink="all"
                             android:text="@string/maketheme" />
 
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:autoLink="all"
                             android:text="@string/broadcasthelp" />
 
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/disclaimer" />
+
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -120,18 +175,37 @@
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:padding="10dp" >
 
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/aboutdev" />
 
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:autoLink="all"
                             android:text="@string/credits" />
+
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
 
                         <TextView
                             android:layout_width="fill_parent"
@@ -143,6 +217,15 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/keywordshint" />
+
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
 
                         <TextView
                             android:layout_width="fill_parent"
@@ -169,7 +252,7 @@
                             android:drawableLeft="@android:drawable/ic_menu_send"
                             android:onClick="sendfeedback"
                             android:text="@string/sendfeedback" />
-<!-- 
+                        <!--
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
@@ -181,7 +264,17 @@
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/googleplay"
                             android:onClick="getalarm" />
- -->
+                        -->
+
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
+
                         <LinearLayout
                             android:id="@+id/tapjoylayout"
                             android:layout_width="fill_parent"
@@ -202,6 +295,15 @@
                                 android:onClick="tapjoyfeaturedapp"
                                 android:src="@drawable/tapjoy" />
                         </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/divider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dip"
+                            android:paddingTop="5dip"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/divider_horizontal_bright" />
 
                         <TextView
                             android:layout_width="fill_parent"

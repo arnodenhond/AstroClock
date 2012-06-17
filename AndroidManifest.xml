@@ -52,6 +52,7 @@
         <activity
             android:name="arnodenhond.astroclock.AstroClock"
             android:clearTaskOnLaunch="true"
+            android:taskAffinity="arnodenhond.astroclock.AstroClock"
             android:theme="@style/AstroClockTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

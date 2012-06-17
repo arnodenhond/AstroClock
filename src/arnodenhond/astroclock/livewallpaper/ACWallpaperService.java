@@ -2,13 +2,17 @@ package arnodenhond.astroclock.livewallpaper;
 
 import android.app.WallpaperManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 import android.util.Log;
 import android.view.SurfaceHolder;
+import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
@@ -46,11 +50,13 @@ public class ACWallpaperService extends WallpaperService {
 				handler.removeCallbacks(drawRunner);
 			}
 		}
-		
+
 		@Override
 		public Bundle onCommand(String action, int x, int y, int z, Bundle extras, boolean resultRequested) {
 			if (WallpaperManager.COMMAND_TAP.equals(action)) {
 				Intent menuintent = new Intent(ACWallpaperService.this, Menu.class);
+				menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+				menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(menuintent);
 			}
 			return super.onCommand(action, x, y, z, extras, resultRequested);
@@ -79,8 +85,14 @@ public class ACWallpaperService extends WallpaperService {
 				if (canvas != null) {
 					PrefsReader settings = new PrefsReader(ACWallpaperService.this);
 					BitmapMaker bmmaker = new BitmapMaker(ACWallpaperService.this, (width < height ? width : height), settings.getLatitude(), settings.getLongitude(), settings.getTheme());
-					paint.setARGB(255, 0, 0, 0);
-					canvas.drawRect(0, 0, width, height, paint);
+					if (settings.isUseBackground()) {
+						Bitmap bmp = Bitmap.createScaledBitmap(AstroClock.loadFullImage(ACWallpaperService.this, Uri.parse(settings.getBackgroundImage())), width, height, true);
+						canvas.drawBitmap(bmp, 0,0, paint);
+						bmp.recycle();
+					} else {
+						paint.setARGB(255, 0, 0, 0);
+						canvas.drawRect(0, 0, width, height, paint);
+					}
 					if (width < height) {
 						// portrait
 						int diff = height - width;

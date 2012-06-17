@@ -20,7 +20,11 @@ public class PrefsReader {
 	private static final String PREF_THEME = "theme";
 
 	public static final String KEY_THEME = "theme";
+	public static final String KEY_USEBACKGROUND = "usebackground";
+	public static final String KEY_BACKGROUNDIMAGE = "backgroundimage";
 	private int theme;
+	private boolean usebackground;
+	private String backgroundimage;
 
 	private static final String PREF_KEYWORDS = "keywords";
 
@@ -85,6 +89,9 @@ public class PrefsReader {
 		this.latitude = latlonpref.getFloat(KEY_LATITUDE, 35f);
 		this.longitude = latlonpref.getFloat(KEY_LONGITUDE, -120f);
 		this.theme = themepref.getInt(KEY_THEME, 2);
+		this.usebackground = themepref.getBoolean(KEY_USEBACKGROUND, false);
+		this.backgroundimage = themepref.getString(KEY_BACKGROUNDIMAGE, "");
+		
 		this.audible = alarmspref.getBoolean(KEY_ALERT_AUDIBLE, false);
 		this.vibrate = alarmspref.getBoolean(KEY_ALERT_VIBRATE, false);
 
@@ -145,6 +152,24 @@ public class PrefsReader {
 		context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE).edit().putInt(KEY_THEME, theme).commit();
 	}
 
+	public boolean isUseBackground() {
+		return usebackground;
+	}
+	
+	public void setUseBackground(boolean usebackground) {
+		this.usebackground = usebackground;
+		context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE).edit().putBoolean(KEY_USEBACKGROUND, usebackground).commit();
+	}
+	
+	public String getBackgroundImage() {
+		return backgroundimage;
+	}
+	
+	public void setBackgroundImage(String backgroundimage) {
+		this.backgroundimage = backgroundimage;
+		context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE).edit().putString(KEY_BACKGROUNDIMAGE, backgroundimage).commit();
+	}
+	
 	public void getBackground() {
 
 	}

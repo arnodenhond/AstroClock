@@ -3,13 +3,13 @@
 
     <!-- about app -->
     <string name="aboutapptitle">Help</string>
-    <string name="helptext">AstroClock measures time by consistent astronomical standards in stead of months and years with changing amount of days.\n<b>Cycles</b>\nTime is measured according to three natural cycles:</string>
+    <string name="helptext">AstroClock visualises time by consistent astronomical standards in stead of months and years with changing amount of days.\n<b>Cycles</b>\nTime is measured according to three natural cycles:</string>
     <string name="daycycle"><li><b>Day </b>\t One rotation every 24 hours. Hand at 12 o\'clock position at mid-day.</li></string>
     <string name="mooncycle"><li><b>Moon</b>\t One rotation every 29.53 days. Hand at 12 o\'clock position at full moon.</li></string>
     <string name="yearcycle"><li><b>Year</b>\t One rotation every 365.25 days. Hand at 12 o\'clock postion at the longest day of the year.</li></string>
     <string name="themedisclaimer">The hands always turn in clockwise direction but the 12 o\'clock positions could be different in some themes.</string>
-    <string name="sunrisesunset"><b>Sun rise &amp; Sun set</b>\nWithin the day cylce are indicators showing the start and end of day and night.</string>
-    <string name="alerthelp"><b>Status Bar Notifications</b>\nBy enabling alerts you can receive up to 12 different recurring notifications, even when your screen is off.</string>
+    <string name="sunrisesunset"><b>Sun rise &amp; Sun set</b>\nWithin the day cylce there are indicators showing the start and end of day and night.</string>
+    <string name="alerthelp"><b>Status Bar Notifications</b>\nBy enabling alerts you can receive up to 12 different recurring notifications, even when the screen is off.</string>
     <string name="otherfeatures"><b>Homescreen</b>\nAstroClock also comes with a homescreen widget and a battery efficient live wallpaper.</string>
     <string name="maketheme"><b>Make your own Theme</b>\nFor instructions on creating your own theme and sharing it with others, please visit android.arnodenhond.com/apps/astroclock/skins</string>
     <string name="broadcasthelp"><b>Receive Broadcasts</b>\nAstroClock sends out broadcast intents which other apps can receive. See android.arnodenhond.com/apps/astroclock/broadcast-intents for more information.</string>
@@ -26,7 +26,7 @@
     
    	<string name="supportheader"><b>Support AstroClock</b>\nI hope you like my app! If so, please let somebody know by pressing some of these buttons. Thanks!</string>
     <string name="shareurl">Share this app on your social network</string>
-    <string name="postcomment">Post a rating &amp; comment in Play</string>
+    <string name="postcomment">Post a rating &amp; comment in the Play Store</string>
     <string name="sendfeedback">Send me your questions or suggestions</string>
 <!-- 
 	<string name="upgradeheader"><b>Sunrise Alarm</b>\nIf you want to wake up every day at sunrise but AstroClock\'s notification beep doesn\'t awaken you, then please consider downloading Sunrise alarm.\nIt\'s not free but by paying a tiny monthly fee you could show your appreciation for AstroClock and support further development of this and other apps. Thank you!</string>

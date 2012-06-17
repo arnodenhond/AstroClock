@@ -39,10 +39,10 @@
 
             <TextView
                 android:id="@+id/TextView"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:autoLink="all"
-                android:gravity="center" >
+                android:textColor="@android:color/white"
+                android:autoLink="all" >
             </TextView>
         </LinearLayout>
 
@@ -53,19 +53,23 @@
             android:layout_alignBottom="@id/selector"
             android:layout_alignTop="@id/selector"
             android:gravity="center"
+            android:orientation="vertical"
             android:visibility="gone" >
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="@string/downloading"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ProgressBar
+                android:id="@+id/downloadprogress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:max="7" />
         </LinearLayout>
 
         <Button
@@ -74,34 +78,37 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/selector"
             android:text="@string/settheme" />
-        <!--
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settheme"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_bright" />
+
         <LinearLayout
             android:id="@+id/backgroundlayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/selector"
-            android:visibility="gone" >
+            android:layout_below="@id/divider"
+            android:gravity="center"
+            android:orientation="vertical" >
 
             <CheckBox
                 android:id="@+id/usebackgroundsetting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Use a background Image" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon" />
+                android:text="@string/usebackground"/>
 
             <Button
                 android:id="@+id/selectbackgroundbutton"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Image" />
+                android:text="@string/selectimage" />
         </LinearLayout>
-        -->
     </RelativeLayout>
 
 </ScrollView>

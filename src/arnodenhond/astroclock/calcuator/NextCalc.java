@@ -161,11 +161,6 @@ public class NextCalc {
 		return c.getTimeInMillis();
 	}
 
-	private double getSun(double up, double down) {
-		double uptime = (down > up ? (down - up) : 24 - (up - down));
-		return (uptime / 12d) / 2d;
-	}
-
 	public long getNextFullMoon() {
 		long time = PhaseOfMoon.TimeOf(3.1416d, System.currentTimeMillis());
 		if (time < System.currentTimeMillis())

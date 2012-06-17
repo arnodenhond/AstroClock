@@ -13,11 +13,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Window;
@@ -145,7 +151,14 @@ public class AstroClock extends Activity {
 		super.onResume();
 		tracker.trackPageView("/AstroClockActivityReload");
 		findViewById(R.id.adView).setVisibility(View.GONE);
+		PrefsReader pr = new PrefsReader(this);
+		if (pr.isUseBackground()) {
+			getWindow().setBackgroundDrawable(new BitmapDrawable(AstroClock.loadFullImage(this, Uri.parse(pr.getBackgroundImage()))));
+		} else {
+			getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
+		}
 
+		
 		final ImageView iv = (ImageView) findViewById(R.id.clock);
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.loading);
 		iv.postDelayed(new Runnable() {
@@ -214,5 +227,31 @@ public class AstroClock extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		tracker.stopSession();
+	}
+	
+	public static Bitmap loadFullImage( Context context, Uri photoUri  ) {
+	    Cursor photoCursor = null;
+
+	    try {
+	        // Attempt to fetch asset filename for image
+	        String[] projection = { MediaStore.Images.Media.DATA };
+	        photoCursor = context.getContentResolver().query( photoUri, 
+	                                                    projection, null, null, null );
+
+	        if ( photoCursor != null && photoCursor.getCount() == 1 ) {
+	            photoCursor.moveToFirst();
+	            String photoFilePath = photoCursor.getString(
+	                photoCursor.getColumnIndex(MediaStore.Images.Media.DATA) );
+
+	            // Load image from path
+	            return BitmapFactory.decodeFile( photoFilePath, null );
+	        }
+	    } finally {
+	        if ( photoCursor != null ) {
+	            photoCursor.close();
+	        }
+	    }
+
+	    return null;
 	}
 }

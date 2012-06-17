@@ -3,8 +3,10 @@
 
     <string name="downloading">Downloading..</string>
     <string name="settheme">Set Theme</string>
+    <string name="themestored">Theme Stored</string>
     <string name="nodownloadtitle">Could not download</string>
     <string name="nodownloadbody">The selected theme could not be downloaded.\nEnable a wireless connection in the system settings to be able to download themes.</string>
     <string name="nodownloadbutton">Wireless Settings</string>
-
+	<string name="usebackground">Use a background image</string>
+	<string name="selectimage">Select Image</string>
 </resources>
