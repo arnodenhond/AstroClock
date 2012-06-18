@@ -29,6 +29,7 @@ import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclock.widget.ACAppWidgetProvider;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -37,6 +38,7 @@ import com.google.android.maps.MapView;
 public class Map extends MapActivity {
 
 	GoogleAnalyticsTracker tracker;
+	AdView adView;
 
 	private static final int DIALOG_LOCATION = 1;
 	Overlay overlay;
@@ -55,7 +57,7 @@ public class Map extends MapActivity {
 		tracker.trackPageView("/Map");
 
 		setContentView(R.layout.map);
-		AstroClock.setupAd(this);
+		adView = AstroClock.setupAd(this);
 		mv = (MapView) findViewById(R.id.mapview);
 		mv.setBuiltInZoomControls(true);
 		FrameLayout.LayoutParams zoomParams = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -208,5 +210,6 @@ public class Map extends MapActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		tracker.stopSession();
+		adView.destroy();
 	}
 }

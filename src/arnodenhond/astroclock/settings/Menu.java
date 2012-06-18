@@ -18,11 +18,13 @@ import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class Menu extends ListActivity {
 
 	GoogleAnalyticsTracker tracker;
+	AdView adView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class Menu extends ListActivity {
 		};
 
 		setListAdapter(adapter);
-		AstroClock.setupAd(this);
+		adView = AstroClock.setupAd(this);
 
 		// hack for widget
 		if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -101,5 +103,6 @@ public class Menu extends ListActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		tracker.stopSession();
+		adView.destroy();
 	}
 }

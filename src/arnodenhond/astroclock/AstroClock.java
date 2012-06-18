@@ -48,6 +48,7 @@ public class AstroClock extends Activity {
 	private static final int DIALOG_WELCOME = 1;
 	PendingIntent pi;
 	GoogleAnalyticsTracker tracker;
+	AdView adView;
 
 	private boolean supportsAPILevel11() {
 		return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB);
@@ -83,7 +84,7 @@ public class AstroClock extends Activity {
 			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) findViewById(R.id.adView).getLayoutParams();
 			lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		}
-		setupAd(this);
+		adView = setupAd(this);
 	}
 
 	@Override
@@ -161,7 +162,7 @@ public class AstroClock extends Activity {
 		
 		final ImageView iv = (ImageView) findViewById(R.id.clock);
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.loading);
-		iv.postDelayed(new Runnable() {
+		iv.post(new Runnable() {
 			@Override
 			public void run() {
 				PrefsReader pr = new PrefsReader(AstroClock.this);
@@ -173,7 +174,7 @@ public class AstroClock extends Activity {
 				iv.setImageBitmap(new BitmapMaker(AstroClock.this,480, latitude, longitude, theme).makeBitmap());
 				pb.setVisibility(View.GONE);
 			}
-		}, 100);
+		});
 
 		Intent pintent = new Intent(this, AstroClock.class);
 		pintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -211,21 +212,21 @@ public class AstroClock extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	public static void setupAd(Activity activity) {
-		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.DONUT)
-			return;
+	public static AdView setupAd(Activity activity) {
 		PrefsReader prefs = new PrefsReader(activity);
 		AdView adView = (AdView) activity.findViewById(R.id.adView);
 		AdRequest adrequest = new AdRequest();
 		adrequest.setLocation(AstroClock.getLatestOrSaved(activity));
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		adView.loadAd(adrequest);
+		return adView;
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		tracker.stopSession();
+		adView.destroy();
 	}
 	
 	public static Bitmap loadFullImage( Context context, Uri photoUri  ) {

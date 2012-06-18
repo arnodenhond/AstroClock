@@ -16,6 +16,7 @@ import arnodenhond.astroclock.calcuator.Time;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.tapjoy.TapjoyConnect;
 import com.tapjoy.TapjoyFeaturedAppNotifier;
@@ -26,6 +27,7 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
 
 	TabHost mTabHost;
 	GoogleAnalyticsTracker tracker;
+	AdView adView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
 		TapjoyConnect.getTapjoyConnectInstance().getFeaturedApp(this);
 
 		setContentView(R.layout.about);
-		AstroClock.setupAd(this);
+		adView = AstroClock.setupAd(this);
 		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup();
 		mTabHost.addTab(mTabHost.newTabSpec("AboutApp").setContent(R.id.aboutapp).setIndicator(getString(R.string.aboutapptitle)));
@@ -144,5 +146,6 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
 	protected void onDestroy() {
 		super.onDestroy();
 		tracker.stopSession();
+		adView.destroy();
 	}
 }

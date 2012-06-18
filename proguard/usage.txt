@@ -68,7 +68,7 @@ arnodenhond.astroclock.settings.PrefsReader:
 arnodenhond.astroclock.settings.location.Map:
     private static final int DIALOG_LOCATION
 arnodenhond.astroclock.settings.location.Overlay:
-    13:15:public Overlay(android.graphics.drawable.Drawable)
+    14:16:public Overlay(android.graphics.drawable.Drawable)
 arnodenhond.astroclock.settings.themes.Theme:
     public static final int DIALOG_NODOWNLOAD
 arnodenhond.astroclocklite.BuildConfig
@@ -110,6 +110,7 @@ com.google.ads.AdRequest:
     307:308:public com.google.ads.AdRequest clearBirthday()
     325:326:public com.google.ads.AdRequest setPlusOneOptOut(boolean)
     339:339:public boolean getPlusOneOptOut()
+    365:370:public com.google.ads.AdRequest addKeyword(java.lang.String)
     383:388:public com.google.ads.AdRequest addKeywords(java.util.Set)
     399:403:public java.util.Set getKeywords()
     413:417:private synchronized com.google.ads.mediation.admob.AdMobAdapterExtras a()
@@ -136,6 +137,7 @@ com.google.ads.AdView:
     87:100:public AdView(android.app.Activity,com.google.ads.AdSize,java.lang.String)
     263:264:public void destroy()
     483:487:public boolean isReady()
+    534:535:public void setAdListener(com.google.ads.AdListener)
     546:549:public void stopLoading()
 com.google.ads.InterstitialAd:
     private com.google.ads.internal.d a

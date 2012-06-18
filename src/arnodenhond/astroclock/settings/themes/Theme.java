@@ -35,12 +35,14 @@ import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclock.widget.ACAppWidgetProvider;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class Theme extends Activity {
 
 	GoogleAnalyticsTracker tracker;
 	public static final int DIALOG_NODOWNLOAD = 1;
+	AdView adView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class Theme extends Activity {
 		tracker.startNewSession("UA-5436860-15", 20, this);
 		tracker.trackPageView("/Theme");
 		setContentView(R.layout.themeselector);
-		AstroClock.setupAd(this);
+		adView = AstroClock.setupAd(this);
 		final TextView textview = (TextView) findViewById(R.id.TextView);
 		textview.setText(getResources().getStringArray(R.array.artists)[0]);
 		final Button settheme = (Button) findViewById(R.id.settheme);
@@ -220,5 +222,6 @@ public class Theme extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		tracker.stopSession();
+		adView.destroy();
 	}
 }

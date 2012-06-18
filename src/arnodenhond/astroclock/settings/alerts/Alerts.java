@@ -5,12 +5,14 @@ import android.os.Bundle;
 import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclocklite.R;
 
+import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class Alerts extends ExpandableListActivity {
 
 	GoogleAnalyticsTracker tracker;
-
+	AdView adView;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,7 +22,7 @@ public class Alerts extends ExpandableListActivity {
 		tracker.trackPageView("/Alerts");
 
 		setContentView(R.layout.alerts);
-		AstroClock.setupAd(this);
+		adView = AstroClock.setupAd(this);
 
 		AlertsAdapter adapter = new AlertsAdapter(this, null, 0, null, null, null, 0, null, null);
 		setListAdapter(adapter);
@@ -32,5 +34,6 @@ public class Alerts extends ExpandableListActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		tracker.stopSession();
+		adView.destroy();
 	}
 }

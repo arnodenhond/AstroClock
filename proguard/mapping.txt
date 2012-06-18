@@ -9,8 +9,6 @@ arnodenhond.astroclock.About -> arnodenhond.astroclock.About:
     void postcomment(android.view.View) -> postcomment
     void shareurl(android.view.View) -> shareurl
     void getFeaturedAppResponse$6f5ad3cd() -> a
-    void onFailedToReceiveAd$7b642d25() -> b
-    void onReceiveAd$51b51722() -> c
     void onDestroy() -> onDestroy
 arnodenhond.astroclock.AstroClock -> arnodenhond.astroclock.AstroClock:
     android.app.PendingIntent pi -> a
@@ -18,11 +16,13 @@ arnodenhond.astroclock.AstroClock -> arnodenhond.astroclock.AstroClock:
     boolean supportsAPILevel11() -> a
     void onCreate(android.os.Bundle) -> onCreate
     android.app.Dialog onCreateDialog(int) -> onCreateDialog
-    android.location.Location getLatestOrSaved(android.content.Context) -> a
+    void setAlarms(android.content.Context) -> a
+    void getLocation(android.content.Context) -> b
     void onResume() -> onResume
     void onPause() -> onPause
     void clicked(android.view.View) -> clicked
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    void setupAd(android.app.Activity) -> a
     void onDestroy() -> onDestroy
     android.graphics.Bitmap loadFullImage(android.content.Context,android.net.Uri) -> a
 arnodenhond.astroclock.AstroClock$1 -> arnodenhond.astroclock.a:
@@ -48,7 +48,8 @@ arnodenhond.astroclock.BitmapMaker -> arnodenhond.astroclock.c:
     boolean north -> l
     int dimension -> m
     int theme -> n
-    android.graphics.Bitmap readBitmapDrawable(java.lang.String) -> a
+    android.util.DisplayMetrics metrics -> o
+    android.graphics.Bitmap readBitmap(java.lang.String) -> a
     android.graphics.Bitmap makeBitmap() -> a
 arnodenhond.astroclock.alerts.AlarmReceiver -> arnodenhond.astroclock.alerts.AlarmReceiver:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
@@ -111,7 +112,7 @@ arnodenhond.astroclock.calcuator.Time -> arnodenhond.astroclock.a.e:
     java.lang.String toString() -> toString
 arnodenhond.astroclock.livewallpaper.ACWallpaperService -> arnodenhond.astroclock.livewallpaper.ACWallpaperService:
     android.service.wallpaper.WallpaperService$Engine onCreateEngine() -> onCreateEngine
-arnodenhond.astroclock.livewallpaper.ACWallpaperService$MyWallpaperEngine -> arnodenhond.astroclock.livewallpaper.a:
+arnodenhond.astroclock.livewallpaper.ACWallpaperService$ACEngine -> arnodenhond.astroclock.livewallpaper.a:
     android.os.Handler handler -> b
     java.lang.Runnable drawRunner -> c
     android.graphics.Paint paint -> d
@@ -123,16 +124,14 @@ arnodenhond.astroclock.livewallpaper.ACWallpaperService$MyWallpaperEngine -> arn
     android.os.Bundle onCommand(java.lang.String,int,int,int,android.os.Bundle,boolean) -> onCommand
     void onSurfaceDestroyed(android.view.SurfaceHolder) -> onSurfaceDestroyed
     void onSurfaceChanged(android.view.SurfaceHolder,int,int,int) -> onSurfaceChanged
-    void access$0(arnodenhond.astroclock.livewallpaper.ACWallpaperService$MyWallpaperEngine) -> a
-arnodenhond.astroclock.livewallpaper.ACWallpaperService$MyWallpaperEngine$1 -> arnodenhond.astroclock.livewallpaper.b:
-    arnodenhond.astroclock.livewallpaper.ACWallpaperService$MyWallpaperEngine this$1 -> a
+    void access$0(arnodenhond.astroclock.livewallpaper.ACWallpaperService$ACEngine) -> a
+arnodenhond.astroclock.livewallpaper.ACWallpaperService$ACEngine$1 -> arnodenhond.astroclock.livewallpaper.b:
+    arnodenhond.astroclock.livewallpaper.ACWallpaperService$ACEngine this$1 -> a
     void run() -> run
 arnodenhond.astroclock.settings.Menu -> arnodenhond.astroclock.settings.Menu:
     com.google.android.apps.analytics.GoogleAnalyticsTracker tracker -> a
     void onCreate(android.os.Bundle) -> onCreate
     void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
-    void onFailedToReceiveAd$7b642d25() -> b
-    void onReceiveAd$51b51722() -> c
     void onDestroy() -> onDestroy
 arnodenhond.astroclock.settings.Menu$1 -> arnodenhond.astroclock.settings.a:
     arnodenhond.astroclock.settings.Menu this$0 -> a
@@ -192,8 +191,6 @@ arnodenhond.astroclock.settings.PrefsReader -> arnodenhond.astroclock.settings.b
 arnodenhond.astroclock.settings.alerts.Alerts -> arnodenhond.astroclock.settings.alerts.Alerts:
     com.google.android.apps.analytics.GoogleAnalyticsTracker tracker -> a
     void onCreate(android.os.Bundle) -> onCreate
-    void onFailedToReceiveAd$7b642d25() -> b
-    void onReceiveAd$51b51722() -> c
     void onDestroy() -> onDestroy
 arnodenhond.astroclock.settings.alerts.AlertsAdapter -> arnodenhond.astroclock.settings.alerts.a:
     android.view.LayoutInflater li -> a
@@ -246,8 +243,6 @@ arnodenhond.astroclock.settings.location.Map -> arnodenhond.astroclock.settings.
     void acquireLocation(android.view.View) -> acquireLocation
     android.app.Dialog onCreateDialog(int) -> onCreateDialog
     void onPause() -> onPause
-    void onFailedToReceiveAd$7b642d25() -> b
-    void onReceiveAd$51b51722() -> c
     void onDestroy() -> onDestroy
 arnodenhond.astroclock.settings.location.Map$1 -> arnodenhond.astroclock.settings.location.a:
     arnodenhond.astroclock.settings.location.Map this$0 -> a
@@ -257,6 +252,7 @@ arnodenhond.astroclock.settings.location.Overlay -> arnodenhond.astroclock.setti
     com.google.android.maps.OverlayItem createItem(int) -> createItem
     int size() -> size
     boolean onTap(com.google.android.maps.GeoPoint,com.google.android.maps.MapView) -> onTap
+    void draw(android.graphics.Canvas,com.google.android.maps.MapView,boolean) -> draw
 arnodenhond.astroclock.settings.themes.DownloadTask -> arnodenhond.astroclock.settings.themes.a:
     android.view.View progresslayout -> a
     android.view.View selector -> b
@@ -264,6 +260,7 @@ arnodenhond.astroclock.settings.themes.DownloadTask -> arnodenhond.astroclock.se
     boolean fail -> d
     android.content.Context context -> e
     android.widget.ProgressBar pb -> f
+    android.widget.Button button -> g
     void onPreExecute() -> onPreExecute
     java.lang.Void doInBackground$10299ca() -> a
     void saveToFile(byte[],java.lang.String) -> a
@@ -277,8 +274,6 @@ arnodenhond.astroclock.settings.themes.Theme -> arnodenhond.astroclock.settings.
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void onPause() -> onPause
     android.app.Dialog onCreateDialog(int) -> onCreateDialog
-    void onFailedToReceiveAd$7b642d25() -> b
-    void onReceiveAd$51b51722() -> c
     void onDestroy() -> onDestroy
 arnodenhond.astroclock.settings.themes.Theme$1 -> arnodenhond.astroclock.settings.themes.b:
     arnodenhond.astroclock.settings.themes.Theme this$0 -> a
@@ -288,8 +283,8 @@ arnodenhond.astroclock.settings.themes.Theme$1 -> arnodenhond.astroclock.setting
     void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
 arnodenhond.astroclock.settings.themes.Theme$2 -> arnodenhond.astroclock.settings.themes.c:
     arnodenhond.astroclock.settings.themes.Theme this$0 -> a
-    android.widget.Button val$settheme -> b
-    android.widget.Gallery val$gallery -> c
+    android.widget.Gallery val$gallery -> b
+    android.widget.Button val$settheme -> c
     arnodenhond.astroclock.settings.PrefsReader val$pr -> d
     void onClick(android.view.View) -> onClick
 arnodenhond.astroclock.settings.themes.Theme$3 -> arnodenhond.astroclock.settings.themes.d:
@@ -361,8 +356,6 @@ com.google.ads.AdActivity$StaticMethodWrapper -> com.google.ads.b:
     boolean isShowing() -> a
     void launchAdActivity(com.google.ads.internal.d,com.google.ads.internal.e) -> a
 com.google.ads.AdListener -> com.google.ads.c:
-    void onReceiveAd$51b51722() -> c
-    void onFailedToReceiveAd$7b642d25() -> b
 com.google.ads.AdRequest -> com.google.ads.d:
     java.text.SimpleDateFormat a -> b
     java.lang.reflect.Method b -> c
@@ -378,7 +371,6 @@ com.google.ads.AdRequest -> com.google.ads.d:
     java.lang.String TEST_EMULATOR -> a
     java.util.Set l -> m
     com.google.ads.AdRequest setKeywords(java.util.Set) -> a
-    com.google.ads.AdRequest addKeyword(java.lang.String) -> a
     com.google.ads.AdRequest setNetworkExtras(com.google.ads.mediation.NetworkExtras) -> a
     java.lang.Object getNetworkExtras(java.lang.Class) -> a
     com.google.ads.AdRequest setLocation(android.location.Location) -> a
@@ -432,7 +424,6 @@ com.google.ads.AdView -> com.google.ads.AdView:
     java.lang.String a(java.lang.String,android.content.Context,android.util.AttributeSet,boolean,boolean) -> a
     java.util.Set b$565bd434(java.lang.String,android.content.Context,android.util.AttributeSet) -> a
     void loadAd(com.google.ads.AdRequest) -> a
-    void setAdListener(com.google.ads.AdListener) -> a
 com.google.ads.InterstitialAd -> com.google.ads.h:
 com.google.ads.a -> com.google.ads.i:
     java.lang.String a -> a
@@ -1327,7 +1318,7 @@ com.google.android.apps.analytics.GoogleAnalyticsTracker -> com.google.android.a
     com.google.android.apps.analytics.GoogleAnalyticsTracker getInstance() -> a
     void startNewSession(java.lang.String,int,android.content.Context) -> a
     void startNewSession(java.lang.String,android.content.Context) -> a
-    void trackEvent(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void trackEvent$78a4d1d0(java.lang.String,java.lang.String,java.lang.String) -> a
     void trackPageView(java.lang.String) -> a
     void createEvent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int) -> a
     void maybeScheduleNextDispatch() -> f
