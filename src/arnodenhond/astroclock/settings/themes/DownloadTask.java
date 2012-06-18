@@ -35,6 +35,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 		this.theme = theme;
 		this.context = context;
 		this.pb = (ProgressBar) progresslayout.findViewById(R.id.downloadprogress);
+		pb.setProgress(0);
 	}
 
 	@Override

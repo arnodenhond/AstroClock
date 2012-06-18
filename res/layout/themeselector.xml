@@ -44,6 +44,12 @@
                 android:textColor="@android:color/white"
                 android:autoLink="all" >
             </TextView>
+            
+			<Button
+	            android:id="@+id/settheme"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/settheme" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,18 +78,11 @@
                 android:max="7" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/settheme"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/selector"
-            android:text="@string/settheme" />
-
         <ImageView
             android:id="@+id/divider"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/settheme"
+            android:layout_below="@id/selector"
             android:paddingBottom="5dip"
             android:paddingTop="5dip"
             android:scaleType="fitXY"

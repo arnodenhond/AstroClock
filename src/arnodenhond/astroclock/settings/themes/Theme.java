@@ -86,10 +86,11 @@ public class Theme extends Activity implements AdListener {
 		settheme.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				settheme.setEnabled(false);
 				View progresslayout = findViewById(R.id.downloadprogresslayout);
 				int pos = gallery.getSelectedItemPosition();
 				if (pos != 2) {
-					new DownloadTask(progresslayout, gallery, pos, Theme.this).execute();
+					new DownloadTask(progresslayout, findViewById(R.id.selector), pos, Theme.this).execute();
 				} else {
 					progresslayout.setVisibility(View.VISIBLE);
 					deleteFile("background.png");
