@@ -1,6 +1,5 @@
 package arnodenhond.astroclock.settings.alerts;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +7,7 @@ import java.util.Map;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -113,34 +113,47 @@ public class AlertsAdapter extends SimpleExpandableListAdapter {
 	}
 
 	private String getNext(String key) {
-		if (key == PrefsReader.KEY_ALERT_MIDDAY)
-			return new SimpleDateFormat("dd, HH:mm").format(new Date(nc.getNextMidDay()));
-		if (key == PrefsReader.KEY_ALERT_MIDNIGHT)
-			return new SimpleDateFormat("dd, HH:mm").format(new Date(nc.getNextMidNight()));
-		if (key == PrefsReader.KEY_ALERT_SUNRISE)
-			return new SimpleDateFormat("dd, HH:mm").format(new Date(nc.getNextSunRise()));
-		if (key == PrefsReader.KEY_ALERT_SUNSET)
-			return new SimpleDateFormat("dd, HH:mm").format(new Date(nc.getNextSunSet()));
+		Date date = new Date();
+		if (key == PrefsReader.KEY_ALERT_MIDDAY) {
+			 date = new Date(nc.getNextMidDay());
+		}
+		if (key == PrefsReader.KEY_ALERT_MIDNIGHT) {
+			 date = new Date(nc.getNextMidNight());
+		}
+		if (key == PrefsReader.KEY_ALERT_SUNRISE) {
+			 date = new Date(nc.getNextSunRise());
+		}
+		if (key == PrefsReader.KEY_ALERT_SUNSET) {
+			 date = new Date(nc.getNextSunSet());
+		}
 
-		if (key == PrefsReader.KEY_ALERT_FULLMOON)
-			return new SimpleDateFormat("MMM dd, HH:mm").format(new Date(nc.getNextFullMoon()));
-		if (key == PrefsReader.KEY_ALERT_NEWMOON)
-			return new SimpleDateFormat("MMM dd, HH:mm").format(new Date(nc.getNextNewMoon()));
-		if (key == PrefsReader.KEY_ALERT_FIRSTQUARTER)
-			return new SimpleDateFormat("MMM dd, HH:mm").format(new Date(nc.getNextFirstQuarter()));
-		if (key == PrefsReader.KEY_ALERT_LASTQUARTER)
-			return new SimpleDateFormat("MMM dd, HH:mm").format(new Date(nc.getNextLastQuarter()));
+		if (key == PrefsReader.KEY_ALERT_FULLMOON) {
+			 date = new Date(nc.getNextFullMoon());
+		}
+		if (key == PrefsReader.KEY_ALERT_NEWMOON) {
+			 date = new Date(nc.getNextNewMoon());
+		}
+		if (key == PrefsReader.KEY_ALERT_FIRSTQUARTER) {
+			 date = new Date(nc.getNextFirstQuarter());
+		}
+		if (key == PrefsReader.KEY_ALERT_LASTQUARTER) {
+			 date = new Date(nc.getNextLastQuarter());
+		}
 
-		if (key == PrefsReader.KEY_ALERT_NORTHERNSOLSTICE)
-			return new SimpleDateFormat("MMM dd yyyy, HH:mm").format(new Date(nc.getNextNSol()));
-		if (key == PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE)
-			return new SimpleDateFormat("MMM dd yyyy, HH:mm").format(new Date(nc.getNextSSol()));
-		if (key == PrefsReader.KEY_ALERT_NORTHWARDEQUINOX)
-			return new SimpleDateFormat("MMM dd yyyy, HH:mm").format(new Date(nc.getNextNEq()));
-		if (key == PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX)
-			return new SimpleDateFormat("MMM dd yyyy, HH:mm").format(new Date(nc.getNextSEq()));
+		if (key == PrefsReader.KEY_ALERT_NORTHERNSOLSTICE) {
+			 date = new Date(nc.getNextNSol());
+		}
+		if (key == PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE) {
+			 date = new Date(nc.getNextSSol());
+		}
+		if (key == PrefsReader.KEY_ALERT_NORTHWARDEQUINOX) {
+			 date = new Date(nc.getNextNEq());
+		}
+		if (key == PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX) {
+			 date = new Date(nc.getNextSEq());
+		}
+		return DateFormat.getDateFormat(context).format(date)+" "+DateFormat.getTimeFormat(context).format(date);
 
-		return "error";
 	}
 
 	@Override

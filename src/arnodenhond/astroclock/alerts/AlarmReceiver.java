@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.text.format.DateFormat;
 import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.calcuator.NextCalc;
 import arnodenhond.astroclock.settings.PrefsReader;
@@ -138,19 +139,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 			// docs contradict name: will alert sound play on each alert (while
 			// older notification is still pending)?
 			// not.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
-			SimpleDateFormat sdf = null;
-			switch (notidtype) {
-			case NOTID_DAY:
-				sdf = new SimpleDateFormat("dd, HH:mm");
-				break;
-			case NOTID_MOON:
-				sdf = new SimpleDateFormat("MMM dd, HH:mm");
-				break;
-			case NOTID_YEAR:
-				sdf = new SimpleDateFormat("MMM dd yyyy, HH:mm");
-				break;
-			}
-			String datestring = sdf.format(new Date());
+			//TODO use system date time format
+			String datestring = DateFormat.getDateFormat(context).format(new Date())+" "+DateFormat.getTimeFormat(context).format(new Date());
 			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(context, AstroClock.class), 0));
 			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			nm.notify(notidtype, notification);

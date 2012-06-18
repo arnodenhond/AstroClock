@@ -3,7 +3,7 @@
 
     <!-- about app -->
     <string name="aboutapptitle">Help</string>
-    <string name="helptext">AstroClock visualises time by consistent astronomical standards in stead of months and years with changing amount of days.\n<b>Cycles</b>\nTime is measured according to three natural cycles:</string>
+    <string name="helptext">AstroClock visualises time according to consistent astronomical standards in stead of months and years with changing amount of days.\n<b>Cycles</b>\nTime is measured according to three natural cycles:</string>
     <string name="daycycle"><li><b>Day </b>\t One rotation every 24 hours. Hand at 12 o\'clock position at mid-day.</li></string>
     <string name="mooncycle"><li><b>Moon</b>\t One rotation every 29.53 days. Hand at 12 o\'clock position at full moon.</li></string>
     <string name="yearcycle"><li><b>Year</b>\t One rotation every 365.25 days. Hand at 12 o\'clock postion at the longest day of the year.</li></string>
