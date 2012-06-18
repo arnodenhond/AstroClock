@@ -74,8 +74,8 @@ public class AstroClock extends Activity {
 		PrefsReader pr = new PrefsReader(this);
 		if (pr.isFirstrun()) {
 			showDialog(DIALOG_WELCOME);
-			getLocation();
-			setAlarms();
+			getLocation(this);
+			setAlarms(this);
 			pr.setFirstrun(false);
 		}
 		setContentView(R.layout.activity);
@@ -83,7 +83,7 @@ public class AstroClock extends Activity {
 			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) findViewById(R.id.adView).getLayoutParams();
 			lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		}
-		setupAd();
+		setupAd(this);
 	}
 
 	@Override
@@ -106,14 +106,14 @@ public class AstroClock extends Activity {
 		return super.onCreateDialog(id);
 	}
 
-	private void setAlarms() {
-		SharedPreferences prefs = getSharedPreferences(PrefsReader.PREF_ALERTS, MODE_PRIVATE);
+	public static void setAlarms(Context context) {
+		SharedPreferences prefs = context.getSharedPreferences(PrefsReader.PREF_ALERTS, MODE_PRIVATE);
 		prefs.edit().putBoolean(PrefsReader.KEY_ALERT_VIBRATE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_FULLMOON, true).commit();
-		sendBroadcast(new Intent(this, BootReceiver.class));
+		context.sendBroadcast(new Intent(context, BootReceiver.class));
 	}
 
-	private void getLocation() {
-		LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+	public static void getLocation(Context context) {
+		LocationManager locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
 		List<String> providers = locationManager.getProviders(new Criteria(), true);
 		if (!providers.isEmpty()) {
 			Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
@@ -121,7 +121,7 @@ public class AstroClock extends Activity {
 				int lat = (int) (location.getLatitude() * 1E6);
 				int lon = (int) (location.getLongitude() * 1E6);
 				GeoPoint gp = new GeoPoint(lat, lon);
-				new PrefsReader(this).setGeoPoint(gp);
+				new PrefsReader(context).setGeoPoint(gp);
 			}
 		}
 	}
@@ -211,15 +211,15 @@ public class AstroClock extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	private void setupAd() {
-		PrefsReader prefs = new PrefsReader(this);
-		AdView adView = (AdView) this.findViewById(R.id.adView);
+	public static void setupAd(Activity activity) {
+		PrefsReader prefs = new PrefsReader(activity);
+		AdView adView = (AdView) activity.findViewById(R.id.adView);
 		AdRequest adrequest = new AdRequest();
 		adrequest.addKeyword(prefs.getKeywords());
 		Location location = new Location("Manual");
 		location.setLatitude(prefs.getLatitude());
 		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
+		adrequest.setLocation(AstroClock.getLatestOrSaved(activity));
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
 		// adView.setAdListener(this);
 		adView.loadAd(adrequest);

@@ -21,6 +21,12 @@ public class ACWallpaperService extends WallpaperService {
 
 	@Override
 	public Engine onCreateEngine() {
+		PrefsReader settings = new PrefsReader(this);
+		if (settings.isFirstrun()) {
+			AstroClock.getLocation(this);
+			AstroClock.setAlarms(this);
+			settings.setFirstrun(false);
+		}
 		return new MyWallpaperEngine();
 	}
 

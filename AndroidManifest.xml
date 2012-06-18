@@ -60,13 +60,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="arnodenhond.astroclock.About" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.INFO" />
-            </intent-filter>
-        </activity>
+        <activity android:name="arnodenhond.astroclock.About" />
         <activity
             android:name="arnodenhond.astroclock.settings.Menu"
             android:exported="true" />

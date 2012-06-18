@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import arnodenhond.astroclock.settings.PrefsReader;
@@ -28,12 +29,14 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 	private boolean fail = false;
 	private Context context;
 	private ProgressBar pb;
+	private Button button;
 
-	public DownloadTask(View progresslayout, View selector, int theme, Context context) {
+	public DownloadTask(View progresslayout, View selector, Button button, int theme, Context context) {
 		this.progresslayout = progresslayout;
 		this.selector = selector;
 		this.theme = theme;
 		this.context = context;
+		this.button = button;
 		this.pb = (ProgressBar) progresslayout.findViewById(R.id.downloadprogress);
 		pb.setProgress(0);
 	}
@@ -109,6 +112,8 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 		if (fail) {
 			((Activity) context).showDialog(Theme.DIALOG_NODOWNLOAD);
 		} else {
+			button.setText(R.string.themestored);
+			button.setEnabled(false);
 			new PrefsReader(context).setTheme(this.theme);
 			Toast.makeText(context, R.string.themestored, Toast.LENGTH_SHORT).show();
 		}

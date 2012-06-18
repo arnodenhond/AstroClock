@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.settings.Menu;
 import arnodenhond.astroclock.settings.PrefsReader;
@@ -16,6 +17,13 @@ import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 public class ACAppWidgetProvider extends AppWidgetProvider {
 
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+		PrefsReader settings = new PrefsReader(context);
+		if (settings.isFirstrun()) {
+			AstroClock.getLocation(context);
+			AstroClock.setAlarms(context);
+			settings.setFirstrun(false);
+		}
+		
 		GoogleAnalyticsTracker tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession("UA-5436860-15", context);
 		tracker.trackEvent("Widget", "Update", "Receiver", 0);
@@ -23,7 +31,7 @@ public class ACAppWidgetProvider extends AppWidgetProvider {
 		tracker.dispatch();
 
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);
-		PrefsReader settings = new PrefsReader(context);
+
 //		int height = context.getResources().getDisplayMetrics().heightPixels;
 //		int width = context.getResources().getDisplayMetrics().widthPixels;
 		BitmapMaker bmmaker = new BitmapMaker(context, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());

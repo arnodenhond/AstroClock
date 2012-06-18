@@ -47,7 +47,7 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdL
 		TapjoyConnect.getTapjoyConnectInstance().getFeaturedApp(this);
 
 		setContentView(R.layout.about);
-		setupAd();
+		AstroClock.setupAd(this);
 		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup();
 		mTabHost.addTab(mTabHost.newTabSpec("AboutApp").setContent(R.id.aboutapp).setIndicator(getString(R.string.aboutapptitle)));
@@ -89,20 +89,6 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdL
 		pb.setMax(max);
 		pb.setProgress(progress);
 
-	}
-
-	private void setupAd() {
-		PrefsReader prefs = new PrefsReader(this);
-		AdView adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest adrequest = new AdRequest();
-		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("Manual");
-		location.setLatitude(prefs.getLatitude());
-		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
-		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
-		adView.setAdListener(this);
-		adView.loadAd(adrequest);
 	}
 
 	public void tapjoyfeaturedapp(View v) {

@@ -30,26 +30,12 @@ public class Alerts extends ExpandableListActivity implements AdListener {
 		tracker.trackPageView("/Alerts");
 
 		setContentView(R.layout.alerts);
-		setupAd();
+		AstroClock.setupAd(this);
 
 		AlertsAdapter adapter = new AlertsAdapter(this, null, 0, null, null, null, 0, null, null);
 		setListAdapter(adapter);
 		getExpandableListView().setGroupIndicator(null);
 
-	}
-
-	private void setupAd() {
-		PrefsReader prefs = new PrefsReader(this);
-		AdView adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest adrequest = new AdRequest();
-		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("Manual");
-		location.setLatitude(prefs.getLatitude());
-		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
-		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
-		adView.setAdListener(this);
-		adView.loadAd(adrequest);
 	}
 
 	@Override

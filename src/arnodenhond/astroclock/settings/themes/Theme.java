@@ -12,6 +12,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
@@ -58,22 +59,23 @@ public class Theme extends Activity implements AdListener {
 		tracker.startNewSession("UA-5436860-15", 20, this);
 		tracker.trackPageView("/Theme");
 		setContentView(R.layout.themeselector);
-		setupAd();
+		AstroClock.setupAd(this);
 		final TextView textview = (TextView) findViewById(R.id.TextView);
 		textview.setText(getResources().getStringArray(R.array.artists)[0]);
 		final Button settheme = (Button) findViewById(R.id.settheme);
 		final Gallery gallery = (Gallery) findViewById(R.id.Gallery);
 		gallery.setAdapter(new ImageAdapter(this));
 		final PrefsReader pr = new PrefsReader(this);
-		gallery.setSelection(pr.getTheme());
 		gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
 				textview.setText(getResources().getStringArray(R.array.artists)[pos]);
 				PrefsReader pr = new PrefsReader(Theme.this);
 				if (pos == pr.getTheme()) {
+					settheme.setText(R.string.themestored);
 					settheme.setEnabled(false);
 				} else {
+					settheme.setText(R.string.settheme);
 					settheme.setEnabled(true);
 				}
 			}
@@ -83,14 +85,14 @@ public class Theme extends Activity implements AdListener {
 
 			}
 		});
+		gallery.setSelection(pr.getTheme());
 		settheme.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				settheme.setEnabled(false);
 				View progresslayout = findViewById(R.id.downloadprogresslayout);
 				int pos = gallery.getSelectedItemPosition();
 				if (pos != 2) {
-					new DownloadTask(progresslayout, findViewById(R.id.selector), pos, Theme.this).execute();
+					new DownloadTask(progresslayout, findViewById(R.id.selector), settheme, pos, Theme.this).execute();
 				} else {
 					progresslayout.setVisibility(View.VISIBLE);
 					deleteFile("background.png");
@@ -103,6 +105,8 @@ public class Theme extends Activity implements AdListener {
 					progresslayout.setVisibility(View.GONE);
 					pr.setTheme(pos);
 					Toast.makeText(Theme.this, R.string.themestored, Toast.LENGTH_SHORT).show();
+					settheme.setText(R.string.themestored);
+					settheme.setEnabled(false);
 				}
 			}
 		});
@@ -183,20 +187,12 @@ public class Theme extends Activity implements AdListener {
 		}
 	}
 
-	private void setupAd() {
-		PrefsReader prefs = new PrefsReader(this);
-		AdView adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest adrequest = new AdRequest();
-		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("Manual");
-		location.setLatitude(prefs.getLatitude());
-		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
-		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
-		adView.setAdListener(this);
-		adView.loadAd(adrequest);
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		AstroClock.setupAd(this);
+		super.onConfigurationChanged(newConfig);
 	}
-
+	
 	@Override
 	public void onPause() {
 		AppWidgetManager awm = AppWidgetManager.getInstance(this);

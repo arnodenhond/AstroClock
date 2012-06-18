@@ -62,7 +62,7 @@ public class Map extends MapActivity implements AdListener {
 		tracker.trackPageView("/Map");
 
 		setContentView(R.layout.map);
-		setupAd();
+		AstroClock.setupAd(this);
 		mv = (MapView) findViewById(R.id.mapview);
 		mv.setBuiltInZoomControls(true);
 		FrameLayout.LayoutParams zoomParams = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -72,20 +72,6 @@ public class Map extends MapActivity implements AdListener {
 		overlay = new Overlay(getResources().getDrawable(R.drawable.mappin), gp);
 		mv.getController().setCenter(gp);
 		mv.getOverlays().add(overlay);
-	}
-
-	private void setupAd() {
-		PrefsReader prefs = new PrefsReader(this);
-		AdView adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest adrequest = new AdRequest();
-		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("Manual");
-		location.setLatitude(prefs.getLatitude());
-		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
-		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
-		adView.setAdListener(this);
-		adView.loadAd(adrequest);
 	}
 
 	public void acquireLocation(View v) {

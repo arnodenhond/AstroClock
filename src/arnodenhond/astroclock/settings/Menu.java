@@ -73,7 +73,7 @@ public class Menu extends ListActivity implements AdListener {
 		};
 
 		setListAdapter(adapter);
-		setupAd();
+		AstroClock.setupAd(this);
 
 		// hack for widget
 		if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -83,20 +83,6 @@ public class Menu extends ListActivity implements AdListener {
 			resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id);
 			setResult(RESULT_OK, resultValue);
 		}
-	}
-
-	private void setupAd() {
-		PrefsReader prefs = new PrefsReader(this);
-		AdView adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest adrequest = new AdRequest();
-		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("Manual");
-		location.setLatitude(prefs.getLatitude());
-		location.setLongitude(prefs.getLongitude());
-		adrequest.setLocation(AstroClock.getLatestOrSaved(this));
-		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
-		adView.setAdListener(this);
-		adView.loadAd(adrequest);
 	}
 
 	@Override
