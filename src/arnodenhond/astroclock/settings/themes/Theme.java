@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -181,19 +182,20 @@ public class Theme extends Activity {
 	
 	@Override
 	public void onPause() {
-		AppWidgetManager awm = AppWidgetManager.getInstance(this);
-
-		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
 		PrefsReader settings = new PrefsReader(this);
-//		int height = getResources().getDisplayMetrics().heightPixels;
-//		int width = getResources().getDisplayMetrics().widthPixels;
-		BitmapMaker bmmaker = new BitmapMaker(this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
-		views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
+
+		AppWidgetManager awm = AppWidgetManager.getInstance(this);
+		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
+		Bitmap bitmap = new BitmapMaker(this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme()).makeBitmap();
+		if (!AstroClock.supportsAPILevel11()) {
+			bitmap = Bitmap.createScaledBitmap(bitmap, 240, 240, true);
+		}
+		views.setImageViewBitmap(R.id.clock, bitmap);
 		Intent menuintent = new Intent(this, Menu.class);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, PendingIntent.FLAG_UPDATE_CURRENT));
-		awm.updateAppWidget(new ComponentName(getApplicationContext(), ACAppWidgetProvider.class), views);
+		awm.updateAppWidget(new ComponentName(this, ACAppWidgetProvider.class), views);
 
 		super.onPause();
 	}

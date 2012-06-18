@@ -11,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -118,23 +119,22 @@ public class Map extends MapActivity {
 	@Override
 	public void onPause() {
 		PrefsReader settings = new PrefsReader(this);
-		settings.setGeoPoint(overlay.getItem(0).getPoint());
 
+		settings.setGeoPoint(overlay.getItem(0).getPoint());
 		removeAlarms();
 		sendBroadcast(new Intent(this, BootReceiver.class));
 
 		AppWidgetManager awm = AppWidgetManager.getInstance(this);
-
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
-
-//		int height = getResources().getDisplayMetrics().heightPixels;
-//		int width = getResources().getDisplayMetrics().widthPixels;
-		BitmapMaker bmmaker = new BitmapMaker(this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
-		views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
+		Bitmap bitmap = new BitmapMaker(this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme()).makeBitmap();
+		if (!AstroClock.supportsAPILevel11()) {
+			bitmap = Bitmap.createScaledBitmap(bitmap, 240, 240, true);
+		}
+		views.setImageViewBitmap(R.id.clock, bitmap);
 		Intent menuintent = new Intent(this, Menu.class);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
+		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, PendingIntent.FLAG_UPDATE_CURRENT));
 		awm.updateAppWidget(new ComponentName(this, ACAppWidgetProvider.class), views);
 
 		super.onPause();

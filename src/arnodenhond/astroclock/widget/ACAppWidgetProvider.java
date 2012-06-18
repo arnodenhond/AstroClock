@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.widget.RemoteViews;
 import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.BitmapMaker;
@@ -31,11 +32,11 @@ public class ACAppWidgetProvider extends AppWidgetProvider {
 		tracker.dispatch();
 
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);
-
-//		int height = context.getResources().getDisplayMetrics().heightPixels;
-//		int width = context.getResources().getDisplayMetrics().widthPixels;
-		BitmapMaker bmmaker = new BitmapMaker(context, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
-		views.setImageViewBitmap(R.id.clock, bmmaker.makeBitmap());
+		Bitmap bitmap = new BitmapMaker(context, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme()).makeBitmap();
+		if (!AstroClock.supportsAPILevel11()) {
+			bitmap = Bitmap.createScaledBitmap(bitmap, 240, 240, true);
+		}
+		views.setImageViewBitmap(R.id.clock, bitmap);
 		Intent menuintent = new Intent(context, Menu.class);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

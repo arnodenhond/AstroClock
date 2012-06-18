@@ -50,7 +50,7 @@ public class AstroClock extends Activity {
 	GoogleAnalyticsTracker tracker;
 	AdView adView;
 
-	private boolean supportsAPILevel11() {
+	public static boolean supportsAPILevel11() {
 		return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB);
 	}
 
@@ -109,7 +109,7 @@ public class AstroClock extends Activity {
 
 	public static void setAlarms(Context context) {
 		SharedPreferences prefs = context.getSharedPreferences(PrefsReader.PREF_ALERTS, MODE_PRIVATE);
-		prefs.edit().putBoolean(PrefsReader.KEY_ALERT_VIBRATE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_FULLMOON, true).commit();
+		prefs.edit().putBoolean(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_FULLMOON, true).commit();
 		context.sendBroadcast(new Intent(context, BootReceiver.class));
 	}
 
