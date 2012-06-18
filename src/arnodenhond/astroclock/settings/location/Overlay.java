@@ -1,5 +1,6 @@
 package arnodenhond.astroclock.settings.location;
 
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
 import com.google.android.maps.GeoPoint;
@@ -37,6 +38,11 @@ public class Overlay extends ItemizedOverlay<OverlayItem> {
 		item = new OverlayItem(p, "", "");
 		populate();
 		return super.onTap(p, mapView);
+	}
+
+	@Override
+	public void draw(Canvas canvas, MapView mapView, boolean shadow) {
+		super.draw(canvas, mapView, false);
 	}
 
 }

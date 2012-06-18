@@ -26,10 +26,10 @@ public class ACWallpaperService extends WallpaperService {
 			AstroClock.setAlarms(this);
 			settings.setFirstrun(false);
 		}
-		return new MyWallpaperEngine();
+		return new ACEngine();
 	}
 
-	private class MyWallpaperEngine extends Engine {
+	private class ACEngine extends Engine {
 		private final Handler handler = new Handler();
 		private final Runnable drawRunner = new Runnable() {
 			@Override
@@ -42,7 +42,7 @@ public class ACWallpaperService extends WallpaperService {
 		private int height;
 		private boolean visible = true;
 
-		public MyWallpaperEngine() {
+		public ACEngine() {
 			handler.post(drawRunner);
 		}
 
