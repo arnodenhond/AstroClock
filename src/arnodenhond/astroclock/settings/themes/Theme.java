@@ -190,8 +190,8 @@ public class Theme extends Activity {
 		Intent menuintent = new Intent(this, Menu.class);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, Intent.FLAG_ACTIVITY_NEW_TASK));
-		awm.updateAppWidget(new ComponentName(this, ACAppWidgetProvider.class), views);
+		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(this, 0, menuintent, PendingIntent.FLAG_UPDATE_CURRENT));
+		awm.updateAppWidget(new ComponentName(getApplicationContext(), ACAppWidgetProvider.class), views);
 
 		super.onPause();
 	}

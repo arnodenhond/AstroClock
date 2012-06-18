@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -11,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 import arnodenhond.astroclock.calcuator.PhaseOfMoon;
 import arnodenhond.astroclock.calcuator.SunTimes;
 import arnodenhond.astroclock.calcuator.SunTimesException;
@@ -32,6 +35,7 @@ public class BitmapMaker {
 	boolean north;
 	int dimension;
 	int theme;
+	DisplayMetrics metrics;
 
 	public BitmapMaker(Context context, int d, double lat, double lon, int theme) {
 		this.ctx = context;
@@ -39,16 +43,21 @@ public class BitmapMaker {
 		this.latitude = lat;
 		this.longitude = lon;
 		this.theme = theme;
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		metrics = new DisplayMetrics();
+		wm.getDefaultDisplay().getMetrics(metrics);
 	}
 
-	private Bitmap readBitmapDrawable(String name) {
+	private Bitmap readBitmap(String name) {
 		Bitmap bmp = BitmapFactory.decodeFile(ctx.getFilesDir().getPath() + "/" + name);
 		if (bmp != null) {
 			return bmp;
 		} else {
 			Resources r = ctx.getResources();
 			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t3" + name.substring(0, name.indexOf('.')), null, null);
-			return BitmapFactory.decodeResource(ctx.getResources(), res); 
+			BitmapFactory.Options opts = new BitmapFactory.Options();
+			opts.inDensity=metrics.densityDpi;
+			return BitmapFactory.decodeResource(ctx.getResources(), res, opts); 
 		}
 	}
 
@@ -97,44 +106,29 @@ public class BitmapMaker {
 		canvas.drawRect(0, 0, dimension, dimension, paint);
 		paint.setARGB(255, 0, 0, 0);
 
-		Bitmap bmp = Bitmap.createScaledBitmap(readBitmapDrawable("background.png"), dimension, dimension, true);
-		canvas.drawBitmap(bmp, 0, 0, paint);
-		bmp.recycle();
+		canvas.drawBitmap(readBitmap("background.png"), 0, 0, paint);
 
 		canvas.rotate(degsunrise, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("sunset.png"), dimension, dimension, true);
-		canvas.drawBitmap(bmp, 0, 0, paint);
-		bmp.recycle();
+		canvas.drawBitmap(readBitmap("sunset.png"), 0, 0, paint);
 		canvas.rotate(degsunrise * -1f, centerx, centery);
 
 		canvas.rotate(degsunset, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("sunrise.png"), dimension, dimension, true);
-		canvas.drawBitmap(bmp, 0, 0, paint);
-		bmp.recycle();
+		canvas.drawBitmap(readBitmap("sunrise.png"), 0, 0, paint);
 		canvas.rotate(degsunset * -1f, centerx, centery);
 
 		canvas.rotate(degyear, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("year.png"), dimension, dimension, true);
-		canvas.drawBitmap(bmp, 0, 0, paint);
-		bmp.recycle();
+		canvas.drawBitmap(readBitmap("year.png"), 0, 0, paint);
 		canvas.rotate(degyear * -1f, centerx, centery);
 
 		canvas.rotate(degmoon, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("moon.png"), dimension, dimension, true);
-		canvas.drawBitmap(bmp, 0, 0, paint);
-		bmp.recycle();
+		canvas.drawBitmap(readBitmap("moon.png"), 0, 0, paint);
 		canvas.rotate(degmoon * -1f, centerx, centery);
 
 		canvas.rotate(degday, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("day.png"), dimension, dimension, true);
-		canvas.drawBitmap(bmp, 0, 0, paint);
-		bmp.recycle();
+		canvas.drawBitmap(readBitmap("day.png"), 0, 0, paint);
 		canvas.rotate(degday * -1f, centerx, centery);
 
-		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("cover.png"), dimension, dimension, true);
-		canvas.drawBitmap(bmp, 0, 0, paint);
-		bmp.recycle();
-		bmp = null;
+		canvas.drawBitmap(readBitmap("cover.png"), 0, 0, paint);
 		return result;
 	}
 

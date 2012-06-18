@@ -13,7 +13,7 @@
         ads:adSize="SMART_BANNER"
 		android:layout_gravity="center_horizontal"
         ads:adUnitId="a14f932990b5440"
-        ads:loadAdOnCreate="true" />
+        ads:loadAdOnCreate="false" />
 
     <ExpandableListView
         android:id="@android:id/list"

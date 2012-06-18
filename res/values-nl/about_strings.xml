@@ -2,7 +2,7 @@
 <resources>
 
     <!-- about app -->
-    <string name="aboutapptitle">Help</string>
+    <string name="aboutapptitle">Over de App</string>
     <string name="helptext">AstroKlok visualiseert tijd aan de hand van consistente astronomische standaarden in plaats van maanden en jaren van wisselende aantal dagen.\n<b>Cycli</b>\nDe tijd wordt gemeten volgens de drie natuurlijke cycli:</string>
     <string name="daycycle"><li><b>Dag </b>\t Een rotatie per 24 uren. Wijzer op 12 uur positie bij mid dag.</li></string>
     <string name="mooncycle"><li><b>Maan</b>\t Een rotatie per 29.53 dagen. Wijzer op 12 uur positie bij volle maan.</li></string>
@@ -17,7 +17,7 @@
     <string name="copyright">Arno den Hond © 2012</string>
 
     <!-- about dev -->
-    <string name="aboutdevtitle">Door</string>
+    <string name="aboutdevtitle">Over de Maker</string>
     <string name="aboutdev"><b>Over mij</b>\nDeze app wordt semi-continue ontwikkeld tijdens avonden en in het weekend sinds april 2009 door mij, <b>Arno den Hond</b> uit Amsterdam.\nIk heb het gemaakt op een MacBook Pro en getest op een Motorola Droid, een Samsung Galaxy Tab, een Asus Transformer en een LG Optimus 3D.</string>
     <string name="credits"><b>Dankbetuigingen</b>\nDank gaat uit naar de artiesten van de afbeeldingen wiens namen vermeld staan in the themas sectie.\nKostas van kanguro.fi heeft me geinspireerd om een gebruikers vriendelijkere omschrijvings tekst te schrijven.\nDeze app zou niet mogelijk zijn zonder de voortreffelijke inspanningen van de Android ontwikkelaars bij google.com</string>
 

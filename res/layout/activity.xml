@@ -29,6 +29,6 @@
         ads:adSize="SMART_BANNER"
         android:visibility="gone"
         ads:adUnitId="a14f932990b5440"
-        ads:loadAdOnCreate="true" />
+        ads:loadAdOnCreate="false" />
 
 </RelativeLayout>

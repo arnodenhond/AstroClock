@@ -89,7 +89,7 @@ public class ACWallpaperService extends WallpaperService {
 
 				if (canvas != null) {
 					PrefsReader settings = new PrefsReader(ACWallpaperService.this);
-					BitmapMaker bmmaker = new BitmapMaker(ACWallpaperService.this, (width < height ? width : height), settings.getLatitude(), settings.getLongitude(), settings.getTheme());
+					BitmapMaker bmmaker = new BitmapMaker(ACWallpaperService.this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
 					if (settings.isUseBackground()) {
 						Bitmap bmp = Bitmap.createScaledBitmap(AstroClock.loadFullImage(ACWallpaperService.this, Uri.parse(settings.getBackgroundImage())), width, height, true);
 						canvas.drawBitmap(bmp, 0,0, paint);
@@ -101,11 +101,11 @@ public class ACWallpaperService extends WallpaperService {
 					if (width < height) {
 						// portrait
 						int diff = height - width;
-						canvas.drawBitmap(bmmaker.makeBitmap(), 0, diff / 2, paint);
+						canvas.drawBitmap(Bitmap.createScaledBitmap(bmmaker.makeBitmap(), width, width, true), 0, diff / 2, paint);
 					} else {
 						// landscape
 						int diff = width - height;
-						canvas.drawBitmap(bmmaker.makeBitmap(), diff / 2, 0, paint);
+						canvas.drawBitmap(Bitmap.createScaledBitmap(bmmaker.makeBitmap(), height, height, true), diff / 2, 0, paint);
 					}
 				}
 			} finally {

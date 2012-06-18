@@ -32,6 +32,6 @@
         android:layout_centerHorizontal="true"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="a14f932990b5440"
-        ads:loadAdOnCreate="true" />
+        ads:loadAdOnCreate="false" />
 
 </RelativeLayout>

@@ -170,7 +170,7 @@ public class AstroClock extends Activity {
 				final int theme = pr.getTheme();
 				pb.setVisibility(View.VISIBLE);
 				iv.setImageBitmap(null);
-				iv.setImageBitmap(new BitmapMaker(AstroClock.this, iv.getHeight(), latitude, longitude, theme).makeBitmap());
+				iv.setImageBitmap(new BitmapMaker(AstroClock.this,480, latitude, longitude, theme).makeBitmap());
 				pb.setVisibility(View.GONE);
 			}
 		}, 100);
@@ -212,6 +212,8 @@ public class AstroClock extends Activity {
 	}
 
 	public static void setupAd(Activity activity) {
+		if (Build.VERSION.SDK_INT == Build.VERSION_CODES.DONUT)
+			return;
 		PrefsReader prefs = new PrefsReader(activity);
 		AdView adView = (AdView) activity.findViewById(R.id.adView);
 		AdRequest adrequest = new AdRequest();

@@ -117,6 +117,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 			new PrefsReader(context).setTheme(this.theme);
 			Toast.makeText(context, R.string.themestored, Toast.LENGTH_SHORT).show();
 		}
+		context = null;
 		super.onPostExecute(result);
 	}
 
@@ -125,15 +126,18 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 		fos.write(baf);
 		fos.flush();
 		fos.close();
+		baf=null;
 	}
 
 	private byte[] readResponse(InputStream inputStream) throws IOException {
-		BufferedInputStream bis = new BufferedInputStream(inputStream);
-		ByteArrayBuffer baf = new ByteArrayBuffer(1024);
+		BufferedInputStream bis = new BufferedInputStream(inputStream,8192);
+		ByteArrayBuffer baf = new ByteArrayBuffer(8192);
 		int current = 0;
-		while ((current = bis.read()) != -1) {
-			baf.append((byte) current);
+		byte[] buf = new byte[8192];
+		while ((current = bis.read(buf)) != -1) {
+			baf.append(buf,0,current);
 		}
+		bis.close();
 		return baf.toByteArray();
 	}
 

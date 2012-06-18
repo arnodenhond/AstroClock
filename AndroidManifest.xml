@@ -117,9 +117,7 @@
             </intent-filter>
         </receiver>
         <!-- appwidget -->
-        <receiver
-            android:name="arnodenhond.astroclock.widget.ACAppWidgetProvider"
-            android:icon="@drawable/icon" >
+        <receiver android:name="arnodenhond.astroclock.widget.ACAppWidgetProvider" >
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider" />
