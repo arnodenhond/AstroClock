@@ -42,14 +42,14 @@ public class BitmapMaker {
 		this.theme = theme;
 	}
 
-	private BitmapDrawable readBitmapDrawable(String name) {
+	private Bitmap readBitmapDrawable(String name) {
 		Bitmap bmp = BitmapFactory.decodeFile(ctx.getFilesDir().getPath() + "/" + name);
 		if (bmp != null) {
-			return new BitmapDrawable(bmp);
+			return bmp;
 		} else {
 			Resources r = ctx.getResources();
 			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t3" + name.substring(0, name.indexOf('.')), null, null);
-			return (BitmapDrawable) r.getDrawable(res);
+			return BitmapFactory.decodeResource(ctx.getResources(), res); 
 		}
 	}
 
@@ -98,48 +98,41 @@ public class BitmapMaker {
 		canvas.drawRect(0, 0, dimension, dimension, paint);
 		paint.setARGB(255, 0, 0, 0);
 
-		BitmapDrawable bd = readBitmapDrawable("background.png");
-		Bitmap bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		Bitmap bmp = Bitmap.createScaledBitmap(readBitmapDrawable("background.png"), dimension, dimension, true);
 		canvas.drawBitmap(bmp, 0, 0, paint);
 		bmp.recycle();
 
-		bd = (BitmapDrawable) readBitmapDrawable("sunset.png");
 		canvas.rotate(degsunrise, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("sunset.png"), dimension, dimension, true);
 		canvas.drawBitmap(bmp, 0, 0, paint);
 		bmp.recycle();
 		canvas.rotate(degsunrise * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) readBitmapDrawable("sunrise.png");
 		canvas.rotate(degsunset, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("sunrise.png"), dimension, dimension, true);
 		canvas.drawBitmap(bmp, 0, 0, paint);
 		bmp.recycle();
 		canvas.rotate(degsunset * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) readBitmapDrawable("year.png");
 		canvas.rotate(degyear, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("year.png"), dimension, dimension, true);
 		canvas.drawBitmap(bmp, 0, 0, paint);
 		bmp.recycle();
 		canvas.rotate(degyear * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) readBitmapDrawable("moon.png");
 		canvas.rotate(degmoon, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("moon.png"), dimension, dimension, true);
 		canvas.drawBitmap(bmp, 0, 0, paint);
 		bmp.recycle();
 		canvas.rotate(degmoon * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) readBitmapDrawable("day.png");
 		canvas.rotate(degday, centerx, centery);
-		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("day.png"), dimension, dimension, true);
 		canvas.drawBitmap(bmp, 0, 0, paint);
 		bmp.recycle();
 		canvas.rotate(degday * -1f, centerx, centery);
 
-		bd = (BitmapDrawable) readBitmapDrawable("cover.png");
-		bmp = Bitmap.createScaledBitmap(bd.getBitmap(), dimension, dimension, true);
+		bmp = Bitmap.createScaledBitmap(readBitmapDrawable("cover.png"), dimension, dimension, true);
 		canvas.drawBitmap(bmp, 0, 0, paint);
 		bmp.recycle();
 		bmp = null;

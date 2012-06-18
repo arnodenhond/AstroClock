@@ -169,6 +169,7 @@ public class AstroClock extends Activity {
 				final double longitude = pr.getLongitude();
 				final int theme = pr.getTheme();
 				pb.setVisibility(View.VISIBLE);
+				iv.setImageBitmap(null);
 				iv.setImageBitmap(new BitmapMaker(AstroClock.this, iv.getHeight(), latitude, longitude, theme).makeBitmap());
 				pb.setVisibility(View.GONE);
 			}

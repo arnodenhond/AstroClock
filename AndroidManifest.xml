@@ -5,7 +5,7 @@
     android:versionName="3.0 BETA 2" >
 
     <uses-sdk
-        android:minSdkVersion="7"
+        android:minSdkVersion="4"
         android:targetSdkVersion="15" />
 
     <!-- required for acquiring location -->
@@ -71,7 +71,9 @@
             android:name="arnodenhond.astroclock.settings.Menu"
             android:exported="true" />
         <activity android:name="arnodenhond.astroclock.settings.location.Map" />
-        <activity android:name="arnodenhond.astroclock.settings.themes.Theme" />
+        <activity
+            android:name="arnodenhond.astroclock.settings.themes.Theme"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name="arnodenhond.astroclock.settings.alerts.Alerts" />
 
         <!-- advertising -->
