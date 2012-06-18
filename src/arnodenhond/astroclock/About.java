@@ -1,12 +1,9 @@
 package arnodenhond.astroclock;
 
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashSet;
 
 import android.app.TabActivity;
 import android.content.Intent;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -19,18 +16,13 @@ import arnodenhond.astroclock.calcuator.Time;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
 
-import com.google.ads.Ad;
-import com.google.ads.AdListener;
-import com.google.ads.AdRequest;
-import com.google.ads.AdRequest.ErrorCode;
-import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.tapjoy.TapjoyConnect;
 import com.tapjoy.TapjoyFeaturedAppNotifier;
 import com.tapjoy.TapjoyFeaturedAppObject;
 
 @SuppressWarnings("deprecation")
-public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdListener {
+public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
 
 	TabHost mTabHost;
 	GoogleAnalyticsTracker tracker;
@@ -146,28 +138,6 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier, AdL
 	@Override
 	public void getFeaturedAppResponseFailed(String error) {
 		// ((TextView)findViewById(R.id.donateheader)).setText(error);
-	}
-
-	@Override
-	public void onDismissScreen(Ad arg0) {
-	}
-
-	@Override
-	public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
-		tracker.trackEvent("noad", "noad", "noad", 4);
-	}
-
-	@Override
-	public void onLeaveApplication(Ad arg0) {
-	}
-
-	@Override
-	public void onPresentScreen(Ad arg0) {
-	}
-
-	@Override
-	public void onReceiveAd(Ad arg0) {
-		tracker.trackEvent("ad", "ad", "ad", 4);
 	}
 
 	@Override

@@ -1,8 +1,5 @@
 package arnodenhond.astroclock.settings.themes;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,8 +12,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
-import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,12 +24,12 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
+import android.widget.Toast;
 import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.settings.Menu;
@@ -40,14 +37,9 @@ import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclock.widget.ACAppWidgetProvider;
 import arnodenhond.astroclocklite.R;
 
-import com.google.ads.Ad;
-import com.google.ads.AdListener;
-import com.google.ads.AdRequest;
-import com.google.ads.AdRequest.ErrorCode;
-import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
-public class Theme extends Activity implements AdListener {
+public class Theme extends Activity {
 
 	GoogleAnalyticsTracker tracker;
 	public static final int DIALOG_NODOWNLOAD = 1;
@@ -230,28 +222,6 @@ public class Theme extends Activity implements AdListener {
 		}
 		}
 		return super.onCreateDialog(id);
-	}
-
-	@Override
-	public void onDismissScreen(Ad arg0) {
-	}
-
-	@Override
-	public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
-		tracker.trackEvent("noad", "noad", "noad", 1);
-	}
-
-	@Override
-	public void onLeaveApplication(Ad arg0) {
-	}
-
-	@Override
-	public void onPresentScreen(Ad arg0) {
-	}
-
-	@Override
-	public void onReceiveAd(Ad arg0) {
-		tracker.trackEvent("ad", "ad", "ad", 1);
 	}
 
 	@Override

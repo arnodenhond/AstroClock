@@ -1,12 +1,8 @@
 package arnodenhond.astroclock.settings;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import android.app.ListActivity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +18,9 @@ import arnodenhond.astroclock.settings.location.Map;
 import arnodenhond.astroclock.settings.themes.Theme;
 import arnodenhond.astroclocklite.R;
 
-import com.google.ads.Ad;
-import com.google.ads.AdListener;
-import com.google.ads.AdRequest;
-import com.google.ads.AdRequest.ErrorCode;
-import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
-public class Menu extends ListActivity implements AdListener {
+public class Menu extends ListActivity {
 
 	GoogleAnalyticsTracker tracker;
 
@@ -104,28 +95,6 @@ public class Menu extends ListActivity implements AdListener {
 			finish();
 			break;
 		}
-	}
-
-	@Override
-	public void onDismissScreen(Ad arg0) {
-	}
-
-	@Override
-	public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
-		tracker.trackEvent("noad", "noad", "noad", 0);
-	}
-
-	@Override
-	public void onLeaveApplication(Ad arg0) {
-	}
-
-	@Override
-	public void onPresentScreen(Ad arg0) {
-	}
-
-	@Override
-	public void onReceiveAd(Ad arg0) {
-		tracker.trackEvent("ad", "ad", "ad", 0);
 	}
 
 	@Override

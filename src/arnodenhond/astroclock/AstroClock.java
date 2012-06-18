@@ -215,13 +215,8 @@ public class AstroClock extends Activity {
 		PrefsReader prefs = new PrefsReader(activity);
 		AdView adView = (AdView) activity.findViewById(R.id.adView);
 		AdRequest adrequest = new AdRequest();
-		adrequest.addKeyword(prefs.getKeywords());
-		Location location = new Location("Manual");
-		location.setLatitude(prefs.getLatitude());
-		location.setLongitude(prefs.getLongitude());
 		adrequest.setLocation(AstroClock.getLatestOrSaved(activity));
 		adrequest.setKeywords(new HashSet<String>(Arrays.asList(prefs.getKeywords().split(","))));
-		// adView.setAdListener(this);
 		adView.loadAd(adrequest);
 	}
 

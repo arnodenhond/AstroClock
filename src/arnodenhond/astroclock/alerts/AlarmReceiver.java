@@ -1,6 +1,5 @@
 package arnodenhond.astroclock.alerts;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.AlarmManager;

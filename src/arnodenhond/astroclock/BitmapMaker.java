@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
 import arnodenhond.astroclock.calcuator.PhaseOfMoon;
 import arnodenhond.astroclock.calcuator.SunTimes;
 import arnodenhond.astroclock.calcuator.SunTimesException;

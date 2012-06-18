@@ -3,7 +3,6 @@ package arnodenhond.astroclock.livewallpaper;
 import android.app.WallpaperManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.Uri;
