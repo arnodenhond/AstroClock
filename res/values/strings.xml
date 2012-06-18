@@ -3,7 +3,7 @@
 
     <string name="app_name">AstroClock</string>
     <string name="welcometitle">Welcome to AstroClock</string>
-    <string name="welcomebody">\nFrom the menu, select <b>location</b> to ensure accuracy.\nSelect a <b>theme</b> to match your mood.\nEnable some <b>alerts</b> be notified of astronomical events.\nAstroClock also has a homescreen <b>widget</b> and <b>live wallpaper</b>.</string>
+    <string name="welcomebody">\nFrom the menu, select <b>location</b> to ensure accuracy.\nSelect a <b>theme</b> to match your mood.\nEnable some <b>alerts</b> be notified of astronomical events.\nAstroClock also has a homescreen <b>widget</b> and <b>live wallpaper</b>.\nSelect <b>About</b> for more information.</string>
     <string name="welcomebutton">OK</string>
 
     <string-array name="settingsoptions">
