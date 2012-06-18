@@ -9,8 +9,6 @@ arnodenhond.astroclock.alerts.AlarmReceiver:
     public static final int NOTID_DAY
     public static final int NOTID_MOON
     public static final int NOTID_YEAR
-arnodenhond.astroclock.calcuator.NextCalc:
-    165:166:private double getSun(double,double)
 arnodenhond.astroclock.calcuator.PhaseOfMoon:
     39:40:private PhaseOfMoon()
     237:237:public static long LMonth()
@@ -32,6 +30,8 @@ arnodenhond.astroclock.settings.PrefsReader:
     private static final java.lang.String KEY_LONGITUDE
     private static final java.lang.String PREF_THEME
     public static final java.lang.String KEY_THEME
+    public static final java.lang.String KEY_USEBACKGROUND
+    public static final java.lang.String KEY_BACKGROUNDIMAGE
     private static final java.lang.String PREF_KEYWORDS
     private static final java.lang.String KEY_KEYWORDS
     public static final java.lang.String PREF_ALERTS
@@ -51,20 +51,20 @@ arnodenhond.astroclock.settings.PrefsReader:
     public static final java.lang.String KEY_ALERT_SOUTHWARDEQUINOX
     private static final java.lang.String PREF_FIRSTRUN
     private static final java.lang.String KEY_FIRSTRUN
-    150:150:public void getBackground()
-    153:153:public void getNotifications()
-    169:170:public void setAlert_midday(boolean)
-    177:178:public void setAlert_midnight(boolean)
-    185:186:public void setAlert_sunrise(boolean)
-    193:194:public void setAlert_sunset(boolean)
-    201:202:public void setAlert_fullmoon(boolean)
-    209:210:public void setAlert_newmoon(boolean)
-    217:218:public void setAlert_firstquarter(boolean)
-    225:226:public void setAlert_lastquarter(boolean)
-    233:234:public void setAlert_northernsolstice(boolean)
-    241:242:public void setAlert_southernsolstice(boolean)
-    249:250:public void setAlert_northwardequinox(boolean)
-    257:258:public void setAlert_southwardequinox(boolean)
+    175:175:public void getBackground()
+    178:178:public void getNotifications()
+    194:195:public void setAlert_midday(boolean)
+    202:203:public void setAlert_midnight(boolean)
+    210:211:public void setAlert_sunrise(boolean)
+    218:219:public void setAlert_sunset(boolean)
+    226:227:public void setAlert_fullmoon(boolean)
+    234:235:public void setAlert_newmoon(boolean)
+    242:243:public void setAlert_firstquarter(boolean)
+    250:251:public void setAlert_lastquarter(boolean)
+    258:259:public void setAlert_northernsolstice(boolean)
+    266:267:public void setAlert_southernsolstice(boolean)
+    274:275:public void setAlert_northwardequinox(boolean)
+    282:283:public void setAlert_southwardequinox(boolean)
 arnodenhond.astroclock.settings.location.Map:
     private static final int DIALOG_LOCATION
 arnodenhond.astroclock.settings.location.Overlay:
@@ -84,7 +84,7 @@ arnodenhond.astroclocklite.R$string
 arnodenhond.astroclocklite.R$style
 arnodenhond.astroclocklite.R$styleable:
     public static final int Gallery_android_galleryItemBackground
-    165:165:public R$styleable()
+    190:190:public R$styleable()
 arnodenhond.astroclocklite.R$xml
 com.google.ads.Ad:
     public abstract boolean isReady()

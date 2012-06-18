@@ -24,6 +24,7 @@ arnodenhond.astroclock.AstroClock -> arnodenhond.astroclock.AstroClock:
     void clicked(android.view.View) -> clicked
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     void onDestroy() -> onDestroy
+    android.graphics.Bitmap loadFullImage(android.content.Context,android.net.Uri) -> a
 arnodenhond.astroclock.AstroClock$1 -> arnodenhond.astroclock.a:
     arnodenhond.astroclock.AstroClock this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
@@ -47,7 +48,7 @@ arnodenhond.astroclock.BitmapMaker -> arnodenhond.astroclock.c:
     boolean north -> l
     int dimension -> m
     int theme -> n
-    android.graphics.drawable.BitmapDrawable readBitmapDrawable(java.lang.String) -> a
+    android.graphics.Bitmap readBitmapDrawable(java.lang.String) -> a
     android.graphics.Bitmap makeBitmap() -> a
 arnodenhond.astroclock.alerts.AlarmReceiver -> arnodenhond.astroclock.alerts.AlarmReceiver:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
@@ -58,7 +59,7 @@ arnodenhond.astroclock.calcuator.NextCalc -> arnodenhond.astroclock.a.a:
     double longitude -> b
     double utcoffset -> c
     long getNextMidDay() -> a
-    long getMidDay(java.util.Calendar) -> a
+    long getMid(java.util.Calendar,boolean) -> a
     long getNextMidNight() -> b
     long getNextSunRise() -> c
     long getNextSunSet() -> d
@@ -142,46 +143,52 @@ arnodenhond.astroclock.settings.PrefsReader -> arnodenhond.astroclock.settings.b
     double latitude -> b
     double longitude -> c
     int theme -> d
-    java.lang.String keywords -> e
-    boolean audible -> f
-    boolean vibrate -> g
-    boolean alert_midday -> h
-    boolean alert_midnight -> i
-    boolean alert_sunrise -> j
-    boolean alert_sunset -> k
-    boolean alert_fullmoon -> l
-    boolean alert_newmoon -> m
-    boolean alert_firstquarter -> n
-    boolean alert_lastquarter -> o
-    boolean alert_northernsolstice -> p
-    boolean alert_southernsolstice -> q
-    boolean alert_northwardequinox -> r
-    boolean alert_southwardequinox -> s
-    boolean firstrun -> t
+    boolean usebackground -> e
+    java.lang.String backgroundimage -> f
+    java.lang.String keywords -> g
+    boolean audible -> h
+    boolean vibrate -> i
+    boolean alert_midday -> j
+    boolean alert_midnight -> k
+    boolean alert_sunrise -> l
+    boolean alert_sunset -> m
+    boolean alert_fullmoon -> n
+    boolean alert_newmoon -> o
+    boolean alert_firstquarter -> p
+    boolean alert_lastquarter -> q
+    boolean alert_northernsolstice -> r
+    boolean alert_southernsolstice -> s
+    boolean alert_northwardequinox -> t
+    boolean alert_southwardequinox -> u
+    boolean firstrun -> v
     com.google.android.maps.GeoPoint getGeoPoint() -> a
     void setGeoPoint(com.google.android.maps.GeoPoint) -> a
     double getLatitude() -> b
     double getLongitude() -> c
     int getTheme() -> d
     void setTheme(int) -> a
-    boolean getNotificationAudible() -> e
-    boolean getNotificationVibrate() -> f
-    boolean isAlert_midday() -> g
-    boolean isAlert_midnight() -> h
-    boolean isAlert_sunrise() -> i
-    boolean isAlert_sunset() -> j
-    boolean isAlert_fullmoon() -> k
-    boolean isAlert_newmoon() -> l
-    boolean isAlert_firstquarter() -> m
-    boolean isAlert_lastquarter() -> n
-    boolean isAlert_northernsolstice() -> o
-    boolean isAlert_southernsolstice() -> p
-    boolean isAlert_northwardequinox() -> q
-    boolean isAlert_southwardequinox() -> r
-    boolean isFirstrun() -> s
-    void setFirstrun$1385ff() -> t
-    java.lang.String getKeywords() -> u
-    void setKeywords(java.lang.String) -> a
+    boolean isUseBackground() -> e
+    void setUseBackground(boolean) -> a
+    java.lang.String getBackgroundImage() -> f
+    void setBackgroundImage(java.lang.String) -> a
+    boolean getNotificationAudible() -> g
+    boolean getNotificationVibrate() -> h
+    boolean isAlert_midday() -> i
+    boolean isAlert_midnight() -> j
+    boolean isAlert_sunrise() -> k
+    boolean isAlert_sunset() -> l
+    boolean isAlert_fullmoon() -> m
+    boolean isAlert_newmoon() -> n
+    boolean isAlert_firstquarter() -> o
+    boolean isAlert_lastquarter() -> p
+    boolean isAlert_northernsolstice() -> q
+    boolean isAlert_southernsolstice() -> r
+    boolean isAlert_northwardequinox() -> s
+    boolean isAlert_southwardequinox() -> t
+    boolean isFirstrun() -> u
+    void setFirstrun$1385ff() -> v
+    java.lang.String getKeywords() -> w
+    void setKeywords(java.lang.String) -> b
 arnodenhond.astroclock.settings.alerts.Alerts -> arnodenhond.astroclock.settings.alerts.Alerts:
     com.google.android.apps.analytics.GoogleAnalyticsTracker tracker -> a
     void onCreate(android.os.Bundle) -> onCreate
@@ -256,15 +263,18 @@ arnodenhond.astroclock.settings.themes.DownloadTask -> arnodenhond.astroclock.se
     int theme -> c
     boolean fail -> d
     android.content.Context context -> e
+    android.widget.ProgressBar pb -> f
     void onPreExecute() -> onPreExecute
     java.lang.Void doInBackground$10299ca() -> a
     void saveToFile(byte[],java.lang.String) -> a
     byte[] readResponse(java.io.InputStream) -> a
     void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+    void onProgressUpdate(java.lang.Object[]) -> onProgressUpdate
 arnodenhond.astroclock.settings.themes.Theme -> arnodenhond.astroclock.settings.themes.Theme:
     com.google.android.apps.analytics.GoogleAnalyticsTracker tracker -> a
     void onCreate(android.os.Bundle) -> onCreate
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     void onPause() -> onPause
     android.app.Dialog onCreateDialog(int) -> onCreateDialog
     void onFailedToReceiveAd$7b642d25() -> b
@@ -272,22 +282,28 @@ arnodenhond.astroclock.settings.themes.Theme -> arnodenhond.astroclock.settings.
     void onDestroy() -> onDestroy
 arnodenhond.astroclock.settings.themes.Theme$1 -> arnodenhond.astroclock.settings.themes.b:
     arnodenhond.astroclock.settings.themes.Theme this$0 -> a
-    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-arnodenhond.astroclock.settings.themes.Theme$2 -> arnodenhond.astroclock.settings.themes.c:
-    arnodenhond.astroclock.settings.themes.Theme this$0 -> a
     android.widget.TextView val$textview -> b
     android.widget.Button val$settheme -> c
     void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
     void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+arnodenhond.astroclock.settings.themes.Theme$2 -> arnodenhond.astroclock.settings.themes.c:
+    arnodenhond.astroclock.settings.themes.Theme this$0 -> a
+    android.widget.Button val$settheme -> b
+    android.widget.Gallery val$gallery -> c
+    arnodenhond.astroclock.settings.PrefsReader val$pr -> d
+    void onClick(android.view.View) -> onClick
 arnodenhond.astroclock.settings.themes.Theme$3 -> arnodenhond.astroclock.settings.themes.d:
     arnodenhond.astroclock.settings.themes.Theme this$0 -> a
-    android.widget.Gallery val$gallery -> b
-    arnodenhond.astroclock.settings.PrefsReader val$pr -> c
-    void onClick(android.view.View) -> onClick
+    arnodenhond.astroclock.settings.PrefsReader val$pr -> b
+    android.widget.Button val$selectImage -> c
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 arnodenhond.astroclock.settings.themes.Theme$4 -> arnodenhond.astroclock.settings.themes.e:
     arnodenhond.astroclock.settings.themes.Theme this$0 -> a
+    void onClick(android.view.View) -> onClick
+arnodenhond.astroclock.settings.themes.Theme$5 -> arnodenhond.astroclock.settings.themes.f:
+    arnodenhond.astroclock.settings.themes.Theme this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-arnodenhond.astroclock.settings.themes.Theme$ImageAdapter -> arnodenhond.astroclock.settings.themes.f:
+arnodenhond.astroclock.settings.themes.Theme$ImageAdapter -> arnodenhond.astroclock.settings.themes.g:
     int mGalleryItemBackground -> a
     android.content.Context mContext -> c
     java.lang.Integer[] mImageIds -> d

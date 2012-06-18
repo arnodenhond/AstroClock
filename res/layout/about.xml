@@ -79,7 +79,6 @@
                             android:text="@string/sunrisesunset" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -93,7 +92,6 @@
                             android:text="@string/alerthelp" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -107,7 +105,6 @@
                             android:text="@string/otherfeatures" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -122,7 +119,6 @@
                             android:text="@string/maketheme" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -137,7 +133,6 @@
                             android:text="@string/broadcasthelp" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -151,7 +146,6 @@
                             android:text="@string/disclaimer" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -184,7 +178,6 @@
                             android:text="@string/aboutdev" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -199,7 +192,6 @@
                             android:text="@string/credits" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -219,7 +211,6 @@
                             android:hint="@string/keywordshint" />
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -267,7 +258,6 @@
                         -->
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
@@ -297,7 +287,6 @@
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/divider"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dip"
