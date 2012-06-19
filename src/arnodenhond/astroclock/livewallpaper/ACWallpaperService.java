@@ -91,9 +91,11 @@ public class ACWallpaperService extends WallpaperService {
 					PrefsReader settings = new PrefsReader(ACWallpaperService.this);
 					BitmapMaker bmmaker = new BitmapMaker(ACWallpaperService.this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme());
 					if (settings.isUseBackground()) {
-						Bitmap bmp = Bitmap.createScaledBitmap(AstroClock.loadFullImage(ACWallpaperService.this, Uri.parse(settings.getBackgroundImage())), width, height, true);
-						canvas.drawBitmap(bmp, 0,0, paint);
-						bmp.recycle();
+						Bitmap bmp = AstroClock.loadFullImage(ACWallpaperService.this, Uri.parse(settings.getBackgroundImage()));
+						if (bmp!=null) {
+							canvas.drawBitmap(Bitmap.createScaledBitmap(bmp, width, height, true), 0,0, paint);
+							bmp.recycle();
+						}
 					} else {
 						paint.setARGB(255, 0, 0, 0);
 						canvas.drawRect(0, 0, width, height, paint);

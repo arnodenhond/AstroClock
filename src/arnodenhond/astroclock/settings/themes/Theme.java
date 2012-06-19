@@ -183,7 +183,7 @@ public class Theme extends Activity {
 	@Override
 	public void onPause() {
 		PrefsReader settings = new PrefsReader(this);
-
+		getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
 		AppWidgetManager awm = AppWidgetManager.getInstance(this);
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.appwidget);
 		Bitmap bitmap = new BitmapMaker(this, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme()).makeBitmap();

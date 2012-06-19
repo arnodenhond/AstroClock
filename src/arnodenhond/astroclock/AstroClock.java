@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
 import android.location.Location;
@@ -24,6 +25,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Window;
@@ -159,7 +161,6 @@ public class AstroClock extends Activity {
 			getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
 		}
 
-		
 		final ImageView iv = (ImageView) findViewById(R.id.clock);
 		final ProgressBar pb = (ProgressBar) findViewById(R.id.loading);
 		iv.post(new Runnable() {
@@ -171,7 +172,7 @@ public class AstroClock extends Activity {
 				final int theme = pr.getTheme();
 				pb.setVisibility(View.VISIBLE);
 				iv.setImageBitmap(null);
-				iv.setImageBitmap(new BitmapMaker(AstroClock.this,480, latitude, longitude, theme).makeBitmap());
+				iv.setImageBitmap(new BitmapMaker(AstroClock.this, 480, latitude, longitude, theme).makeBitmap());
 				pb.setVisibility(View.GONE);
 			}
 		});
@@ -186,6 +187,9 @@ public class AstroClock extends Activity {
 
 	@Override
 	protected void onPause() {
+		getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
+		ImageView iv = (ImageView) findViewById(R.id.clock);
+		iv.setImageDrawable(null);
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.cancel(pi);
 		super.onPause();
@@ -228,30 +232,46 @@ public class AstroClock extends Activity {
 		tracker.stopSession();
 		adView.destroy();
 	}
-	
-	public static Bitmap loadFullImage( Context context, Uri photoUri  ) {
-	    Cursor photoCursor = null;
 
-	    try {
-	        // Attempt to fetch asset filename for image
-	        String[] projection = { MediaStore.Images.Media.DATA };
-	        photoCursor = context.getContentResolver().query( photoUri, 
-	                                                    projection, null, null, null );
+	public static Bitmap loadFullImage(Context context, Uri photoUri) {
+		Cursor photoCursor = null;
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		DisplayMetrics metrics = new DisplayMetrics();
+		wm.getDefaultDisplay().getMetrics(metrics);
 
-	        if ( photoCursor != null && photoCursor.getCount() == 1 ) {
-	            photoCursor.moveToFirst();
-	            String photoFilePath = photoCursor.getString(
-	                photoCursor.getColumnIndex(MediaStore.Images.Media.DATA) );
+		try {
+			// Attempt to fetch asset filename for image
+			String[] projection = { MediaStore.Images.Media.DATA };
+			photoCursor = context.getContentResolver().query(photoUri, projection, null, null, null);
 
-	            // Load image from path
-	            return BitmapFactory.decodeFile( photoFilePath, null );
-	        }
-	    } finally {
-	        if ( photoCursor != null ) {
-	            photoCursor.close();
-	        }
-	    }
+			if (photoCursor != null && photoCursor.getCount() == 1) {
+				photoCursor.moveToFirst();
+				String photoFilePath = photoCursor.getString(photoCursor.getColumnIndex(MediaStore.Images.Media.DATA));
 
-	    return null;
+				BitmapFactory.Options opts = new BitmapFactory.Options();
+				opts.inJustDecodeBounds = true;
+				BitmapFactory.decodeFile(photoFilePath, opts);
+
+				int width_tmp = opts.outWidth, height_tmp = opts.outHeight;
+				int scale = 1;
+				while (true) {
+					if (width_tmp / 2 < metrics.widthPixels || height_tmp / 2 < metrics.heightPixels)
+						break;
+					width_tmp /= 2;
+					height_tmp /= 2;
+					scale++;
+				}
+				opts = new BitmapFactory.Options();
+				opts.inSampleSize = scale;
+
+				return BitmapFactory.decodeFile(photoFilePath, opts);
+			}
+		} finally {
+			if (photoCursor != null) {
+				photoCursor.close();
+			}
+		}
+
+		return null;
 	}
 }
