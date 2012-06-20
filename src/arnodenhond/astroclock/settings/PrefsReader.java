@@ -3,6 +3,7 @@ package arnodenhond.astroclock.settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager.NameNotFoundException;
 
 import com.google.android.maps.GeoPoint;
 
@@ -70,7 +71,7 @@ public class PrefsReader {
 
 	private static final String PREF_FIRSTRUN = "firstrun";
 
-	private static final String KEY_FIRSTRUN = "firstrun";
+	private static final String KEY_FIRSTRUN = "version";
 
 	private boolean firstrun;
 
@@ -91,7 +92,7 @@ public class PrefsReader {
 		this.theme = themepref.getInt(KEY_THEME, 2);
 		this.usebackground = themepref.getBoolean(KEY_USEBACKGROUND, false);
 		this.backgroundimage = themepref.getString(KEY_BACKGROUNDIMAGE, "");
-		
+
 		this.audible = alarmspref.getBoolean(KEY_ALERT_AUDIBLE, false);
 		this.vibrate = alarmspref.getBoolean(KEY_ALERT_VIBRATE, false);
 
@@ -112,7 +113,13 @@ public class PrefsReader {
 		this.alert_northwardequinox = alarmspref.getBoolean(KEY_ALERT_NORTHWARDEQUINOX, false);
 		this.alert_southwardequinox = alarmspref.getBoolean(KEY_ALERT_SOUTHWARDEQUINOX, false);
 
-		this.firstrun = firstrunpref.getBoolean(KEY_FIRSTRUN, true);
+		int version = 0;
+		try {
+			version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+		} catch (NameNotFoundException nnfe) {
+			version = 0;
+		}
+		this.firstrun = (firstrunpref.getInt(KEY_FIRSTRUN, -1) != version);
 	}
 
 	public GeoPoint getGeoPoint() {
@@ -155,21 +162,21 @@ public class PrefsReader {
 	public boolean isUseBackground() {
 		return usebackground;
 	}
-	
+
 	public void setUseBackground(boolean usebackground) {
 		this.usebackground = usebackground;
 		context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE).edit().putBoolean(KEY_USEBACKGROUND, usebackground).commit();
 	}
-	
+
 	public String getBackgroundImage() {
 		return backgroundimage;
 	}
-	
+
 	public void setBackgroundImage(String backgroundimage) {
 		this.backgroundimage = backgroundimage;
 		context.getSharedPreferences(PREF_THEME, Activity.MODE_PRIVATE).edit().putString(KEY_BACKGROUNDIMAGE, backgroundimage).commit();
 	}
-	
+
 	public void getBackground() {
 
 	}
@@ -292,7 +299,13 @@ public class PrefsReader {
 	}
 
 	private void storeFirstrun() {
-		context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE).edit().putBoolean(KEY_FIRSTRUN, firstrun).commit();
+		int version = 0;
+        try {
+            version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+        } catch (NameNotFoundException nnfe) {
+        	version=-1;
+        }
+		context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE).edit().putInt(KEY_FIRSTRUN, version).commit();
 	}
 
 	public String getKeywords() {

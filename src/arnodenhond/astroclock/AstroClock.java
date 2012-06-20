@@ -199,8 +199,10 @@ public class AstroClock extends Activity {
 		View adView = this.findViewById(R.id.adView);
 		if (adView.getVisibility() == View.GONE)
 			adView.setVisibility(View.VISIBLE);
-		else
+		else {
 			adView.setVisibility(View.GONE);
+			setupAd(this);
+		}
 		openOptionsMenu();
 	}
 
