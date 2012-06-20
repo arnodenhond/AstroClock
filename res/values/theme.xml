@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AstroClockTheme" parent="@android:style/Theme">
+    <style name="AstroClockTheme">
         <item name="android:actionBarStyle">@style/AstroClockActionBar</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowActionBar">true</item>
