@@ -12,7 +12,7 @@
     <string name="alerthelp"><b>Status Bar Notifications</b>\nBy enabling alerts you can receive up to 12 different recurring notifications, even when the screen is off.</string>
     <string name="otherfeatures"><b>Homescreen</b>\nAstroClock also comes with a homescreen widget and a battery efficient live wallpaper.</string>
     <string name="maketheme"><b>Make your own Theme</b>\nFor instructions on creating your own theme and sharing it with others, please visit android.arnodenhond.com/apps/astroclock/skins</string>
-    <string name="broadcasthelp"><b>Receive Broadcasts</b>\nAstroClock sends out broadcast intents which other apps can receive. See android.arnodenhond.com/apps/astroclock/broadcast-intents for more information.</string>
+    <string name="broadcasthelp"><b>App Interaction</b>\nAstroClock sends out broadcast intents which other apps can receive and offers a content provider which other apps can read. See android.arnodenhond.com/apps/astroclock/broadcast-intents for more information.</string>
     <string name="disclaimer"><b>Disclaimer</b>\nThis app does not contain spyware or otherwise misbehave in any way. Some screens are known to burn in afterimages when displaying the same graphics over a long period.</string>
     <string name="copyright">Arno den Hond © 2012</string>
 

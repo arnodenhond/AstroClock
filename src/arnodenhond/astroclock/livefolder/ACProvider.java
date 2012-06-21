@@ -16,6 +16,8 @@ import arnodenhond.astroclocklite.R;
 
 public class ACProvider extends ContentProvider {
 
+	public static final String COLUMN_TIMEUTC ="time_utc";
+	
 	@Override
 	public String getType(Uri uri) {
 		return "astroclock/astroclock";
@@ -30,8 +32,9 @@ public class ACProvider extends ContentProvider {
 	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 		PrefsReader pr = new PrefsReader(getContext());
 		NextCalc nc = new NextCalc(pr.getLatitude(), pr.getLongitude());
+		
 
-		MatrixCursor cursor = new MatrixCursor(new String[] { LiveFolders._ID, LiveFolders.NAME, LiveFolders.DESCRIPTION });
+		MatrixCursor cursor = new MatrixCursor(new String[] { LiveFolders._ID, LiveFolders.NAME, LiveFolders.DESCRIPTION, COLUMN_TIMEUTC });
 		cursor.addRow(makeRow(0, PrefsReader.KEY_ALERT_MIDDAY, nc));
 		cursor.addRow(makeRow(1, PrefsReader.KEY_ALERT_MIDNIGHT, nc));
 		cursor.addRow(makeRow(2, PrefsReader.KEY_ALERT_SUNRISE, nc));
@@ -52,56 +55,57 @@ public class ACProvider extends ContentProvider {
 	}
 
 	private Object[] makeRow(int id, String key, NextCalc nc) {
-		Object[] result = new Object[3];
+		Object[] result = new Object[4];
 		result[0] = id;
 		result[1] = getTitle(key);
-		result[2] = getNext(key, nc);
+		long nextlong = getNext(key, nc);
+		Date date = new Date(nextlong);
+		result[2] = DateFormat.getDateFormat(getContext()).format(date) + " " + DateFormat.getTimeFormat(getContext()).format(date);
+		result[3] = nextlong;
 		return result;
 	}
-
+	
 	// TODO duplicate code in alertsadapter
-	private String getNext(String key, NextCalc nc) {
-		Date date = new Date();
+	private long getNext(String key, NextCalc nc) {
 		if (key == PrefsReader.KEY_ALERT_MIDDAY) {
-			date = new Date(nc.getNextMidDay());
+			return nc.getNextMidDay();
 		}
 		if (key == PrefsReader.KEY_ALERT_MIDNIGHT) {
-			date = new Date(nc.getNextMidNight());
+			return nc.getNextMidNight();
 		}
 		if (key == PrefsReader.KEY_ALERT_SUNRISE) {
-			date = new Date(nc.getNextSunRise());
+			return nc.getNextSunRise();
 		}
 		if (key == PrefsReader.KEY_ALERT_SUNSET) {
-			date = new Date(nc.getNextSunSet());
+			return nc.getNextSunSet();
 		}
 
 		if (key == PrefsReader.KEY_ALERT_FULLMOON) {
-			date = new Date(nc.getNextFullMoon());
+			return nc.getNextFullMoon();
 		}
 		if (key == PrefsReader.KEY_ALERT_NEWMOON) {
-			date = new Date(nc.getNextNewMoon());
+			return nc.getNextNewMoon();
 		}
 		if (key == PrefsReader.KEY_ALERT_FIRSTQUARTER) {
-			date = new Date(nc.getNextFirstQuarter());
+			return nc.getNextFirstQuarter();
 		}
 		if (key == PrefsReader.KEY_ALERT_LASTQUARTER) {
-			date = new Date(nc.getNextLastQuarter());
+			return nc.getNextLastQuarter();
 		}
 
 		if (key == PrefsReader.KEY_ALERT_NORTHERNSOLSTICE) {
-			date = new Date(nc.getNextNSol());
+			return nc.getNextNSol();
 		}
 		if (key == PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE) {
-			date = new Date(nc.getNextSSol());
+			return nc.getNextSSol();
 		}
 		if (key == PrefsReader.KEY_ALERT_NORTHWARDEQUINOX) {
-			date = new Date(nc.getNextNEq());
+			return nc.getNextNEq();
 		}
 		if (key == PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX) {
-			date = new Date(nc.getNextSEq());
+			return nc.getNextSEq();
 		}
-		return DateFormat.getDateFormat(getContext()).format(date) + " " + DateFormat.getTimeFormat(getContext()).format(date);
-
+		return 0;
 	}
 
 	private String getTitle(String key) {

@@ -12,7 +12,7 @@
     <string name="alerthelp"><b>Statusbalk Notificaties</b>\nDoor het activeren van meldingen kun je tot 12 verschillende terugkerende notificaties ontvangen, zelfs als het scherm uit staat.</string>
     <string name="otherfeatures"><b>Hoofdmenu</b>\nAstroKlok bevat tevens een hoofdmenu widget en een energie zuinige livewallpaper.</string>
     <string name="maketheme"><b>Maak je eigen Thema</b>\nVoor instructies over het maken van je eigen thema, en deze te delen met anderen, zie android.arnodenhond.com/apps/astroclock/skins</string>
-    <string name="broadcasthelp"><b>Ontvang Broadcasts</b>\nAstroKlok verstuurt broadcast intents die andere apps kunnen ontvangen. Zie android.arnodenhond.com/apps/astroclock/broadcast-intents voor meer informatie.</string>
+    <string name="broadcasthelp"><b>App Interactie</b>\nAstroKlok verstuurt broadcast intents die andere apps kunnen ontvangen en bied een content provider die andere apps kunnen lezen. Zie android.arnodenhond.com/apps/astroclock/broadcast-intents voor meer informatie.</string>
     <string name="disclaimer"><b>Vrijwaring</b>\nDeze app bevat geen spyware en misdraagt zich op geen enkele wijze. Sommige schermen branden nabeelden in wanneer zij voor lange tijd hezelfde beeld tonen.</string>
     <string name="copyright">Arno den Hond © 2012</string>
 
