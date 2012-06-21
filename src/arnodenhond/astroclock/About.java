@@ -18,12 +18,9 @@ import arnodenhond.astroclocklite.R;
 
 import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.tapjoy.TapjoyConnect;
-import com.tapjoy.TapjoyFeaturedAppNotifier;
-import com.tapjoy.TapjoyFeaturedAppObject;
 
 @SuppressWarnings("deprecation")
-public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
+public class About extends TabActivity {
 
 	TabHost mTabHost;
 	GoogleAnalyticsTracker tracker;
@@ -36,9 +33,6 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession("UA-5436860-15", 20, this);
 		tracker.trackPageView("/About");
-
-		TapjoyConnect.requestTapjoyConnect(this, "c8097a42-10d5-4032-a4dd-b2de7d2f8bae", "5XPWT9KbXabrv7pwOo4k");
-		TapjoyConnect.getTapjoyConnectInstance().getFeaturedApp(this);
 
 		setContentView(R.layout.about);
 		adView = AstroClock.setupAd(this);
@@ -85,13 +79,6 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
 
 	}
 
-	public void tapjoyfeaturedapp(View v) {
-		tracker.trackPageView("/Tapjoy");
-		if (mFeaturedAppAvailable)
-			TapjoyConnect.getTapjoyConnectInstance().showFeaturedAppFullScreenAd();
-		else
-			TapjoyConnect.getTapjoyConnectInstance().showOffers();
-	}
 
 	public void sendfeedback(View v) {
 		tracker.trackPageView("/Feedback");
@@ -121,25 +108,12 @@ public class About extends TabActivity implements TapjoyFeaturedAppNotifier {
 		startActivity(intent);
 	}
 
-//	public void getalarm(View v) {
-//		tracker.trackPageView("/SunriseAlarm");
-//		Intent intent = new Intent(Intent.ACTION_VIEW);
-//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-//		intent.setData(Uri.parse("market://details?id=arnodenhond.sunrisealarm"));
-//		startActivity(intent);
-//	}
-
-	boolean mFeaturedAppAvailable = false;
-
-	@Override
-	public void getFeaturedAppResponse(TapjoyFeaturedAppObject featuredAppObject) {
-		mFeaturedAppAvailable = true;
-		// findViewById(R.id.tapjoylayout).setVisibility(View.VISIBLE);
-	}
-
-	@Override
-	public void getFeaturedAppResponseFailed(String error) {
-		// ((TextView)findViewById(R.id.donateheader)).setText(error);
+	public void getalarm(View v) {
+		tracker.trackPageView("/SunriseAlarm");
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		intent.setData(Uri.parse("market://details?id=arnodenhond.astroclock"));
+		startActivity(intent);
 	}
 
 	@Override

@@ -28,10 +28,6 @@
     <string name="shareurl">Deel deze app op je sociale network</string>
     <string name="postcomment">Plaats een beoordeling &amp; commentaar in de Play Store</string>
     <string name="sendfeedback">Stuur me je vragen en suggesties</string>
-<!-- 
-	<string name="upgradeheader"><b>Sunrise Alarm</b>\nIf you want to wake up every day at sunrise but AstroClock\'s notification beep doesn\'t awaken you, then please consider downloading Sunrise alarm.\nIt\'s not free but by paying a tiny monthly fee you could show your appreciation for AstroClock and support further development of this and other apps. Thank you!</string>
- -->
-	<string name="donateheader"><b>Fooien Pot</b>\nAls je je waardering voor AstroKlok wil tonen en verdere ontwikkeling stimuleren, gebruik dan de TapJoy knop om gratis een gesponsorde app te downloaden zodat ik een paar cent verdien. Ik zou het bijzonder waarderen!</string>
-	
+	<string name="upgradeheader"><b>Fooien Pot</b>\nAls je je waardering voor AstroKlok wil tonen en verdere ontwikkeling stimuleren, download dan de add-on tools pack. Ik zou het bijzonder waarderen!</string>
 	<string name="stats"><b>Dag tov Nacht Lengte</b>\nOm mijn dankbaarheid te uiten voor het downloaden van mijn app, en omdat ik geen betere plek wist om dit te zetten, is hier een voortgangsbalk die toont hoe lang de dag van vandaag duurt ten opzichte van de nacht:</string>
 </resources>
