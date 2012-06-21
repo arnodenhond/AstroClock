@@ -216,7 +216,7 @@ public class NextCalc {
 		return c.getTimeInMillis();
 	}
 
-	public long getNextNEq() {
+	public long getNextSEq() {
 		int[] days = new int[] { 23, 22, 22, 23, 23, 22, 22 };
 		int[] hours = new int[] { 9, 14, 20, 2, 8, 14, 20 };
 		int[] minutes = new int[] { 4, 49, 44, 29, 20, 21, 2 };
@@ -239,7 +239,7 @@ public class NextCalc {
 		return c.getTimeInMillis();
 	}
 
-	public long getNextSEq() {
+	public long getNextNEq() {
 		int[] days = new int[] { 20, 20, 20, 20, 20, 20, 20 };
 		int[] hours = new int[] { 23, 5, 11, 16, 22, 4, 10 };
 		int[] minutes = new int[] { 21, 14, 2, 57, 45, 30, 28 };

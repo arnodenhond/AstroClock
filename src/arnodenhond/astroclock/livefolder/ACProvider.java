@@ -1,5 +1,7 @@
 package arnodenhond.astroclock.livefolder;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 
 import android.content.ContentProvider;
@@ -35,25 +37,47 @@ public class ACProvider extends ContentProvider {
 		
 
 		MatrixCursor cursor = new MatrixCursor(new String[] { LiveFolders._ID, LiveFolders.NAME, LiveFolders.DESCRIPTION, COLUMN_TIMEUTC });
-		cursor.addRow(makeRow(0, PrefsReader.KEY_ALERT_MIDDAY, nc));
-		cursor.addRow(makeRow(1, PrefsReader.KEY_ALERT_MIDNIGHT, nc));
-		cursor.addRow(makeRow(2, PrefsReader.KEY_ALERT_SUNRISE, nc));
-		cursor.addRow(makeRow(3, PrefsReader.KEY_ALERT_SUNSET, nc));
+		
+		Object[][] rows = new Object[12][];
+		rows[0] = makeRow(0, PrefsReader.KEY_ALERT_MIDDAY, nc);
+		rows[1] = makeRow(1, PrefsReader.KEY_ALERT_MIDNIGHT, nc);
+		rows[2] = makeRow(2, PrefsReader.KEY_ALERT_SUNRISE, nc);
+		rows[3] = makeRow(3, PrefsReader.KEY_ALERT_SUNSET, nc);
 
-		cursor.addRow(makeRow(4, PrefsReader.KEY_ALERT_FULLMOON, nc));
-		cursor.addRow(makeRow(5, PrefsReader.KEY_ALERT_NEWMOON, nc));
-		cursor.addRow(makeRow(6, PrefsReader.KEY_ALERT_FIRSTQUARTER, nc));
-		cursor.addRow(makeRow(7, PrefsReader.KEY_ALERT_LASTQUARTER, nc));
+		rows[4] = makeRow(4, PrefsReader.KEY_ALERT_FULLMOON, nc);
+		rows[5] = makeRow(5, PrefsReader.KEY_ALERT_NEWMOON, nc);
+		rows[6] = makeRow(6, PrefsReader.KEY_ALERT_FIRSTQUARTER, nc);
+		rows[7] = makeRow(7, PrefsReader.KEY_ALERT_LASTQUARTER, nc);
 
-		cursor.addRow(makeRow(8, PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, nc));
-		cursor.addRow(makeRow(9, PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, nc));
-		cursor.addRow(makeRow(10, PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, nc));
-		cursor.addRow(makeRow(11, PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, nc));
+		rows[9] = makeRow(8, PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, nc);
+		rows[8] = makeRow(9, PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, nc);
+		rows[10] = makeRow(10, PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, nc);
+		rows[11] = makeRow(11, PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, nc);
 
+		Arrays.sort(rows,comparator);
+		
+		for (int i= 0; i < rows.length; i++) {
+			cursor.addRow(rows[i]);
+		}
+		
 		return cursor;
 
 	}
 
+	Comparator<Object[]> comparator = new Comparator<Object[]>() {
+		@Override
+		public int compare(Object[] object1, Object[] object2) {
+			long lhs = (Long) object1[3];
+			long rhs = (Long) object2[3];
+			long diff = rhs-lhs;
+			if (lhs<rhs)
+				return -1;
+			else if (lhs>rhs)
+				return 1;
+			else return 0;
+		}
+	};
+	
 	private Object[] makeRow(int id, String key, NextCalc nc) {
 		Object[] result = new Object[4];
 		result[0] = id;
