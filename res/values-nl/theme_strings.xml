@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="downloading">Downloade..</string>
+    <string name="downloading">Downloaden..</string>
     <string name="settheme">Stel thema in</string>
     <string name="themestored">Thema opgeslagen</string>
     <string name="nodownloadtitle">Kon niet downloaden</string>
