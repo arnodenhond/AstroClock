@@ -2,18 +2,14 @@ package arnodenhond.astroclock.livefolder;
 
 import java.util.Date;
 
-import android.app.SearchManager;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.provider.LiveFolders;
 import android.text.format.DateFormat;
-import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.calcuator.NextCalc;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
@@ -36,20 +32,20 @@ public class ACProvider extends ContentProvider {
 		NextCalc nc = new NextCalc(pr.getLatitude(), pr.getLongitude());
 
 		MatrixCursor cursor = new MatrixCursor(new String[] { LiveFolders._ID, LiveFolders.NAME, LiveFolders.DESCRIPTION });
-		cursor.addRow(makeRow(0,PrefsReader.KEY_ALERT_MIDDAY, nc));
-		cursor.addRow(makeRow(1,PrefsReader.KEY_ALERT_MIDNIGHT, nc));
-		cursor.addRow(makeRow(2,PrefsReader.KEY_ALERT_SUNRISE, nc));
-		cursor.addRow(makeRow(3,PrefsReader.KEY_ALERT_SUNSET, nc));
+		cursor.addRow(makeRow(0, PrefsReader.KEY_ALERT_MIDDAY, nc));
+		cursor.addRow(makeRow(1, PrefsReader.KEY_ALERT_MIDNIGHT, nc));
+		cursor.addRow(makeRow(2, PrefsReader.KEY_ALERT_SUNRISE, nc));
+		cursor.addRow(makeRow(3, PrefsReader.KEY_ALERT_SUNSET, nc));
 
-		cursor.addRow(makeRow(4,PrefsReader.KEY_ALERT_FULLMOON, nc));
-		cursor.addRow(makeRow(5,PrefsReader.KEY_ALERT_NEWMOON, nc));
-		cursor.addRow(makeRow(6,PrefsReader.KEY_ALERT_FIRSTQUARTER, nc));
-		cursor.addRow(makeRow(7,PrefsReader.KEY_ALERT_LASTQUARTER, nc));
+		cursor.addRow(makeRow(4, PrefsReader.KEY_ALERT_FULLMOON, nc));
+		cursor.addRow(makeRow(5, PrefsReader.KEY_ALERT_NEWMOON, nc));
+		cursor.addRow(makeRow(6, PrefsReader.KEY_ALERT_FIRSTQUARTER, nc));
+		cursor.addRow(makeRow(7, PrefsReader.KEY_ALERT_LASTQUARTER, nc));
 
-		cursor.addRow(makeRow(8,PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, nc));
-		cursor.addRow(makeRow(9,PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, nc));
-		cursor.addRow(makeRow(10,PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, nc));
-		cursor.addRow(makeRow(11,PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, nc));
+		cursor.addRow(makeRow(8, PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, nc));
+		cursor.addRow(makeRow(9, PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, nc));
+		cursor.addRow(makeRow(10, PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, nc));
+		cursor.addRow(makeRow(11, PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, nc));
 
 		return cursor;
 
@@ -63,7 +59,7 @@ public class ACProvider extends ContentProvider {
 		return result;
 	}
 
-	//TODO duplicate code in alertsadapter
+	// TODO duplicate code in alertsadapter
 	private String getNext(String key, NextCalc nc) {
 		Date date = new Date();
 		if (key == PrefsReader.KEY_ALERT_MIDDAY) {
