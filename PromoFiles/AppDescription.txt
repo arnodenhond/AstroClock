@@ -7,14 +7,15 @@ Time is indicated by three hands which each turn once for each cycle. (they stil
 
 
 Bring your home screen to life with a gorgeous widget (resizable on newer phones and tablets) or a live wallpaper (very battery efficient as it ticks only once every 15 minutes).
+On older phones AstroClock provides a LiveFolder listing all upcoming alerts.
 Display AstroClock on your wall mounted tablet or wrist watch in full screen mode to view the clock without your home screen in the way.
 
 AstroClock has a variety of downloadable themes to match your mood and if there isn't one that suits your fancy you can design your own theme, share it with others and become moderately famous!
 If you don't want any theme or clock to display at all you can simply enable any of the 12 alerts (4 for each cycle) and have them show up in your notification bar as desired.
 
-AstroClock plays nicely with other apps: on each alert (whether enabled for notification or not) it broadcasts an intent to any app that wants to respond according to the astronomical time.
+AstroClock plays nicely with other apps: on each alert (whether enabled for notification or not) it broadcasts an intent to any app that wants to respond according to the astronomical time
+Additionally, AstroClock offers a Content Provider that other apps can read to get the dates of all upcoming alerts.
 
-This app is made by an independent developer during evenings and weekends.
-It is free to download however the about screen does have a tip jar which you can use to support further development :)
+This app is made by an independent developer during evenings and weekends. If you like it then please post a comment below :)
 
 
