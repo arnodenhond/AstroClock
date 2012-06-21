@@ -24,10 +24,15 @@ arnodenhond.astroclock.calcuator.SunTimes:
     179:179:private static double getCosLocalHourAngle(double,double)
 arnodenhond.astroclock.calcuator.Time:
     21:25:public Time(int,int,int)
+arnodenhond.astroclock.livefolder.ACLiveFolder:
+    public static final java.lang.String CONTENT_URI
+arnodenhond.astroclock.livefolder.ACProvider:
+    public static final java.lang.String COLUMN_TIMEUTC
 arnodenhond.astroclock.settings.PrefsReader:
     private static final java.lang.String PREF_LATLON
     private static final java.lang.String KEY_LATITUDE
     private static final java.lang.String KEY_LONGITUDE
+    private static final java.lang.String KEY_REFRESHLATLON
     private static final java.lang.String PREF_THEME
     public static final java.lang.String KEY_THEME
     public static final java.lang.String KEY_USEBACKGROUND
@@ -51,20 +56,21 @@ arnodenhond.astroclock.settings.PrefsReader:
     public static final java.lang.String KEY_ALERT_SOUTHWARDEQUINOX
     private static final java.lang.String PREF_FIRSTRUN
     private static final java.lang.String KEY_FIRSTRUN
-    175:175:public void getBackground()
-    178:178:public void getNotifications()
-    194:195:public void setAlert_midday(boolean)
-    202:203:public void setAlert_midnight(boolean)
-    210:211:public void setAlert_sunrise(boolean)
-    218:219:public void setAlert_sunset(boolean)
-    226:227:public void setAlert_fullmoon(boolean)
-    234:235:public void setAlert_newmoon(boolean)
-    242:243:public void setAlert_firstquarter(boolean)
-    250:251:public void setAlert_lastquarter(boolean)
-    258:259:public void setAlert_northernsolstice(boolean)
-    266:267:public void setAlert_southernsolstice(boolean)
-    274:275:public void setAlert_northwardequinox(boolean)
-    282:283:public void setAlert_southwardequinox(boolean)
+    private static final java.lang.String KEY_FIRSTNEWVERSION
+    189:189:public void getBackground()
+    192:192:public void getNotifications()
+    208:209:public void setAlert_midday(boolean)
+    216:217:public void setAlert_midnight(boolean)
+    224:225:public void setAlert_sunrise(boolean)
+    232:233:public void setAlert_sunset(boolean)
+    240:241:public void setAlert_fullmoon(boolean)
+    248:249:public void setAlert_newmoon(boolean)
+    256:257:public void setAlert_firstquarter(boolean)
+    264:265:public void setAlert_lastquarter(boolean)
+    272:273:public void setAlert_northernsolstice(boolean)
+    280:281:public void setAlert_southernsolstice(boolean)
+    288:289:public void setAlert_northwardequinox(boolean)
+    296:297:public void setAlert_southwardequinox(boolean)
 arnodenhond.astroclock.settings.location.Map:
     private static final int DIALOG_LOCATION
 arnodenhond.astroclock.settings.location.Overlay:
@@ -84,7 +90,7 @@ arnodenhond.astroclocklite.R$string
 arnodenhond.astroclocklite.R$style
 arnodenhond.astroclocklite.R$styleable:
     public static final int Gallery_android_galleryItemBackground
-    190:190:public R$styleable()
+    187:187:public R$styleable()
 arnodenhond.astroclocklite.R$xml
 com.google.ads.Ad:
     public abstract boolean isReady()
@@ -135,7 +141,6 @@ com.google.ads.AdSize:
     317:336:public varargs com.google.ads.AdSize findBestSize(com.google.ads.AdSize[])
 com.google.ads.AdView:
     87:100:public AdView(android.app.Activity,com.google.ads.AdSize,java.lang.String)
-    263:264:public void destroy()
     483:487:public boolean isReady()
     534:535:public void setAdListener(com.google.ads.AdListener)
     546:549:public void stopLoading()
@@ -150,7 +155,6 @@ com.google.ads.InterstitialAd:
     148:149:public void setAdListener(com.google.ads.AdListener)
     158:159:public void stopLoading()
 com.google.ads.e:
-    112:122:public void b()
     199:205:private boolean a(com.google.ads.h,java.lang.String)
     211:222:public void a(com.google.ads.h,boolean)
     227:241:public void a(com.google.ads.h,android.view.View)
@@ -174,15 +178,11 @@ com.google.ads.h:
     262:262:com.google.ads.e i()
     266:267:synchronized void a(android.view.View)
 com.google.ads.h$2
-com.google.ads.internal.c:
-    433:449:protected void a()
 com.google.ads.internal.d:
-    284:292:public synchronized void b()
     487:487:public synchronized boolean q()
     668:672:public synchronized void a(com.google.ads.f,boolean)
     797:808:private void b(com.google.ads.f,java.lang.Boolean)
     988:1017:public synchronized void y()
-    1026:1035:public synchronized void z()
     1139:1139:public java.lang.Boolean C()
 com.google.ads.j:
     private boolean b
@@ -413,186 +413,3 @@ com.google.android.apps.analytics.PipelinedRequester:
     private static final int RECEIVE_BUFFER_SIZE
 com.google.android.apps.analytics.Utils:
     Utils()
-com.tapjoy.TJCOffers:
-    private static com.tapjoy.TapjoyNotifier tapjoyNotifier
-    private static com.tapjoy.TapjoySpendPointsNotifier tapjoySpendPointsNotifier
-    private static com.tapjoy.TapjoyAwardPointsNotifier tapjoyAwardPointsNotifier
-    private static com.tapjoy.TapjoyEarnedPointsNotifier tapjoyEarnedPointsNotifier
-    public static final java.lang.String TAPJOY_OFFERS
-    public static final java.lang.String TAPJOY_POINTS
-    84:99:public void showOffersWithCurrencyID(java.lang.String,boolean)
-    110:132:public void getTapPoints(com.tapjoy.TapjoyNotifier)
-    143:174:public void spendTapPoints(int,com.tapjoy.TapjoySpendPointsNotifier)
-    185:222:public void awardTapPoints(int,com.tapjoy.TapjoyAwardPointsNotifier)
-    232:233:public void setEarnedPointsNotifier(com.tapjoy.TapjoyEarnedPointsNotifier)
-    245:303:private synchronized boolean handleGetPointsResponse(java.lang.String)
-    315:359:private boolean handleSpendPointsResponse(java.lang.String)
-    371:415:private boolean handleAwardPointsResponse(java.lang.String)
-    243:243:static synthetic boolean access$0(com.tapjoy.TJCOffers,java.lang.String)
-    26:26:static synthetic com.tapjoy.TapjoyNotifier access$1()
-    314:314:static synthetic boolean access$2(com.tapjoy.TJCOffers,java.lang.String)
-    27:27:static synthetic com.tapjoy.TapjoySpendPointsNotifier access$3()
-    370:370:static synthetic boolean access$4(com.tapjoy.TJCOffers,java.lang.String)
-    28:28:static synthetic com.tapjoy.TapjoyAwardPointsNotifier access$5()
-com.tapjoy.TJCOffers$1
-com.tapjoy.TJCOffers$2
-com.tapjoy.TJCOffers$3
-com.tapjoy.TapjoyAwardPointsNotifier
-com.tapjoy.TapjoyConnect:
-    public static final java.lang.String TAPJOY_CONNECT
-    94:95:public void setUserID(java.lang.String)
-    104:104:public java.lang.String getUserID()
-    113:113:public java.lang.String getAppID()
-    131:132:public void enablePaidAppWithActionID(java.lang.String)
-    142:143:public void setCurrencyMultiplier(float)
-    151:151:public float getCurrencyMultiplier()
-    166:167:public void actionComplete(java.lang.String)
-    191:192:public void showOffersWithCurrencyID(java.lang.String,boolean)
-    203:204:public void getTapPoints(com.tapjoy.TapjoyNotifier)
-    215:216:public void spendTapPoints(int,com.tapjoy.TapjoySpendPointsNotifier)
-    227:228:public void awardTapPoints(int,com.tapjoy.TapjoyAwardPointsNotifier)
-    238:239:public void setEarnedPointsNotifier(com.tapjoy.TapjoyEarnedPointsNotifier)
-    270:271:public void getFeaturedAppWithCurrencyID(java.lang.String,com.tapjoy.TapjoyFeaturedAppNotifier)
-    281:282:public void setFeaturedAppDisplayCount(int)
-    308:309:public void setBannerAdSize(java.lang.String)
-    318:319:public void enableBannerAdAutoRefresh(boolean)
-    330:331:public void getDisplayAd(com.tapjoy.TapjoyDisplayAdNotifier)
-    346:347:public void getDisplayAdWithCurrencyID(java.lang.String,com.tapjoy.TapjoyDisplayAdNotifier)
-    358:359:public void initVideoAd(com.tapjoy.TapjoyVideoNotifier)
-    369:370:public void setVideoCacheCount(int)
-    379:380:public void enableVideoCache(boolean)
-com.tapjoy.TapjoyConnectCore:
-    public static final java.lang.String TAPJOY_CONNECT
-    701:705:public void release()
-    726:726:public static java.lang.String getDeviceID()
-    753:753:public static java.lang.String getCarrierName()
-    807:807:public static android.content.Context getContext()
-    841:851:public static java.lang.String getAwardPointsVerifier(long,int,java.lang.String)
-    906:937:public static void setUserID(java.lang.String)
-    946:947:public static void setVideoIDs(java.lang.String)
-    956:957:public static void setVideoEnabled(boolean)
-    966:967:public static void enableVideoCache(boolean)
-    995:1003:public static void setDebugDeviceID(java.lang.String)
-    1012:1018:public static void saveTapPointsTotal(int)
-    1028:1031:public static int getLocalTapPointsTotal()
-    1087:1112:public void enablePaidAppWithActionID(java.lang.String)
-    1182:1184:public void setCurrencyMultiplier(float)
-    1192:1192:public float getCurrencyMultiplier()
-    99:99:static synthetic long access$0(com.tapjoy.TapjoyConnectCore)
-    99:99:static synthetic void access$1(com.tapjoy.TapjoyConnectCore,long)
-    33:33:static synthetic android.content.Context access$2()
-    97:97:static synthetic java.lang.String access$3()
-    71:71:static synthetic java.lang.String access$8()
-com.tapjoy.TapjoyConnectCore$1
-com.tapjoy.TapjoyConnectCore$PaidAppTimerTask
-com.tapjoy.TapjoyConnectFlag
-com.tapjoy.TapjoyConstants
-com.tapjoy.TapjoyDisplayAd:
-    private static com.tapjoy.TapjoyDisplayAdNotifier displayAdNotifier
-    private boolean autoRefresh
-    public static java.lang.String displayAdURLParams
-    private static java.lang.String adClickURL
-    private static android.graphics.Bitmap bitmapImage
-    android.view.View adView
-    java.util.Timer timer
-    java.util.Timer resumeTimer
-    long elapsed_time
-    private static final byte PAD
-    private static final int MASK_8BITS
-    private byte[] buffer
-    private int pos
-    private int modulus
-    private boolean eof
-    private int x
-    70:71:public void setBannerAdSize(java.lang.String)
-    79:79:public java.lang.String getBannerAdSize()
-    89:90:public void enableAutoRefresh(boolean)
-    99:101:public void getDisplayAd(com.tapjoy.TapjoyDisplayAdNotifier)
-    112:143:public void getDisplayAd(java.lang.String,com.tapjoy.TapjoyDisplayAdNotifier)
-    155:251:private boolean buildResponse(java.lang.String)
-    300:300:public static android.graphics.Bitmap getBitmapImage()
-    305:305:public static java.lang.String getLinkURL()
-    405:455:void decodeBase64(byte[],int,int)
-    32:32:static synthetic com.tapjoy.TapjoyDisplayAdNotifier access$0()
-    33:33:static synthetic com.tapjoy.TapjoyURLConnection access$1()
-    154:154:static synthetic boolean access$2(com.tapjoy.TapjoyDisplayAd,java.lang.String)
-    39:39:static synthetic java.lang.String access$3()
-    35:35:static synthetic android.content.Context access$4(com.tapjoy.TapjoyDisplayAd)
-com.tapjoy.TapjoyDisplayAd$1
-com.tapjoy.TapjoyDisplayAd$2
-com.tapjoy.TapjoyDisplayAd$CheckForResumeTimer
-com.tapjoy.TapjoyDisplayAd$RefreshTimer
-com.tapjoy.TapjoyDisplayAdNotifier
-com.tapjoy.TapjoyDisplayAdSize:
-    16:16:public TapjoyDisplayAdSize()
-com.tapjoy.TapjoyEarnedPointsNotifier
-com.tapjoy.TapjoyFeaturedApp:
-    137:138:public void setDisplayCount(int)
-    262:262:public com.tapjoy.TapjoyFeaturedAppObject getFeaturedAppObject()
-com.tapjoy.TapjoyFeaturedAppObject:
-    public int maxTimesToDisplayThisApp
-com.tapjoy.TapjoyLog:
-    private static final int MAX_STRING_SIZE
-    20:20:public TapjoyLog()
-    32:34:public static void enableLogging(boolean)
-    83:85:public static void w(java.lang.String,java.lang.String)
-    96:98:public static void d(java.lang.String,java.lang.String)
-    109:111:public static void v(java.lang.String,java.lang.String)
-com.tapjoy.TapjoyNotifier
-com.tapjoy.TapjoySpendPointsNotifier
-com.tapjoy.TapjoyURLConnection:
-    private static final java.lang.String TAPJOY_URL_CONNECTION
-    174:194:public java.lang.String getContentLength(java.lang.String)
-    210:278:public java.lang.String connectToURLwithPOST(java.lang.String,java.util.Hashtable,java.util.Hashtable)
-com.tapjoy.TapjoyUtil:
-    private static final java.lang.String TAPJOY_UTIL
-    27:27:public TapjoyUtil()
-    170:179:public static void deleteFileOrDirectory(java.io.File)
-com.tapjoy.TapjoyVideo:
-    public static final java.lang.String TAPJOY_VIDEO
-    private java.util.Vector videoQueue
-    private static final java.lang.String BACKGROUND_WATERMARK_NAME
-    private static final java.lang.String imageTapjoyUrl
-    private java.util.Vector imageQueue
-    private java.util.Hashtable uncachedImages
-    public static java.lang.String imageBackgroundLocation
-    public static java.lang.String imagePlaceholderLocation
-    99:100:public void setVideoCacheCount(int)
-    109:111:public void enableVideoCache(boolean)
-    120:340:public void initVideoAd(com.tapjoy.TapjoyVideoNotifier)
-    351:474:private boolean handleGetVideosResponse(java.lang.String)
-    565:579:public void loadNextVideo()
-    597:712:private void cacheVideo(java.lang.String)
-    720:820:private void cacheImage(java.lang.String)
-    827:845:private void setVideoIDs()
-    350:350:static synthetic boolean access$0(com.tapjoy.TapjoyVideo,java.lang.String)
-    48:48:static synthetic boolean access$1(com.tapjoy.TapjoyVideo)
-    42:42:static synthetic com.tapjoy.TapjoyVideoNotifier access$2()
-    45:45:static synthetic java.lang.String access$3(com.tapjoy.TapjoyVideo)
-    54:54:static synthetic java.util.Hashtable access$4(com.tapjoy.TapjoyVideo)
-    56:56:static synthetic java.util.Hashtable access$5(com.tapjoy.TapjoyVideo)
-    53:53:static synthetic java.util.Vector access$6(com.tapjoy.TapjoyVideo)
-    826:826:static synthetic void access$7(com.tapjoy.TapjoyVideo)
-    46:46:static synthetic java.lang.String access$8(com.tapjoy.TapjoyVideo)
-    66:66:static synthetic java.util.Hashtable access$9(com.tapjoy.TapjoyVideo)
-    65:65:static synthetic java.util.Vector access$10(com.tapjoy.TapjoyVideo)
-    719:719:static synthetic void access$11(com.tapjoy.TapjoyVideo,java.lang.String)
-com.tapjoy.TapjoyVideo$1
-com.tapjoy.TapjoyVideo$2
-com.tapjoy.TapjoyVideo$3
-com.tapjoy.TapjoyVideoNotifier:
-    public abstract void videoReady()
-com.tapjoy.TapjoyVideoObject:
-    public java.lang.String videoAdName
-    public java.lang.String iconURL
-    public int buttonCount
-    public static final int BUTTON_MAX
-    35:38:public void addButton(java.lang.String,java.lang.String)
-com.tapjoy.TapjoyVideoStatus
-com.tapjoy.TapjoyVideoView:
-    private static final java.lang.String BUNDLE_DIALOG_SHOWING
-    private static final java.lang.String BUNDLE_SEEK_TIME
-    private static final int DIALOG_WARNING_ID
-    private static final java.lang.String videoWillResumeText
-    private static final java.lang.String videoSecondsText
-    int deviceScreenDensity

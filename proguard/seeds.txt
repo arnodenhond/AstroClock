@@ -1,12 +1,14 @@
 arnodenhond.astroclock.About
-arnodenhond.astroclock.About: void tapjoyfeaturedapp(android.view.View)
 arnodenhond.astroclock.About: void sendfeedback(android.view.View)
 arnodenhond.astroclock.About: void postcomment(android.view.View)
 arnodenhond.astroclock.About: void shareurl(android.view.View)
+arnodenhond.astroclock.About: void getalarm(android.view.View)
 arnodenhond.astroclock.AstroClock
 arnodenhond.astroclock.AstroClock: void clicked(android.view.View)
 arnodenhond.astroclock.alerts.AlarmReceiver
 arnodenhond.astroclock.alerts.BootReceiver
+arnodenhond.astroclock.livefolder.ACLiveFolder
+arnodenhond.astroclock.livefolder.ACProvider
 arnodenhond.astroclock.livewallpaper.ACWallpaperService
 arnodenhond.astroclock.settings.Menu
 arnodenhond.astroclock.settings.alerts.Alerts
@@ -33,6 +35,3 @@ com.google.ads.util.AdUtil$a: com.google.ads.util.AdUtil$a valueOf(java.lang.Str
 com.google.ads.util.b$a: com.google.ads.util.b$a[] values()
 com.google.ads.util.b$a: com.google.ads.util.b$a valueOf(java.lang.String)
 com.google.android.apps.analytics.AnalyticsReceiver
-com.tapjoy.TJCOffersWebView
-com.tapjoy.TapjoyFeaturedAppWebView
-com.tapjoy.TapjoyVideoView
