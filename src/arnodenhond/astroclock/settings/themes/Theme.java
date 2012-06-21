@@ -119,11 +119,6 @@ public class Theme extends Activity {
 		});
 		useBackground.setChecked(pr.isUseBackground());
 		selectImage.setEnabled(pr.isUseBackground());
-		if (pr.isUseBackground()) {
-			getWindow().setBackgroundDrawable(new BitmapDrawable(AstroClock.loadFullImage(Theme.this, Uri.parse(pr.getBackgroundImage()))));
-		} else {
-			getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
-		}
 		selectImage.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -135,6 +130,18 @@ public class Theme extends Activity {
 		
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		PrefsReader pr = new PrefsReader(this);
+		if (pr.isUseBackground()) {
+			getWindow().setBackgroundDrawable(new BitmapDrawable(AstroClock.loadFullImage(Theme.this, Uri.parse(pr.getBackgroundImage()))));
+		} else {
+			getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
+		}
+	
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode!=Activity.RESULT_OK)
