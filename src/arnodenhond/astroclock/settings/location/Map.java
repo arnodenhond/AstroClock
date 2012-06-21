@@ -101,6 +101,20 @@ public class Map extends MapActivity {
 
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		if (!item.isChecked()) {
+			LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+			List<String> providers = locationManager.getProviders(new Criteria(), true);
+			if (providers.isEmpty()) {
+				showDialog(DIALOG_LOCATION);
+				return true;
+			} else {
+				Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), true));
+				if (location == null) {
+					showDialog(DIALOG_LOCATION);
+					return true;
+				}
+			}
+		}
 		PrefsReader pr = new PrefsReader(this);
 		item.setChecked(!item.isChecked());
 		pr.setRefreshLatLon(item.isChecked());
