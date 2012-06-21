@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="downloading">다운로드</string>
+    <string name="settheme">테마를 설정</string>
+    <string name="themestored">저장된 테마</string>
+    <string name="nodownloadtitle">다운로드 수 없습니다</string>
+    <string name="nodownloadbody">선택된 테마가 다운로드할 수 없습니다. \ n은 테마를 다운로드할 수있는 시스템 설정에서 무선 연결을 활성화합니다.</string>
+    <string name="nodownloadbutton">무선 설정</string>
+	<string name="usebackground">배경 이미지를 사용</string>
+	<string name="selectimage">이미지를 선택</string>
+</resources>

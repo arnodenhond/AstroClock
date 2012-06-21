@@ -1,0 +1,86 @@
+---ALERTS---
+Audible
+Vibrate
+Day
+Midday
+Midnight
+Sunrise
+Sunset
+Moon
+Full moon
+New moon
+First quarter
+Last quarter
+Year
+Northern solstice
+Southern solstice
+Northward equinox
+Southward equinox
+
+---LOCATION---
+Acquire Location
+No Location
+Location could not be acquired. Enable a location provider in the system settings to be able to acquire location.
+Location Settings
+Periodically refresh location
+Enabled
+Disabled
+
+---THEMES---
+Downloading
+Set Theme
+Theme Stored
+Could not download
+The selected theme could not be downloaded. Enable a wireless connection in the system settings to be able to download themes.
+Wireless Settings
+Use a background image
+Select Image
+
+---GENERAL---
+Astronomical Clock
+Welcome to Astronomical Clock
+From the menu, select location to ensure accuracy. Select a theme to match your mood. Enable some alerts be notified of astronomical events. Astronomical Clock also has a homescreen widget, a live wallpaper and a live folder. Select About for more information.
+OK
+
+---MENU---
+Themes
+Alerts
+Location
+About
+Done
+
+---ABOUT APP---
+Help
+AstroClock visualises time according to consistent astronomical standards in stead of months and years with changing amount of days.\n<b>Cycles</b>\nTime is measured according to three natural cycles:
+<li><b>Day </b>\t One rotation every 24 hours. Hand at 12 o\'clock position at mid-day.</li>
+<li><b>Moon</b>\t One rotation every 29.53 days. Hand at 12 o\'clock position at full moon.</li>
+<li><b>Year</b>\t One rotation every 365.25 days. Hand at 12 o\'clock postion at the longest day of the year.</li>
+The hands always turn in clockwise direction but the 12 o\'clock positions could be different in some themes.
+<b>Sun rise and Sun set</b>\nWithin the day cylce there are indicators showing the start and end of day and night.
+<b>Status Bar Notifications</b>\nBy enabling alerts you can receive up to 12 different recurring notifications, even when the screen is off.
+<b>Homescreen</b>\nAstroClock also comes with a homescreen widget, a live folder and a battery efficient live wallpaper.
+<b>Make your own Theme</b>\nFor instructions on creating your own theme and sharing it with others, please visit android.arnodenhond.com/apps/astroclock/skins
+<b>App Interaction</b>\nAstroClock sends out broadcast intents which other apps can receive and offers a content provider which other apps can read. See android.arnodenhond.com/apps/astroclock/broadcast-intents for more information.
+<b>Disclaimer</b>\nThis app does not contain spyware or otherwise misbehave in any way. Some screens are known to burn in afterimages when displaying the same graphics over a long period.
+
+---ABOUT DEVELOPER---
+Made-by
+<b>About me</b>\nThis app has been under semi-continuous development on evenings and weekends since April 2009 by me, <b>Arno den Hond</b> from Amsterdam, The Netherlands.\nI made it on a MacBook Pro and tested it on a Motorola Droid, a Samsung Galaxy Tab, an Asus Transformer and a LG Optimus 3D.
+<b>Credits</b>\nMany thanks to the graphics artists whose names are listed in the themes section.\nKostas of kanguro.fi inspired me to write a more user-friendly app description.\nThis app would not have been possible without the outstanding effort of the Android engineers at google.com
+<b>Advertsing Keywords</b>\nTo develop this app I had to spend money on the equipment mentioned above so to recover that money I have added advertising to the top of some screens.\nTo reduce the annoyance of this advertising you can enter some of your favorite topics below and the advertising might become more interesting :)
+Cars, Music, Travel, Painting
+<b>Support AstroClock</b>\nI hope you like my app! If so, please let somebody know by pressing some of these buttons. Thanks!
+Share this app on your social network
+Post a rating &amp; comment in the Play Store
+Send me your questions or suggestions
+<b>Tip Jar</b>\nIf you want to show your appreciation for AstroClock and support further development of this and other apps then please consider downloading the add-on tools pack. I would appreciate it!
+<b>Day vs. Night Length</b>\nTo express my gratitude to you for downloading my app and because I didn\'t know a better place to put this, here is a progress bar showing the length of today\'s day vs. night:
+
+---PLAY STORE---
+AstroClock takes timekeeping to an astronomical level!
+Calendars divide years into months of irregular length and even the length of a year changes during leap years! AstroClock visualizes time according to three consistent natural cycles i.e. day, moon and season. Time is indicated by three hands which each turn once for each cycle. (they still turn in a clockwise direction) Bring your home screen to life with a gorgeous widget (resizable on newer phones and tablets) or a live wallpaper (very battery efficient as it ticks only once every 15 minutes). On older phones AstroClock provides a LiveFolder listing all upcoming alerts. Display AstroClock on your wall mounted tablet or wrist watch in full screen mode to view the clock without your home screen in the way.
+AstroClock has a variety of downloadable themes to match your mood and if there isn't one that suits your fancy you can design your own theme, share it with others and become moderately famous! If you don't want any theme or clock to display at all you can simply enable any of the 12 alerts (4 for each cycle) and have them show up in your notification bar as desired.
+AstroClock plays nicely with other apps: on each alert (whether enabled for notification or not) it broadcasts an intent to any app that wants to respond according to the astronomical time. Additionally, AstroClock offers a Content Provider that other apps can read to get the dates of all upcoming alerts.
+This app is made by an independent developer during evenings and weekends. If you like it then please post a comment below :)
+
+
