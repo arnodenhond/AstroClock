@@ -71,9 +71,11 @@ public class PrefsReader {
 
 	private static final String PREF_FIRSTRUN = "firstrun";
 
-	private static final String KEY_FIRSTRUN = "version";
+	private static final String KEY_FIRSTRUN = "firstrun";
+	private static final String KEY_FIRSTNEWVERSION = "version";
 
 	private boolean firstrun;
+	private boolean firstnewversion;
 
 	public PrefsReader(Context context) {
 		this.context = context;
@@ -113,13 +115,14 @@ public class PrefsReader {
 		this.alert_northwardequinox = alarmspref.getBoolean(KEY_ALERT_NORTHWARDEQUINOX, false);
 		this.alert_southwardequinox = alarmspref.getBoolean(KEY_ALERT_SOUTHWARDEQUINOX, false);
 
+		this.firstrun = firstrunpref.getBoolean(KEY_FIRSTRUN, true);
 		int version = 0;
 		try {
 			version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
 		} catch (NameNotFoundException nnfe) {
 			version = 0;
 		}
-		this.firstrun = (firstrunpref.getInt(KEY_FIRSTRUN, -1) != version);
+		this.firstnewversion = (firstrunpref.getInt(KEY_FIRSTNEWVERSION, -1) != version);
 	}
 
 	public GeoPoint getGeoPoint() {
@@ -298,14 +301,27 @@ public class PrefsReader {
 		storeFirstrun();
 	}
 
-	private void storeFirstrun() {
+	public void storeFirstrun() {
+		context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE).edit().putBoolean(KEY_FIRSTRUN, firstrun).commit();
+	}
+
+	public boolean isFirstnewversion() {
+		return firstnewversion;
+	}
+
+	public void setFirstnewversion(boolean firstnewversion) {
+		this.firstnewversion = firstnewversion;
+		storeFirstnewversion();
+	}
+
+	private void storeFirstnewversion() {
 		int version = 0;
-        try {
-            version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-        } catch (NameNotFoundException nnfe) {
-        	version=-1;
-        }
-		context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE).edit().putInt(KEY_FIRSTRUN, version).commit();
+		try {
+			version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+		} catch (NameNotFoundException nnfe) {
+			version = -1;
+		}
+		context.getSharedPreferences(PREF_FIRSTRUN, Activity.MODE_PRIVATE).edit().putInt(KEY_FIRSTNEWVERSION, version).commit();
 	}
 
 	public String getKeywords() {

@@ -1,8 +1,8 @@
 <?xml version="1.0"	encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="arnodenhond.astroclocklite"
-    android:versionCode="230"
-    android:versionName="3.0 BETA 3" >
+    android:versionCode="303"
+    android:versionName="3.0.3" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -58,6 +58,13 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="astroclock/astroclock" />
             </intent-filter>
         </activity>
         <activity android:name="arnodenhond.astroclock.About" />
@@ -139,6 +146,19 @@
                 android:resource="@xml/wallpaper" >
             </meta-data>
         </service>
+        <!-- livefolder -->
+        <activity android:name="arnodenhond.astroclock.livefolder.ACLiveFolder" >
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="arnodenhond.astroclock.livefolder.ACProvider"
+            android:authorities="astroclock"
+            android:syncable="false" />
     </application>
 
 </manifest>

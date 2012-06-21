@@ -76,10 +76,14 @@ public class AstroClock extends Activity {
 
 		PrefsReader pr = new PrefsReader(this);
 		if (pr.isFirstrun()) {
-			showDialog(DIALOG_WELCOME);
 			getLocation(this);
-			setAlarms(this);
+			setAlerts(this);
 			pr.setFirstrun(false);
+		}
+		if (pr.isFirstnewversion()) {
+			setAlarms(this);
+			showDialog(DIALOG_WELCOME);
+			pr.setFirstnewversion(false);
 		}
 		setContentView(R.layout.activity);
 		if (supportsAPILevel11()) {
@@ -110,11 +114,14 @@ public class AstroClock extends Activity {
 	}
 
 	public static void setAlarms(Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(PrefsReader.PREF_ALERTS, MODE_PRIVATE);
-		prefs.edit().putBoolean(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_FULLMOON, true).commit();
 		context.sendBroadcast(new Intent(context, BootReceiver.class));
 	}
 
+	public static void setAlerts(Context context) {
+		SharedPreferences prefs = context.getSharedPreferences(PrefsReader.PREF_ALERTS, MODE_PRIVATE);
+		prefs.edit().putBoolean(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_FULLMOON, true).commit();
+	}
+	
 	public static void getLocation(Context context) {
 		LocationManager locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
 		List<String> providers = locationManager.getProviders(new Criteria(), true);

@@ -19,10 +19,13 @@ public class ACAppWidgetProvider extends AppWidgetProvider {
 
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		PrefsReader settings = new PrefsReader(context);
-		if (settings.isFirstrun()) {
-			AstroClock.getLocation(context);
+		if (settings.isFirstnewversion()) {
 			AstroClock.setAlarms(context);
-			settings.setFirstrun(false);
+			settings.setFirstnewversion(false);
+		}
+		if (settings.isFirstrun()) {
+			AstroClock.setAlerts(context);
+			AstroClock.getLocation(context);
 		}
 		
 		GoogleAnalyticsTracker tracker = GoogleAnalyticsTracker.getInstance();
