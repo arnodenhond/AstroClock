@@ -6,7 +6,7 @@
     <string name="nolocationbody">Location could not be acquired.\nEnable a location provider in the system settings to be able to acquire location.</string>
     <string name="nolocationbutton">Location Settings</string>
     <string name="refreshlocation">Periodically refresh location</string>
-    <string name="on">On</string>
-    <string name="off">Off</string>
+    <string name="on">Enabled</string>
+    <string name="off">Disabled</string>
 
 </resources>

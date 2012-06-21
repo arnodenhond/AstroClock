@@ -12,6 +12,7 @@ import android.database.MatrixCursor;
 import android.net.Uri;
 import android.provider.LiveFolders;
 import android.text.format.DateFormat;
+import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.calcuator.NextCalc;
 import arnodenhond.astroclock.settings.PrefsReader;
 import arnodenhond.astroclocklite.R;
@@ -27,13 +28,27 @@ public class ACProvider extends ContentProvider {
 
 	@Override
 	public boolean onCreate() {
+		PrefsReader settings = new PrefsReader(getContext());
+		
+		if (settings.isRefreshLatLon()) {
+			AstroClock.getLocation(getContext(),settings);
+		}
+		if (settings.isFirstnewversion()) {
+			AstroClock.setAlarms(getContext());
+			settings.setFirstnewversion(false);
+		}
+		if (settings.isFirstrun()) {
+			AstroClock.getLocation(getContext(),settings);
+			AstroClock.setAlerts(getContext());
+		}
 		return true;
 	}
 
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-		PrefsReader pr = new PrefsReader(getContext());
-		NextCalc nc = new NextCalc(pr.getLatitude(), pr.getLongitude());
+		PrefsReader settings = new PrefsReader(getContext());
+		
+		NextCalc nc = new NextCalc(settings.getLatitude(), settings.getLongitude());
 		
 
 		MatrixCursor cursor = new MatrixCursor(new String[] { LiveFolders._ID, LiveFolders.NAME, LiveFolders.DESCRIPTION, COLUMN_TIMEUTC });
