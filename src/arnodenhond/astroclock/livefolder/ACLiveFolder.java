@@ -17,12 +17,15 @@ public class ACLiveFolder extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		PrefsReader settings = new PrefsReader(this);
+		if (settings.isRefreshLatLon()) {
+			AstroClock.getLocation(this,settings);
+		}
 		if (settings.isFirstnewversion()) {
 			AstroClock.setAlarms(this);
 			settings.setFirstnewversion(false);
 		}
 		if (settings.isFirstrun()) {
-			AstroClock.getLocation(this);
+			AstroClock.getLocation(this,settings);
 			AstroClock.setAlerts(this);
 		}
 		final Intent intent = new Intent();

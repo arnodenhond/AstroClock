@@ -74,9 +74,13 @@ public class AstroClock extends Activity {
 		}
 		tracker.trackPageView("/AstroClockActivity");
 
+		
 		PrefsReader pr = new PrefsReader(this);
+		if (pr.isRefreshLatLon()) {
+			getLocation(this,pr);
+		}
 		if (pr.isFirstrun()) {
-			getLocation(this);
+			getLocation(this,pr);
 			setAlerts(this);
 			pr.setFirstrun(false);
 		}
@@ -122,7 +126,7 @@ public class AstroClock extends Activity {
 		prefs.edit().putBoolean(PrefsReader.KEY_ALERT_NORTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHERNSOLSTICE, true).putBoolean(PrefsReader.KEY_ALERT_NORTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_SOUTHWARDEQUINOX, true).putBoolean(PrefsReader.KEY_ALERT_FULLMOON, true).commit();
 	}
 	
-	public static void getLocation(Context context) {
+	public static void getLocation(Context context, PrefsReader prefs) {
 		LocationManager locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
 		List<String> providers = locationManager.getProviders(new Criteria(), true);
 		if (!providers.isEmpty()) {
@@ -131,7 +135,7 @@ public class AstroClock extends Activity {
 				int lat = (int) (location.getLatitude() * 1E6);
 				int lon = (int) (location.getLongitude() * 1E6);
 				GeoPoint gp = new GeoPoint(lat, lon);
-				new PrefsReader(context).setGeoPoint(gp);
+				prefs.setGeoPoint(gp);
 			}
 		}
 	}

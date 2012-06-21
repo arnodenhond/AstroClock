@@ -15,8 +15,10 @@ public class PrefsReader {
 
 	private static final String KEY_LATITUDE = "latitude";
 	private static final String KEY_LONGITUDE = "longitude";
+	private static final String KEY_REFRESHLATLON = "refresh";
 	private double latitude;
 	private double longitude;
+	private boolean refreshlatlon;
 
 	private static final String PREF_THEME = "theme";
 
@@ -91,6 +93,8 @@ public class PrefsReader {
 
 		this.latitude = latlonpref.getFloat(KEY_LATITUDE, 35f);
 		this.longitude = latlonpref.getFloat(KEY_LONGITUDE, -120f);
+		this.refreshlatlon = latlonpref.getBoolean(KEY_REFRESHLATLON, false);
+		
 		this.theme = themepref.getInt(KEY_THEME, 2);
 		this.usebackground = themepref.getBoolean(KEY_USEBACKGROUND, false);
 		this.backgroundimage = themepref.getString(KEY_BACKGROUNDIMAGE, "");
@@ -335,6 +339,19 @@ public class PrefsReader {
 
 	private void storeKeywords() {
 		context.getSharedPreferences(PREF_KEYWORDS, Activity.MODE_PRIVATE).edit().putString(KEY_KEYWORDS, keywords).commit();
+	}
+	
+	public boolean isRefreshLatLon() {
+		return this.refreshlatlon;
+	}
+	
+	public void setRefreshLatLon(boolean refreshlatlon) {
+		this.refreshlatlon = refreshlatlon;
+		storeRefreshLatlon();
+	}
+	
+	private void storeRefreshLatlon() {
+		context.getSharedPreferences(PREF_LATLON, Activity.MODE_PRIVATE).edit().putBoolean(KEY_REFRESHLATLON, refreshlatlon).commit();
 	}
 
 }

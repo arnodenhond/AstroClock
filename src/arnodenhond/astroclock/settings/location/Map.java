@@ -17,10 +17,13 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.BitmapMaker;
 import arnodenhond.astroclock.alerts.AlarmReceiver;
@@ -96,6 +99,31 @@ public class Map extends MapActivity {
 		}
 	}
 
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		PrefsReader pr = new PrefsReader(this);
+		item.setChecked(!item.isChecked());
+		pr.setRefreshLatLon(item.isChecked());
+		if (!AstroClock.supportsAPILevel11()) {
+			Toast.makeText(this, item.isChecked()?R.string.on:R.string.off, Toast.LENGTH_SHORT).show();
+		}
+		return true;
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(android.view.Menu menu) {
+		MenuInflater mi = getMenuInflater();
+		mi.inflate(R.menu.location, menu);
+		
+		PrefsReader pr = new PrefsReader(this);
+		MenuItem item = menu.findItem(R.id.refreshlocation);
+		item.setCheckable(true);
+		item.setChecked(pr.isRefreshLatLon());
+		
+		return super.onCreateOptionsMenu(menu);
+	}
+	
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {

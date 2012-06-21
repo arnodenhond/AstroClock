@@ -5,5 +5,8 @@
     <string name="nolocationtitle">No Ubicación</string>
     <string name="nolocationbody">La ubicación no podía ser adquirida.\nHabilitar un proveedor de ubicación en la configuración del sistema para poder adquirir la localidad.</string>
     <string name="nolocationbutton">Configuración de la ubicación</string>
-
+    <string name="refreshlocation">Actualizar periódicamente la ubicación</string>
+    <string name="on">Activado</string>
+    <string name="off">Desactivado</string>
+    
 </resources>

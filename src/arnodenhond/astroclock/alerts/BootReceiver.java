@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.calcuator.NextCalc;
 import arnodenhond.astroclock.settings.PrefsReader;
 
@@ -19,7 +20,14 @@ public class BootReceiver extends BroadcastReceiver {
 		tracker.trackEvent("Startup", "Broadcast", "Receiver", 0);
 
 		PrefsReader pr = new PrefsReader(context);
-
+		if (pr.isRefreshLatLon()) {
+			AstroClock.getLocation(context,pr);
+		}
+		if (pr.isFirstrun()) {
+			AstroClock.getLocation(context,pr);
+			AstroClock.setAlerts(context);
+		}
+		
 		tracker.setCustomVar(1, "Theme", String.valueOf(pr.getTheme()), 1);
 		tracker.setCustomVar(2, "Vibrate", String.valueOf(pr.getNotificationVibrate()), 1);
 		tracker.setCustomVar(3, "Audible", String.valueOf(pr.getNotificationAudible()), 1);

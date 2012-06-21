@@ -5,5 +5,8 @@
     <string name="nolocationtitle">Geen Locatie</string>
     <string name="nolocationbody">Locatie kon niet gezocht worden.\nActiveer een locatie dienstverlener in de system instellingen om locatie te kunnen zoeken.</string>
     <string name="nolocationbutton">Locatie Instellingen</string>
-
+    <string name="refreshlocation">Periodiek locatie vernieuwen</string>
+    <string name="on">Aan</string>
+    <string name="off">Uit</string>
+    
 </resources>

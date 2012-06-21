@@ -27,7 +27,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 		String type = intent.getAction();
 		String message = null;
 		PrefsReader prefs = new PrefsReader(context);
-
+		if (prefs.isRefreshLatLon()) {
+			AstroClock.getLocation(context,prefs);
+		}
+		
 		double latitude = prefs.getLatitude();
 		double longitude = prefs.getLongitude();
 
