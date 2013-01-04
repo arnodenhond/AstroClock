@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="artists">
-		<item>Monica Baltodano</item>
-	    <item>Barry G. Rijkse rijkse.com</item>
-		<item>Wazza.nl</item>
-	</string-array>
+    <string-array name="artists">
+        <item>Monica Baltodano</item>
+        <item>Barry G. Rijkse</item>
+        <item>Yuri Westplat</item>
+        <item>Ailantd Sikowsky</item>
+        <item>Gregor S.</item>
+    </string-array>
 </resources>

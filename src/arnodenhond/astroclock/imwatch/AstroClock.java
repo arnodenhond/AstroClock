@@ -38,11 +38,11 @@ public class AstroClock extends Activity implements OnClickListener {
 	protected void onResume() {
 		super.onResume();
 
-		if (!isImWatch()) {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=arnodenhond.astroclocklite")));
-			finish();
-			return;
-		}
+//		if (!isImWatch()) {
+//			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=arnodenhond.astroclocklite")));
+//			finish();
+//			return;
+//		}
 		
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
 		double latitude = Float.parseFloat(prefs.getString("latitude", "-35"));

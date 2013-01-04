@@ -30,6 +30,8 @@ public class Map extends Activity {
 		SharedPreferences prefs = getSharedPreferences("latlon", Activity.MODE_PRIVATE);
 		latet.setText(prefs.getString("latitude", "00"));
 		lonet.setText(prefs.getString("longitude", "00"));
+		latet.setFocusable(false);
+		lonet.setFocusable(false);
 		mv.setFields(latet, lonet);
 
 		latet.setOnKeyListener(new OnKeyListener() {

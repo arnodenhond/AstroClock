@@ -56,7 +56,7 @@ public class Theme extends Activity {
 		int mGalleryItemBackground;
 		private Context mContext;
 
-		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview };
+		private Integer[] mImageIds = { R.drawable.t1preview, R.drawable.t2preview, R.drawable.t3preview,R.drawable.t4preview, R.drawable.t5preview };
 
 		public ImageAdapter(Context c) {
 			mContext = c;
