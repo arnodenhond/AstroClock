@@ -177,6 +177,7 @@ public class NextCalc {
 		Calendar c = Calendar.getInstance();
 		c.setTimeZone(TimeZone.getTimeZone("UTC"));
 		int y = c.get(Calendar.YEAR) - 2011;
+        if (y<0) y = 0;
 		c.set(Calendar.MONTH, 11);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
@@ -200,6 +201,7 @@ public class NextCalc {
 		Calendar c = Calendar.getInstance();
 		c.setTimeZone(TimeZone.getTimeZone("UTC"));
 		int y = c.get(Calendar.YEAR) - 2011;
+        if (y<0) y = 0;
 		c.set(Calendar.MONTH, 5);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
@@ -223,6 +225,7 @@ public class NextCalc {
 		Calendar c = Calendar.getInstance();
 		c.setTimeZone(TimeZone.getTimeZone("UTC"));
 		int y = c.get(Calendar.YEAR) - 2011;
+        if (y<0) y = 0;
 		c.set(Calendar.MONTH, 8);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
@@ -246,6 +249,7 @@ public class NextCalc {
 		Calendar c = Calendar.getInstance();
 		c.setTimeZone(TimeZone.getTimeZone("UTC"));
 		int y = c.get(Calendar.YEAR) - 2011;
+        if (y<0) y = 0;
 		c.set(Calendar.MONTH, 2);
 		c.set(Calendar.DATE, days[y]);
 		c.set(Calendar.HOUR_OF_DAY, hours[y]);
