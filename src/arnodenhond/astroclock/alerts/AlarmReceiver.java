@@ -145,7 +145,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			//TODO use system date time format
 			String datestring = DateFormat.getDateFormat(context).format(new Date())+" "+DateFormat.getTimeFormat(context).format(new Date());
 			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(context, AstroClock.class), 0));
-            if (Build.VERSION.SDK_INT>=21) {
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
                 notification.visibility = Notification.VISIBILITY_PUBLIC;
             }
 			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
