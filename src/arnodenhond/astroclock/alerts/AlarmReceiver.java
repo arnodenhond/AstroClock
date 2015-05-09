@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.text.format.DateFormat;
 import arnodenhond.astroclock.AstroClock;
 import arnodenhond.astroclock.calcuator.NextCalc;
@@ -144,6 +145,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 			//TODO use system date time format
 			String datestring = DateFormat.getDateFormat(context).format(new Date())+" "+DateFormat.getTimeFormat(context).format(new Date());
 			notification.setLatestEventInfo(context, message, datestring, PendingIntent.getActivity(context, 0, new Intent(context, AstroClock.class), 0));
+            if (Build.VERSION.SDK_INT>=21) {
+                notification.visibility = Notification.VISIBILITY_PUBLIC;
+            }
 			NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			nm.notify(notidtype, notification);
 		}
