@@ -145,6 +145,10 @@ public class PrefsReader {
 		context.getSharedPreferences(PREF_LATLON, Activity.MODE_PRIVATE).edit().putFloat(KEY_LATITUDE, (float) latitude).putFloat(KEY_LONGITUDE, (float) longitude).commit();
 	}
 
+    public void storeLatLon(float lat, float lon) {
+        context.getSharedPreferences(PREF_LATLON, Activity.MODE_PRIVATE).edit().putFloat(KEY_LATITUDE, (float) lat).putFloat(KEY_LONGITUDE, (float) lon).commit();
+    }
+
 	public double getLatitude() {
 		return latitude;
 	}

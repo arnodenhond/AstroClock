@@ -43,9 +43,12 @@ import arnodenhond.astroclocklite.R;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.maps.GeoPoint;
 
-public class AstroClock extends Activity {
+public class AstroClock extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
 	private static final int DIALOG_WELCOME = 1;
 	PendingIntent pi;
@@ -55,6 +58,17 @@ public class AstroClock extends Activity {
 	public static boolean supportsAPILevel11() {
 		return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB);
 	}
+
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +88,8 @@ public class AstroClock extends Activity {
 		}
 		tracker.trackPageView("/AstroClockActivity");
 
-		
+
+
 		PrefsReader pr = new PrefsReader(this);
 		if (pr.isRefreshLatLon()) {
 			getLocation(this,pr);
@@ -287,4 +302,24 @@ public class AstroClock extends Activity {
 
 		return null;
 	}
+
+    @Override
+    public void onConnected(Bundle bundle) {
+         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null) {
+            PrefsReader prefs = new PrefsReader(this);
+            prefs.storeLatLon((float)mLastLocation.getLatitude(),(float)mLastLocation.getLongitude());
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
 }
