@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "arnodenhond.astroclocklite"
+        minSdk 30
+        targetSdk 33
+        versionCode 22122310
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    // Use to implement support for wear tiles
+    implementation "androidx.wear.tiles:tiles:1.1.0"
+
+    // Use to utilize components and layouts with Material Design in your tiles
+    implementation "androidx.wear.tiles:tiles-material:1.1.0"
+
+    implementation "com.google.guava:guava:31.0.1-android"
+    implementation "androidx.wear:wear:1.2.0"
+    // includes support for wearable specific inputs
+    implementation "androidx.wear:wear-input:1.1.0"
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    // Use to preview wear tiles in your own app
+    debugImplementation "androidx.wear.tiles:tiles-renderer:1.1.0"
+
+    // Use to fetch tiles from a tile provider in your tests
+    testImplementation "androidx.wear.tiles:tiles-testing:1.1.0"
+
+    implementation 'com.google.android.gms:play-services-wearable:18.0.0'
+    implementation 'androidx.percentlayout:percentlayout:1.0.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+}
