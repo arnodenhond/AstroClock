@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.AstroClock" parent="@style/Theme.Leanback" />
+</resources>
