@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1046499350641",
+    "project_id": "astroclocktv",
+    "storage_bucket": "astroclocktv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046499350641:android:88c3608de31eb5176fe3d0",
+        "android_client_info": {
+          "package_name": "arnodenhond.astroclocklite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046499350641-ma07472eo9orturekbe8bmve9earafqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl7Lbabj9ZeKsp5Io5-2m-DrPA7EZ8l9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046499350641-ma07472eo9orturekbe8bmve9earafqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

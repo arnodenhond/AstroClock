@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.SharedPreferences
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -13,21 +12,26 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import androidx.fragment.app.FragmentActivity
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    val ticker : Timer = Timer();
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideSystemBars()
         setContentView(R.layout.activity_main)
-        doClock()
+        firebaseAnalytics = Firebase.analytics
     }
 
     private fun doClock() {
+
         val iv : ImageView = findViewById(R.id.clock)
         val sharedPref = getPreferences( Context.MODE_PRIVATE)
         val latitude: Double = sharedPref.getFloat("lat",0f).toDouble()
@@ -107,4 +111,21 @@ class MainActivity : AppCompatActivity() {
 //        // Hide both the status bar and the navigation bar
 //        windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        ticker.schedule(object : TimerTask() {
+            override fun run() {
+                runOnUiThread { doClock() }
+            }
+        }, 0, 240000) //240 sec to update 360 times per day
+    }
+
+    override fun onPause() {
+        ticker.cancel();
+        super.onPause()
+    }
+
+
 }
