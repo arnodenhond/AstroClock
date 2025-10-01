@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="audible">Geluid</string>
+    <string name="vibrate">Trillen</string>
+    <!-- day -->
+    <string name="day">Dag</string>
+    <string name="midday">Mid dag</string>
+    <string name="midnight">Mid nacht</string>
+    <string name="sunrise">Zonsopkomst</string>
+    <string name="sunset">Zonsondergang</string>
+    <!-- moon -->
+    <string name="moon">Maan</string>
+    <string name="fullmoon">Volle Maan</string>
+    <string name="newmoon">Nieuwe Maan</string>
+    <string name="firstquarter">Eerste Kwartier</string>
+    <string name="lastquarter">Laatste Kwartier</string>
+    <!-- june -->
+    <string name="year">Jaar</string>
+    <string name="northernsolstice">Noordelijke Zonnewende</string>
+    <!-- december -->
+    <string name="southernsolstice">Zuidelijke Zonnewende</string>
+    <!-- march -->
+    <string name="northwardequinox">Noordwaardse Equinox</string>
+    <!-- september -->
+    <string name="southwardequinox">Zuidwaardse Equinox</string>
+
+</resources>

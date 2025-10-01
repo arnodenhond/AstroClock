@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="audible">들리는</string>
+    <string name="vibrate">설레다</string>
+    <!-- day -->
+    <string name="day">일</string>
+    <string name="midday">중간 일</string>
+    <string name="midnight">중순 밤</string>
+    <string name="sunrise">해돋이</string>
+    <string name="sunset">일몰</string>
+    <!-- moon -->
+    <string name="moon">달</string>
+    <string name="fullmoon">만월</string>
+    <string name="newmoon">초승달</string>
+    <string name="firstquarter">첫 쿼터</string>
+    <string name="lastquarter">최근 분기</string>
+    <!-- june -->
+    <string name="year">년</string>
+    <string name="northernsolstice">북부 지점</string>
+    <!-- december -->
+    <string name="southernsolstice">남부 지점</string>
+    <!-- march -->
+    <string name="northwardequinox">북쪽 춘분</string>
+    <!-- september -->
+    <string name="southwardequinox">남쪽 춘분</string>
+
+</resources>

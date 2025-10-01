@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- required for acquiring location -->
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- required for setting alerts -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.live_wallpaper"
+        android:required="false" />
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication" >
+
+        <activity android:exported="true"
+            android:name="arnodenhond.astroclock.AstroClock"
+            android:clearTaskOnLaunch="true"
+            android:taskAffinity="arnodenhond.astroclock.AstroClock"
+            android:theme="@style/AstroClockTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="astroclock/astroclock" />
+            </intent-filter>
+        </activity>
+        <activity android:name="arnodenhond.astroclock.About" />
+        <activity
+            android:name="arnodenhond.astroclock.settings.Menu"
+            android:exported="true" />
+        <activity android:name="arnodenhond.astroclock.settings.location.Map" />
+        <activity
+            android:name="arnodenhond.astroclock.settings.themes.Theme"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name="arnodenhond.astroclock.settings.alerts.Alerts" />
+
+        <!-- launches a broadcast and a notification if enabled. called when event expires in alarm manager -->
+        <receiver
+            android:name="arnodenhond.astroclock.alerts.AlarmReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="ASTROCLOCK_MIDDAY" />
+                <action android:name="ASTROCLOCK_MIDNIGHT" />
+                <action android:name="ASTROCLOCK_SUNRISE" />
+                <action android:name="ASTROCLOCK_SUNSET" />
+                <action android:name="ASTROCLOCK_FULLMOON" />
+                <action android:name="ASTROCLOCK_NEWMOON" />
+                <action android:name="ASTROCLOCK_FIRSTQUARTER" />
+                <action android:name="ASTROCLOCK_LASTQUARTER" />
+                <action android:name="ASTROCLOCK_NORTHERNSOLSTICE" />
+                <action android:name="ASTROCLOCK_SOUTHERNSOLSTICE" />
+                <action android:name="ASTROCLOCK_NORTHWARDEQUINOX" />
+                <action android:name="ASTROCLOCK_SOUTHWARDEQUINOX" />
+            </intent-filter>
+        </receiver>
+        <!-- sets the upcoming events in the alarm manager. called when device boots up -->
+        <receiver android:exported="true" android:name="arnodenhond.astroclock.alerts.BootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- appwidget -->
+        <receiver android:exported="true" android:name="arnodenhond.astroclock.widget.ACAppWidgetProvider" >
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <!-- live wallpaper -->
+        <service android:exported="true"
+            android:name="arnodenhond.astroclock.livewallpaper.ACWallpaperService"
+            android:permission="android.permission.BIND_WALLPAPER" >
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" >
+            </meta-data>
+        </service>
+        <!-- livefolder -->
+        <activity android:exported="true" android:name="arnodenhond.astroclock.livefolder.ACLiveFolder" >
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="arnodenhond.astroclock.livefolder.ACProvider"
+            android:authorities="astroclock"
+            android:syncable="false" />
+
+
+    </application>
+</manifest>

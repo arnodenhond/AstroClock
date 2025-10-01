@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">천문 시계</string>
+    <string name="welcometitle">천문 시계에 오신 것을 환영합니다</string>
+    <string name="welcomebody">메뉴에서 <b> 위치 </b>을 선택하십시오 정확성을 보장합니다.에게 \n 은 <b> 다운 테마 </b>를 선택하여 분위기에 맞게. \n 은 사용을 일부 <b> 다운로드 알림 </b>을 천문 이벤트를 통지합니다. \이 패키지 안에 물건하면 홈 화면 위젯, 라이브 벽지와 라이브 폴더를 가지고 있습니다. \n 에서 <b> 정보 </b> 자세한 내용은.</string>
+    <string name="welcomebutton">동의</string>
+
+    <string-array name="settingsoptions">
+        <item>테마</item>
+        <item>알리미</item>
+        <item>위치</item>
+        <item>약</item>
+        <item>완료</item>
+    </string-array>
+</resources>

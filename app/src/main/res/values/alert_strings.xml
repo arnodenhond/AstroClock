@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="audible">Audible</string>
+    <string name="vibrate">Vibrate</string>
+    <!-- day -->
+    <string name="day">Day</string>
+    <string name="midday">Mid day</string>
+    <string name="midnight">Mid night</string>
+    <string name="sunrise">Sun rise</string>
+    <string name="sunset">Sun set</string>
+    <!-- moon -->
+    <string name="moon">Moon</string>
+    <string name="fullmoon">Full moon</string>
+    <string name="newmoon">New moon</string>
+    <string name="firstquarter">First quarter</string>
+    <string name="lastquarter">Last quarter</string>
+    <!-- june -->
+    <string name="year">Year</string>
+    <string name="northernsolstice">Northern solstice</string>
+    <!-- december -->
+    <string name="southernsolstice">Southern solstice</string>
+    <!-- march -->
+    <string name="northwardequinox">Northward equinox</string>
+    <!-- september -->
+    <string name="southwardequinox">Southward equinox</string>
+
+</resources>
