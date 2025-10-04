@@ -7,6 +7,7 @@
     <string name="welcomebutton">OK</string>
     <string name="channel_name">AstroClock</string>
     <string name="channel_description">AstroClock</string>
+    <string name="location_permission_denied">Without knowing your location AstroClock can not show the correct position of the sun.</string>
 
     <string-array name="settingsoptions">
         <item>Themes</item>

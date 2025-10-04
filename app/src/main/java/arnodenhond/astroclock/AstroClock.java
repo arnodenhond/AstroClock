@@ -6,9 +6,11 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -29,12 +31,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import arnodenhond.astroclock.alerts.BootReceiver;
@@ -49,9 +53,20 @@ public class AstroClock extends Activity {
 	private static final String TAG = "AstroClock";
 	private static final int DIALOG_WELCOME = 1;
 	private static final int REQUEST_LOCATION_PERMISSION = 1;
-	PendingIntent pi;
+	public static final String ACTION_LOCATION_UPDATED = "arnodenhond.astroclock.LOCATION_UPDATED";
 
+	PendingIntent pi;
 	private FusedLocationProviderClient fusedLocationClient;
+
+	private final BroadcastReceiver locationUpdateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ACTION_LOCATION_UPDATED.equals(intent.getAction())) {
+                Log.d(TAG, "Received location update broadcast. Redrawing clock.");
+                updateClockDisplay();
+            }
+        }
+    };
 
 	public static boolean supportsAPILevel11() {
 		return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB);
@@ -70,23 +85,63 @@ public class AstroClock extends Activity {
 		}
 
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+		setContentView(R.layout.activity);
 
+		Log.d(TAG, "onCreate: Checking location permissions.");
+		checkLocationPermissionAndProceed();
+	}
+
+	private void checkLocationPermissionAndProceed() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "Permissions not granted. Requesting...");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+        } else {
+            Log.d(TAG, "Permissions already granted. Proceeding with app logic.");
+            proceedWithAppLogic();
+        }
+    }
+
+	private void proceedWithAppLogic() {
+		Log.d(TAG, "proceedWithAppLogic started.");
 		PrefsReader pr = new PrefsReader(this);
-		if (pr.isRefreshLatLon()) {
+
+		boolean shouldRequestLocation = pr.isRefreshLatLon() || pr.isFirstrun();
+		Log.d(TAG, "isRefreshLatLon=" + pr.isRefreshLatLon() + ", isFirstrun=" + pr.isFirstrun() + ", shouldRequestLocation=" + shouldRequestLocation);
+
+		if (shouldRequestLocation) {
 			requestLocationUpdate(pr);
 		}
+
 		if (pr.isFirstrun()) {
-			requestLocationUpdate(pr);
+			Log.d(TAG, "First run setup: setting alerts and marking first run as false.");
 			setAlerts(this);
 			pr.setFirstrun(false);
 		}
 		if (pr.isFirstnewversion()) {
+			Log.d(TAG, "New version setup: setting alarms and showing welcome dialog.");
 			setAlarms(this);
+			//noinspection deprecation
 			showDialog(DIALOG_WELCOME);
 			pr.setFirstnewversion(false);
 		}
-		setContentView(R.layout.activity);
 	}
+
+	@Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "onRequestPermissionsResult: Permission GRANTED.");
+                proceedWithAppLogic();
+            } else {
+                Log.w(TAG, "onRequestPermissionsResult: Permission DENIED.");
+                Toast.makeText(this, R.string.location_permission_denied, Toast.LENGTH_LONG).show();
+				proceedWithAppLogic();
+            }
+        }
+    }
+
 
 	@Override
 	protected Dialog onCreateDialog(int id) {
@@ -98,12 +153,14 @@ public class AstroClock extends Activity {
 			builder.setNeutralButton(R.string.welcomebutton, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
+					//noinspection deprecation
 					dismissDialog(DIALOG_WELCOME);
 				}
 			});
 			return builder.create();
 		}
 		}
+		//noinspection deprecation
 		return super.onCreateDialog(id);
 	}
 
@@ -117,11 +174,9 @@ public class AstroClock extends Activity {
 	}
 
 	private void requestLocationUpdate(final PrefsReader prefs) {
-		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-			ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-			// Log.w(TAG, "Location permission not granted. Requesting permissions.");
-            // ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-			Log.w(TAG, "Location permission not granted. Cannot update location at this time.");
+		Log.d(TAG, "requestLocationUpdate called.");
+		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+			Log.w(TAG, "requestLocationUpdate: Permissions not granted. Bailing out.");
 			return;
 		}
 
@@ -130,11 +185,18 @@ public class AstroClock extends Activity {
 				@Override
 				public void onSuccess(Location location) {
 					if (location != null) {
+						Log.i(TAG, "Acquired location: " + location);
 						prefs.storeLatLon((float) location.getLatitude(), (float) location.getLongitude());
-						Log.d(TAG, "Location updated: " + location.getLatitude() + ", " + location.getLongitude());
+                        updateClockDisplay(); // Redraw the clock with the new location
 					} else {
-						Log.w(TAG, "Last known location is null.");
+						Log.w(TAG, "fusedLocationClient.getLastLocation() was successful, but returned a null location.");
 					}
+				}
+			})
+			.addOnFailureListener(this, new OnFailureListener() {
+				@Override
+				public void onFailure(@NonNull Exception e) {
+					Log.e(TAG, "fusedLocationClient.getLastLocation() failed.", e);
 				}
 			});
 	}
@@ -144,28 +206,55 @@ public class AstroClock extends Activity {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.w(TAG, "Location permission not granted. Cannot update location from static method.");
-            // In a widget or background service, direct permission requests are not ideal.
-            // Ensure permissions are granted before calling this or handle the lack of location gracefully.
             return;
         }
 
         staticFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            prefs.storeLatLon((float) location.getLatitude(), (float) location.getLongitude());
-                            Log.d(TAG, "Location updated from static method: " + location.getLatitude() + ", " + location.getLongitude());
-                        } else {
-                            Log.w(TAG, "Last known location is null from static method.");
-                        }
+                .addOnSuccessListener(location -> {
+                    if (location != null) {
+                        prefs.storeLatLon((float) location.getLatitude(), (float) location.getLongitude());
+                        Log.d(TAG, "Location updated from static method: " + location.getLatitude() + ", " + location.getLongitude());
+						// Broadcast that location has changed so active UI can update
+						context.sendBroadcast(new Intent(ACTION_LOCATION_UPDATED));
+                    } else {
+                        Log.w(TAG, "Last known location is null from static method.");
                     }
-                });
+                })
+				.addOnFailureListener(new OnFailureListener() {
+					@Override
+					public void onFailure(@NonNull Exception e) {
+						Log.e(TAG, "staticFusedLocationClient.getLastLocation() failed.", e);
+					}
+				});
+    }
+
+	private void updateClockDisplay() {
+        final ImageView iv = (ImageView) findViewById(R.id.clock);
+        final ProgressBar pb = (ProgressBar) findViewById(R.id.loading);
+        if (iv == null || pb == null) return; // Guard against views not being ready
+
+        iv.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "Updating clock display.");
+                PrefsReader pr = new PrefsReader(AstroClock.this);
+                final double latitude = pr.getLatitude();
+                final double longitude = pr.getLongitude();
+                final int theme = pr.getTheme();
+                pb.setVisibility(View.VISIBLE);
+                iv.setImageBitmap(null);
+                iv.setImageBitmap(new BitmapMaker(AstroClock.this, 800, latitude, longitude, theme).makeBitmap());
+                pb.setVisibility(View.GONE);
+            }
+        });
     }
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		//registerReceiver(locationUpdateReceiver, new IntentFilter(ACTION_LOCATION_UPDATED), RECEIVER_NOT_EXPORTED);
+
 		PrefsReader pr = new PrefsReader(this);
 		if (pr.isUseBackground()) {
 			getWindow().setBackgroundDrawable(new BitmapDrawable(getResources(), AstroClock.loadFullImage(this, Uri.parse(pr.getBackgroundImage()))));
@@ -173,21 +262,7 @@ public class AstroClock extends Activity {
 			getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
 		}
 
-		final ImageView iv = (ImageView) findViewById(R.id.clock);
-		final ProgressBar pb = (ProgressBar) findViewById(R.id.loading);
-		iv.post(new Runnable() {
-			@Override
-			public void run() {
-				PrefsReader pr = new PrefsReader(AstroClock.this);
-				final double latitude = pr.getLatitude();
-				final double longitude = pr.getLongitude();
-				final int theme = pr.getTheme();
-				pb.setVisibility(View.VISIBLE);
-				iv.setImageBitmap(null);
-				iv.setImageBitmap(new BitmapMaker(AstroClock.this, 480, latitude, longitude, theme).makeBitmap());
-				pb.setVisibility(View.GONE);
-			}
-		});
+		updateClockDisplay();
 
 		Intent pintent = new Intent(this, AstroClock.class);
 		pintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -199,12 +274,14 @@ public class AstroClock extends Activity {
 
 	@Override
 	protected void onPause() {
+		super.onPause();
+		//unregisterReceiver(locationUpdateReceiver);
+
 		getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark);
 		ImageView iv = (ImageView) findViewById(R.id.clock);
 		iv.setImageBitmap(null); // Setting to null is better than setImageDrawable(null) for Bitmaps
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.cancel(pi);
-		super.onPause();
 	}
 
 	public void clicked(View arg0) {
@@ -213,14 +290,15 @@ public class AstroClock extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(android.view.Menu menu) {
-		MenuInflater mi = new MenuInflater(this);
-		mi.inflate(R.menu.menu, menu);
-		String[] titles = getResources().getStringArray(R.array.settingsoptions);
-		menu.findItem(R.id.Theme).setTitle(titles[0]).setIntent(new Intent(AstroClock.this, Theme.class));
-		menu.findItem(R.id.Alerts).setTitle(titles[1]).setIntent(new Intent(AstroClock.this, Alerts.class));
-		menu.findItem(R.id.Location).setTitle(titles[2]).setIntent(new Intent(AstroClock.this, Map.class));
-		menu.findItem(R.id.About).setTitle(titles[3]).setIntent(new Intent(AstroClock.this, About.class));
 		return super.onCreateOptionsMenu(menu);
+//		MenuInflater mi = new MenuInflater(this);
+//		mi.inflate(R.menu.menu, menu);
+//		String[] titles = getResources().getStringArray(R.array.settingsoptions);
+//		menu.findItem(R.id.Theme).setTitle(titles[0]).setIntent(new Intent(AstroClock.this, Theme.class));
+//		menu.findItem(R.id.Alerts).setTitle(titles[1]).setIntent(new Intent(AstroClock.this, Alerts.class));
+//		menu.findItem(R.id.Location).setTitle(titles[2]).setIntent(new Intent(AstroClock.this, Map.class));
+//		menu.findItem(R.id.About).setTitle(titles[3]).setIntent(new Intent(AstroClock.this, About.class));
+//		return super.onCreateOptionsMenu(menu);
 	}
 
 
@@ -267,20 +345,4 @@ public class AstroClock extends Activity {
 		return null;
 	}
 
-	/* Optional: Handle permission request result
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-		if (requestCode == REQUEST_LOCATION_PERMISSION) {
-			if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				// Permission was granted, try to get location again
-				PrefsReader pr = new PrefsReader(this);
-				requestLocationUpdate(pr);
-			} else {
-				// Permission denied
-				Log.w(TAG, "Location permission denied by user.");
-			}
-		}
-	}
-	*/
 }

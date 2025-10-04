@@ -32,7 +32,7 @@ public class ACAppWidgetProvider extends AppWidgetProvider {
 		
 
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);
-		Bitmap bitmap = new BitmapMaker(context, 480, settings.getLatitude(), settings.getLongitude(), settings.getTheme()).makeBitmap();
+		Bitmap bitmap = new BitmapMaker(context, 800, settings.getLatitude(), settings.getLongitude(), settings.getTheme()).makeBitmap();
 		if (!AstroClock.supportsAPILevel11()) {
 			bitmap = Bitmap.createScaledBitmap(bitmap, 240, 240, true);
 		}
@@ -40,7 +40,7 @@ public class ACAppWidgetProvider extends AppWidgetProvider {
 		Intent menuintent = new Intent(context, Menu.class);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 		menuintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(context, 0, menuintent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE));
+		//views.setOnClickPendingIntent(R.id.clock, PendingIntent.getActivity(context, 0, menuintent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE));
 		for (int i = 0; i < appWidgetIds.length; i++)
 			appWidgetManager.updateAppWidget(appWidgetIds[i], views);
 

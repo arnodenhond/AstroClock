@@ -54,7 +54,7 @@ public class BitmapMaker {
 			return bmp;
 		} else {
 			Resources r = ctx.getResources();
-			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t3" + name.substring(0, name.indexOf('.')), null, null);
+			int res = r.getIdentifier("arnodenhond.astroclocklite:drawable/t4" + name.substring(0, name.indexOf('.')), null, null);
 			BitmapFactory.Options opts = new BitmapFactory.Options();
 			opts.inDensity=metrics.densityDpi;
 			return BitmapFactory.decodeResource(ctx.getResources(), res, opts); 

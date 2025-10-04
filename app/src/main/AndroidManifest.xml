@@ -95,7 +95,7 @@
             </intent-filter>
         </receiver>
         <!-- appwidget -->
-        <receiver android:exported="true" android:name="arnodenhond.astroclock.widget.ACAppWidgetProvider" >
+        <receiver         android:icon="@mipmap/ic_launcher" android:exported="true" android:name="arnodenhond.astroclock.widget.ACAppWidgetProvider" >
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider" />
