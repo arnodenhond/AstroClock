@@ -15,18 +15,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:banner="@drawable/img"
+        android:banner="@mipmap/img"
         android:supportsRtl="true"
         >
         <!--android:theme="@style/Theme.AstroClock"-->
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat"
-            android:banner="@drawable/img"
             android:exported="true"
-            android:icon="@drawable/img"
             android:label="@string/app_name"
-            android:logo="@drawable/img"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
