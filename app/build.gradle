@@ -12,8 +12,8 @@ android {
         applicationId "arnodenhond.astroclocklite"
         minSdk 23
         targetSdk 36
-        versionCode 23060725
-        versionName "23060725"
+        versionCode 23060726
+        versionName "23060726"
 
     }
     compileOptions {sourceCompatibility JavaVersion.VERSION_17
