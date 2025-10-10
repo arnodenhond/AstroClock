@@ -26,14 +26,14 @@ Version Code:
 
 * 22122123 Wear OS
 
+Release Date: 2025 October 6
 
 ## GitHub
 
 * [Release](https://github.com/arnodenhond/AstroClock/releases/latest)
 ![](https://img.shields.io/github/v/release/arnodenhond/astroclock)
 
-* [Source Code](https://github.com/arnodenhond/AstroClock/)
-![](https://img.shields.io/github/languages/code-size/arnodenhond/astroclock)    
+* ![](https://img.shields.io/github/created-at/arnodenhond/astroclock)
 
 * [Issues](https://github.com/arnodenhond/AstroClock/issues/)
 ![](https://img.shields.io/github/issues/arnodenhond/astroclock)
