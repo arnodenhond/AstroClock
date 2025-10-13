@@ -10,8 +10,8 @@ android {
         applicationId "arnodenhond.astroclocklite"
         minSdk 30
         targetSdk 36
-        versionCode 23060728
-        versionName "23060728"
+        versionCode 23060729
+        versionName "23060729"
 
     }
 
